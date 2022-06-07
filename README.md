@@ -3,8 +3,6 @@ Reality Near: Landing Page and Marketplace
 
 In this repository is hosted the Landing page and the Marketplace of the Reality Near project. The landing page will show the value proposition and all the benefits that Realiy Near offers. In the marketplace our users will be able to acquire "Realities", these are tokens that will allow them to buy parcels (Realands and Patchas), accessories, clothes, services and everything that is for sale in Nuruk.
 
-![Cover page](/frontend/assets/img/readme/cover-page.jpg "Reality Near")
-
 Architecture
 ===========
 ![Front End Architecture](/frontend/assets/img/readme/architecture.jpg "Front End Architecture")
