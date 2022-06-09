@@ -31,3 +31,9 @@ yarn-error.log*
 /contract/target
 
 /dist
+
+frontend/.prettierrc
+
+package-lock.json
+
+yarn.lock
