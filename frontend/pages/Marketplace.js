@@ -147,7 +147,7 @@ const Marketplace = () => {
 
     return (
         <div>
-          <header className="top-header">
+          <header className="" style={{marginTop:200 + 'px'}}>
             <div className="menu">
               <div className="navbar-left">
                 <h3> NFT MARKET</h3>
