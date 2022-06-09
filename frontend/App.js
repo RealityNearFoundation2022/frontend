@@ -43,7 +43,7 @@ export default function App() {
   // if not signed in, return early with sign-in prompt
   //if (!window.walletConnection.isSignedIn()) {
     return (
-      <BrowserRouter>
+ 
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -52,7 +52,7 @@ export default function App() {
         </Route>
       </Routes>
 
-    </BrowserRouter>
+  
     )
   }
 

@@ -14,20 +14,20 @@ const Home = () => {
   const [showNotification, setShowNotification] = React.useState(false)
 
 
-  React.useEffect(
-    () => {
+  //React.useEffect(
+  //  () => {
       // get_greeting is in near/utils.js
-      get_greeting()
-        .then(greetingFromContract => {
-          setGreeting(greetingFromContract)
-        })
-    },
+      //get_greeting()
+      //  .then(greetingFromContract => {
+      //    setGreeting(greetingFromContract)
+      //  })
+   // },
 
     // The second argument to useEffect tells React when to re-run the effect
     // Use an empty array to specify "only run on first render"
     // This works because signing into NEAR Wallet reloads the page
-    []
-  )
+   // []
+  // )
 
 
 
@@ -72,13 +72,13 @@ const Home = () => {
       <main>
         <h1>
           <label
-            htmlFor="greeting"
+            htmlFor=""
             style={{
               color: 'var(--secondary)',
               borderBottom: '2px solid var(--secondary)'
             }}
           >
-            {greeting}
+            {}
           </label>
           {' '/* React trims whitespace around tags; insert literal space character when needed */}
           {window.accountId}!

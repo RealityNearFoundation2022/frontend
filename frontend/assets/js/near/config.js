@@ -1,4 +1,5 @@
-const CONTRACT_NAME = process.env.CONTRACT_NAME ||'new-awesome-project'
+const CONTRACT_NAME = process.env.CONTRACT_NAME ||'nft3.guxal.testnet'
+const MARKET_CONTRACT = process.env.MARKET_CONTRACT ||'mkp.guxal.testnet'
 
 function getConfig(env) {
   switch (env) {
@@ -19,6 +20,8 @@ function getConfig(env) {
       networkId: 'testnet',
       nodeUrl: 'https://rpc.testnet.near.org',
       contractName: CONTRACT_NAME,
+      contractMarketplace: MARKET_CONTRACT,
+      GAS: "200000000000000",
       walletUrl: 'https://wallet.testnet.near.org',
       helperUrl: 'https://helper.testnet.near.org',
       explorerUrl: 'https://explorer.testnet.near.org',
