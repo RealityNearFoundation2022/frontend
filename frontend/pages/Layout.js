@@ -1,6 +1,11 @@
 import { Outlet, Link } from "react-router-dom";
 
+import { login, logout } from '../assets/js/near/utils'
+
 const Layout = () => {
+  
+  const currentUser = window.accountId || ""
+
   return (
     <>
       {/*<nav>
@@ -35,7 +40,18 @@ const Layout = () => {
           </li>
           <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contacto</a>
           </li>
-          <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Ingreso</button>
+
+          {currentUser ? (
+          <button href="#" class="btn btn-warning btn-xl" onClick={logout}>
+          Log out
+          </button>
+          ) : (
+          <button href="#" class="btn btn-primary btn-xl" onClick={login}>
+          Log In
+          </button>
+          )}
+        
+          {/*<button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Ingreso</button>*/}
         </ul>
       </div>
     </div>
