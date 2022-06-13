@@ -115,8 +115,10 @@ export async function storage_minimum_balance(){
   return storage
 }
 
-export async function storage_deposit(minimum, gas){
-  await window.mkpcontract.storage_deposit({args:{}, gas: gas, amount: minimum})
+export async function storage_deposit(account_id, minimum, gas){
+  await window.mkpcontract.storage_deposit({args:{
+    account_id: account_id
+  }, gas: gas, amount: minimum || "10000000000000000000000" })
 }
 
 export async function offer(nft_contract, token_id, amount, gas){
