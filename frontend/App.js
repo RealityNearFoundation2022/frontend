@@ -16,6 +16,10 @@ import NoPage from "./pages/NoPage";
 import NftMe from "./components/nft/Me";
 import NftSell from './components/nft/Sell';
 
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Metaverso from './pages/Metaverso';
+
 export default function App() {
   // use React Hooks to store greeting in component state
   //const [greeting, setGreeting] = React.useState()
@@ -54,6 +58,9 @@ export default function App() {
           <Route path="/marketplace/me" element={<NftMe />} />
           <Route path="/marketplace/sell" element={<NftSell />} />
           <Route path="*" element={<NoPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/metaverso" element={<Metaverso />} />
         </Route>
       </Routes>
 
