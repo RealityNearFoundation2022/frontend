@@ -60,10 +60,8 @@ function Marketplace() {
   const [nftMarketResults, setNftMarketResults] = useState([])
 
   useEffect(() => {
-    if (!showLoader) {
-      loadSaleItems()
-    }
-  }, [showLoader])
+    loadSaleItems()
+  }, [])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -80,13 +78,14 @@ function Marketplace() {
 
     const sales = []
 
-    for (let i = 0; i < nftTokens.length; i++) {
-      const { token_id } = nftTokens[i]
+    nftTokens.forEach((nftToken, i) => {
+      const { token_id } = nftToken
       const saleToken = saleTokens.find(({ token_id: t }) => t === token_id)
-      if (saleToken !== undefined) {
-        sales[i] = Object.assign(nftTokens[i], saleToken)
+      if (saleToken) {
+        sales[i] = Object.assign(nftToken, saleToken)
       }
-    }
+    })
+
     setNftMarketResults(sales)
     setShowLoader(true)
   }
@@ -184,7 +183,9 @@ function Marketplace() {
                               </div>
 
                               <div className="form-btn-wrapper">
-                                <button className="form-btn">Enter Bid</button>
+                                <button type="button" className="form-btn">
+                                  Enter Bid
+                                </button>
                               </div>
                             </div>
                           </form>
@@ -193,7 +194,7 @@ function Marketplace() {
                     </Modal>
 
                     <article className="card-wrapper">
-                      <a className="asset-anchor" href="#">
+                      <p className="asset-anchor" href="#">
                         <div className="asset-anchor-wrapper">
                           <div className="asset-anchor-wrapper-inner">
                             <div className="asset-anchor-wrapper-inner-2">
@@ -234,11 +235,15 @@ function Marketplace() {
                             </div>
                           </div>
                         </div>
-                      </a>
+                      </p>
 
                       <div className="sell-wrapper">
-                        {currentUser != nft.owner_id ? (
-                          <button className="form-btn" onClick={toggleBidModal}>
+                        {currentUser !== nft.owner_id ? (
+                          <button
+                            type="button"
+                            className="form-btn"
+                            onClick={toggleBidModal}
+                          >
                             Bid
                           </button>
                         ) : null}

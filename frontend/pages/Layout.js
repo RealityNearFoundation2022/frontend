@@ -66,25 +66,13 @@ function Layout() {
                   Contacto
                 </Link>
               </li>
-
-              {currentUser ? (
-                <button
-                  href="#"
-                  className="btn btn-warning btn-xl rounded"
-                  onClick={logout}
-                >
-                  Log out
-                </button>
-              ) : (
-                <button
-                  href="#"
-                  className="btn btn-primary btn-xl rounded"
-                  id="submitButton"
-                  onClick={login}
-                >
-                  Log In
-                </button>
-              )}
+              <button
+                type="button"
+                className="btn btn-warning btn-xl rounded"
+                onClick={currentUser ? logout : login}
+              >
+                {currentUser ? 'Log out' : 'Log In'}
+              </button>
             </ul>
           </div>
         </div>
