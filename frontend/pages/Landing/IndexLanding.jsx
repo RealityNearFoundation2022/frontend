@@ -1,23 +1,18 @@
+/* eslint-disable camelcase */
 import React from 'react'
-import {
-  login,
-  logout,
-  get_greeting,
-  set_greeting,
-} from '../../assets/js/near/utils'
-import getConfig from '../../assets/js/near/config'
+// import getConfig from '../../assets/js/near/config'
 import Moments from './Moments'
 import RealityToken from './RealityToken'
 
 function Home() {
-  // use React Hooks to store greeting in component state
-  const [greeting, setGreeting] = React.useState()
+  // // use React Hooks to store greeting in component state
+  // const [greeting, setGreeting] = React.useState()
 
-  // when the user has not yet interacted with the form, disable the button
-  const [buttonDisabled, setButtonDisabled] = React.useState(true)
+  // // when the user has not yet interacted with the form, disable the button
+  // const [buttonDisabled, setButtonDisabled] = React.useState(true)
 
-  // after submitting the form, we want to show Notification
-  const [showNotification, setShowNotification] = React.useState(false)
+  // // after submitting the form, we want to show Notification
+  // const [showNotification, setShowNotification] = React.useState(false)
 
   // React.useEffect(
   //  () => {
@@ -51,33 +46,33 @@ function Home() {
 }
 
 // this component gets rendered by App after the form is submitted
-function Notification() {
-  const { networkId } = getConfig(process.env.NODE_ENV || 'development')
-  const urlPrefix = `https://explorer.${networkId}.near.org/accounts`
+// function Notification() {
+//   const { networkId } = getConfig(process.env.NODE_ENV || 'development')
+//   const urlPrefix = `https://explorer.${networkId}.near.org/accounts`
 
-  return (
-    <aside>
-      <a
-        target="_blank"
-        rel="noreferrer"
-        href={`${urlPrefix}/${window.accountId}`}
-      >
-        {window.accountId}
-      </a>
-      called method: set_greeting in contract:{' '}
-      <a
-        target="_blank"
-        rel="noreferrer"
-        href={`${urlPrefix}/${window.contract.contractId}`}
-      >
-        {window.contract.contractId}
-      </a>
-      <footer>
-        <div>✔ Succeeded</div>
-        <div>Just now</div>
-      </footer>
-    </aside>
-  )
-}
+//   return (
+//     <aside>
+//       <a
+//         target="_blank"
+//         rel="noreferrer"
+//         href={`${urlPrefix}/${window.accountId}`}
+//       >
+//         {window.accountId}
+//       </a>
+//       called method: set_greeting in contract:{' '}
+//       <a
+//         target="_blank"
+//         rel="noreferrer"
+//         href={`${urlPrefix}/${window.contract.contractId}`}
+//       >
+//         {window.contract.contractId}
+//       </a>
+//       <footer>
+//         <div>✔ Succeeded</div>
+//         <div>Just now</div>
+//       </footer>
+//     </aside>
+//   )
+// }
 
 export default Home
