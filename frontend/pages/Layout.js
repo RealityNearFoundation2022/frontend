@@ -1,22 +1,26 @@
-import { Outlet, Link } from 'react-router-dom';
+import React from 'react'
+/* eslint-disable import/no-extraneous-dependencies */
+import { Outlet, Link } from 'react-router-dom'
 
-import { login, logout } from '../assets/js/near/utils';
+import { login, logout } from '../assets/js/near/utils'
 
-const Layout = () => {
-  const currentUser = window.accountId || '';
+import logo from '../assets/img/logo.png'
+
+function Layout() {
+  const currentUser = window.accountId || ''
 
   return (
     <>
       <nav
-        class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
+        className="navbar navbar-expand-lg bg-dark bg-opacity-75 text-uppercase fixed-top"
         id="mainNav"
       >
-        <div class="container">
+        <div className="container">
           <Link class="navbar-brand" to="/">
-            Reality Near Icon
+            <img src={logo} alt="" />
           </Link>
           <button
-            class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
+            className="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarResponsive"
@@ -25,50 +29,62 @@ const Layout = () => {
             aria-label="Toggle navigation"
           >
             Menu
-            <i class="fas fa-bars"></i>
+            <i className="fas fa-bars"></i>
           </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item mx-0 mx-lg-1">
+          <div className="collapse navbar-collapse" id="navbarResponsive">
+            <ul className="navbar-nav m-auto d-flex justify-content-between w-100 ms-5">
+              <li className="nav-item mx-0 mx-lg-1">
                 <Link
-                  class="nav-link py-3 px-0 px-lg-3 rounded"
+                  class="h4 fw-light nav-link py-3 px-0 px-lg-3 rounded"
                   to="/marketplace"
                 >
                   Marketplace
                 </Link>
               </li>
-
-              <li class="nav-item mx-0 mx-lg-1">
-                <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">
+              <li className="nav-item mx-0 mx-lg-1">
+                <Link
+                  class="h4 fw-light nav-link py-3 px-0 px-lg-3 rounded"
+                  to="/about"
+                >
                   Nosotros
-                </a>
+                </Link>
               </li>
-              <li class="nav-item mx-0 mx-lg-1">
-                <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">
+
+              <li className="nav-item mx-0 mx-lg-1">
+                <Link
+                  class="h4 fw-light nav-link py-3 px-0 px-lg-3 rounded"
+                  to="/metaverso"
+                >
                   Metaverso
-                </a>
+                </Link>
               </li>
-              <li class="nav-item mx-0 mx-lg-1">
-                <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">
+              <li className="nav-item mx-0 mx-lg-1">
+                <Link
+                  class="h4 fw-light nav-link py-3 px-0 px-lg-3 rounded"
+                  to="/contact"
+                >
                   Contacto
-                </a>
+                </Link>
               </li>
 
               {currentUser ? (
                 <button
                   href="#"
-                  class="btn btn-warning btn-xl"
+                  className="btn btn-warning btn-xl rounded"
                   onClick={logout}
                 >
                   Log out
                 </button>
               ) : (
-                <button href="#" class="btn btn-primary btn-xl" onClick={login}>
+                <button
+                  href="#"
+                  className="btn btn-primary btn-xl rounded"
+                  id="submitButton"
+                  onClick={login}
+                >
                   Log In
                 </button>
               )}
-
-              {/*<button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Ingreso</button>*/}
             </ul>
           </div>
         </div>
@@ -76,7 +92,7 @@ const Layout = () => {
 
       <Outlet />
     </>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
