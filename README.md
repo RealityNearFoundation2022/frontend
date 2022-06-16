@@ -15,7 +15,7 @@ To run this project locally:
 1. Prerequisites: Make sure you've installed [Node.js] ≥ 12
 2. Install dependencies: `npm install`
 3. Install [Rust] according to Near documentation.
-4. Run the local development server: `npm run dev`
+4. Run the local development server: `npm run start:web`
 
 Exploring The Code
 ==================

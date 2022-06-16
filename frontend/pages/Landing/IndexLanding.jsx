@@ -1,28 +1,28 @@
-import React from 'react';
+import React from 'react'
 import {
   login,
   logout,
   get_greeting,
   set_greeting,
-} from '../../assets/js/near/utils';
-import getConfig from '../../assets/js/near/config';
-import Moments from './Moments';
-import RealityToken from './RealityToken';
+} from '../../assets/js/near/utils'
+import getConfig from '../../assets/js/near/config'
+import Moments from './Moments'
+import RealityToken from './RealityToken'
 
-const Home = () => {
+function Home() {
   // use React Hooks to store greeting in component state
-  const [greeting, setGreeting] = React.useState();
+  const [greeting, setGreeting] = React.useState()
 
   // when the user has not yet interacted with the form, disable the button
-  const [buttonDisabled, setButtonDisabled] = React.useState(true);
+  const [buttonDisabled, setButtonDisabled] = React.useState(true)
 
   // after submitting the form, we want to show Notification
-  const [showNotification, setShowNotification] = React.useState(false);
+  const [showNotification, setShowNotification] = React.useState(false)
 
-  //React.useEffect(
+  // React.useEffect(
   //  () => {
   // get_greeting is in near/utils.js
-  //get_greeting()
+  // get_greeting()
   //  .then(greetingFromContract => {
   //    setGreeting(greetingFromContract)
   //  })
@@ -44,16 +44,16 @@ const Home = () => {
         </div>
       </header>
       <Moments />
-      <RealityToken/>
-      <RealityToken/>
+      <RealityToken />
+      <RealityToken />
     </main>
-  );
-};
+  )
+}
 
 // this component gets rendered by App after the form is submitted
 function Notification() {
-  const { networkId } = getConfig(process.env.NODE_ENV || 'development');
-  const urlPrefix = `https://explorer.${networkId}.near.org/accounts`;
+  const { networkId } = getConfig(process.env.NODE_ENV || 'development')
+  const urlPrefix = `https://explorer.${networkId}.near.org/accounts`
 
   return (
     <aside>
@@ -64,10 +64,7 @@ function Notification() {
       >
         {window.accountId}
       </a>
-      {
-        ' ' /* React trims whitespace around tags; insert literal space character when needed */
-      }
-      called method: 'set_greeting' in contract:{' '}
+      called method: set_greeting in contract:{' '}
       <a
         target="_blank"
         rel="noreferrer"
@@ -80,7 +77,7 @@ function Notification() {
         <div>Just now</div>
       </footer>
     </aside>
-  );
+  )
 }
 
-export default Home;
+export default Home
