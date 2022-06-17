@@ -1,5 +1,5 @@
 import React from 'react'
-import { desktop, mobile, tablet } from '../assets/img/background/index'
+import { desktop, mobile, tablet } from '../../assets/img/background/index'
 
 function About() {
   return (

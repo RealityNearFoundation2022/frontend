@@ -53,8 +53,6 @@ function Marketplace() {
 
   const currentUser = window.accountId || ''
 
-  console.log(currentUser)
-
   const { isVisibleBid, toggleBidModal } = useModal()
 
   const [nftMarketResults, setNftMarketResults] = useState([])
@@ -149,47 +147,45 @@ function Marketplace() {
           ) : null}
 
           <div className="market-result-wrapper">
-            {nftMarketResults
+            {nftMarketResults?.length
               ? nftMarketResults.map((nft, index) => (
                   <div className="outter-wrapper" key={nft}>
                     <Modal
                       isVisibleBid={isVisibleBid}
                       hideModal={toggleBidModal}
                     >
-                      <div className="outform-wrapper">
-                        <div className="form-wrapper">
-                          <form
-                            onSubmit={(e) => {
-                              e.preventDefault()
-                              OfferPrice(nft.token_id)
-                            }}
-                          >
-                            <div className="form-in-wrapper">
-                              <h3 className="text-center pb-1">BID</h3>
+                      <div className="form-wrapper">
+                        <form
+                          onSubmit={(e) => {
+                            e.preventDefault()
+                            OfferPrice(nft.token_id)
+                          }}
+                        >
+                          <div className="form-in-wrapper">
+                            <h3 className="text-center pb-1">BID</h3>
 
-                              <div className="box-wrapper">
-                                <div className="box-in-wrapper">
-                                  <div className="input-wrapper">
-                                    <input
-                                      className="input-box"
-                                      placeholder="Add bid price"
-                                      name="assetBid"
-                                      type="text"
-                                      value={values.assetBid}
-                                      onChange={handleInputChange}
-                                    />
-                                  </div>
+                            <div className="box-wrapper">
+                              <div className="box-in-wrapper">
+                                <div className="input-wrapper">
+                                  <input
+                                    className="input-box"
+                                    placeholder="Add bid price"
+                                    name="assetBid"
+                                    type="text"
+                                    value={values.assetBid}
+                                    onChange={handleInputChange}
+                                  />
                                 </div>
                               </div>
-
-                              <div className="form-btn-wrapper">
-                                <button type="button" className="form-btn">
-                                  Enter Bid
-                                </button>
-                              </div>
                             </div>
-                          </form>
-                        </div>
+
+                            <div className="form-btn-wrapper">
+                              <button type="button" className="form-btn">
+                                Enter Bid
+                              </button>
+                            </div>
+                          </div>
+                        </form>
                       </div>
                     </Modal>
 
