@@ -5,6 +5,4 @@ import safe from './safe.png'
 import submarine from './submarine.png'
 import cabin from './cabin.png'
 
-
-
 export { circus, cake, game, safe, submarine, cabin }
