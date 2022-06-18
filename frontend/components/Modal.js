@@ -1,24 +1,35 @@
-import * as React from "react";
-import { createPortal } from "react-dom";
-import { CloseIcon } from "./Close";
+import * as React from 'react'
+import { createPortal } from 'react-dom'
+import { CloseIcon } from './Close'
 
-
-const Modal = ({ isVisible, isVisibleSale, isVisibleBid, hideModal, children }) => {
-  return isVisible || isVisibleSale || isVisibleBid 
+function Modal({
+  isVisible,
+  isVisibleSale,
+  isVisibleBid,
+  hideModal,
+  children,
+}) {
+  return isVisible || isVisibleSale || isVisibleBid
     ? createPortal(
-        <React.Fragment>
-          <div className="modal-overlay">
+        <div className="modal-overlay">
+          <div className="outform-wrapper">
             <div className="close-wrapper">
-              <button className="sbutton" aria-label="Close dialog" onClick={hideModal}><CloseIcon/></button>
+              <button
+                type="button"
+                className="button"
+                aria-label="Close dialog"
+                onClick={hideModal}
+              >
+                holaaa
+                <CloseIcon />
+              </button>
             </div>
             {children}
           </div>
-          ,
-        </React.Fragment>,
-
-        document.body
+        </div>,
+        document.body,
       )
-    : null;
-};
+    : null
+}
 
 export default Modal
