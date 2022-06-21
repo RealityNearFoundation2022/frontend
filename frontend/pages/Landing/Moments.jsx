@@ -3,13 +3,13 @@ import React from 'react'
 
 export default function Moments() {
   return (
-    <section className="page-section bg-secondary near" id="near">
-      <div className="container">
-        <h2 className="page-section-heading text-center text-white text-uppercase text-secondary mb-0">
+    <section className="h-100vh bg-secondary near" id="near">
+      <div className="">
+        <h2 className="text-center text-white text-uppercase text-secondary mb-0 bg-green h-20vh">
           Conoce los eventos del momento
         </h2>
 
-        <div className="row justify-content-center">
+        <div className="d-flex justify-content-center">
           <div className="col-md-6 col-lg-4 mb-5">
             <div
               className="near-item mx-auto"

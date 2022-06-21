@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 /* eslint-disable import/no-extraneous-dependencies */
 import { Outlet, Link } from 'react-router-dom'
 
@@ -7,12 +7,28 @@ import { login, logout } from '../assets/js/near/utils'
 import logo from '../assets/img/logo.png'
 
 function Layout() {
+  const [navHidden, setNavHidden] = useState(false)
+
   const currentUser = window.accountId || ''
+
+  const changeVisibilityNav = () => {
+    if (window.scrollY >= 600) {
+      setNavHidden(true)
+    } else {
+      setNavHidden(false)
+    }
+  }
+
+  window.addEventListener('scroll', changeVisibilityNav)
 
   return (
     <>
       <nav
-        className="navbar navbar-expand-lg bg-dark bg-opacity-75 text-uppercase fixed-top"
+        className={
+          navHidden
+            ? 'navbar navbar-expand-lg bg-dark bg-opacity-75 text-uppercase fixed-top h-10vh justify-content-center visual-hidden'
+            : 'navbar navbar-expand-lg bg-dark bg-opacity-75 text-uppercase fixed-top h-10vh justify-content-center'
+        }
         id="mainNav"
       >
         <div className="container">
