@@ -3587,6 +3587,11 @@ textarea.form-control-lg {
 
 .bg-image {
   background-image: url(/frontend/assets/img/background/bg-image-desktop.jpg);
+  background-repeat: no-repeat;/*yumari*/
+  background-position: center center;/*yumari*/
+}
+.bg-img-size-cover{
+  background-size: cover;
 }
 
 @media (min-width: 576px) {
@@ -6830,7 +6835,12 @@ textarea.form-control-lg {
 .end-100 {
   right: 100% !important;
 }
-
+.ml-3vw{/*yumari*/
+  margin-left: 3vw !important;
+}
+.ml-19vw{
+  margin-left: 19vw !important;
+}
 .translate-middle {
   transform: translate(-50%, -50%) !important;
 }
@@ -6938,11 +6948,15 @@ textarea.form-control-lg {
 .border-5 {
   border-width: 5px !important;
 }
-
+.f-size-80{
+  font-size: 80px;
+}
 .w-25 {
   width: 25% !important;
 }
-
+.w-40{
+  width: 40% !important;
+}
 .w-50 {
   width: 50% !important;
 }
@@ -6989,6 +7003,27 @@ textarea.form-control-lg {
 
 .h-auto {
   height: auto !important;
+}
+
+.h-10vh{/*yumari*/
+  height: 10vh;
+}
+.h-15vh{
+  height: 15vh;
+}
+.h-20vh{
+  height: 20vh;
+}
+
+
+.h-100vh{/*yumari*/
+  height: 100vh;
+}
+.visual-hidden{
+  opacity:0;
+}
+.visual-hidden:hover{
+  opacity: 1;
 }
 
 .mh-100 {
@@ -7889,6 +7924,12 @@ textarea.form-control-lg {
 
 .bg-gradient {
   background-image: var(--bs-gradient) !important;
+}
+.bg-linearGradient{/*yumari*/
+  background: linear-gradient(90deg, #000000 0.52%, #0D2920 64.06%, #23322D 100%)
+}
+.bg-green{/*yumari*/
+  background-color: #0D2920;
 }
 
 .user-select-all {
@@ -11294,7 +11335,9 @@ html {
 }
 
 .page-section {
-  padding: 6rem 0;
+  height: 100vh;/*yumari*/
+  /* padding: 6rem 0; */
+  padding: 10vh 0;/*yumari*/
 }
 .page-section .page-section-heading {
   font-size: 2.25rem;
@@ -11369,6 +11412,7 @@ html {
 }
 #mainNav .navbar-nav li.nav-item a.nav-link {
   color: #fff;
+  font-size: 18px;
 }
 #mainNav .navbar-nav li.nav-item a.nav-link:hover {
   color: #1abc9c;

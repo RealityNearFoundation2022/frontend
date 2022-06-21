@@ -1,12 +1,27 @@
 import React from 'react'
+import logo1 from '../../assets/img/random/logo1.png'
+import logoReality from '../../assets/img/random/LOGO REALITY.png'
+import logos from '../../assets/img/random/Iconos.png'
 
 export default function RealityToken() {
   return (
-    <section className="page-section bg-dark text-white mb-0" id="about">
+    <section
+      className="page-section bg-linearGradient text-white mb-0"
+      id="about"
+    >
       <div className="container">
-        <h2 className="page-section-heading text-center text-uppercase text-white">
-          Realitytoken
-        </h2>
+        <div className="d-flex align-items-center">
+          <img src={logo1} alt="logo1" height="100vh" />
+          <img
+            src={logoReality}
+            alt="reality"
+            height="70vh"
+            className="ml-3vw"
+          />
+          <span className="text-center text-uppercase text-white f-size-80">
+            Token
+          </span>
+        </div>
 
         <div className="divider-custom-line"></div>
         <div className="divider-custom-icon">
@@ -15,17 +30,21 @@ export default function RealityToken() {
         <div className="divider-custom-line"></div>
       </div>
 
-      <div className="row justify-content-center">
-        <div className="col-lg-4 ms-auto">
+      <div className="d-flex justify-content-center">
+        <div className="col-lg-4 ml-19vw w-40">
+          <br />
           <p className="lead">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti
             aliquam culpa architecto quidem impedit cum saepe nobis, earum eaque
             rem explicabo animi suscipit repudiandae modi iure ducimus fugit
-            cupiditate numquam.
+            cupiditate numquam.Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Corrupti aliquam culpa architecto quidem impedit
+            cum saepe nobis, earum eaque rem explicabo animi suscipit
+            repudiandae modi iure ducimus fugit cupiditate numquam.
           </p>
         </div>
-        <div className="col-lg-4 me-auto">
-          <p className="lead">Image</p>
+        <div className="col-lg-4 me-auto w-25 ml-3vw">
+          <img src={logos} alt="" className="lead" width="100%" />
         </div>
       </div>
 
