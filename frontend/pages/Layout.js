@@ -5,6 +5,7 @@ import { Outlet, Link } from 'react-router-dom'
 import { login, logout } from '../assets/js/near/utils'
 
 import logo from '../assets/img/logo.png'
+import TranslationModal from '../components/TranslationModal'
 
 function Layout() {
   const [navHidden, setNavHidden] = useState(false)
@@ -89,6 +90,7 @@ function Layout() {
               >
                 {currentUser ? 'Log out' : 'Log In'}
               </button>
+              <TranslationModal />
             </ul>
           </div>
         </div>
