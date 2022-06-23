@@ -1,17 +1,21 @@
 /* eslint-disable global-require */
-import React from 'react'
+import React, { useContext } from 'react'
 import itemSlide from '../../assets/img/random/cabin.png'
+import ThemeContext from '../../utils/useContextTheme'
 
 export default function Moments() {
+  const { bgTheme, txtThem } = useContext(ThemeContext)
   return (
-    <section className="h-100vh bg-secondary near" id="near">
-      <div className="">
-        <h2 className="text-center text-white text-uppercase text-secondary mb-0 bg-green h-20vh d-flex al">
+    <section className={`${bgTheme} h-100vh near`} id="near">
+      <div className="container-moments">
+        <h2
+          className={`${txtThem} text-center text-uppercase text-secondary pt-5 mb-0 h-20vh d-flex align-items-center title`}
+        >
           Conoce los eventos del momento
         </h2>
         <div
           id="carouselExampleControls"
-          className="carousel slide"
+          className="carousel slide pt-5"
           data-bs-ride="carousel"
         >
           <div className="carousel-inner">
@@ -21,7 +25,7 @@ export default function Moments() {
                 {/* <!--  Item 1--> */}
                 <div className="col-md-4 col-lg-3 mb-5">
                   <div
-                    className="near-item mx-auto"
+                    className="near-item  mx-auto"
                     data-bs-toggle="modal"
                     data-bs-target="#nearModal1"
                   >
@@ -32,6 +36,7 @@ export default function Moments() {
                     </div>
                     <img className="img-fluid" src={itemSlide} alt="..." />
                   </div>
+                  <p className="text-center text-white">Description 1</p>
                 </div>
                 {/* <!--  Item 2--> */}
                 <div className="col-md-4 col-lg-3 mb-5">
@@ -47,6 +52,7 @@ export default function Moments() {
                     </div>
                     <img className="img-fluid" src={itemSlide} alt="..." />
                   </div>
+                  <p className="text-center text-white">Description 2</p>
                 </div>
                 {/* <!--  Item 3--> */}
                 <div className="col-md-4 col-lg-3 mb-5">
@@ -62,6 +68,7 @@ export default function Moments() {
                     </div>
                     <img className="img-fluid" src={itemSlide} alt="..." />
                   </div>
+                  <p className="text-center text-white">Description 3</p>
                 </div>
                 {/* <!--  Item 3--> */}
                 <div className="col-md-4 col-lg-3 mb-5">
@@ -77,6 +84,7 @@ export default function Moments() {
                     </div>
                     <img className="img-fluid" src={itemSlide} alt="..." />
                   </div>
+                  <p className="text-center text-white">Description 4</p>
                 </div>
               </div>
             </div>

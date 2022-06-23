@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 /* eslint-disable import/no-extraneous-dependencies */
 import { Outlet, Link } from 'react-router-dom'
 
 import { login, logout } from '../assets/js/near/utils'
 
 import logo from '../assets/img/logo.png'
+import btnLanguage from '../assets/img/random/BOTON IDIOMA.png'
+import ThemeContext from '../utils/useContextTheme'
 
 function Layout() {
   const [navHidden, setNavHidden] = useState(false)
+  const { bgTheme, txtTheme, handleChangeTheme } = useContext(ThemeContext)
 
   const currentUser = window.accountId || ''
 
@@ -26,8 +29,8 @@ function Layout() {
       <nav
         className={
           navHidden
-            ? 'navbar navbar-expand-lg bg-dark bg-opacity-75 text-uppercase fixed-top h-10vh justify-content-center visual-hidden'
-            : 'navbar navbar-expand-lg bg-dark bg-opacity-75 text-uppercase fixed-top h-10vh justify-content-center'
+            ? `navbar navbar-expand-lg ${bgTheme} text-uppercase fixed-top h-10vh justify-content-center visual-hidden`
+            : `navbar navbar-expand-lg ${bgTheme} text-uppercase fixed-top h-10vh justify-content-center`
         }
         id="mainNav"
       >
@@ -51,7 +54,7 @@ function Layout() {
             <ul className="navbar-nav m-auto d-flex justify-content-between w-100 ms-5">
               <li className="nav-item mx-0 mx-lg-1">
                 <Link
-                  class="h4 fw-light nav-link py-3 px-0 px-lg-3 rounded"
+                  className={`h4 fw-light py-3 px-0 px-lg-3 rounded nav-link${txtTheme}`}
                   to="/marketplace"
                 >
                   Marketplace
@@ -59,7 +62,7 @@ function Layout() {
               </li>
               <li className="nav-item mx-0 mx-lg-1">
                 <Link
-                  class="h4 fw-light nav-link py-3 px-0 px-lg-3 rounded"
+                  className={`h4 fw-light py-3 px-0 px-lg-3 rounded nav-link${txtTheme}`}
                   to="/about"
                 >
                   Nosotros
@@ -68,7 +71,7 @@ function Layout() {
 
               <li className="nav-item mx-0 mx-lg-1">
                 <Link
-                  class="h4 fw-light nav-link py-3 px-0 px-lg-3 rounded"
+                  className={`h4 fw-light py-3 px-0 px-lg-3 rounded nav-link${txtTheme}`}
                   to="/metaverso"
                 >
                   Metaverso
@@ -76,20 +79,32 @@ function Layout() {
               </li>
               <li className="nav-item mx-0 mx-lg-1">
                 <Link
-                  class="h4 fw-light nav-link py-3 px-0 px-lg-3 rounded"
+                  className={`h4 fw-light py-3 px-0 px-lg-3 rounded nav-link${txtTheme}`}
                   to="/contact"
                 >
                   Contacto
                 </Link>
               </li>
-              <button
-                type="button"
-                className="btn btn-warning btn-xl rounded"
-                onClick={currentUser ? logout : login}
-              >
-                {currentUser ? 'Log out' : 'Log In'}
-              </button>
             </ul>
+            <button
+              type="button"
+              className="btn-primary rounded h-10vh ml-3 w-15 h-7vh"
+              onClick={currentUser ? logout : login}
+            >
+              {currentUser ? 'Log out' : 'Log In'}
+            </button>
+
+            <img
+              src={btnLanguage}
+              alt=""
+              width="30"
+              height="35"
+              className="ml-3"
+            />
+
+            <button type="button" onClick={handleChangeTheme}>
+              Change Theme
+            </button>
           </div>
         </div>
       </nav>
