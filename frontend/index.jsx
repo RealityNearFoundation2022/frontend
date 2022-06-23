@@ -13,6 +13,7 @@ import Marketplace from './pages/MarketPlace/IndexMarketplace'
 import Layout from './pages/Layout'
 import Home from './pages/Landing/IndexLanding'
 import './assets/css/global.css'
+import './translation/i18n'
 
 const container = document.querySelector('#root')
 const root = createRoot(container) // createRoot(container!) if you use TypeScript

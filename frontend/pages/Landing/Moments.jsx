@@ -1,12 +1,13 @@
 /* eslint-disable global-require */
 import React from 'react'
-
+import { useTranslation } from 'react-i18next'
 export default function Moments() {
+  const { t } = useTranslation()
   return (
     <section className="h-100vh bg-secondary near" id="near">
       <div className="">
         <h2 className="text-center text-white text-uppercase text-secondary mb-0 bg-green h-20vh">
-          Conoce los eventos del momento
+          {t('Conoce los eventos del momento')}
         </h2>
 
         <div className="d-flex justify-content-center">
