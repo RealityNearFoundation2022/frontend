@@ -1,17 +1,34 @@
 import React, { useState } from 'react'
 /* eslint-disable import/no-extraneous-dependencies */
 import { Outlet, Link } from 'react-router-dom'
-
+import Button from '@mui/material/Button'
+import { useTranslation } from 'react-i18next'
 import { login, logout } from '../assets/js/near/utils'
-
 import logo from '../assets/img/logo.png'
 import TranslationModal from '../components/TranslationModal'
 
 function Layout() {
+  const { t } = useTranslation()
   const [navHidden, setNavHidden] = useState(false)
-
   const currentUser = window.accountId || ''
-
+  const routes = [
+    {
+      label: 'Marketplace',
+      link: '/marketplace',
+    },
+    {
+      label: 'Nosotros',
+      link: '/about',
+    },
+    {
+      label: 'Metaverso',
+      link: '/metaverso',
+    },
+    {
+      label: 'Contacto',
+      link: '/contact',
+    },
+  ]
   const changeVisibilityNav = () => {
     if (window.scrollY >= 600) {
       setNavHidden(true)
@@ -50,46 +67,27 @@ function Layout() {
           </button>
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav m-auto d-flex justify-content-between w-100 ms-5">
-              <li className="nav-item mx-0 mx-lg-1">
+              {routes.map(({ label, link }) => (
                 <Link
                   class="h4 fw-light nav-link py-3 px-0 px-lg-3 rounded"
-                  to="/marketplace"
+                  to={link}
                 >
-                  Marketplace
+                  {t(label)}
                 </Link>
-              </li>
-              <li className="nav-item mx-0 mx-lg-1">
-                <Link
-                  class="h4 fw-light nav-link py-3 px-0 px-lg-3 rounded"
-                  to="/about"
-                >
-                  Nosotros
-                </Link>
-              </li>
+              ))}
 
-              <li className="nav-item mx-0 mx-lg-1">
-                <Link
-                  class="h4 fw-light nav-link py-3 px-0 px-lg-3 rounded"
-                  to="/metaverso"
-                >
-                  Metaverso
-                </Link>
-              </li>
-              <li className="nav-item mx-0 mx-lg-1">
-                <Link
-                  class="h4 fw-light nav-link py-3 px-0 px-lg-3 rounded"
-                  to="/contact"
-                >
-                  Contacto
-                </Link>
-              </li>
-              <button
+              {/* <button
                 type="button"
                 className="btn btn-warning btn-xl rounded"
                 onClick={currentUser ? logout : login}
               >
+                
+              </button> */}
+              <Button variant="outlined">
                 {currentUser ? 'Log out' : 'Log In'}
-              </button>
+              </Button>
+
+              <Button></Button>
               <TranslationModal />
             </ul>
           </div>

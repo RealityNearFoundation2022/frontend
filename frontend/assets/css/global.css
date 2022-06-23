@@ -65,6 +65,12 @@
     scroll-behavior: smooth;
   }
 }
+.d-flex{
+  display: flex;
+}
+.justify-column{
+  flex-direction: column;
+}
 
 body {
   margin: 0;
