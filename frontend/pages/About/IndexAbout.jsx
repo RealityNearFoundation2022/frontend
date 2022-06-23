@@ -1,22 +1,23 @@
 import React from 'react'
-import { desktop, mobile, tablet } from '../../assets/img/background/index'
+import { mobile, tablet } from '../../assets/img/background/index'
 
 function About() {
   return (
     <>
       {/* <!--  Section--> */}
-      <section
-        className="page-section bg-dark bg-gradient text-white mb-0"
-        id="about"
-      >
+      <section className="page-section bg-dark near" id="near">
+        <div className="container">
+          {/* <!--  Section Heading--> */}
+          <div className="d-flex  flex-wrap flex-column justify-content-center">
+            <h2 className="text-primary text-center my-5">FUNDADORES</h2>
+            <img height="400px" src={tablet} alt="" />
+          </div>
+        </div>
+      </section>
+      <section className="bg-dark bg-gradient text-white mb-0" id="about">
         <div className="container pt-5">
           {/* <!--  Section Heading--> */}
           <div className="row justify-content-center pt-5">
-            <div className="col-lg-4">
-              <h2 className="h1 page-section-heading text-start text-uppercase text-white">
-                ¿Qué es REALITY NEAR?
-              </h2>
-            </div>
             <div className="col-lg-4">
               <p className="lead">
                 ­­­­Reality Near es un multimetaverso que combina las
@@ -64,28 +65,7 @@ function About() {
           </div>
         </div>
       </section>
-
-      <section className="page-section bg-gradient near" id="near">
-        <div className="container">
-          {/* <!--  Section Heading--> */}
-          <div className="d-flex flex-wrap flex-column justify-content-center">
-            <h2 className="text-primary text-center my-5">TIMELINE</h2>
-            <img height="400px" src={desktop} alt="" />
-          </div>
-        </div>
-      </section>
-
-      <section className="page-section bg-gradient near" id="near">
-        <div className="container">
-          {/* <!--  Section Heading--> */}
-          <div className="d-flex flex-wrap flex-column justify-content-center">
-            <h2 className="text-primary text-center my-5">EL EQUIPO</h2>
-            <img height="400px" src={tablet} alt="" />
-          </div>
-        </div>
-      </section>
-
-      <footer className="page-section bg-dark near text-white text-center">
+      <footer className="page-section bg-gradient near text-white text-center">
         <h1>FOOTER</h1>
       </footer>
     </>
