@@ -1,23 +1,15 @@
-import React from 'react'
-import logo1 from '../../assets/img/random/logo1.png'
+import React, { useContext } from 'react'
 import logoReality from '../../assets/img/random/LOGO REALITY.png'
-import logos from '../../assets/img/random/Iconos.png'
+import logos from '../../assets/img/random/icons.png'
+import ThemeContext from '../../utils/useContextTheme'
 
 export default function RealityToken() {
+  const { bgTheme, txtTheme } = useContext(ThemeContext)
   return (
-    <section
-      className="page-section bg-linearGradient text-white mb-0"
-      id="about"
-    >
-      <div className="container">
+    <section className={`${bgTheme} page-section text-white mb-0`} id="about">
+      {/* <div className="container">
         <div className="d-flex align-items-center">
-          <img src={logo1} alt="logo1" height="100vh" />
-          <img
-            src={logoReality}
-            alt="reality"
-            height="70vh"
-            className="ml-3vw"
-          />
+          <img src={logoReality} alt="reality" height="70vh" />
           <span className="text-center text-uppercase text-white f-size-80">
             Token
           </span>
@@ -28,27 +20,51 @@ export default function RealityToken() {
           <i className="fas fa-star"></i>
         </div>
         <div className="divider-custom-line"></div>
-      </div>
+      </div> */}
 
-      <div className="d-flex justify-content-center">
-        <div className="col-lg-4 ml-19vw w-40">
+      <div className="d-flex justify-content-center container justify-content-between">
+        <div className="col-lg-4 w-60">
+          <div className="d-flex align-items-center">
+            <img src={logoReality} alt="reality" height="70vh" />
+            <span className="text-center text-uppercase text-white f-size-80">
+              Token
+            </span>
+          </div>
           <br />
-          <p className="lead">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti
-            aliquam culpa architecto quidem impedit cum saepe nobis, earum eaque
-            rem explicabo animi suscipit repudiandae modi iure ducimus fugit
-            cupiditate numquam.Lorem ipsum dolor sit amet, consectetur
-            adipisicing elit. Corrupti aliquam culpa architecto quidem impedit
-            cum saepe nobis, earum eaque rem explicabo animi suscipit
-            repudiandae modi iure ducimus fugit cupiditate numquam.
+          <p className={`lead ${txtTheme}`}>
+            Para que las transacciones sean posibles, creamos tokens llamados
+            “Realities”, los cuales se utilizan como moneda en nuestro
+            metaverso. Con estos se realizan todas las transacciones financieras
+            dentro de este multimetaverso. Podrás comprar parcelas (Realands y
+            Patchas), accesorios, ropa, servicios, y todo lo que se encuentre a
+            la venta en Nuruk.
+          </p>
+          <p>¿Cómo funciona?</p>
+          <p className={`lead ${txtTheme}`}>
+            El reality token funciona dentro del ecosistema de Near. En este
+            ecosistema es que se almacena el registro de transacciones en la
+            blockchain. Tus realities se almacenan en tu Near Wallet, y se verán
+            reflejados en tu perfil de Nuruk en la app de Reality Near. En
+            nuestro metaverso puedes realizar infinidad de compras y ventas,
+            adquirir tesoros o NFTs; y todo esto mediante transacciones de
+            realities.
           </p>
         </div>
-        <div className="col-lg-4 me-auto w-25 ml-3vw">
-          <img src={logos} alt="" className="lead" width="100%" />
+        <div className="col-lg-4">
+          <img src={logos} alt="" className="lead my-5" width="100%" />
+          <center>
+            <button
+              className="btn btn-primary btn-xl disabled w-75"
+              id="submitButton"
+              type="submit"
+            >
+              ADQUIRIR REALITIES
+            </button>
+          </center>
         </div>
       </div>
 
-      <div className="d-flex flex-wrap align-items-end justify-content-center">
+      {/* <div className="d-flex flex-wrap align-items-end justify-content-center">
         <div className="p-4">
           <button
             className="btn btn-primary btn-xl disabled"
@@ -68,7 +84,7 @@ export default function RealityToken() {
             CREA TU WALLET NEAR
           </button>
         </div>
-      </div>
+      </div> */}
     </section>
   )
 }
