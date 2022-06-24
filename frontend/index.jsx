@@ -14,6 +14,7 @@ import { initContract } from './assets/js/near/utils'
 // import Home from './pages/Landing/IndexLanding'
 import './assets/css/global.css'
 import App from './App'
+import './translation/i18n'
 
 const container = document.querySelector('#root')
 const root = createRoot(container) // createRoot(container!) if you use TypeScript
