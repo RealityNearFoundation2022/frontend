@@ -1,17 +1,16 @@
 /* eslint-disable global-require */
-import React, { useContext } from 'react'
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+// import ThemeContext from '../../utils/useContextTheme'
 import itemSlide from '../../assets/img/random/cabin.png'
-import ThemeContext from '../../utils/useContextTheme'
-
 export default function Moments() {
-  const { bgTheme, txtThem } = useContext(ThemeContext)
+  // const { bgTheme, txtTheme } = useContext(ThemeContext)
+  const { t } = useTranslation()
   return (
-    <section className={`${bgTheme} h-100vh near`} id="near">
-      <div className="container-moments">
-        <h2
-          className={`${txtThem} text-center text-uppercase text-secondary pt-5 mb-0 h-20vh d-flex align-items-center title`}
-        >
-          Conoce los eventos del momento
+    <section className="h-100vh bg-secondary near" id="near">
+      <div className="">
+        <h2 className="text-center text-white text-uppercase text-secondary mb-0 bg-green h-20vh">
+          {t('Conoce los eventos del momento')}
         </h2>
         <div
           id="carouselExampleControls"

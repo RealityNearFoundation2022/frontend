@@ -1,19 +1,36 @@
 import React, { useContext, useState } from 'react'
 /* eslint-disable import/no-extraneous-dependencies */
 import { Outlet, Link } from 'react-router-dom'
-
+import { useTranslation } from 'react-i18next'
 import { login, logout } from '../assets/js/near/utils'
-
 import logo from '../assets/img/logo.png'
-import btnLanguage from '../assets/img/random/BOTON IDIOMA.png'
 import ThemeContext from '../utils/useContextTheme'
+import TranslationModal from '../components/TranslationModal'
 
 function Layout() {
+  const { t } = useTranslation()
   const [navHidden, setNavHidden] = useState(false)
   const { bgTheme, txtTheme, handleChangeTheme } = useContext(ThemeContext)
 
   const currentUser = window.accountId || ''
-
+  const routes = [
+    {
+      label: 'Marketplace',
+      link: '/marketplace',
+    },
+    {
+      label: 'Nosotros',
+      link: '/about',
+    },
+    {
+      label: 'Metaverso',
+      link: '/metaverso',
+    },
+    {
+      label: 'Contacto',
+      link: '/contact',
+    },
+  ]
   const changeVisibilityNav = () => {
     if (window.scrollY >= 600) {
       setNavHidden(true)
@@ -35,7 +52,7 @@ function Layout() {
         id="mainNav"
       >
         <div className="container">
-          <Link class="navbar-brand" to="/">
+          <Link class={`navbar-brand ${txtTheme}`} to="/">
             <img src={logo} alt="" />
           </Link>
           <button
@@ -52,39 +69,24 @@ function Layout() {
           </button>
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav m-auto d-flex justify-content-between w-100 ms-5">
-              <li className="nav-item mx-0 mx-lg-1">
+              {routes.map(({ label, link }) => (
                 <Link
                   className={`h4 fw-light py-3 px-0 px-lg-3 rounded nav-link${txtTheme}`}
-                  to="/marketplace"
+                  to={link}
                 >
-                  Marketplace
+                  {t(label)}
                 </Link>
-              </li>
-              <li className="nav-item mx-0 mx-lg-1">
-                <Link
-                  className={`h4 fw-light py-3 px-0 px-lg-3 rounded nav-link${txtTheme}`}
-                  to="/about"
-                >
-                  Nosotros
-                </Link>
-              </li>
+              ))}
 
-              <li className="nav-item mx-0 mx-lg-1">
-                <Link
-                  className={`h4 fw-light py-3 px-0 px-lg-3 rounded nav-link${txtTheme}`}
-                  to="/metaverso"
-                >
-                  Metaverso
-                </Link>
-              </li>
-              <li className="nav-item mx-0 mx-lg-1">
-                <Link
-                  className={`h4 fw-light py-3 px-0 px-lg-3 rounded nav-link${txtTheme}`}
-                  to="/contact"
-                >
-                  Contacto
-                </Link>
-              </li>
+              {/* <button
+                type="button"
+                className="btn btn-warning btn-xl rounded"
+                onClick={currentUser ? logout : login}
+              >
+                
+              </button> */}
+
+              <TranslationModal />
             </ul>
             <button
               type="button"
@@ -93,14 +95,6 @@ function Layout() {
             >
               {currentUser ? 'Log out' : 'Log In'}
             </button>
-
-            <img
-              src={btnLanguage}
-              alt=""
-              width="30"
-              height="35"
-              className="ml-3"
-            />
 
             <button type="button" onClick={handleChangeTheme}>
               Change Theme
