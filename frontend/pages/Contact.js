@@ -24,7 +24,7 @@ function Contact() {
 
   const handleSubmit = () => {}
   return (
-    <section className={`${bgTheme} page-section near`} id="near">
+    <section className={`${bgTheme} near pt-5 mt-5`} id="near">
       <div className="d-flex justify-content-around">
         <div>
           <p>Contactanos</p>
@@ -64,9 +64,9 @@ function Contact() {
           </form>
         </div>
       </div>
-      <div className="w-100">
+      <div className="w-100 h-20vh text-white bg-green">
         <center>
-          <p>¡ÚNETENOS!</p>
+          <p className="p-5">¡ÚNETENOS!</p>
         </center>
       </div>
       <div className=" w-100 d-flex align-items-center justify-content-around">
