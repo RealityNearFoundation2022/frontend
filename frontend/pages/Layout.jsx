@@ -104,6 +104,7 @@ function Layout() {
             >
               {currentUser ? 'Log out' : 'Log In'}
             </button>
+            <TranslationModal />
             <button
               type="button"
               onClick={handleChangeTheme}
