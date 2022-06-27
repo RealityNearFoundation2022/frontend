@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import 'regenerator-runtime/runtime'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './assets/css/global.css'
@@ -21,6 +21,8 @@ export default function App() {
   const [bgTheme, setBgTheme] = useState(themes.bgLight)
   const [txtTheme, setTxtTheme] = useState(themes.txtLight)
 
+  const [ theme, setTheme] = useState({...themes.light})
+
   const handleChangeTheme = () => {
     setBgTheme(() =>
       bgTheme === themes.bgDark ? themes.bgLight : themes.bgDark,
@@ -28,11 +30,12 @@ export default function App() {
     setTxtTheme(() =>
       txtTheme === themes.txtDark ? themes.txtLight : themes.txtDark,
     )
+    setTheme(() => JSON.stringify(theme) === JSON.stringify({...themes.dark}) ? {...themes.light} : {...themes.dark})
   }
 
   return (
     <BrowserRouter>
-      <ThemeContext.Provider value={{ bgTheme, txtTheme, handleChangeTheme }}>
+      <ThemeContext.Provider value={{ bgTheme, txtTheme, theme, handleChangeTheme }}>
         <Layout />
         <Routes>
           <Route path="/" element={<Home />} />
