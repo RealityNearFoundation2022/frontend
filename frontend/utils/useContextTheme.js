@@ -1,6 +1,14 @@
 import React from 'react'
 
 export const themes = {
+  light: {
+    bg: 'bg-light',
+    txt: '-text-light',
+  },
+  dark: {
+    bg: 'bg-dark',
+    txt: '-text-dark',
+  },
   bgLight: 'bg-light',
   bgDark: 'bg-dark',
   txtLight: '-text-light',
