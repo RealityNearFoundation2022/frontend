@@ -1,12 +1,15 @@
 import React, { useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 import logoReality from '../../assets/img/random/LOGO REALITY.png'
 import logos from '../../assets/img/random/icons.png'
 import ThemeContext from '../../utils/useContextTheme'
 
 export default function RealityToken() {
-  const { bgTheme, txtTheme } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext)
+  const { t } = useTranslation()
+
   return (
-    <section className={`${bgTheme} page-section text-white mb-0`} id="about">
+    <section className={`${theme.bg} page-section text-white mb-0`} id="about">
       {/* <div className="container">
         <div className="d-flex align-items-center">
           <img src={logoReality} alt="reality" height="70vh" />
@@ -31,23 +34,16 @@ export default function RealityToken() {
             </span>
           </div>
           <br />
-          <p className={`lead ${txtTheme}`}>
-            Para que las transacciones sean posibles, creamos tokens llamados
-            “Realities”, los cuales se utilizan como moneda en nuestro
-            metaverso. Con estos se realizan todas las transacciones financieras
-            dentro de este multimetaverso. Podrás comprar parcelas (Realands y
-            Patchas), accesorios, ropa, servicios, y todo lo que se encuentre a
-            la venta en Nuruk.
+          <p className={`lead ${theme.txt}`}>
+            {t(
+              'Para que las transacciones sean posibles, creamos tokens llamados "Realities", los cuales se utilizan como moneda en nuestro metaverso. Con estos se realizan todas las transacciones financieras dentro de este multimetaverso. Podrás comprar parcelas( Realands y Patchas ), accesorios, ropa, servicios, y todo lo que se encuentre a la venta en Nuruk.',
+            )}
           </p>
-          <p>¿Cómo funciona?</p>
-          <p className={`lead ${txtTheme}`}>
-            El reality token funciona dentro del ecosistema de Near. En este
-            ecosistema es que se almacena el registro de transacciones en la
-            blockchain. Tus realities se almacenan en tu Near Wallet, y se verán
-            reflejados en tu perfil de Nuruk en la app de Reality Near. En
-            nuestro metaverso puedes realizar infinidad de compras y ventas,
-            adquirir tesoros o NFTs; y todo esto mediante transacciones de
-            realities.
+          <h2>{t('¿Cómo funciona?')}</h2>
+          <p className={`lead ${theme.txt}`}>
+            {t(
+              'El reality token funciona dentro del ecosistema de Near. En este ecosistema es que se almacena el registro de transacciones en la blockchain. Tus realities se almacenan en tu Near Wallet, y se verán reflejados en tu perfil de Nuruk en la app de Reality Near. En nuestro metaverso puedes realizar infinidad de compras y ventas, adquirir tesoros o NFTs; y todo esto mediante transacciones de realities.',
+            )}
           </p>
         </div>
         <div className="col-lg-4">

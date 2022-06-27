@@ -1,26 +1,26 @@
 /* eslint-disable global-require */
-import React from 'react'
+import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-// import ThemeContext from '../../utils/useContextTheme'
+import ThemeContext from '../../utils/useContextTheme'
 import itemSlide from '../../assets/img/random/cabin.png'
 export default function Moments() {
-  // const { bgTheme, txtTheme } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
   return (
-    <section className="h-100vh bg-secondary near" id="near">
+    <section className={`${theme.bg} h-100vh near`} id="near">
       <div className="">
-        <h2 className="text-center text-white text-uppercase text-secondary mb-0 bg-green h-20vh">
+        <h2 className="text-uppercase text-primary p-5 fs-7 h-20vh">
           {t('Conoce los eventos del momento')}
         </h2>
         <div
           id="carouselExampleControls"
-          className="carousel slide pt-5"
+          className="carousel slide pt-5 bg-primary"
           data-bs-ride="carousel"
         >
           <div className="carousel-inner">
             <div className="carousel-item active">
               {/* <!--  Grid Items--> */}
-              <div className="row justify-content-center">
+              <div className="row justify-content-around">
                 {/* <!--  Item 1--> */}
                 <div className="col-md-4 col-lg-3 mb-5">
                   <div
@@ -35,7 +35,7 @@ export default function Moments() {
                     </div>
                     <img className="img-fluid" src={itemSlide} alt="..." />
                   </div>
-                  <p className="text-center text-white">Description 1</p>
+                  <p className="text-center text-white p-3">Description 1</p>
                 </div>
                 {/* <!--  Item 2--> */}
                 <div className="col-md-4 col-lg-3 mb-5">
@@ -69,27 +69,11 @@ export default function Moments() {
                   </div>
                   <p className="text-center text-white">Description 3</p>
                 </div>
-                {/* <!--  Item 3--> */}
-                <div className="col-md-4 col-lg-3 mb-5">
-                  <div
-                    className="near-item mx-auto"
-                    data-bs-toggle="modal"
-                    data-bs-target="#nearModal3"
-                  >
-                    <div className="near-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                      <div className="near-item-caption-content text-center text-white">
-                        <i className="fas fa-plus fa-3x"></i>
-                      </div>
-                    </div>
-                    <img className="img-fluid" src={itemSlide} alt="..." />
-                  </div>
-                  <p className="text-center text-white">Description 4</p>
-                </div>
               </div>
             </div>
             <div className="carousel-item">
               {/* <!--  Grid Items--> */}
-              <div className="row justify-content-center">
+              <div className="row justify-content-around">
                 {/* <!--  Item 4--> */}
                 <div className="col-md-4 col-lg-3 mb-5 mb-lg-0">
                   <div
@@ -104,6 +88,7 @@ export default function Moments() {
                     </div>
                     <img className="img-fluid" src={itemSlide} alt="..." />
                   </div>
+                  <p className="text-center text-white">Description 4</p>
                 </div>
                 {/* <!--  Item 5--> */}
                 <div className="col-md-4 col-lg-3 mb-5 mb-md-0">
@@ -119,6 +104,7 @@ export default function Moments() {
                     </div>
                     <img className="img-fluid" src={itemSlide} alt="..." />
                   </div>
+                  <p className="text-center text-white">Description 5</p>
                 </div>
                 {/* <!--  Item 6--> */}
                 <div className="col-md-4 col-lg-3 mb-5 mb-md-0">
@@ -126,21 +112,6 @@ export default function Moments() {
                     className="near-item mx-auto"
                     data-bs-toggle="modal"
                     data-bs-target="#nearModal6"
-                  >
-                    <div className="near-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                      <div className="near-item-caption-content text-center text-white">
-                        <i className="fas fa-plus fa-3x"></i>
-                      </div>
-                    </div>
-                    <img className="img-fluid" src={itemSlide} alt="..." />
-                  </div>
-                </div>
-                {/* <!--  Item 5--> */}
-                <div className="col-md-4 col-lg-3 mb-5 mb-md-0">
-                  <div
-                    className="near-item mx-auto"
-                    data-bs-toggle="modal"
-                    data-bs-target="#nearModal5"
                   >
                     <div className="near-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                       <div className="near-item-caption-content text-center text-white">

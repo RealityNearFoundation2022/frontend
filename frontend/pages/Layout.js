@@ -4,13 +4,14 @@ import { Outlet, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { login, logout } from '../assets/js/near/utils'
 import logo from '../assets/img/logo.png'
+import botonTema from '../assets/img/random/botonTema.png'
 import ThemeContext from '../utils/useContextTheme'
 import TranslationModal from '../components/TranslationModal'
 
 function Layout() {
   const { t } = useTranslation()
   const [navHidden, setNavHidden] = useState(false)
-  const { bgTheme, txtTheme, handleChangeTheme } = useContext(ThemeContext)
+  const { theme, handleChangeTheme } = useContext(ThemeContext)
 
   const currentUser = window.accountId || ''
   const routes = [
@@ -31,11 +32,19 @@ function Layout() {
       link: '/contact',
     },
   ]
+
   const changeVisibilityNav = () => {
     if (window.scrollY >= 600) {
       setNavHidden(true)
     } else {
       setNavHidden(false)
+      /* let scrollPos = 0
+      if (document.body.getBoundingClientRect().top > scrollPos) {
+        setNavHidden(false) // ARRIBA
+      } else {
+        setNavHidden(true)
+        scrollPos = document.body.getBoundingClientRect().top
+      } // ABAJO */
     }
   }
 
@@ -46,13 +55,13 @@ function Layout() {
       <nav
         className={
           navHidden
-            ? `navbar navbar-expand-lg ${bgTheme} text-uppercase fixed-top h-10vh justify-content-center visual-hidden`
-            : `navbar navbar-expand-lg ${bgTheme} text-uppercase fixed-top h-10vh justify-content-center`
+            ? `navbar navbar-expand-lg ${theme.bg} text-uppercase fixed-top h-10vh visual-hidden`
+            : `navbar navbar-expand-lg ${theme.bg} text-uppercase fixed-top h-10vh`
         }
         id="mainNav"
       >
-        <div className="container">
-          <Link class={`navbar-brand ${txtTheme}`} to="/">
+        <div className="d-flex w-100 px-5">
+          <Link class={`navbar-brand ${theme.txt}`} to="/">
             <img src={logo} alt="" />
           </Link>
           <button
@@ -68,14 +77,16 @@ function Layout() {
             <i className="fas fa-bars"></i>
           </button>
           <div className="collapse navbar-collapse" id="navbarResponsive">
-            <ul className="navbar-nav m-auto d-flex justify-content-between w-100 ms-5">
+            <ul className="navbar-nav d-flex justify-content-between w-100 px-5">
               {routes.map(({ label, link }) => (
-                <Link
-                  className={`h4 fw-light py-3 px-0 px-lg-3 rounded nav-link${txtTheme}`}
-                  to={link}
-                >
-                  {t(label)}
-                </Link>
+                <li className="nav-item">
+                  <Link
+                    className={`fw-light rounded nav-link${theme.txt}`}
+                    to={link}
+                  >
+                    {t(label)}
+                  </Link>
+                </li>
               ))}
 
               {/* <button
@@ -85,8 +96,6 @@ function Layout() {
               >
                 
               </button> */}
-
-              <TranslationModal />
             </ul>
             <button
               type="button"
@@ -95,9 +104,13 @@ function Layout() {
             >
               {currentUser ? 'Log out' : 'Log In'}
             </button>
-
-            <button type="button" onClick={handleChangeTheme}>
-              Change Theme
+            <button
+              type="button"
+              onClick={handleChangeTheme}
+              alt=""
+              className="bg-transparent border-0"
+            >
+              <img src={botonTema} alt="" />
             </button>
           </div>
         </div>

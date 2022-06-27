@@ -7,7 +7,7 @@ function Contact() {
   const [valueEmail, setValueEmail] = useState('')
   const [valueMensaje, setValueMensaje] = useState('')
 
-  const { bgTheme } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext)
 
   const handleChangeName = ({ target }) => {
     setValueName(target.value)
@@ -24,37 +24,40 @@ function Contact() {
 
   const handleSubmit = () => {}
   return (
-    <section className={`${bgTheme} near pt-5 mt-5`} id="near">
-      <div className="d-flex justify-content-around">
-        <div>
-          <p>Contactanos</p>
+    <section className={`${theme.bg} near w-100`} id="near">
+      <div className="w-100 page-section">
+        <div className="bg-gray px-10porcent py-5">
+          <p className="title text-uppercase text-primary">Contáctanos</p>
           <p>¿En qué podríamos ayudarte?</p>
         </div>
-        <div className="d-flex flex-column align-items-center justify-content-center">
-          <h4>Envíanos un mensaje</h4>
+        <div className="d-flex align-items-center container justify-content-between pt-5 w-100 h-40vh">
+          <h4 className="">Envíanos un mensaje</h4>
           <form
             onSubmit={handleSubmit}
-            className="d-flex flex-column align-items-center justify-content-center"
+            className="d-flex flex-column align-items-center w-50 justify-content-center"
           >
-            <label>
+            <label className="w-75">
               <input
                 type="text"
+                className="form-control"
                 value={valueName}
                 placeholder="Nombre"
                 onChange={handleChangeName}
               />
             </label>
-            <label>
+            <label className="w-75">
               <input
                 type="email"
+                className="form-control"
                 placeholder="Correo"
                 value={valueEmail}
                 onChange={handleChangeEmail}
               />
             </label>
-            <label>
+            <label className="w-75">
               <textarea
                 type="text"
+                className="form-control h-10vh"
                 placeholder="Mensaje"
                 value={valueMensaje}
                 onChange={handleChangeMensaje}
