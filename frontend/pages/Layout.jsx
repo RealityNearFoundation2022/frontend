@@ -71,22 +71,12 @@ function Layout() {
             <ul className="navbar-nav m-auto d-flex justify-content-between w-100 ms-5">
               {routes.map(({ label, link }) => (
                 <Link
-                  className={`h4 fw-light py-3 px-0 px-lg-3 rounded nav-link${txtTheme}`}
+                  className={`h4 fw-light py-3 px-0 px-lg-3 rounded nav-link ${txtTheme}`}
                   to={link}
                 >
                   {t(label)}
                 </Link>
               ))}
-
-              {/* <button
-                type="button"
-                className="btn btn-warning btn-xl rounded"
-                onClick={currentUser ? logout : login}
-              >
-                
-              </button> */}
-
-              <TranslationModal />
             </ul>
             <button
               type="button"
@@ -95,8 +85,12 @@ function Layout() {
             >
               {currentUser ? 'Log out' : 'Log In'}
             </button>
-
-            <button type="button" onClick={handleChangeTheme}>
+            <TranslationModal />
+            <button
+              type="button"
+              className="rounded h-10vh ml-3 w-15 h-7vh"
+              onClick={handleChangeTheme}
+            >
               Change Theme
             </button>
           </div>
