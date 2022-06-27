@@ -12,13 +12,13 @@ import Modal from './Modal'
 
 import { languages } from '../translation/languages'
 export default function TranslationModal() {
-  const [language, setLanguage] = React.useState('')
-
   const { t, i18n } = useTranslation()
-
+  const currentLng = languages.find(({ key }) => key === i18n.language)
+  const [language, setLanguage] = React.useState(currentLng)
   const handleChangeLanguage = (event) => {
     const lng = event.target.value
-    setLanguage(lng)
+    const newLanguage = languages.find(({ key }) => key === lng)
+    setLanguage(newLanguage)
     i18n.changeLanguage(lng, (err) => err)
   }
   return (
@@ -27,8 +27,8 @@ export default function TranslationModal() {
         <IconButton className="d-flex flex-column">
           <LanguageIcon style={{ color: 'white', 'font-size': '36px' }} />
 
-          <Typography style={{ color: 'white', 'font-size': '30px' }}>
-            {i18n.language}
+          <Typography style={{ color: 'white', 'font-size': '15px' }}>
+            {language.name}
           </Typography>
         </IconButton>
       }
@@ -48,12 +48,12 @@ export default function TranslationModal() {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={language}
-            label="Age"
+            value={language.key}
+            label="Language"
             onChange={handleChangeLanguage}
           >
-            {languages.map((lng) => (
-              <MenuItem value={lng}>{lng}</MenuItem>
+            {languages.map(({ name, key }) => (
+              <MenuItem value={key}>{name}</MenuItem>
             ))}
           </Select>
         </FormControl>
