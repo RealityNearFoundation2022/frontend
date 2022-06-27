@@ -56,11 +56,10 @@ const style = {
   p: 4,
 }
 
-export default function BasicModal({ children, button }) {
+export default function BasicModal({ children, button, close }) {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
-
   return (
     <div>
       <div onClick={handleOpen}>{button}</div>
