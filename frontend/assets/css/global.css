@@ -71,6 +71,9 @@
 .justify-column{
   flex-direction: column;
 }
+.top{
+  margin-top: 100px;
+}
 
 body {
   margin: 0;
