@@ -65,6 +65,12 @@
     scroll-behavior: smooth;
   }
 }
+.d-flex{
+  display: flex;
+}
+.justify-column{
+  flex-direction: column;
+}
 
 body {
   margin: 0;
@@ -481,8 +487,17 @@ progress {
 }
 
 .lead {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 300;
+}
+.-text-light{
+  color: #0A0D0C;
+}
+.-text-dark{
+  color: #fff;
+}
+.title{
+  font-size: 3rem;
 }
 
 .display-1 {
@@ -631,6 +646,10 @@ progress {
   padding-left: var(--bs-gutter-x, 0.75rem);
   margin-right: auto;
   margin-left: auto;
+}
+.container-moments{
+  width: 100%;
+  padding-left:8%;
 }
 
 @media (min-width: 576px) {
@@ -2180,6 +2199,7 @@ progress {
 
 .form-control {
   display: block;
+  margin: 0.5rem;
   width: 100%;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
@@ -2188,11 +2208,11 @@ progress {
   color: #212529;
   background-color: #fff;
   background-clip: padding-box;
-  border: 0.125rem solid #ced4da;
+  border: 0.125rem solid #33cc99;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -3587,6 +3607,16 @@ textarea.form-control-lg {
 
 .bg-image {
   background-image: url(/frontend/assets/img/background/bg-image-desktop.jpg);
+  background-repeat: no-repeat;/*yumari*/
+  background-position: center center;/*yumari*/
+}
+.bg-img-realExperience{
+  background-image: url(/frontend/assets/img/random/Mask\ group.png);
+  background-repeat: no-repeat;/*yumari*/
+  background-position: center center;/*yumari*/
+}
+.bg-img-size-cover{
+  background-size: cover;
 }
 
 @media (min-width: 576px) {
@@ -6011,7 +6041,7 @@ textarea.form-control-lg {
   margin-right: -100%;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
-  transition: transform 0.6s ease-in-out;
+  transition: transform 0.6s ease-in;
 }
 @media (prefers-reduced-motion: reduce) {
   .carousel-item {
@@ -6830,7 +6860,12 @@ textarea.form-control-lg {
 .end-100 {
   right: 100% !important;
 }
-
+.ml-3{/*yumari*/
+  margin-left: 3rem !important;
+}
+.ml-19vw{
+  margin-left: 19vw !important;
+}
 .translate-middle {
   transform: translate(-50%, -50%) !important;
 }
@@ -6938,13 +6973,23 @@ textarea.form-control-lg {
 .border-5 {
   border-width: 5px !important;
 }
-
+.f-size-80{
+  font-size: 80px;
+}
+.w-15{
+  width: 15% !important;
+}
 .w-25 {
   width: 25% !important;
 }
-
+.w-40{
+  width: 40% !important;
+}
 .w-50 {
   width: 50% !important;
+}
+.w-60{
+  width: 60% !important;
 }
 
 .w-75 {
@@ -6974,21 +7019,63 @@ textarea.form-control-lg {
 .h-25 {
   height: 25% !important;
 }
+.h-40{
+  height: 40% !important;
+}
 
 .h-50 {
   height: 50% !important;
 }
-
+.h-60{
+  height: 60% !important;
+}
 .h-75 {
   height: 75% !important;
 }
-
+.h-75vh{
+  height: 75vh;
+}
 .h-100 {
   height: 100% !important;
 }
 
 .h-auto {
   height: auto !important;
+}
+.h-7vh{
+  height: 7vh !important;
+}
+.h-10vh{/*yumari*/
+  height: 10vh;
+}
+.h-15vh{
+  height: 15vh;
+}
+.h-20vh{
+  height: 20vh;
+}
+.h-30vh{
+  height: 30vh;
+}
+.h-40vh{
+  height: 40vh;
+}
+.h-50vh{
+  height: 50vh;
+}
+.h-60vh{
+  height: 60vh;
+}
+
+
+.h-100vh{/*yumari*/
+  height: 100vh;
+}
+.visual-hidden{
+  opacity:0;
+}
+.visual-hidden:hover{
+  opacity: 1;
 }
 
 .mh-100 {
@@ -7466,6 +7553,14 @@ textarea.form-control-lg {
   padding-right: 3rem !important;
   padding-left: 3rem !important;
 }
+.px-6{
+  padding-right: 6rem !important;
+  padding-left: 6rem !important;
+}
+.px-10porcent{
+  padding-right: 10% !important;
+  padding-left: 10% !important;
+}
 
 .py-0 {
   padding-top: 0 !important;
@@ -7619,6 +7714,9 @@ textarea.form-control-lg {
 
 .fs-6 {
   font-size: 1rem !important;
+}
+.fs-7{
+  font-size: 2.5rem !important;
 }
 
 .fst-italic {
@@ -7806,7 +7904,9 @@ textarea.form-control-lg {
 .text-opacity-100 {
   --bs-text-opacity: 1;
 }
-
+.bg-green{
+  background-color: #0f5132;
+}
 .bg-primary {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
@@ -7890,7 +7990,15 @@ textarea.form-control-lg {
 .bg-gradient {
   background-image: var(--bs-gradient) !important;
 }
-
+.bg-linearGradient{/*yumari*/
+  background: linear-gradient(90deg, #000000 0.52%, #0D2920 64.06%, #23322D 100%)
+}
+.bg-green{/*yumari*/
+  background-color: #0D2920;
+}
+.bg-gray{
+  background-color: #d9d9d9;
+}
 .user-select-all {
   -webkit-user-select: all !important;
      -moz-user-select: all !important;
@@ -11294,7 +11402,9 @@ html {
 }
 
 .page-section {
-  padding: 6rem 0;
+  height: 100vh;/*yumari*/
+  /* padding: 6rem 0; */
+  padding: 7.5vh 0;/*yumari*/
 }
 .page-section .page-section-heading {
   font-size: 2.25rem;
@@ -11367,18 +11477,36 @@ html {
 #mainNav .navbar-nav {
   margin-top: 1rem;
 }
-#mainNav .navbar-nav li.nav-item a.nav-link {
-  color: #fff;
+#mainNav .navbar-nav li.nav-item a.nav-link-text-dark {
+  color: #fff !important;
+  font-size: 18px;
 }
-#mainNav .navbar-nav li.nav-item a.nav-link:hover {
-  color: #1abc9c;
+#mainNav .navbar-nav li.nav-item a.nav-link-text-dark:hover {
+  color: #1abc9c !important;
 }
-#mainNav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item a.nav-link:focus {
-  color: #fff;
+#mainNav .navbar-nav li.nav-item a.nav-link-text-dark:active, #mainNav .navbar-nav li.nav-item a.nav-link-text-dark:focus {
+  color: #fff !important;
 }
-#mainNav .navbar-nav li.nav-item a.nav-link.active {
-  color: #1abc9c;
+#mainNav .navbar-nav li.nav-item a.nav-link-text-dark.active {
+  color: #1abc9c !important;
 }
+
+
+#mainNav .navbar-nav li.nav-item a.nav-link-text-light {
+  color:#101214 !important;
+  font-size: 18px;
+}
+#mainNav .navbar-nav li.nav-item a.nav-link-text-light:hover {
+  color:#1abc9c !important;
+}
+#mainNav .navbar-nav li.nav-item a.nav-link-text-light:active, #mainNav .navbar-nav li.nav-item a.nav-link-text-light:focus {
+  color: #101214 !important;
+}
+#mainNav .navbar-nav li.nav-item a.nav-link-text-light.active {
+  color:#1abc9c !important;
+}
+
+
 #mainNav .navbar-toggler {
   font-size: 80%;
   padding: 0.8rem;
@@ -11461,10 +11589,13 @@ html {
   }
 }
 .near .near-item {
+  min-width: 15rem;/*yumari*/
   cursor: pointer;
   position: relative;
   display: block;
-  max-width: 25rem;
+  width: 25rem;/*yumari*/
+  /* max-width: 25rem; */
+  max-width: 35rem;/*yumari*/
   border-radius: 2.5rem;
   overflow: hidden;
 }

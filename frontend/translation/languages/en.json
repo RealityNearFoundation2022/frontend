@@ -1,0 +1,12 @@
+{
+  "name": "English",
+  "key": "en",
+  "translation":{
+    "Conoce los eventos del momento": "Know the current events",
+    "Buscar idioma": "Search language",
+    "Metaverso": "Metaverse",
+    "Contacto": "Contact",
+    "Nosotros": "About",
+    "Marketplace": "Marketplace"
+  }
+}

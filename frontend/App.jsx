@@ -1,34 +1,54 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 import 'regenerator-runtime/runtime'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './assets/css/global.css'
-import { Routes, Route } from 'react-router-dom'
 import Maps from './pages/Maps/IndexMaps'
-
 import Layout from './pages/Layout'
-// import Marketplace from './pages/Marketplace/IndexMarketplace'
+import Marketplace from './pages/MarketPlace/IndexMarketplace'
 import Home from './pages/Landing/IndexLanding'
-import NoPage from './pages/NoPage'
+// import NoPage from './pages/NoPage'
 import NftMe from './components/nft/Me'
 import NftSell from './components/nft/Sell'
 import About from './pages/About/IndexAbout'
 import Contact from './pages/Contact'
 import Metaverso from './pages/Metaverse/Metaverse'
-import Marketplace from './pages/MarketPlace/IndexMarketplace'
+import ThemeContext, { themes } from './utils/useContextTheme'
+import Footer from './pages/Footer'
+
 export default function App() {
+  const [bgTheme, setBgTheme] = useState(themes.bgLight)
+  const [txtTheme, setTxtTheme] = useState(themes.txtLight)
+
+  const [ theme, setTheme] = useState({...themes.light})
+
+  const handleChangeTheme = () => {
+    setBgTheme(() =>
+      bgTheme === themes.bgDark ? themes.bgLight : themes.bgDark,
+    )
+    setTxtTheme(() =>
+      txtTheme === themes.txtDark ? themes.txtLight : themes.txtDark,
+    )
+    setTheme(() => JSON.stringify(theme) === JSON.stringify({...themes.dark}) ? {...themes.light} : {...themes.dark})
+  }
+
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="marketplace" element={<Marketplace />} />
-        <Route path="maps" element={<Maps />} />
-        <Route path="/marketplace/me" element={<NftMe />} />
-        <Route path="/marketplace/sell" element={<NftSell />} />
-        <Route path="*" element={<NoPage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/metaverso" element={<Metaverso />} />
-      </Route>
-    </Routes>
+    <BrowserRouter>
+      <ThemeContext.Provider value={{ bgTheme, txtTheme, theme, handleChangeTheme }}>
+        <Layout />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/marketplace" element={<Marketplace />} />
+          <Route path="/maps" element={<Maps />} />
+          <Route path="/marketplace/me" element={<NftMe />} />
+          <Route path="/marketplace/sell" element={<NftSell />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/metaverso" element={<Metaverso />} />
+        </Routes>
+        <Footer />
+      </ThemeContext.Provider>
+    </BrowserRouter>
   )
 }
