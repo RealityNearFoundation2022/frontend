@@ -18,24 +18,15 @@ import ThemeContext, { themes } from './utils/useContextTheme'
 import Footer from './pages/Footer'
 
 export default function App() {
-  const [bgTheme, setBgTheme] = useState(themes.bgLight)
-  const [txtTheme, setTxtTheme] = useState(themes.txtLight)
-
   const [ theme, setTheme] = useState({...themes.light})
 
   const handleChangeTheme = () => {
-    setBgTheme(() =>
-      bgTheme === themes.bgDark ? themes.bgLight : themes.bgDark,
-    )
-    setTxtTheme(() =>
-      txtTheme === themes.txtDark ? themes.txtLight : themes.txtDark,
-    )
     setTheme(() => JSON.stringify(theme) === JSON.stringify({...themes.dark}) ? {...themes.light} : {...themes.dark})
   }
 
   return (
     <BrowserRouter>
-      <ThemeContext.Provider value={{ bgTheme, txtTheme, theme, handleChangeTheme }}>
+      <ThemeContext.Provider value={{ theme, handleChangeTheme }}>
         <Layout />
         <Routes>
           <Route path="/" element={<Home />} />
