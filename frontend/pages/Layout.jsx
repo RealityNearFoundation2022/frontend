@@ -55,7 +55,7 @@ function Layout() {
       <nav
         className={`navbar navbar-expand-lg ${theme.bg} ${
           navHidden && 'visual-hidden'
-        } text-uppercase fixed-top h-10vh`}
+        } text-uppercase fixed-top`}
         id="mainNav"
       >
         <div className="d-flex w-100 px-5">
@@ -97,7 +97,8 @@ function Layout() {
             </ul>
             <button
               type="button"
-              className="btn-primary rounded ml-3 w-15 h-7vh"
+              className="btn-primary rounded 
+              ml-3 w-15"
               onClick={currentUser ? logout : login}
             >
               {currentUser ? 'Log out' : 'Log In'}

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import 'regenerator-runtime/runtime'
 import React, { useEffect, useState } from 'react'
-
+import 'mapbox-gl/dist/mapbox-gl.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './assets/css/global.css'
 import Maps from './pages/Maps/IndexMaps'
@@ -21,7 +21,7 @@ export default function App() {
   const [bgTheme, setBgTheme] = useState(themes.bgLight)
   const [txtTheme, setTxtTheme] = useState(themes.txtLight)
 
-  const [ theme, setTheme] = useState({...themes.light})
+  const [theme, setTheme] = useState({ ...themes.light })
 
   const handleChangeTheme = () => {
     setBgTheme(() =>
@@ -30,12 +30,18 @@ export default function App() {
     setTxtTheme(() =>
       txtTheme === themes.txtDark ? themes.txtLight : themes.txtDark,
     )
-    setTheme(() => JSON.stringify(theme) === JSON.stringify({...themes.dark}) ? {...themes.light} : {...themes.dark})
+    setTheme(() =>
+      JSON.stringify(theme) === JSON.stringify({ ...themes.dark })
+        ? { ...themes.light }
+        : { ...themes.dark },
+    )
   }
 
   return (
     <BrowserRouter>
-      <ThemeContext.Provider value={{ bgTheme, txtTheme, theme, handleChangeTheme }}>
+      <ThemeContext.Provider
+        value={{ bgTheme, txtTheme, theme, handleChangeTheme }}
+      >
         <Layout />
         <Routes>
           <Route path="/" element={<Home />} />
