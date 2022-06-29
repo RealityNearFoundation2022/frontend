@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import 'regenerator-runtime/runtime'
 import React, { useEffect, useState } from 'react'
-
+import 'mapbox-gl/dist/mapbox-gl.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './assets/css/global.css'
 import Maps from './pages/Maps/IndexMaps'

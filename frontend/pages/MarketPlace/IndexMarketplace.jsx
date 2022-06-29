@@ -14,7 +14,11 @@ import {
   nft_mint,
   offer,
 } from '../../assets/js/near/utils'
+import { styled } from '@mui/material/styles'
 
+import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
+import Grid from '@mui/material/Grid'
 import useModal from '../../utils/useModal'
 import Modal from '../../components/Modal'
 
@@ -25,6 +29,17 @@ import getConfig from '../../assets/js/near/config'
 import * as nearAPI from 'near-api-js'
 
 import { Link } from 'react-router-dom'
+import Header from './Header'
+import Filter from './Filter'
+import Section from './Section'
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}))
 
 // import Home from "../pages/Home";
 
@@ -98,160 +113,138 @@ function Marketplace() {
   }
 
   return (
-    <div>
-      <header className="" style={{ marginTop: `${100}px` }}>
-        <div className="menu">
-          <div className="navbar-left">
-            <h3> NFT MARKET</h3>
-          </div>
-
-          {currentUser ? (
-            <div className="navbar-right">
-              <span className="welcome-text">Welcome! </span>
-              {currentUser}
-            </div>
-          ) : null}
-
-          <div className="navbar-right">
-            <Link to="/marketplace/me">Go your NFT</Link>
-          </div>
-        </div>
-      </header>
-
-      {/* <Link to={`/marketplace/sell`}>Sell</Link> */}
-
-      {/* <main className="main-wrapper">
-            <div className="wrapper">
-              {currentUser ? (
-                <div className="welcome-wrapper">
-                  <span className="welcome-text">Welcome! </span>
-                  {currentUser}
-                </div>
-              ) : (
-                <div>
-                  <p>user not logged in </p>
-                  <button onClick={login}>Sign in</button>
-                </div>
-              )}
-
-
-            </div>
-          </main> */}
-
-      <div className="market-wrapper">
-        <div className="market-inner-wrapper">
-          {nftMarketResults.length !== 0 ? (
-            <div className="market-header">
-              <h1>Market Place</h1>
-            </div>
-          ) : null}
-
-          <div className="market-result-wrapper">
-            {nftMarketResults?.length
-              ? nftMarketResults.map((nft, index) => (
-                  <div className="outter-wrapper" key={nft}>
-                    <Modal
-                      isVisibleBid={isVisibleBid}
-                      hideModal={toggleBidModal}
-                    >
-                      <div className="form-wrapper">
-                        <form
-                          onSubmit={(e) => {
-                            e.preventDefault()
-                            OfferPrice(nft.token_id)
-                          }}
-                        >
-                          <div className="form-in-wrapper">
-                            <h3 className="text-center pb-1">BID</h3>
-
-                            <div className="box-wrapper">
-                              <div className="box-in-wrapper">
-                                <div className="input-wrapper">
-                                  <input
-                                    className="input-box"
-                                    placeholder="Add bid price"
-                                    name="assetBid"
-                                    type="text"
-                                    value={values.assetBid}
-                                    onChange={handleInputChange}
-                                  />
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="form-btn-wrapper">
-                              <button type="button" className="form-btn">
-                                Enter Bid
-                              </button>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    </Modal>
-
-                    <article className="card-wrapper">
-                      <p className="asset-anchor" href="#">
-                        <div className="asset-anchor-wrapper">
-                          <div className="asset-anchor-wrapper-inner">
-                            <div className="asset-anchor-wrapper-inner-2">
-                              <img
-                                src={nft.metadata.media}
-                                className="img-wrapper"
-                                alt="NFT Token"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="details-wrapper">
-                          <div className="details-title-wrapper">
-                            <div className="details-title-left-wrapper">
-                              <div className="details-title-left-wrapper-inner-1">
-                                {nft.token_id}
-                              </div>
-                              <div className="details-title-left-wrapper-inner-2">
-                                {nft.owner_id}
-                              </div>
-                            </div>
-                            <div className="details-title-right-wrapper">
-                              <div className="details-assets-right-wrapper-inner-1">
-                                <span className="span-price">Price</span>
-                                <div className="price-wrapper">
-                                  <div className="near-symbol">
-                                    {/* <img
-                              className="near-logo"
-                              src={nearLogo}
-                              alt="near logo"
-                /> */}
-                                  </div>
-                                  <div className="price">
-                                    {nft.sale_conditions}
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </p>
-
-                      <div className="sell-wrapper">
-                        {currentUser !== nft.owner_id ? (
-                          <button
-                            type="button"
-                            className="form-btn"
-                            onClick={toggleBidModal}
-                          >
-                            Bid
-                          </button>
-                        ) : null}
-                      </div>
-                    </article>
-                  </div>
-                ))
-              : 'Market NFTs not found'}
-          </div>
-        </div>
-      </div>
+    <div className="top">
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Header></Header>
+        </Grid>
+        <Grid item xs={4}>
+          <Filter></Filter>
+        </Grid>
+        <Grid item xs={8}>
+          <Section></Section>
+        </Grid>
+      </Grid>
     </div>
+    // <div>
+    //   <header className="" style={{ marginTop: `${100}px` }}>
+    //     Marrket Place
+    //   </header>
+
+    //   <div className="market-wrapper">
+    //     <div className="market-inner-wrapper">
+    //       {nftMarketResults.length !== 0 ? (
+    //         <div className="market-header">
+    //           <h1>Market Place</h1>
+    //         </div>
+    //       ) : null}
+
+    //       <div className="market-result-wrapper">
+    //         {nftMarketResults?.length
+    //           ? nftMarketResults.map((nft, index) => (
+    //               <div className="outter-wrapper" key={nft}>
+    //                 <Modal
+    //                   isVisibleBid={isVisibleBid}
+    //                   hideModal={toggleBidModal}
+    //                 >
+    //                   <div className="form-wrapper">
+    //                     <form
+    //                       onSubmit={(e) => {
+    //                         e.preventDefault()
+    //                         OfferPrice(nft.token_id)
+    //                       }}
+    //                     >
+    //                       <div className="form-in-wrapper">
+    //                         <h3 className="text-center pb-1">BID</h3>
+
+    //                         <div className="box-wrapper">
+    //                           <div className="box-in-wrapper">
+    //                             <div className="input-wrapper">
+    //                               <input
+    //                                 className="input-box"
+    //                                 placeholder="Add bid price"
+    //                                 name="assetBid"
+    //                                 type="text"
+    //                                 value={values.assetBid}
+    //                                 onChange={handleInputChange}
+    //                               />
+    //                             </div>
+    //                           </div>
+    //                         </div>
+
+    //                         <div className="form-btn-wrapper">
+    //                           <button type="button" className="form-btn">
+    //                             Enter Bid
+    //                           </button>
+    //                         </div>
+    //                       </div>
+    //                     </form>
+    //                   </div>
+    //                 </Modal>
+
+    //                 <article className="card-wrapper">
+    //                   <p className="asset-anchor" href="#">
+    //                     <div className="asset-anchor-wrapper">
+    //                       <div className="asset-anchor-wrapper-inner">
+    //                         <div className="asset-anchor-wrapper-inner-2">
+    //                           <img
+    //                             src={nft.metadata.media}
+    //                             className="img-wrapper"
+    //                             alt="NFT Token"
+    //                           />
+    //                         </div>
+    //                       </div>
+    //                     </div>
+    //                     <div className="details-wrapper">
+    //                       <div className="details-title-wrapper">
+    //                         <div className="details-title-left-wrapper">
+    //                           <div className="details-title-left-wrapper-inner-1">
+    //                             {nft.token_id}
+    //                           </div>
+    //                           <div className="details-title-left-wrapper-inner-2">
+    //                             {nft.owner_id}
+    //                           </div>
+    //                         </div>
+    //                         <div className="details-title-right-wrapper">
+    //                           <div className="details-assets-right-wrapper-inner-1">
+    //                             <span className="span-price">Price</span>
+    //                             <div className="price-wrapper">
+    //                               <div className="near-symbol">
+    //                                 {/* <img
+    //                           className="near-logo"
+    //                           src={nearLogo}
+    //                           alt="near logo"
+    //             /> */}
+    //                               </div>
+    //                               <div className="price">
+    //                                 {nft.sale_conditions}
+    //                               </div>
+    //                             </div>
+    //                           </div>
+    //                         </div>
+    //                       </div>
+    //                     </div>
+    //                   </p>
+
+    //                   <div className="sell-wrapper">
+    //                     {currentUser !== nft.owner_id ? (
+    //                       <button
+    //                         type="button"
+    //                         className="form-btn"
+    //                         onClick={toggleBidModal}
+    //                       >
+    //                         Bid
+    //                       </button>
+    //                     ) : null}
+    //                   </div>
+    //                 </article>
+    //               </div>
+    //             ))
+    //           : 'Market NFTs not found'}
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
   )
 }
 

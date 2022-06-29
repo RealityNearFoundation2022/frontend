@@ -4,7 +4,7 @@ import { Outlet, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { login, logout } from '../assets/js/near/utils'
 import logo from '../assets/img/logo.png'
-import botonTema from '../assets/img/random/botonTema.png'
+import buttonTheme from '../assets/img/random/botonTema.png'
 import ThemeContext from '../utils/useContextTheme'
 import TranslationModal from '../components/TranslationModal'
 
@@ -51,13 +51,11 @@ function Layout() {
   window.addEventListener('scroll', changeVisibilityNav)
 
   return (
-    <>
+    <div className="d-flex justify-column">
       <nav
-        className={
-          navHidden
-            ? `navbar navbar-expand-lg ${theme.bg} text-uppercase fixed-top h-10vh visual-hidden`
-            : `navbar navbar-expand-lg ${theme.bg} text-uppercase fixed-top h-10vh`
-        }
+        className={`navbar navbar-expand-lg ${theme.bg} ${
+          navHidden && 'visual-hidden'
+        } text-uppercase fixed-top`}
         id="mainNav"
       >
         <div className="d-flex w-100 px-5">
@@ -99,7 +97,8 @@ function Layout() {
             </ul>
             <button
               type="button"
-              className="btn-primary rounded h-10vh ml-3 w-15 h-7vh"
+              className="btn-primary rounded 
+              ml-3 w-15"
               onClick={currentUser ? logout : login}
             >
               {currentUser ? 'Log out' : 'Log In'}
@@ -111,14 +110,14 @@ function Layout() {
               alt=""
               className="bg-transparent border-0"
             >
-              <img src={botonTema} alt="" />
+              <img src={buttonTheme} alt="" />
             </button>
           </div>
         </div>
       </nav>
 
       <Outlet />
-    </>
+    </div>
   )
 }
 

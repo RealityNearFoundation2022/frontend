@@ -1,6 +1,7 @@
+/* eslint-disable global-require */
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import logoReality from '../../assets/img/random/LOGO REALITY.png'
+// import logoReality from '../../assets/img/random/LOGO REALITY.png'
 import logos from '../../assets/img/random/icons.png'
 import ThemeContext from '../../utils/useContextTheme'
 
@@ -28,7 +29,7 @@ export default function RealityToken() {
       <div className="d-flex justify-content-center container justify-content-between">
         <div className="col-lg-4 w-60">
           <div className="d-flex align-items-center">
-            <img src={logoReality} alt="reality" height="70vh" />
+            <img src={theme.reality} alt="reality" height="70vh" />
             <span className="text-center text-uppercase text-white f-size-80">
               Token
             </span>
@@ -36,7 +37,7 @@ export default function RealityToken() {
           <br />
           <p className={`lead ${theme.txt}`}>
             {t(
-              'Para que las transacciones sean posibles, creamos tokens llamados "Realities", los cuales se utilizan como moneda en nuestro metaverso. Con estos se realizan todas las transacciones financieras dentro de este multimetaverso. Podrás comprar parcelas( Realands y Patchas ), accesorios, ropa, servicios, y todo lo que se encuentre a la venta en Nuruk.',
+              "Para que las transacciones sean posibles, creamos tokens llamados 'Realities', los cuales se utilizan como moneda en nuestro metaverso. Con estos se realizan todas las transacciones financieras dentro de este multimetaverso. Podrás comprar parcelas( Realands y Patchas ), accesorios, ropa, servicios, y todo lo que se encuentre a la venta en Nuruk.",
             )}
           </p>
           <h2>{t('¿Cómo funciona?')}</h2>
