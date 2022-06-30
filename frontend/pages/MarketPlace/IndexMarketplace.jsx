@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/order */
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {
   login,
   logout,
@@ -32,6 +32,7 @@ import { Link } from 'react-router-dom'
 import Header from './Header'
 import Filter from './Filter'
 import Section from './Section'
+import ThemeContext from '../../utils/useContextTheme'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -71,6 +72,8 @@ function Marketplace() {
   const { isVisibleBid, toggleBidModal } = useModal()
 
   const [nftMarketResults, setNftMarketResults] = useState([])
+
+  const { theme } = useContext(ThemeContext)
 
   useEffect(() => {
     loadSaleItems()
@@ -113,7 +116,7 @@ function Marketplace() {
   }
 
   return (
-    <div className="top">
+    <div className={`${theme.bg} top w-100`}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Header></Header>
