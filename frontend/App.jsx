@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import 'regenerator-runtime/runtime'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './assets/css/global.css'
@@ -18,10 +18,14 @@ import ThemeContext, { themes } from './utils/useContextTheme'
 import Footer from './pages/Footer'
 
 export default function App() {
-  const [ theme, setTheme] = useState({...themes.light})
+  const [theme, setTheme] = useState({ ...themes.light })
 
   const handleChangeTheme = () => {
-    setTheme(() => JSON.stringify(theme) === JSON.stringify({...themes.dark}) ? {...themes.light} : {...themes.dark})
+    setTheme(() =>
+      JSON.stringify(theme) === JSON.stringify({ ...themes.dark })
+        ? { ...themes.light }
+        : { ...themes.dark },
+    )
   }
 
   return (
