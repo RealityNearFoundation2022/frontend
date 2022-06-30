@@ -1,9 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react'
 import mapboxgl from 'mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
+import { tokenMapBox } from '../../utils/mapboxUtils'
 
-mapboxgl.accessToken =
-  'pk.eyJ1IjoicmVhbGl0eS1uZWFyLWRldnMiLCJhIjoiY2wzejY1Zm1tMXV1MTNicDRtZzViazRsNSJ9.Br1q0_qFPtNqIr59i-MqIA'
-
+mapboxgl.accessToken = tokenMapBox
 export default function IndexMaps() {
   const mapContainer = useRef(null)
   const map = useRef(null)

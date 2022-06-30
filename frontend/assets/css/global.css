@@ -3623,9 +3623,10 @@ textarea.form-control-lg {
 }
 
 .bg-image {
-  background-image: url(/frontend/assets/img/background/bg-image-desktop.jpg);
+  background-image: url(/frontend/assets/img/random/MetaverseHeader.png);
   background-repeat: no-repeat;/*yumari*/
   background-position: center center;/*yumari*/
+
 }
 .bg-img-realExperience{
   background-image: url(/frontend/assets/img/random/Mask\ group.png);
@@ -4080,6 +4081,7 @@ textarea.form-control-lg {
   justify-content: space-between;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  height: 10vh !important;
 }
 .navbar > .container,
 .navbar > .container-fluid,
@@ -4219,6 +4221,9 @@ textarea.form-control-lg {
   }
 }
 @media (min-width: 768px) {
+  .navbar{
+    height: 7.5vh !important;
+  }
   .navbar-expand-md {
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -4272,6 +4277,9 @@ textarea.form-control-lg {
   }
 }
 @media (min-width: 992px) {
+  .navbar{
+    height: 8vh !important;
+  }
   .navbar-expand-lg {
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -4325,6 +4333,9 @@ textarea.form-control-lg {
   }
 }
 @media (min-width: 1200px) {
+  .navbar{
+    height: 8.5vh !important;
+  }
   .navbar-expand-xl {
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -4378,6 +4389,9 @@ textarea.form-control-lg {
   }
 }
 @media (min-width: 1400px) {
+  .navbar{
+    height: 9vh !important;
+  }
   .navbar-expand-xxl {
     flex-wrap: nowrap;
     justify-content: flex-start;
