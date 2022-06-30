@@ -111,11 +111,13 @@ export default function IndexMaps() {
           .getSource('earthquakes')
           .getClusterExpansionZoom(clusterId, (err, zm) => {
             if (err) return
-            console.log(zm)
-            setZoom(zm)
+            console.log('zoom 1', zoom)
+            const z = zoom + 3
+            setZoom(z)
+            console.log('2', zoom)
             map.current.easeTo({
               center: features[0].geometry.coordinates,
-              zm,
+              zoom,
             })
           })
       })
