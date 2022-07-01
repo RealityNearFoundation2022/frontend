@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
     login, logout, nft_tokens, get_sales_by_nft_contract_id, nft_tokens_for_owner,
-    storage_minimum_balance, storage_deposit, nft_approve, nft_mint, offer } from '../assets/js/near/utils'
+    storage_minimum_balance, storage_deposit, nft_approve, nft_mint, offer, ft_balance_of } from '../assets/js/near/utils'
 
 import useModal from "../utils/useModal";
 import Modal from "../components/Modal";
@@ -42,6 +42,8 @@ const Marketplace = () => {
   
     const [values, setValues] = useState(initialValues);
 
+    const [balance, setBalanceOf] = useState("");
+
     const config = getConfig(process.env.NODE_ENV || 'development')
 
     const currentUser = window.accountId || ""
@@ -58,6 +60,9 @@ const Marketplace = () => {
     useEffect(() => {
         if (!showLoader) {
             loadSaleItems();
+
+            if (currentUser != "")
+              balanceOf();
         }
     }, [showLoader]);
 
@@ -68,6 +73,14 @@ const Marketplace = () => {
           [name]: value,
         });
     };
+
+    const balanceOf = async () => {
+      let _balance = await ft_balance_of(currentUser)
+      console.log(currentUser)
+
+      console.log(_balance)
+      setBalanceOf(_balance)
+    }
     
     const loadSaleItems = async () => {
 
@@ -104,7 +117,9 @@ const Marketplace = () => {
               {currentUser ? (
               <div className="navbar-right">
                 <span className="welcome-text">Welcome! </span>
-                {currentUser}
+                {currentUser} :
+                {balance} Reality Token 
+
               </div>
               ): null}
 

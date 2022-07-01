@@ -34,6 +34,11 @@ export async function initContract() {
     changeMethods: ['storage_deposit', 'offer'],
   })
 
+  window.ftcontract = await new Contract(window.walletConnection.account(), nearConfig.contractToken, {
+    viewMethods: ['ft_balance_of', 'ft_total_supply'],
+    changeMethods: ['storage_deposit', 'ft_transfer', 'ft_transfer_call']
+  })
+
 }
 
 export function logout() {
@@ -130,4 +135,30 @@ export async function offer(nft_contract, token_id, amount, gas){
     amount: amount,
     gas: gas
   })
+}
+
+// TOKEN
+
+export async function ft_balance_of(account_id){
+  let balance = await window.ftcontract.ft_balance_of({account_id: account_id})
+  return balance
+}
+
+export async function ft_total_supply(){
+  let total = await window.ftcontract.ft_total_supply()
+  return total
+}
+
+export async function storage_deposit_ft(account_id, minimum, gas){
+  await window.ftcontract.storage_deposit({args:{
+    account_id: account_id
+  }, gas: gas, amount: minimum || "10000000000000000000000" })
+}
+
+export async function ft_transfer(receiver_id, amount){
+  await window.ftcontract.ft_transfer({args:{
+    receiver_id: receiver_id,
+    amount: amount
+  }, amount: "10000000"})
+
 }
