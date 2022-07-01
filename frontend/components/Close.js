@@ -1,6 +1,7 @@
 import React from 'react'
 
-export const CloseIcon = () => (
+export function CloseIcon() {
+  return (
     <svg
       viewBox="0 0 24 24"
       width="28"
@@ -11,9 +12,9 @@ export const CloseIcon = () => (
       strokeLinejoin="round"
       fill="none"
       shapeRendering="geometricPrecision"
-  
     >
       <path d="M18 6L6 18" />
       <path d="M6 6l12 12" />
     </svg>
   )
+}
