@@ -22,32 +22,25 @@ export async function initContract() {
   window.accountId = window.walletConnection.getAccountId()
 
   // Initializing our contract APIs by contract name and configuration
-  window.contract = await new Contract(
-    window.walletConnection.account(),
-    nearConfig.contractName,
-    {
-      // View methods are read only. They don't modify the state, but usually return some value.
-      // viewMethods: ['get_greeting'],
-      viewMethods: ['get_greeting', 'nft_tokens', 'nft_tokens_for_owner'],
-      // Change methods can modify the state. But you don't receive the returned value when called.
-      // changeMethods: ['set_greeting'],
-      changeMethods: [
-        'set_greeting',
-        'new_default_meta',
-        'nft_mint',
-        'nft_approve',
-      ],
-    },
-  )
+  window.contract = await new Contract(window.walletConnection.account(), nearConfig.contractName, {
+    // View methods are read only. They don't modify the state, but usually return some value.
+    //viewMethods: ['get_greeting'],
+    viewMethods: ['get_greeting', 'nft_tokens', 'nft_tokens_for_owner'],
+    // Change methods can modify the state. But you don't receive the returned value when called.
+    //changeMethods: ['set_greeting'],
+    changeMethods: ['set_greeting','new_default_meta', 'nft_mint', 'nft_approve'],
+  })
 
-  window.mkpcontract = await new Contract(
-    window.walletConnection.account(),
-    nearConfig.contractMarketplace,
-    {
-      viewMethods: ['get_sales_by_nft_contract_id', 'storage_minimum_balance'],
-      changeMethods: ['storage_deposit', 'offer'],
-    },
-  )
+  window.mkpcontract = await new Contract(window.walletConnection.account(), nearConfig.contractMarketplace, {
+    viewMethods: ['get_sales_by_nft_contract_id', 'storage_minimum_balance'],
+    changeMethods: ['storage_deposit', 'offer'],
+  })
+
+  window.ftcontract = await new Contract(window.walletConnection.account(), nearConfig.contractToken, {
+    viewMethods: ['ft_balance_of', 'ft_total_supply'],
+    changeMethods: ['storage_deposit', 'ft_transfer', 'ft_transfer_call']
+  })
+
 }
 
 export function logout() {
@@ -172,4 +165,30 @@ export async function offer(nft_contract, token_id, amount, gas) {
     amount,
     gas,
   })
+}
+
+// TOKEN
+
+export async function ft_balance_of(account_id){
+  let balance = await window.ftcontract.ft_balance_of({account_id: account_id})
+  return balance
+}
+
+export async function ft_total_supply(){
+  let total = await window.ftcontract.ft_total_supply()
+  return total
+}
+
+export async function storage_deposit_ft(account_id, minimum, gas){
+  await window.ftcontract.storage_deposit({args:{
+    account_id: account_id
+  }, gas: gas, amount: minimum || "10000000000000000000000" })
+}
+
+export async function ft_transfer(receiver_id, amount){
+  await window.ftcontract.ft_transfer({args:{
+    receiver_id: receiver_id,
+    amount: amount
+  }, amount: "10000000"})
+
 }
