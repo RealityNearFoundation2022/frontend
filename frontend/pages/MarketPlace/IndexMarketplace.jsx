@@ -33,6 +33,8 @@ import Header from './Header'
 import Filter from './Filter'
 import Section from './Section'
 import ThemeContext from '../../utils/useContextTheme'
+import { Category } from './Category'
+import { filtersMarketplace } from './Data_Categories/Categories'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -115,8 +117,10 @@ function Marketplace() {
     )
   }
 
+  const data = [...filtersMarketplace[0].itemCards] // solo es de ejemplo
+  // falta seleccionar category y reemplazarlo por section o hacer rutas?
   return (
-    <div className={`${theme.bg} top w-100`}>
+    <div className={`${theme.bg} mt-5 w-100`}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Header></Header>
@@ -125,7 +129,8 @@ function Marketplace() {
           <Filter></Filter>
         </Grid>
         <Grid item xs={8}>
-          <Section></Section>
+          <Category currentItemsCategory={data} />
+          {/* <Section></Section> */}
         </Grid>
       </Grid>
     </div>
