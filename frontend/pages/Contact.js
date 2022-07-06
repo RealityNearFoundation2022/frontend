@@ -26,7 +26,7 @@ function Contact() {
   return (
     <section className={`${theme.bg} near w-100`} id="near">
       <div className="w-100 page-section">
-        <div className="bg-gray px-10porcent py-5">
+        <div className="bg-grey px-10porcent py-5">
           <p className="title text-uppercase text-primary">Contáctanos</p>
           <p>¿En qué podríamos ayudarte?</p>
         </div>
