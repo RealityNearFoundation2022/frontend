@@ -55,7 +55,7 @@ const initialValues = {
 
 // const walletConnection = window.walletConnection
 
-function Marketplace({ category }) {
+function Marketplace() {
   const {
     utils: {
       format: { parseNearAmount },

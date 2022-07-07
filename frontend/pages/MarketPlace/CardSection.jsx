@@ -34,9 +34,9 @@ export function CardSection() {
     console.log(category)
   }, [category])
   return (
-    <div className={`${theme.bg} page-section`}>
+    <div className={`${theme.bg} page-section p-5 mt-5 h-100`}>
       <section className="d-flex justify-content-around w-100">
-        <div className="">
+        <div className="w-50">
           <h1>{dataCategory.titleItem}</h1>
           <hr />
           <div>
@@ -48,8 +48,8 @@ export function CardSection() {
           <h4 className={theme.txt}>Creador</h4>
           <p className={theme.txt}>{dataCard.author}</p>
         </div>
-        <div>
-          <img src={dataCard.img} alt="" />
+        <div className="w-50">
+          <img src={dataCard.img} alt="" className="w-100" />
         </div>
       </section>
       <section>

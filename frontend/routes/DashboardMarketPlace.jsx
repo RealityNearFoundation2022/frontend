@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid'
 import React, { useContext } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { CardSection } from '../pages/MarketPlace/CardSection'
+// import { CardSection } from '../pages/MarketPlace/CardSection'
 import { Category } from '../pages/MarketPlace/Category'
 import { filtersMarketplace } from '../pages/MarketPlace/Data_Categories/Categories'
 import Filter from '../pages/MarketPlace/Filter'
@@ -47,15 +47,7 @@ export function DashboardMarketPlace() {
                 **
               </>
             ))}
-            <Route
-              path="marketplace/detail/:category/:idCard"
-              element={<CardSection />}
-            />
-            **
-            <Route
-              path="marketplace"
-              element={<Marketplace category="Todos" />}
-            />
+            <Route path="marketplace" element={<Marketplace />} />
           </Routes>
         </Grid>
       </Grid>
