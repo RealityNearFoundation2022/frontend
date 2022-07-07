@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/order */
@@ -33,8 +34,6 @@ import Header from './Header'
 import Filter from './Filter'
 import Section from './Section'
 import ThemeContext from '../../utils/useContextTheme'
-import { Category } from './Category'
-import { filtersMarketplace } from './Data_Categories/Categories'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -56,7 +55,7 @@ const initialValues = {
 
 // const walletConnection = window.walletConnection
 
-function Marketplace() {
+function Marketplace({ category }) {
   const {
     utils: {
       format: { parseNearAmount },
@@ -117,22 +116,9 @@ function Marketplace() {
     )
   }
 
-  const data = [...filtersMarketplace[0].itemCards] // solo es de ejemplo
-  // falta seleccionar category y reemplazarlo por section o hacer rutas?
   return (
-    <div className={`${theme.bg} mt-5 w-100`}>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <Header></Header>
-        </Grid>
-        <Grid item xs={4}>
-          <Filter></Filter>
-        </Grid>
-        <Grid item xs={8}>
-          <Category currentItemsCategory={data} />
-          {/* <Section></Section> */}
-        </Grid>
-      </Grid>
+    <div className="mt-5">
+      <Section />
     </div>
     // <div>
     //   <header className="" style={{ marginTop: `${100}px` }}>
