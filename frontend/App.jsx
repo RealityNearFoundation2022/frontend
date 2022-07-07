@@ -16,7 +16,7 @@ import Contact from './pages/Contact'
 import Metaverso from './pages/Metaverse/Metaverse'
 import ThemeContext, { themes } from './utils/useContextTheme'
 import Footer from './pages/Footer'
-
+import { NewMapContextProvider } from './pages/Maps/context/NewMapContext'
 export default function App() {
   const [theme, setTheme] = useState({ ...themes.light })
 
@@ -31,18 +31,20 @@ export default function App() {
   return (
     <BrowserRouter>
       <ThemeContext.Provider value={{ theme, handleChangeTheme }}>
-        <Layout />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/marketplace" element={<Marketplace />} />
-          <Route path="/maps" element={<Maps />} />
-          <Route path="/marketplace/me" element={<NftMe />} />
-          <Route path="/marketplace/sell" element={<NftSell />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/metaverso" element={<Metaverso />} />
-        </Routes>
-        <Footer />
+        <NewMapContextProvider>
+          <Layout />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/marketplace" element={<Marketplace />} />
+            <Route path="/maps" element={<Maps />} />
+            <Route path="/marketplace/me" element={<NftMe />} />
+            <Route path="/marketplace/sell" element={<NftSell />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/metaverso" element={<Metaverso />} />
+          </Routes>
+          <Footer />
+        </NewMapContextProvider>
       </ThemeContext.Provider>
     </BrowserRouter>
   )
