@@ -1,15 +1,17 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react'
 import Card from './Card'
-export function Category({ currentItemsCategory }) {
-  const [currentData, setCurrentData] = useState([...currentItemsCategory])
+export function Category({ dataCategory }) {
+  console.log(dataCategory)
+  const currentItemsCategory = [...dataCategory.itemCards]
+  const [currentData, setCurrentData] = useState(currentItemsCategory)
 
   const searchData = (condition, value) =>
-    currentData.filter((item) =>
+    currentItemsCategory.filter((item) =>
       item[condition].toLowerCase().includes(value.toLowerCase()),
     )
   // Buscador de  cards
-  const searchMovie = (e) => {
+  const searchCard = (e) => {
     console.log(e.target.value)
     setCurrentData(searchData('titleItem', e.target.value))
   } // falta averiguar el search, el value se queda del final o....useEffect?
@@ -17,13 +19,14 @@ export function Category({ currentItemsCategory }) {
     <div>
       <input
         type="search"
-        id="searchMovie"
+        id="searchCard"
         placeholder="Search"
-        onKeyUp={searchMovie}
+        onKeyUp={searchCard}
       />
+      <h1>{dataCategory.title}</h1>
       <div>
         {currentData.map((item) => (
-          <Card elementsCard={item} />
+          <Card elementsCard={item} category={dataCategory.title} />
         ))}
       </div>
     </div>

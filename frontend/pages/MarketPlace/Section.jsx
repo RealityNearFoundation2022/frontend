@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import React, { useContext } from 'react'
 import { Typography } from '@mui/material'
 import Slider from 'react-slick'
 import Card from './Card'
 import ThemeContext from '../../utils/useContextTheme'
 import { filtersMarketplace } from './Data_Categories/Categories'
+// import { Category } from './Category'
 
 export default function Section() {
   const categories = [...filtersMarketplace]
@@ -29,7 +31,7 @@ export default function Section() {
           <h1 className={theme.txt}>{item.title}</h1>
           <Slider {...settings}>
             {item.itemCards.map((element) => (
-              <Card elementsCard={element} />
+              <Card elementsCard={element} category={item.title} />
             ))}
           </Slider>
         </div>
