@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/order */
@@ -116,18 +117,8 @@ function Marketplace() {
   }
 
   return (
-    <div className={`${theme.bg} top w-100`}>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <Header></Header>
-        </Grid>
-        <Grid item xs={4}>
-          <Filter></Filter>
-        </Grid>
-        <Grid item xs={8}>
-          <Section></Section>
-        </Grid>
-      </Grid>
+    <div className="mt-5">
+      <Section />
     </div>
     // <div>
     //   <header className="" style={{ marginTop: `${100}px` }}>

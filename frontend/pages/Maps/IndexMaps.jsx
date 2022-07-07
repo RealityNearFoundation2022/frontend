@@ -270,6 +270,7 @@ function IndexMaps(props) {
       const switchy = document.getElementById('js-map-view')
       if (switchy) {
         switchy.addEventListener('click', () => {
+          alert('click 4')
           // React GA
           ReactGA.initialize('UA-128415861-1')
           ReactGA.pageview(`/map/switch`)
@@ -320,7 +321,7 @@ function IndexMaps(props) {
     if (map) {
       onClickMap = (e) => {
         // At click go to Land
-
+        alert('click 2')
         if (onMultipleLandSelection) {
           resetHexId()
         }
@@ -394,6 +395,7 @@ function IndexMaps(props) {
 
     return () => {
       if (map) {
+        alert('click 3')
         map.off('click', onClickMap)
       }
     }
@@ -925,7 +927,7 @@ function IndexMaps(props) {
     })
     // inspect a cluster on click
     map.on('click', 'owned_clusters', (e) => {
-      alert("click")
+      alert("click 1")
       const features = map.queryRenderedFeatures(e.point, {
         layers: ['owned_clusters'],
       })
