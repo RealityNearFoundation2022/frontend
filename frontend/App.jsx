@@ -18,6 +18,7 @@ import Metaverso from './pages/Metaverse/Metaverse'
 import ThemeContext, { themes } from './utils/useContextTheme'
 import Footer from './pages/Footer'
 import { DashboardMarketPlace } from './routes/DashboardMarketPlace'
+import { CardSection } from './pages/MarketPlace/CardSection'
 
 export default function App() {
   const [theme, setTheme] = useState({ ...themes.light })
@@ -43,6 +44,10 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/metaverso" element={<Metaverso />} />
+          <Route
+            path="/marketplace/detail/:category/:idCard"
+            element={<CardSection />}
+          />
         </Routes>
         <Footer />
       </ThemeContext.Provider>

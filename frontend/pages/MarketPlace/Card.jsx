@@ -6,7 +6,9 @@ import ThemeContext from '../../utils/useContextTheme'
 export default function Card({ elementsCard, category }) {
   const { theme } = useContext(ThemeContext)
   return (
-    <Link to={`marketplce/detail/${category.toLowerCase()}/${elementsCard.id}`}>
+    <Link
+      to={`/marketplace/detail/${category.toLowerCase()}/${elementsCard.id}`}
+    >
       <div>
         <div className="">
           <img src={elementsCard.img} alt="" className="w-90" />
