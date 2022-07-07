@@ -514,7 +514,7 @@ progress {
   color: #fff;
 }
 .title{
-  font-size: 3rem;
+  font-size: 3.5rem;
 }
 
 .display-1 {
@@ -3636,6 +3636,10 @@ textarea.form-control-lg {
 .bg-img-size-cover{
   background-size: cover;
 }
+.bg-grey{
+  background-color: #D9D9D9;
+}
+
 
 @media (min-width: 576px) {
   .dropdown-menu-sm-start {
@@ -7026,7 +7030,9 @@ textarea.form-control-lg {
 .w-75 {
   width: 75% !important;
 }
-
+.w-90{
+  width: 90% !important;
+}
 .w-100 {
   width: 100% !important;
 }
@@ -8026,9 +8032,6 @@ textarea.form-control-lg {
 }
 .bg-green{/*yumari*/
   background-color: #0D2920;
-}
-.bg-gray{
-  background-color: #d9d9d9;
 }
 .user-select-all {
   -webkit-user-select: all !important;
