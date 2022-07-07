@@ -10,6 +10,9 @@ html, body, #root, .x-wrapper{
 h1 {
     margin-bottom: 1em;
 }
+.ff-sans{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important;
+}
 .modal-overlay {
     height: 100vh;
     left: 0;
