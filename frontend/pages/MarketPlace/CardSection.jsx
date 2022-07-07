@@ -34,7 +34,7 @@ export function CardSection() {
     console.log(category)
   }, [category])
   return (
-    <div className={`${theme.bg} page-section p-5 mt-5 h-100`}>
+    <div className={`${theme.bg} page-section p-5 mt-5`}>
       <section className="d-flex justify-content-around w-100">
         <div className="w-50">
           <h1>{dataCategory.titleItem}</h1>
