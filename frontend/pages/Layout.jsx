@@ -24,8 +24,16 @@ function Layout() {
       link: '/about',
     },
     {
+      label: 'Noticias',
+      link: '/notices',
+    },
+    {
       label: 'Metaverso',
       link: '/metaverso',
+    },
+    {
+      label: 'Realities',
+      link: '/realities',
     },
     {
       label: 'Contacto',

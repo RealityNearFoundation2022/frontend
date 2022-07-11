@@ -1,19 +1,11 @@
 import React from 'react'
 import { mobile, tablet } from '../../assets/img/background/index'
+import HeaderSections from '../HeaderSections'
 
 function About() {
   return (
-    <>
-      {/* <!--  Section--> */}
-      <section className="page-section bg-dark near" id="near">
-        <div className="container">
-          {/* <!--  Section Heading--> */}
-          <div className="d-flex  flex-wrap flex-column justify-content-center">
-            <h2 className="text-primary text-center my-5">FUNDADORES</h2>
-            <img height="400px" src={tablet} alt="" />
-          </div>
-        </div>
-      </section>
+    <div className="mt-5">
+      <HeaderSections titleSection="Titulo 1" />
       <section className="bg-dark bg-gradient text-white mb-0" id="about">
         <div className="container pt-5">
           {/* <!--  Section Content--> */}
@@ -54,10 +46,17 @@ function About() {
           </div>
         </div>
       </section>
-      <footer className="page-section bg-gradient near text-white text-center">
-        <h1>FOOTER</h1>
-      </footer>
-    </>
+      {/* <!--  Section--> */}
+      <section className="page-section bg-dark near" id="near">
+        <div className="container">
+          {/* <!--  Section Heading--> */}
+          <div className="d-flex  flex-wrap flex-column justify-content-center">
+            <h2 className="text-primary text-center my-5">FUNDADORES</h2>
+            <img height="400px" src={tablet} alt="" />
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }
 

@@ -7017,6 +7017,9 @@ textarea.form-control-lg {
 .w-25 {
   width: 25% !important;
 }
+.w-30{
+  width: 30% !important;
+}
 .w-40{
   width: 40% !important;
 }
@@ -11513,7 +11516,7 @@ html {
 }
 #mainNav .navbar-nav li.nav-item a.nav-link-text-dark {
   color: #fff !important;
-  font-size: 18px;
+  font-size: 15px;
 }
 #mainNav .navbar-nav li.nav-item a.nav-link-text-dark:hover {
   color: #1abc9c !important;
@@ -11528,7 +11531,7 @@ html {
 
 #mainNav .navbar-nav li.nav-item a.nav-link-text-light {
   color:#101214 !important;
-  font-size: 18px;
+  font-size: 15px;
 }
 #mainNav .navbar-nav li.nav-item a.nav-link-text-light:hover {
   color:#1abc9c !important;

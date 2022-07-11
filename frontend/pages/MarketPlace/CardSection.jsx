@@ -10,7 +10,7 @@ export function CardSection() {
   const { idCard, category } = useParams()
   const { theme } = useContext(ThemeContext)
 
-  const dataCategory = filtersMarketplace.find(
+  const dataCategory = filtersMarketplace?.find(
     (item) => item.title.toLowerCase() === category,
   )
   console.log(dataCategory?.itemCards)
@@ -34,10 +34,10 @@ export function CardSection() {
     console.log(category)
   }, [category])
   return (
-    <div className={`${theme.bg} page-section p-5 mt-5`}>
-      <section className="d-flex justify-content-around w-100">
+    <section className={`${theme.bg} p-5 mt-5`}>
+      <div className="d-flex justify-content-around w-100">
         <div className="w-50">
-          <h1>{dataCategory.titleItem}</h1>
+          <h1 className={theme.txt}>{dataCard.titleItem}</h1>
           <hr />
           <div>
             <p className={theme.txt}>{dataCard.price}</p>
@@ -51,8 +51,8 @@ export function CardSection() {
         <div className="w-50">
           <img src={dataCard.img} alt="" className="w-100" />
         </div>
-      </section>
-      <section>
+      </div>
+      <div>
         <div className="w-100">
           <h1 className={theme.txt}>Artículos Similares</h1>
           <Slider {...settings}>
@@ -61,7 +61,7 @@ export function CardSection() {
             ))}
           </Slider>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   )
 }

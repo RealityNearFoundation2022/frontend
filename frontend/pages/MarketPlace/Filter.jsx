@@ -7,31 +7,31 @@ export default function Filter() {
     <div className="w-100 px-5 mx-5">
       <ul className="">
         <li>
-          <Link to="marketplace">Todos</Link>
+          <Link to="/marketplace">Todos</Link>
         </li>
         <li>
-          <Link to="marketplace/ofertas">Ofertas</Link>
+          <Link to="/marketplace/ofertas">Ofertas</Link>
         </li>
         <li>
-          <Link to="marketplace/novedades">NOvedades</Link>
+          <Link to="/marketplace/novedades">NOvedades</Link>
         </li>
         <li>
-          <Link className="d-flex" to="marketplace/realands">
+          <Link className="d-flex" to="/marketplace/realands">
             <p>*</p>
             <p>Realands</p>
           </Link>
         </li>
         <li>
-          <Link className="d-flex" to="marketplace/patchas">
+          <Link className="d-flex" to="/marketplace/patchas">
             <p>*</p>
             <p>Patchas</p>
           </Link>
         </li>
         <li>
-          <Link to="marketplace/nfts">NFTs</Link>
+          <Link to="/marketplace/nfts">NFTs</Link>
         </li>
         <li>
-          <Link to="marketplace/otros">Otros</Link>
+          <Link to="/marketplace/otros">Otros</Link>
         </li>
       </ul>
     </div>
