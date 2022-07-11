@@ -19,6 +19,8 @@ import ThemeContext, { themes } from './utils/useContextTheme'
 import Footer from './pages/Footer'
 import { DashboardMarketPlace } from './routes/DashboardMarketPlace'
 import { CardSection } from './pages/MarketPlace/CardSection'
+import DashboardNotice from './routes/DashboardNotice'
+import Realities from './pages/Realities'
 
 export default function App() {
   const [theme, setTheme] = useState({ ...themes.light })
@@ -37,7 +39,7 @@ export default function App() {
         <Layout />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/*" element={<DashboardMarketPlace />} />
+          <Route path="/marketplace*" element={<DashboardMarketPlace />} />
           <Route path="/maps" element={<Maps />} />
           <Route path="/marketplace/me" element={<NftMe />} />
           <Route path="/marketplace/sell" element={<NftSell />} />
@@ -48,6 +50,8 @@ export default function App() {
             path="/marketplace/detail/:category/:idCard"
             element={<CardSection />}
           />
+          <Route path="/notices*" element={<DashboardNotice />} />
+          <Route path="/realities" element={<Realities />} />
         </Routes>
         <Footer />
       </ThemeContext.Provider>
