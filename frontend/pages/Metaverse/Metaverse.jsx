@@ -4,7 +4,9 @@ import { useTranslation } from 'react-i18next'
 import metaverseNuruk from '../../assets/img/random/MetaverseNuruk.png'
 import ThemeContext from '../../utils/useContextTheme'
 import itemSlide from '../../assets/img/random/cabin.png'
-import imgMobile from '../../assets/img/background/bg-image-mobile.jpg'
+import imgMobile from '../../assets/img/metaverse/phone.png'
+import appleStore from '../../assets/img/metaverse/apple-store.png'
+import googlePlay from '../../assets/img/metaverse/google-play.png'
 
 function Metaverso() {
   const { theme } = useContext(ThemeContext)
@@ -13,7 +15,7 @@ function Metaverso() {
   return (
     <>
       {/* <!-- Masthead--> */}
-      <header className="masthead bg-primary text-white text-center bg-image bg-img-size-cover min-vh-80">
+      <header className="masthead text-white text-center bg-img-metaverse bg-img-size-cover min-vh-80">
         <div className="container d-flex align-items-center flex-column">
           {/* <!-- Masthead Heading--> */}
           <h1 className="masthead-heading text-uppercase mb-0">Lorem</h1>
@@ -148,25 +150,38 @@ function Metaverso() {
       >
         <div className="container pt-5">
           {/* <!--  Section Content--> */}
-          <div className="row justify-content-center">
-            <div className="col-lg-5 ms-auto">
-              <img height="400px" src={imgMobile} alt="" srcSet="" />
+          <div className="d-flex justify-content-center">
+            <div className="w-50 px-5">
+              <img
+                height="400px"
+                src={imgMobile}
+                alt=""
+                className="w-100 h-75vh"
+              />
             </div>
-            <div className="col-lg-5 me-auto">
+            <div className="w-50 px-2">
               <h2 className="text-primary">REALITY APP</h2>
-              <p className="lead">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Corrupti aliquam culpa architecto quidem impedit cum saepe
-                nobis, earum eaque rem explicabo animi suscipit repudiandae modi
-                iure ducimus fugit cupiditate numquam. Lorem ipsum dolor sit
-                amet, consectetur adipisicing elit. Corrupti aliquam culpa
-                architecto quidem impedit cum saepe nobis, earum eaque rem
-                explicabo animi suscipit repudiandae modi iure ducimus fugit
-                cupiditate numquam. Lorem ipsum dolor sit amet, consectetur
-                adipisicing elit. Corrupti aliquam culpa architecto quidem
-                impedit cum saepe nobis, earum eaque rem explicabo animi
-                suscipit repudiandae modi iure ducimus fugit cupiditate numquam.
+              <p className={`${theme.txt} lead`}>
+                Reality Near App ofrece una nueva experiencia fusionando
+                tecnología y realidad. Esta te permitirá ser parte de eventos,
+                ver publicidad, completar misiones, ver avatares y muchas cosas
+                más en la vida real usando sólo la cámara de tu teléfono. Dicho
+                contenido te permitirá interactuar con la vida real a través de
+                tu dispositivo móvil, generando una experiencia totalmente
+                inmersiva y valiosa. <br />
+                <br /> Todo contenido creado podrás visualizarlo en las tierras
+                de los demás usuarios y, si posees una, podrás crear y compartir
+                tu creación con la comunidad Reality Near. <br />
+                <br /> En la misma aplicación contarás con una wallet, donde
+                administrarás tus Realities y NFTs, así como tus transacciones
+                pasadas. También podrás añadir amigos fácilmente; enviarles y
+                recibir mensajes; y, además, ver si están conectados o cerca
+                tuyo.
               </p>
+              <div className="d-flex justify-content-between">
+                <img src={appleStore} alt="" />
+                <img src={googlePlay} alt="" />
+              </div>
             </div>
           </div>
         </div>
