@@ -28,16 +28,18 @@ export default function RealityToken() {
 
       <div className="d-flex justify-content-center container justify-content-between">
         <div className="col-lg-4 w-60">
-          <div className="d-flex align-items-center">
+          <div className={`${theme.txt} d-flex align-items-center`}>
             <img src={theme.reality} alt="reality" height="70vh" />
-            <span className="text-center text-uppercase text-white f-size-80">
+            <span
+              className={`${theme.txt} text-center text-uppercase f-size-80`}
+            >
               Token
             </span>
           </div>
           <br />
           <p className={`lead ${theme.txt}`}>
             {t(
-              'Reality Near te permite hacer negocios, tales como adquirir y vender bienes a través de todas nuestras plataformas: App Reality Near,  Marketplace en el sitio web y en Nuruk. \n Para que las transacciones sean posibles, creamos tokens llamados “REALITIES”, los cuales se utilizan como moneda en nuestro metaverso. Con los realities podrás comprar y vender parcelas, así como también NFTs  o cualquier artículo a la venta. Además, podrás intercambiar bienes con los demás usuarios mediante transacciones P2P. \n Contarás con una wallet, donde podrás administrar tus Realities, al igual que llevar registro de tus transacciones. También podrás ver el tipo de cambio al dolar.\n El Reality es transaccional con todas las Near Wallet, asi que no tendrás ningun inconveniente en transferirle a amigos. Podrás cambiar Nears a  realities en el Marketplace en nuestro sitio web.',
+              'Reality Near te permite hacer negocios, tales como adquirir y vender bienes a través de todas nuestras plataformas: App Reality Near,  Marketplace en el sitio web y en Nuruk. \n Para que las transacciones sean posibles, creamos tokens llamados “REALITIES”, los cuales se utilizan como moneda en nuestro metaverso. Con los realities podrás comprar y vender parcelas, así como también NFTs  o cualquier artículo a la venta. Además, podrás intercambiar bienes con los demás usuarios mediante transacciones P2P. \n Contarás con una wallet, donde podrás administrar tus Realities, al igual que llevar registro de tus transacciones. También podrás ver el tipo de cambio al dolar. \n El Reality es transaccional con todas las Near Wallet, asi que no tendrás ningun inconveniente en transferirle a amigos. Podrás cambiar Nears a  realities en el Marketplace en nuestro sitio web.',
             )}
           </p>
         </div>

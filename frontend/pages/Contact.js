@@ -1,5 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
-import igIcon from '../assets/img/random/igIcon.png'
+import igIcon from '../assets/img/social-network/instagramIcon.png'
+import githubIcon from '../assets/img/social-network/githubIcon.png'
+import discordIcon from '../assets/img/social-network/discordIcon.png'
+import frIcon from '../assets/img/social-network/free-redditIcon.png'
 import ThemeContext from '../utils/useContextTheme'
 import HeaderSections from './HeaderSections'
 
@@ -32,7 +35,13 @@ function Contact() {
           descriptionSection="¿En qué podríamos ayudarte?"
         />
         <div className="d-flex align-items-center container justify-content-between pt-5 w-100 h-40vh">
-          <h4 className="">Envíanos un mensaje</h4>
+          <div>
+            <h4 className="link-primary fs-6">Envíanos un mensaje</h4>
+            <p className={theme.txt}>
+              Nuestro equipo te responderá lo antes posible.
+            </p>
+          </div>
+
           <form
             onSubmit={handleSubmit}
             className="d-flex flex-column align-items-center w-50 justify-content-center"
@@ -64,19 +73,24 @@ function Contact() {
                 onChange={handleChangeMensaje}
               />
             </label>
-            <input type="submit" value="Submit" />
+            <input
+              type="submit"
+              value="Submit"
+              className="btn btn-primary disabled w-25"
+            />
           </form>
         </div>
       </div>
-      <div className="w-100 h-20vh text-white bg-green">
-        <center>
-          <p className="p-5">¡ÚNETENOS!</p>
-        </center>
-      </div>
-      <div className=" w-100 d-flex align-items-center justify-content-around">
-        <img src={igIcon} alt="" />
-        <img src={igIcon} alt="" />
-        <img src={igIcon} alt="" />
+      <div className="h-40vh p-5 bg-img-realExperience bg-img-size-cover w-100">
+        <h1 className="d-flex justify-content-center m-0 h-50 align-items-center w-100 fs-7 text-white">
+          ¡SÍGUENOS!
+        </h1>
+        <div className="d-flex justify-content-center m-0 h-50 align-items-center w-100 py-5">
+          <img src={discordIcon} alt="" className="px-2" />
+          <img src={igIcon} alt="" className="px-2" />
+          <img src={githubIcon} alt="" className="px-2" />
+          <img src={frIcon} alt="" className="px-2" />
+        </div>
       </div>
     </section>
   )
