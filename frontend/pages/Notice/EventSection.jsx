@@ -24,17 +24,22 @@ export default function EventSection() {
 
   const dataItem = dataSection?.find((item) => item.id === Number(idEvents))
   return (
-    <div className="mt-5">
+    <div className={`${theme.bg} mt-5`}>
       <HeaderSections
         titleSection={dataItem.title}
         descriptionSection={dataItem.description}
       />
       <div className="m-5 p-5 w-90 d-flex flex-wrap">
-        <div className="w-60">
+        <div className="w-60 px-5">
           <p>{dataItem.section}</p>
+          <center>
+            <button type="button" className="w-40 btn btn-primary disabled">
+              Ir
+            </button>
+          </center>
         </div>
         <div className="w-40">
-          <img src={dataItem.img} alt="" className="w-100" />
+          <img src={dataItem.img} alt="" className="w-100 rounded" />
         </div>
       </div>
       <div className="w-90 p-5 m-5">

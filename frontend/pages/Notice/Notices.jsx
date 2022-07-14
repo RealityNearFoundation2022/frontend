@@ -26,31 +26,31 @@ export default function Notices() {
         titleSection="Noticias"
         descriptionSection="Entérate de las últimas novedades en Reality Near"
       />
-      <div className="w-90 p-5 m-5">
-        <Link to="/notices/novelties" className={theme.txt}>
+      <div className="w-90 p-5 mx-5">
+        <Link to="/notices/novelties" className="text-primary fs-7">
           Novedades
         </Link>
         <Slider {...settings}>
           {notices.novelties.map((element) => (
             <Link to={`/notices/novelties/${element.id}`}>
-              <div key={`novelties${element.id}`} className="w-75">
+              <div key={`novelties${element.id}`} className="w-90">
                 <img src={element.img} alt="" className="w-100" />
-                <h2>{element.title}</h2>
-                <p>{element.description}</p>
-                <p>{element.date}</p>
+                <h2 className={theme.txt}>{element.title}</h2>
+                <p className={theme.txt}>{element.description}</p>
+                <p className={theme.txt}>{element.date}</p>
               </div>
             </Link>
           ))}
         </Slider>
       </div>
-      <div className="w-90 p-5 m-5">
-        <Link to="/notices/events" className={theme.txt}>
+      <div className="w-90 p-5 mx-5">
+        <Link to="/notices/events" className="text-primary fs-7">
           Eventos
         </Link>
         <Slider {...settings}>
           {notices.events.map((element) => (
             <Link to={`/notices/events/${element.id}`}>
-              <div key={`eventos${element.id}`} className="w-75">
+              <div key={`eventos${element.id}`} className="w-90">
                 <img src={element.img} alt="" className="w-100" />
                 <p>{element.description}</p>
               </div>

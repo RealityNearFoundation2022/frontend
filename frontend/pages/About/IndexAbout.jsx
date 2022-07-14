@@ -12,7 +12,7 @@ function About() {
         <div className="container pt-5">
           {/* <!--  Section Content--> */}
           <div className="d-flex">
-            <div className="">
+            <div className="d-flex flex-column gap-2">
               <h2 className="text-primary">¿QUÉ ES REALITY NEAR?</h2>
               <p className={`${theme.txt} lead`}>
                 Reality Near es un multimetaverso que combina tecnlogía y
@@ -40,19 +40,19 @@ function About() {
                 debes dejar que tu creatividad defina el camino.
               </p>
             </div>
-            <div className="">
-              <img src={mobile} alt="" />
+            <div className="p-3">
+              <img src={mobile} alt="" className="rounded ml-2" />
             </div>
           </div>
         </div>
       </section>
+      <section className="w-100 bg-img-realExperience bg-img-size-cover h-40vh"></section>
       {/* <!--  Section--> */}
-      <section className="page-section bg-dark near" id="near">
+      <section className={`${theme.bg} near`} id="near">
         <div className="container">
           {/* <!--  Section Heading--> */}
           <div className="d-flex  flex-wrap flex-column justify-content-center">
             <h2 className="text-primary text-center my-5">FUNDADORES</h2>
-            <img height="400px" src={mobile} alt="" />
           </div>
         </div>
       </section>
