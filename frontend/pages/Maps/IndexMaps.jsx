@@ -3,7 +3,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-use-before-define */
 import React, { useState, useEffect, useContext } from 'react'
-// import { useHistory } from 'react-router-dom'
 import * as R from 'ramda'
 import PropTypes from 'prop-types'
 import mapboxgl from 'mapbox-gl'
@@ -12,8 +11,9 @@ import * as h3 from 'h3-js'
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 import { useTranslation } from 'react-i18next'
 import _ from 'lodash'
+import { coordinatesGeojson, tokenMapBox } from '../../utils/mapboxUtils'
+import HexButton from './HexButton'
 // import ReactGA from 'react-ga'
-import { tokenMapBox } from '../../utils/mapboxUtils'
 import landsData from './lands.json'
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css'
 import { indexInterestingLands } from './mockJson'
@@ -55,7 +55,18 @@ const config = {
     ],
   },
 }
-
+const unavailableH3 = [
+  '8cbe0e35c0947ff',
+  '8cbe0e35c095bff',
+  '8cbe0e35c090bff',
+  '8cbe0e35c096bff',
+  '8cbe0e35c0939ff',
+  '8cbe0e35c0957ff',
+  '8cbe0e35c0865ff',
+  '8cbe0e35c095dff',
+  '8cbe0e35c0969ff',
+  '8cbe0e35c0955ff',
+]
 const tourEiffelH3 = [
   '8c1fb46741a17ff',
   '8c1fb46741a15ff',
@@ -123,7 +134,6 @@ function IndexMaps(props) {
 
   // const history = useHistory()
   const { t } = useTranslation()
-  console.log('useContext(NewMapContext)', useContext(NewMapContext))
   const { mapState, setMapState, actions } = useContext(NewMapContext)
   const {
     onSingleView,
@@ -138,7 +148,10 @@ function IndexMaps(props) {
   const [lastSelectedLand, setLastSelectedLand] = useState(null)
   const [mapMoveendChange, setMapMoveendChange] = useState(true)
   const [isMapReady, setIsMapReady] = useState(false)
-
+  const [pointClicked, setPointClicked] = useState(
+    config.map.lat,
+    config.map.lng,
+  )
   const [onViewLands, setOnViewLands] = useState([])
   const [hidedMarkers, setHidedMarkers] = useState(false)
 
@@ -152,7 +165,7 @@ function IndexMaps(props) {
   useEffect(() => {
     const hexes = document.getElementsByClassName('hex-marker')
     console.log('hidedMarkers', hidedMarkers)
-    debugger
+
     if (hidedMarkers) {
       Array.from(hexes).forEach((single) => {
         single.classList.add('hex-marker-hided')
@@ -161,7 +174,6 @@ function IndexMaps(props) {
       Array.from(hexes).forEach((single) => {
         single.classList.remove('hex-marker-hided')
       })
-      debugger
     }
   }, [hidedMarkers, onViewLands])
 
@@ -270,7 +282,6 @@ function IndexMaps(props) {
       const switchy = document.getElementById('js-map-view')
       if (switchy) {
         switchy.addEventListener('click', () => {
-          alert('click 4')
           // React GA
           ReactGA.initialize('UA-128415861-1')
           ReactGA.pageview(`/map/switch`)
@@ -321,12 +332,14 @@ function IndexMaps(props) {
     if (map) {
       onClickMap = (e) => {
         // At click go to Land
-        alert('click 2')
         if (onMultipleLandSelection) {
           resetHexId()
         }
+        setPointClicked(e.lngLat.lat, e.lngLat.lng)
+        alert(`${e.lngLat.lat},${e.lngLat.lng}`)
         const clicked_hex_id = h3.geoToH3(e.lngLat.lat, e.lngLat.lng, 12)
-
+        console.log('clicked_hex_id', clicked_hex_id)
+        // TODO: Change tourEiffelH3 to list eiffel
         if (R.includes(clicked_hex_id, tourEiffelH3)) {
           focusMap(clicked_hex_id)
           const alink = document.createElement('a')
@@ -387,6 +400,7 @@ function IndexMaps(props) {
           //     // changeHexId(clicked_hex_id)
           //     console.debug('CLICKEEEDDD', { clicked_hex_id, lastSelectedLand })
           //   }
+
           setLastSelectedLand(clicked_hex_id)
         }
       }
@@ -395,7 +409,6 @@ function IndexMaps(props) {
 
     return () => {
       if (map) {
-        alert('click 3')
         map.off('click', onClickMap)
       }
     }
@@ -429,11 +442,13 @@ function IndexMaps(props) {
     }
   }, [isMapReady])
 
-  useEffect(() => {
-    if (!R.isNil(hex_id) && !R.isEmpty(hex_id)) {
-      addFocusToHexId(hex_id)
-    }
-  }, [mapState.hex_id])
+  // useEffect(() => {
+  //   alert('pointClicked UE')
+  //   alert(hex_id)
+  //   if (!R.isNil(hex_id) && !R.isEmpty(hex_id)) {
+  //     addFocusToHexId(hex_id)
+  //   }
+  // }, [mapState.hex_id, pointClicked])
 
   // Functions
   /// /////////////////////////////////////////////////////////
@@ -442,7 +457,6 @@ function IndexMaps(props) {
    * Send a request to change the cluster informations.
    */
   function changeClusters() {
-    console.log('change cluster')
     const mapBounds = map.getBounds()
     const mapZoom = map.getZoom()
     const bounds = [
@@ -459,20 +473,15 @@ function IndexMaps(props) {
       type: 'collectible',
       collectible: selected,
     }
-    console.log('R.isNil(selected)', R.isNil(selected))
     if (R.isNil(selected)) return
     // axios
     //   .post(config.apis.mapboxCluster, params)
     //   .then((response) => {
     const list = R.pathOr([], ['data', 'features'], landsData)
     const ownedList = R.reject(R.isNil, R.pluck('id', list))
-    debugger
     changeOwnedLandList(ownedList)
-    debugger
     const data = R.prop('data', landsData)
-    debugger
     if (!data) return
-    debugger
     if (!R.isNil(map.getSource('owned_cluster'))) {
       map.getSource('owned_cluster').setData(data)
     }
@@ -497,6 +506,31 @@ function IndexMaps(props) {
         value: hexags[hex],
       }),
     )
+    // console.log(coordinates())
+    // const geojson = [
+    //   {
+    //     type: 'Feature',
+    //     id: '8c01120019339ff',
+    //     properties: {
+    //       value: 0.2523820479083345,
+    //     },
+    //     geometry: {
+    //       type: 'Polygon',
+    //       coordinates: [
+    //         [
+    //           [40.781331436537634, 72.11005729329993],
+    //           [40.78162516230078, 72.11007183746582],
+    //           [40.78170373572257, 72.11015611530831],
+    //           [40.78148858090806, 72.11022584919593],
+    //           [40.78119485262538, 72.11021130472923],
+    //           [40.78111628167677, 72.11012702667576],
+    //           [40.781331436537634, 72.11005729329993],
+    //         ],
+    //       ],
+    //     },
+    //   },
+    // ]
+    console.log('geojson 0', geojson)
     const sourceId = 'h3-hexes'
     const layerId = `${sourceId}-layer`
     let source = map.getSource(sourceId)
@@ -516,6 +550,7 @@ function IndexMaps(props) {
         },
       })
       source = map.getSource(sourceId)
+      console.log('source', source)
     }
 
     // Update the geojson data
@@ -537,10 +572,8 @@ function IndexMaps(props) {
   function renderHighZoomInterestingHexes(hexags) {
     // Filter rendering Hexagons to see if there is some interesting
     indexInterestingLands(Object.keys(hexags)[0]).then((response) => {
-      console.log('response', response)
       if (response.data.result) {
         const { lands } = response.data
-        console.log('lands', lands)
         const withProjectNotOnSale = R.difference(
           lands.withProjects,
           lands.onSale,
@@ -580,6 +613,7 @@ function IndexMaps(props) {
         value: userExagons[hex],
       }),
     )
+    console.log('geojson', geojson)
     const sourceId = 'h3-with-projects-hexes'
     const layerId = `${sourceId}-with-projects-hexes`
     let source = map.getSource(sourceId)
@@ -656,6 +690,7 @@ function IndexMaps(props) {
         value: userExagons[hex],
       }),
     )
+    console.log('geojson 2', geojson)
     const sourceId = 'h3-on-sale-hexes'
     const layerId = `${sourceId}-on-sale-hexes`
     let source = map.getSource(sourceId)
@@ -720,17 +755,20 @@ function IndexMaps(props) {
     // Prepare format
     const data = { ...userExagons }
     const newData = Object.keys(data).reduce((obj, key) => {
+      // eslint-disable-next-line no-param-reassign
       obj[data[key]] = Math.random()
       return obj
     }, {})
 
     // Plot hexes
+
     const geojson = geojson2h3.h3SetToFeatureCollection(
       Object.keys(newData),
       (hex) => ({
         value: userExagons[hex],
       }),
     )
+    console.log('geojson 3', geojson)
     const sourceId = 'h3-user-interesting-hexes'
     const layerId = `${sourceId}-user-interesting-layer`
     let source = map.getSource(sourceId)
@@ -807,6 +845,7 @@ function IndexMaps(props) {
         value: hexagons[hex],
       }),
     )
+    console.log('geojson 4', geojson)
     const sourceId = 'h3-interesting-hexes'
     const layerId = `${sourceId}-interesting-layer`
     let source = map.getSource(sourceId)
@@ -868,7 +907,6 @@ function IndexMaps(props) {
   }
 
   function renderOwnedLandsCluster() {
-    console.log('map', map)
     map.addSource('owned_cluster', {
       type: 'geojson',
       // data: { type: 'FeatureCollection', features: [] },
@@ -927,7 +965,6 @@ function IndexMaps(props) {
     })
     // inspect a cluster on click
     map.on('click', 'owned_clusters', (e) => {
-      alert("click 1")
       const features = map.queryRenderedFeatures(e.point, {
         layers: ['owned_clusters'],
       })
@@ -935,10 +972,6 @@ function IndexMaps(props) {
       map
         .getSource('owned_cluster')
         .getClusterExpansionZoom(clusterId, (err, zoom) => {
-          console.log('aqui', {
-            center: features[0].geometry.coordinates,
-            zoom,
-          })
           if (err) return
           map.easeTo({
             center: features[0].geometry.coordinates,
@@ -963,7 +996,6 @@ function IndexMaps(props) {
       obj[data[key]] = Math.random()
       return obj
     }, {})
-
     // Plot hexes
     const geojson = geojson2h3.h3SetToFeatureCollection(
       Object.keys(newData),
@@ -971,10 +1003,10 @@ function IndexMaps(props) {
         value: hexagons[hex],
       }),
     )
+    console.log('geojson 5', geojson)
     const sourceId = 'h3-ongoing-auctions-hexes'
     const layerId = `${sourceId}-ongoing-auctions-layer`
     let source = map.getSource(sourceId)
-
     if (!source) {
       map.addSource(sourceId, {
         type: 'geojson',
@@ -1017,7 +1049,6 @@ function IndexMaps(props) {
           }
         }
       })
-
       // add marker to map
       const coordi = h3.h3ToGeo(marker.id)
       new mapboxgl.Marker(el, {
@@ -1051,7 +1082,7 @@ function IndexMaps(props) {
     })
     // Plot graphic point into map
     const singleHexGeojson = geojson2h3.h3ToFeature(hex_id)
-
+    console.log('singleHexGeojson', singleHexGeojson)
     const tooltip = new mapboxgl.Popup()
       .setLngLat([hexCenterCoordinates[1], hexCenterCoordinates[0]])
       .setHTML(
@@ -1081,11 +1112,13 @@ function IndexMaps(props) {
       selected_source = map.getSource(selected_sourceId)
     }
     // Update the h3Geo data
+
     selected_source.setData(singleHexGeojson)
     map.setLayoutProperty(selected_layerId, 'visibility', 'visible')
   }
 
   function addFocusToHexId(hexId) {
+    alert(`clickPointed${clickPointed[0]}`)
     const hexCenterCoordinates = h3.h3ToGeo(hexId)
     const selectedSourceId = 'h3-hexes_selected'
 
@@ -1118,6 +1151,8 @@ function IndexMaps(props) {
       const featureOfSelectedLands = geojson2h3.h3SetToFeatureCollection(
         multipleLandSelectionList,
       )
+      console.log('featureOfSelectedLands', featureOfSelectedLands)
+      console.log('multipleLandSelectionList', multipleLandSelectionList)
       const selected_sourceId = 'h3-hexes_multi_selected'
       const selected_layerId = `${selected_sourceId}-layer`
       let selected_source = map.getSource(selected_sourceId)
@@ -1163,15 +1198,15 @@ function IndexMaps(props) {
     })
   }
 
-  //   const isMapDiscoverPage =
-  //     R.pathOr(null, ['location', 'pathname'], history) === '/map/discover'
+  const isMapDiscoverPage =
+    R.pathOr(null, ['location', 'pathname'], history) === '/map/discover'
 
-  //   const isMapLandsPage =
-  //     R.pathOr(null, ['location', 'pathname'], history) === '/map/lands'
+  const isMapLandsPage =
+    R.pathOr(null, ['location', 'pathname'], history) === '/map/lands'
 
-  //   const handleChange = (option) => {
-  //     setSelected(option?.value)
-  //   }
+  const handleChange = (option) => {
+    setSelected(option?.value)
+  }
 
   return (
     <div id="Map" className="Map" style={{ height: '100vh' }}>
@@ -1189,22 +1224,19 @@ function IndexMaps(props) {
         }
         label={t('Hide.Labels')}
       />
+      */}
       {onSingleView || isMapDiscoverPage || isMapLandsPage ? (
         <HexButton
           url="#"
-          text={
-            onMultipleLandSelection
-              ? t('Lands.exit.multiple.lands')
-              : t('Lands.select.multiple.lands')
-          }
+          text={onMultipleLandSelection ? 'holi' : 'boli'}
           className="HexButton  --x-small set-multiple-land-selection-button"
           onClick={
             onMultipleLandSelection
-              ? () => history.push('/map/discover')
-              : () => history.push('/map/lands')
+              ? () => alert('/map/discover')
+              : () => alert('/map/lands')
           }
         />
-      ) : null} */}
+      ) : null}
     </div>
   )
 }
