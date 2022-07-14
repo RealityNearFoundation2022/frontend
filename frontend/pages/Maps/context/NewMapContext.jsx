@@ -15,7 +15,7 @@ export function NewMapContextProvider({ children }) {
     isAuction: false,
     isEmbeed: false,
     isUserRelated: false,
-    onMultipleLandSelection: false,
+    onMultipleLandSelection: true,
     multipleLandSelectionList: [],
     ownedLandList: [], // Based on Map viewport, it changes on zoom.
     auctionList: [],
