@@ -67,8 +67,8 @@ function Layout() {
         id="mainNav"
       >
         <div className="d-flex w-100 px-5">
-          <Link class={`navbar-brand ${theme.txt}`} to="/">
-            <img src={logo} alt="" />
+          <Link class={`navbar-brand ${theme.txt} pt-3`} to="/">
+            <img src={logo} alt="" className="m-0" width="45" heigth="45" />
           </Link>
           <button
             className="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
