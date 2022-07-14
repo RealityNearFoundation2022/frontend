@@ -336,7 +336,6 @@ function IndexMaps(props) {
           resetHexId()
         }
         setPointClicked(e.lngLat.lat, e.lngLat.lng)
-        alert(`${e.lngLat.lat},${e.lngLat.lng}`)
         const clicked_hex_id = h3.geoToH3(e.lngLat.lat, e.lngLat.lng, 12)
         console.log('clicked_hex_id', clicked_hex_id)
         // TODO: Change tourEiffelH3 to list eiffel
@@ -500,6 +499,10 @@ function IndexMaps(props) {
   }
 
   function renderHighZoomHexes(hexags) {
+    console.log('hexags', Object.keys(hexags), (hex) => ({
+      value: hexags[hex],
+    }))
+    debugger
     const geojson = geojson2h3.h3SetToFeatureCollection(
       Object.keys(hexags),
       (hex) => ({
@@ -1068,6 +1071,7 @@ function IndexMaps(props) {
       obj[data[key]] = Math.random()
       return obj
     }, {})
+    debugger
     return newData
   }
 
@@ -1117,17 +1121,17 @@ function IndexMaps(props) {
     map.setLayoutProperty(selected_layerId, 'visibility', 'visible')
   }
 
-  function addFocusToHexId(hexId) {
-    alert(`clickPointed${clickPointed[0]}`)
-    const hexCenterCoordinates = h3.h3ToGeo(hexId)
-    const selectedSourceId = 'h3-hexes_selected'
+  // function addFocusToHexId(hexId) {
+  //   alert(`clickPointed${clickPointed[0]}`)
+  //   const hexCenterCoordinates = h3.h3ToGeo(hexId)
+  //   const selectedSourceId = 'h3-hexes_selected'
 
-    map.flyTo({
-      center: [hexCenterCoordinates[1], hexCenterCoordinates[0]],
-      zoom: 18,
-      speed: 2.2,
-    })
-  }
+  //   map.flyTo({
+  //     center: [hexCenterCoordinates[1], hexCenterCoordinates[0]],
+  //     zoom: 18,
+  //     speed: 2.2,
+  //   })
+  // }
 
   function plotHighZoomPOI() {
     // Zoom out map // General Map View
@@ -1184,6 +1188,7 @@ function IndexMaps(props) {
     const delayedQuery = _.debounce((q) => {
       if (map.getZoom() > zoomThreshold) {
         const hexs = hexagons()
+        console.log('hexagons()', hexagons())
         // Render general hexes
         renderHighZoomHexes(hexs)
 

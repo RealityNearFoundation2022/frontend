@@ -6,6 +6,8 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './assets/css/global.css'
 import Maps from './pages/Maps/IndexMaps'
+import Maps2 from './pages/Maps/IndexMaps2'
+
 import Layout from './pages/Layout'
 // import Marketplace from './pages/MarketPlace/IndexMarketplace'
 import Home from './pages/Landing/IndexLanding'
@@ -41,6 +43,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/*" element={<DashboardMarketPlace />} />
             <Route path="/maps" element={<Maps />} />
+            <Route path="/maps2" element={<Maps2 />} />
             <Route path="/marketplace/me" element={<NftMe />} />
             <Route path="/marketplace/sell" element={<NftSell />} />
             <Route path="/about" element={<About />} />

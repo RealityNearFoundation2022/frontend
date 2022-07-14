@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import mapboxgl from 'mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
-import { tokenMapBox, coordinates } from '../../utils/mapboxUtils'
-
+import turf from '@turf/square-grid'
+import { tokenMapBox } from '../../utils/mapboxUtils'
 mapboxgl.accessToken = tokenMapBox
 export default function IndexMaps() {
   const mapContainer = useRef(null)
@@ -43,44 +43,6 @@ export default function IndexMaps() {
         cluster: true,
         clusterMaxZoom: 14, // Max zoom to cluster points on
         clusterRadius: 50, // Radius of each cluster when clustering points (defaults to 50)
-      })
-      map.current.addSource('national-park', {
-        type: 'geojson',
-        // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
-        // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
-        data: {
-          type: 'FeatureCollection',
-          features: [
-            {
-              type: 'Feature',
-              geometry: {
-                type: 'Polygon',
-                coordinates: coordinates(),
-              },
-            },
-          ],
-        }, // Radius of each cluster when clustering points (defaults to 50)
-      })
-      map.current.addLayer({
-        id: 'park-boundary',
-        type: 'fill',
-        source: 'national-park',
-        paint: {
-          'fill-color': '#888888',
-          'fill-opacity': 0.4,
-        },
-        filter: ['==', '$type', 'Polygon'],
-      })
-      map.current.addLayer({
-        id: 'park-boundary-outline',
-        type: 'line',
-        source: 'national-park',
-        layout: {},
-        paint: {
-          'line-color': '#3d3c3c',
-          'line-width': 2,
-        },
-        filter: ['==', '$type', 'Polygon'],
       })
       map.current.addLayer({
         id: 'clusters',
@@ -175,6 +137,9 @@ export default function IndexMaps() {
               center: features[0].geometry.coordinates,
               zoom: zm,
             })
+            if (zm > 10) {
+              getSquare()
+            }
           })
       })
 
@@ -202,6 +167,42 @@ export default function IndexMaps() {
       map.current.on('mouseleave', 'clusters', () => {
         map.current.getCanvas().style.cursor = ''
       })
+    })
+  }
+  const getSquare = () => {
+    alert('getSquare')
+    const bbox = [-95, 30, -85, 40]
+    const cellSide = 0.1
+    const options = { units: 'kilometers' }
+    console.log('turf', turf)
+    const squareGrid = turf(bbox, cellSide, options)
+    console.log(' squareGrid ', squareGrid)
+    map.current.addSource('national-park', {
+      type: 'geojson',
+      // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
+      // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
+      data: squareGrid, // Radius of each cluster when clustering points (defaults to 50)
+    })
+    map.current.addLayer({
+      id: 'park-boundary',
+      type: 'fill',
+      source: 'national-park',
+      paint: {
+        'fill-color': '#888888',
+        'fill-opacity': 0.4,
+      },
+      filter: ['==', '$type', 'Polygon'],
+    })
+    map.current.addLayer({
+      id: 'park-boundary-outline',
+      type: 'line',
+      source: 'national-park',
+      layout: {},
+      paint: {
+        'line-color': '#3d3c3c',
+        'line-width': 2,
+      },
+      filter: ['==', '$type', 'Polygon'],
     })
   }
   return (
