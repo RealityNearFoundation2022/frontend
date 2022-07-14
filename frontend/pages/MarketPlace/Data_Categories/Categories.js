@@ -1,4 +1,4 @@
-import itemFake from '../../../assets/img/random/cabin.png'
+import itemFake from '../../../assets/img/random/modelMarketplace.png'
 
 export const filtersMarketplace = [
   {
