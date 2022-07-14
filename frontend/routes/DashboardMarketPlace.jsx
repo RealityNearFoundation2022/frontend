@@ -41,13 +41,13 @@ export function DashboardMarketPlace() {
             {categories.map((category) => (
               <>
                 <Route
-                  path={`marketplace/${category.toLowerCase()}`}
+                  path={`/${category.toLowerCase()}`}
                   element={<Category dataCategory={findCategory(category)} />}
                 />
                 **
               </>
             ))}
-            <Route path="marketplace" element={<Marketplace />} />
+            <Route path="/" element={<Marketplace />} />
           </Routes>
         </Grid>
       </Grid>

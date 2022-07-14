@@ -1,7 +1,10 @@
 import React, { useContext } from 'react'
 import logoRealityNear from '../../assets/img/random/LOGO REALITY NEAR.png'
 import ThemeContext from '../../utils/useContextTheme'
-import discordIcon from '../../assets/img/random/discordIcon.png'
+import discordIcon from '../../assets/img/social-network/discordIcon.png'
+import igIcon from '../../assets/img/social-network/instagramIcon.png'
+import githubIcon from '../../assets/img/social-network/githubIcon.png'
+import frIcon from '../../assets/img/social-network/free-redditIcon.png'
 
 export default function RealityExperience() {
   const { theme } = useContext(ThemeContext)
@@ -16,7 +19,7 @@ export default function RealityExperience() {
             <img src={logoRealityNear} alt="" className="w-60" />
           </div>
           <button
-            className="btn btn-primary btn-xl disabled"
+            className="rounded btn-xl btn-light"
             id="submitButton"
             type="submit"
           >
@@ -24,15 +27,15 @@ export default function RealityExperience() {
           </button>
         </div>
       </div>
-      <div className="h-30vh">
-        <h1 className="d-flex justify-content-center m-0 h-50 align-items-center w-100 fs-7">
+      <div className="h-30vh p-5 mt-5">
+        <h1 className="d-flex justify-content-center m-0 h-50 align-items-center w-100 fs-7 link-primary">
           ¡SÍGUENOS!
         </h1>
-        <div className="d-flex justify-content-center m-0 h-50 align-items-center w-100">
-          <img src={discordIcon} alt="" />
-          <img src={discordIcon} alt="" />
-          <img src={discordIcon} alt="" />
-          <img src={discordIcon} alt="" />
+        <div className="d-flex justify-content-center m-0 h-50 align-items-center w-100 py-5">
+          <img src={discordIcon} alt="" className="px-2" />
+          <img src={igIcon} alt="" className="px-2" />
+          <img src={githubIcon} alt="" className="px-2" />
+          <img src={frIcon} alt="" className="px-2" />
         </div>
       </div>
     </section>
