@@ -3636,6 +3636,7 @@ textarea.form-control-lg {
   background-image: url(/frontend/assets/img/landingPage/reality-experience.png);
   background-repeat: no-repeat;/*yumari*/
   background-position: center center;/*yumari*/
+  background-color: #33CC99;
 }
 .bg-img-metaverse{
   background-image: url(/frontend/assets/img/metaverse/metaverse-banner.png);
@@ -7054,6 +7055,9 @@ textarea.form-control-lg {
 }
 .w-90{
   width: 90% !important;
+}
+.w-95{
+  width: 95% !important;
 }
 .w-100 {
   width: 100% !important;
