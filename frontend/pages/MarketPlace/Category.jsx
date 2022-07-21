@@ -16,17 +16,18 @@ export function Category({ dataCategory }) {
     setCurrentData(searchData('titleItem', e.target.value))
   } // falta averiguar el search, el value se queda del final o....useEffect?
   return (
-    <div className="">
+    <div className="w-100 mt-5">
       <input
         type="search"
         id="searchCard"
         placeholder="Search"
+        className="p-2 w-90 search"
         onKeyUp={searchCard}
       />
-      <h1>{dataCategory.title}</h1>
-      <div className="d-flex flex-sm-wrap">
+      <h1 className="mt-3 text-primary">{dataCategory.title}</h1>
+      <div className="d-flex flex-sm-wrap gap-3">
         {currentData.map((item) => (
-          <div className="w-25">
+          <div className="w-30">
             <Card elementsCard={item} category={dataCategory.title} />
           </div>
         ))}
