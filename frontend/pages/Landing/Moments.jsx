@@ -7,9 +7,9 @@ export default function Moments() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
   return (
-    <section className={`${theme.bg} h-100vh near`} id="near">
+    <section className={`${theme.bg} h-100vh near mt-5`} id="near">
       <div className="">
-        <h2 className="text-uppercase text-primary p-5 fs-7 h-20vh">
+        <h2 className="text-uppercase text-primary px-5 mx-5 fs-7 h-20vh font-source-sans-3 fw-bold">
           {t('Conoce los eventos del momento')}
         </h2>
         <div

@@ -22,6 +22,8 @@ import Footer from './pages/Footer'
 import { NewMapContextProvider } from './pages/Maps/context/NewMapContext'
 import { DashboardMarketPlace } from './routes/DashboardMarketPlace'
 import { CardSection } from './pages/MarketPlace/CardSection'
+import DashboardNotice from './routes/DashboardNotice'
+import Realities from './pages/Realities'
 
 export default function App() {
   const [theme, setTheme] = useState({ ...themes.light })
@@ -41,9 +43,11 @@ export default function App() {
           <Layout />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/*" element={<DashboardMarketPlace />} />
-            <Route path="/maps" element={<Maps />} />
             <Route path="/maps2" element={<Maps2 />} />
+
+            <Route path="/marketplace*" element={<DashboardMarketPlace />} />
+            <Route path="/maps" element={<Maps />} />
+
             <Route path="/marketplace/me" element={<NftMe />} />
             <Route path="/marketplace/sell" element={<NftSell />} />
             <Route path="/about" element={<About />} />
@@ -53,6 +57,8 @@ export default function App() {
               path="/marketplace/detail/:category/:idCard"
               element={<CardSection />}
             />
+            <Route path="/notices*" element={<DashboardNotice />} />
+            <Route path="/realities" element={<Realities />} />
           </Routes>
           <Footer />
         </NewMapContextProvider>
