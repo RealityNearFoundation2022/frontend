@@ -24,7 +24,6 @@ jobs:
         with:
           name: Build-FrontEnd
           path: ${{ github.sha }}.tar.gz
-    
   prepare-release-on-servers:
     name: Prepare release
     runs-on: ubuntu-latest
