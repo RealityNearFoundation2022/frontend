@@ -52,6 +52,5 @@ jobs:
           script: |
             mkdir -p "releases/${GITHUB_SHA}"
             tar xzf artifacts/${GITHUB_SHA}.tar.gz -C "releases/${GITHUB_SHA}"
-            rm -r frontend* 2> /dev/null
-            mkdir frontend
-            cp -r releases/${GITHUB_SHA}/* frontend/
+            rm -r /var/www/html/* 2> /dev/null
+            cp -r releases/${GITHUB_SHA}/dist/* /var/www/html/
