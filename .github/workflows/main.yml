@@ -56,3 +56,4 @@ jobs:
               rm -r frontend* 2> /dev/null
               mkdir frontend
               cp -r releases/${GITHUB_SHA}/* frontend/
+
