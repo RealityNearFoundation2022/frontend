@@ -2,11 +2,13 @@ import React from 'react'
 
 export default function Header() {
   return (
-    <div className="bg-grey px-10porcent py-5">
-      <h1 className="title text-uppercase fw-bold text-primary mb-2">
+    <div className="bg-header-marketplace px-10porcent py-5">
+      <h1 className="title text-uppercase fw-bold text-white mb-2">
         MarketPlace
       </h1>
-      <p>Encuentra y adquiere patchas, realands y NFTs en un solo lugar. </p>
+      <p className="fw-bold text-white fs-5">
+        Encuentra y adquiere patchas, realands y NFTs en un solo lugar.{' '}
+      </p>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 // import logoReality from '../../assets/img/random/LOGO REALITY.png'
 import logos from '../../assets/img/random/icons.png'
 import ThemeContext from '../../utils/useContextTheme'
@@ -46,13 +47,15 @@ export default function RealityToken() {
         <div className="col-lg-4">
           <img src={logos} alt="" className="lead my-5" width="100%" />
           <center>
-            <button
-              className="btn btn-primary btn-xl disabled w-75"
-              id="submitButton"
-              type="submit"
-            >
-              ADQUIRIR REALITIES
-            </button>
+            <Link to="/realities">
+              <button
+                className="btn btn-primary btn-xl disabled w-75"
+                id="submitButton"
+                type="submit"
+              >
+                ADQUIRIR REALITIES
+              </button>
+            </Link>
           </center>
         </div>
       </div>
