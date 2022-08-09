@@ -24,6 +24,7 @@ import { DashboardMarketPlace } from './routes/DashboardMarketPlace'
 import { CardSection } from './pages/MarketPlace/CardSection'
 import DashboardNotice from './routes/DashboardNotice'
 import Realities from './pages/Realities'
+import IndexCentreland from './pages/Centreland/IndexCentreland'
 
 export default function App() {
   const [theme, setTheme] = useState({ ...themes.light })
@@ -52,6 +53,7 @@ export default function App() {
             <Route path="/marketplace/sell" element={<NftSell />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/centreland" element={<IndexCentreland />} />
             <Route path="/metaverso" element={<Metaverso />} />
             <Route
               path="/marketplace/detail/:category/:idCard"

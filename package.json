@@ -1,7 +1,7 @@
 {
   "name": "greeter",
   "version": "1.0.0",
-  "license": "(MIT AND Apache-2.0)",
+  "license": "ISC",
   "scripts": {
     "build:web": "parcel build frontend/index.html --public-url ./",
     "start:web": "parcel frontend/index.html --open",
