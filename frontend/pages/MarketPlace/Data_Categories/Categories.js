@@ -96,7 +96,7 @@ export const filtersMarketplace = [
   {
     id: 3,
     title: 'Realands',
-    itemCards: [
+    itemCards: [] /* [
       {
         id: 31,
         img: itemFake,
@@ -137,12 +137,12 @@ export const filtersMarketplace = [
         author: 'Creador 5',
         price: 143000,
       },
-    ],
+    ] */,
   },
   {
     id: 4,
     title: 'Patchas',
-    itemCards: [
+    itemCards: [] /* [
       {
         id: 41,
         img: itemFake,
@@ -183,7 +183,7 @@ export const filtersMarketplace = [
         author: 'Creador 5',
         price: 143000,
       },
-    ],
+    ] */,
   },
   {
     id: 5,

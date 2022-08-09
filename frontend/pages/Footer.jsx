@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import logoFooter from '../assets/img/random/logoFooter.png'
 import ThemeContext from '../utils/useContextTheme'
 function Footer() {
@@ -27,7 +28,9 @@ function Footer() {
           <li className={theme.txt}>Código de ética</li>
           <li className={theme.txt}>Políticas de Privacidad</li>
           <li className={theme.txt}>Políticas de Cookies</li>
-          <li className={theme.txt}>Términos y Condiciones</li>
+          <Link to="/terminos-condiciones">
+            <li className={theme.txt}>Términos y Condiciones</li>
+          </Link>
         </ul>
       </div>
     </footer>

@@ -3025,7 +3025,7 @@ textarea.form-control-lg {
   z-index: 3;
 }
 
-.btn {
+/* .btn {
   display: inline-block;
   font-weight: 400;
   line-height: 1.5;
@@ -3045,7 +3045,7 @@ textarea.form-control-lg {
   font-weight: 600;
   border-radius: 2rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
+} */
 @media (prefers-reduced-motion: reduce) {
   .btn {
     transition: none;
@@ -3652,8 +3652,50 @@ textarea.form-control-lg {
 .bg-green{
   background-color: #33cc9948;
 }
+.bg-header-about, .bg-header-metaverse, .bg-header-marketplace, .bg-header-contact, .bg-header-mpcategory, .bg-header-terminos, .bg-header-notices, .bg-header-novelties, .bg-header-events, .bg-header-event, .bg-header-novelty{
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #33CC99;
+}
+.bg-header-metaverse{
+  background-image: url(/frontend/assets/img/headers/metaverse.png);
+}
+.bg-header-marketplace{
+  background-image: url(/frontend/assets/img/headers/marketplace.png);
+  
+}.bg-header-contact{
+  background-image: url(/frontend/assets/img/headers/contact.png);
 
-
+}.bg-header-about{
+  background-image: url(/frontend/assets/img/headers/about.png);
+}
+.bg-header-mpcategory{
+  background-image: url(/frontend/assets/img/headers/mp-category.png);
+}
+.bg-header-terminos{
+  background-image: url(/frontend/assets/img/headers/terminosCondiciones.png);
+}
+.bg-header-notices{
+  background-image: url(/frontend/assets/img/headers/notice.png);
+}
+.bg-header-novelties{
+  background-image: url(/frontend/assets/img/headers/novelties.png);
+}
+.bg-header-events{
+  background-image: url(/frontend/assets/img/headers/events.png);
+}
+.bg-header-novelty{
+  background-image: url(/frontend/assets/img/headers/novelty.png);
+}
+.bg-header-event{
+  background-image: url(/frontend/assets/img/headers/event.png);
+}
+.obj-fit-contain{
+  object-fit: contain !important;
+}
+.obj-fit-cover{
+  object-fit: cover !important;
+}
 @media (min-width: 576px) {
   .dropdown-menu-sm-start {
     --bs-position: start;
@@ -7052,6 +7094,9 @@ textarea.form-control-lg {
 
 .w-75 {
   width: 75% !important;
+}
+.w-80 {
+  width: 80% !important;
 }
 .w-90{
   width: 90% !important;

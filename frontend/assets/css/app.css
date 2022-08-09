@@ -348,7 +348,7 @@ ul {
 
 .btn {
     display: inline-block;
-    background-color: #ff424d;
+    background-color: #33cc99;
     border-radius: 9999px;
     color: #fff;
     font-weight: 500;
@@ -475,8 +475,8 @@ ul {
     font-size: 1rem !important;
 }
 .btn:hover  {
-    color: #ff424d;
-    border-color: #ff424d;
+    color: #33cc99;
+    border-color: #33cc99;
     background-color: #fff;
 }
 
