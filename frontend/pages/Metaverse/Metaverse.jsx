@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 // import { desktop, mobile, tablet } from '../../assets/img/background/index'
 import Slider from 'react-slick'
@@ -14,13 +14,14 @@ import { momentsCarousel } from '../Landing/momentsCarousel'
 function Metaverso() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
+  const [itemToShow, setItemShow] = useState(2)
   const itemsCard = [...momentsCarousel]
 
   const settings = {
     className: 'center',
     infinite: true,
     centerPadding: '60px',
-    slidesToShow: 2,
+    slidesToShow: itemToShow,
     swipeToSlide: true,
     afterChange(index) {
       console.log(
@@ -28,6 +29,13 @@ function Metaverso() {
       )
     },
   }
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setItemShow(1)
+    } else {
+      setItemShow(2)
+    }
+  }, [itemToShow])
 
   return (
     <div className="mt-5">
@@ -72,12 +80,12 @@ function Metaverso() {
         </div>
       </section>
       {/* <!-- Section--> */}
-      <section className={`${theme.bg} near`} id="near">
+      <section className={`${theme.bg}`} id="">
         <div className="w-100 pt-5 pb-4 mt-2">
-          <Slider {...settings} className="w-90 ms-5 ps-5">
+          <Slider {...settings} className="w-90 ms-5">
             {itemsCard.map((element) => (
-              <div className="w-95 ms-1 me-0">
-                <img src={element.imgCarousel} alt="" className="mx-2" />
+              <div className="">
+                <img src={element.imgCarousel} alt="" className="mx-2 w-95" />
                 <center>
                   <p className="fw-bold fs-5 mt-2 text-white">
                     {element.titleEvent}

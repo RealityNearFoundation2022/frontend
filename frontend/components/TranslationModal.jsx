@@ -24,7 +24,7 @@ export default function TranslationModal() {
   return (
     <Modal
       button={
-        <IconButton className="d-flex flex-column">
+        <IconButton className="d-flex flex-column w-100">
           <LanguageIcon style={{ color: '#33cc99', 'font-size': '30px' }} />
 
           <Typography style={{ color: '#33cc99', 'font-size': '15px' }}>
