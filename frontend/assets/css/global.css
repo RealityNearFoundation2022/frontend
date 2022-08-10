@@ -171,6 +171,9 @@ h6, .h6 {
 }
 
 p {
+  font-family: "Source Sans Pro", sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+  line-height: 1.2;
   margin-top: 0;
   margin-bottom: 1rem;
 }
@@ -518,7 +521,7 @@ progress {
   color: #fff;
 }
 .title{
-  font-size: 3.5rem;
+  font-size: calc(4.75vw);
 }
 
 .display-1 {
@@ -526,6 +529,7 @@ progress {
   font-weight: 300;
   line-height: 1.2;
 }
+
 @media (min-width: 1200px) {
   .display-1 {
     font-size: 5rem;
@@ -686,6 +690,15 @@ progress {
 @media (min-width: 992px) {
   .container-lg, .container-md, .container-sm, .container {
     max-width: 960px;
+  }
+}
+@media (max-width: 992px) {
+  #navbarResponsive{
+    z-index: 3000;
+    position:absolute;
+    top: 7vh;
+    width: 100%;
+    
   }
 }
 @media (min-width: 1200px) {
@@ -2158,16 +2171,44 @@ progress {
   -webkit-overflow-scrolling: touch;
 }
 
+
 @media (max-width: 575.98px) {
   .table-responsive-sm {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
+  h2, .h2 {
+    font-size: 0.6rem;
+  }
 }
+@media (max-width: 650px) {
+  #realityExperience{
+    flex-direction: column;
+  }
+  #realityExperience .title{
+    font-size: calc(8vw) !important;
+  }
+  .realExperience{
+    width: 100%;
+  }
+  .hiddenByResponsive{
+    display: none;
+  }
+  #realityToken{
+    display: block !important;
+  }
+  #realityToken #realityTokenTxt{
+    width: 100% !important;
+  }
+}
+
 @media (max-width: 767.98px) {
   .table-responsive-md {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+  }
+  h2, .h2 {
+    font-size: 0.8rem;
   }
 }
 @media (max-width: 991.98px) {
@@ -2175,17 +2216,26 @@ progress {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
+  h2, .h2 {
+    font-size: 1rem;
+  }
 }
 @media (max-width: 1199.98px) {
   .table-responsive-xl {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
+  h2, .h2 {
+    font-size: 1.25rem;
+  }
 }
 @media (max-width: 1399.98px) {
   .table-responsive-xxl {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+  }
+  h2, .h2 {
+    font-size: 1.5rem;
   }
 }
 .form-label {
@@ -4038,7 +4088,7 @@ textarea.form-control-lg {
 
 .nav {
   display: flex;
-  flex-wrap: wrap;
+ /*  flex-wrap: wrap; */
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
@@ -4138,8 +4188,8 @@ textarea.form-control-lg {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  /* padding-top: 0.5rem;
+  padding-bottom: 0.5rem; */
   height: 10vh !important;
 }
 .navbar > .container,
@@ -4155,8 +4205,8 @@ textarea.form-control-lg {
   justify-content: space-between;
 }
 .navbar-brand {
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
+  /* padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem; */
   margin-right: 1rem;
   font-size: 1.25rem;
   text-decoration: none;
@@ -6646,17 +6696,13 @@ textarea.form-control-lg {
 .fixed-top {
   position: fixed;
   top: 0;
-  right: 0;
   left: 0;
-  z-index: 1030;
 }
 
 .fixed-bottom {
   position: fixed;
-  right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1030;
 }
 
 .sticky-top {
@@ -7073,6 +7119,9 @@ textarea.form-control-lg {
 .w-5{
   width: 5% !important;
 }
+.w-10{
+  width: 10% !important;
+}
 .w-15{
   width: 15% !important;
 }
@@ -7136,6 +7185,12 @@ textarea.form-control-lg {
 }
 .h-60{
   height: 60% !important;
+}
+.h-65{
+  height: 65% !important;
+}
+.h-70{
+  height: 70% !important;
 }
 .h-75 {
   height: 75% !important;
@@ -7667,6 +7722,30 @@ textarea.form-control-lg {
   padding-right: 6rem !important;
   padding-left: 6rem !important;
 }
+.pe-3porcent{
+  padding-right: 3% !important;
+}
+.ps-3porcent{
+  padding-left: 3% !important;
+}
+.pe-5porcent{
+  padding-right: 5% !important;
+}
+.ps-5porcent{
+  padding-left: 5% !important;
+}
+.px-3porcent{
+  padding-right: 3% !important;
+  padding-left: 3% !important;
+}
+.px-5porcent{
+  padding-right: 5% !important;
+  padding-left: 5% !important;
+}
+.px-7-5porcent{
+  padding-right: 7.5% !important;
+  padding-left: 7.5% !important;
+}
 .px-10porcent{
   padding-right: 10% !important;
   padding-left: 10% !important;
@@ -7837,7 +7916,7 @@ textarea.form-control-lg {
   font-size: 2rem !important;
 }
 .fs-7{
-  font-size: 3.5rem !important;
+  font-size: calc(5.5vw);
 }
 
 .fst-italic {
@@ -11584,8 +11663,8 @@ html {
 }
 
 #mainNav {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  /* padding-top: 1rem;
+  padding-bottom: 1rem; */
   font-family: "Source Sans Pro", sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
 }
