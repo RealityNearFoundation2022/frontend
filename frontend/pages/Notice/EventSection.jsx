@@ -31,8 +31,8 @@ export default function EventSection() {
         descriptionSection={dataItem.description}
         bgHeader="bg-header-event"
       />
-      <div className="m-5 p-5 w-90 d-flex flex-wrap">
-        <div className="w-60 px-5">
+      <div className="w-100 d-flex flex-wrap align-items-center justify-content-between px-7-5porcent mt-5">
+        <div className="w-60">
           <h2>{dataItem.title}</h2>
           <p>{dataItem.section}</p>
           <center>
@@ -45,7 +45,7 @@ export default function EventSection() {
           <img src={dataItem.img} alt="" className="w-100 rounded" />
         </div>
       </div>
-      <div className="my-3 mx-2 px-5">
+      <div className="px-7-5porcent w-100">
         <div className="d-flex align-items-center mt-5 mb-4">
           <h1 className="m-1 text-primary pr-2">Artículos Similares</h1>
         </div>

@@ -11,13 +11,14 @@ export default function Realities() {
   const { t } = useTranslation()
   return (
     <section className={`${theme.bg} page-section text-white mb-0 mt-5`} id="">
-      <div className="d-flex justify-content-center container justify-content-between">
-        <div className="col-lg-4 w-60">
-          <div className="d-flex align-items-center">
-            <img src={theme.reality} alt="reality" height="70vh" />
-            <span
-              className={`${theme.txt} text-center text-uppercase f-size-80`}
-            >
+      <div
+        className="d-flex w-100 px-7-5porcent justify-content-between"
+        id="realities"
+      >
+        <div className="w-60" id="realitiContain">
+          <div className="d-flex align-items-center w-100 ">
+            <img src={theme.reality} alt="" className="w-50" />
+            <span className={`${theme.txt} text-center text-uppercase fs-7`}>
               Token
             </span>
           </div>
@@ -34,8 +35,11 @@ export default function Realities() {
             )}
           </p>
         </div>
-        <div className="col-lg-4">
-          <img src={logos} alt="" className="lead my-5" width="100%" />
+        <div
+          className="w-40 d-flex flex-column align-item-center justify-content-center"
+          id="realitiContain"
+        >
+          <img src={logos} alt="" className="lead w-80 mx-5" />
           <center>
             <RealityModal />
             {/* <button

@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Header() {
   return (
-    <div className="bg-header-marketplace px-10porcent py-5">
+    <div className="bg-header-marketplace px-7-5porcent py-5">
       <h1 className="title text-uppercase fw-bold text-white mb-2">
         MarketPlace
       </h1>

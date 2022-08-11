@@ -15,10 +15,10 @@ function About() {
         bgHeader="bg-header-about"
       />
       <section className={`${theme.bg} text-white mb-0`} id="about">
-        <div className="container pt-5">
+        <div className="w-100 px-7-5porcent pt-5">
           {/* <!--  Section Content--> */}
           <div className="d-flex">
-            <div className="d-flex flex-column gap-2">
+            <div className="d-flex flex-column gap-2 w-50" id="aboutTxt">
               <h2 className="text-primary">¿QUÉ ES REALITY NEAR?</h2>
               <p className={`${theme.txt} lead`}>
                 Reality Near es un multimetaverso que combina tecnlogía y
@@ -46,26 +46,31 @@ function About() {
                 debes dejar que tu creatividad defina el camino.
               </p>
             </div>
-            <div className="p-3">
-              <img src={about} alt="" className="rounded ml-2" />
+            <div
+              className="p-3 w-50 d-flex justify-content-center align-items-center"
+              id="hiddenByResponsive"
+            >
+              <img src={about} alt="" className="rounded w-90 px-5porcent" />
             </div>
           </div>
         </div>
       </section>
       <section className="w-100 bg-img-realExperience bg-img-size-cover h-40vh mt-4"></section>
       {/* <!--  Section--> */}
-      <section className={`${theme.bg} near`} id="near">
-        <div className="container">
+      <section className={`${theme.bg} w-100 px-7-5porcent`} id="">
+        <div className="w-100">
           {/* <!--  Section Heading--> */}
-          <div className="d-flex  flex-wrap flex-column justify-content-center">
+          <div className="d-flex flex-column justify-content-center">
             <h2 className="text-primary text-center my-5">FUNDADORES</h2>
-            <div className="d-flex justify-content-center aign-items-center">
-              <div className="mx-5">
-                <img src={ceo} alt="" width="200" height="200" />
+            <div className="d-flex justify-content-around align-items-center px-7-5porcent">
+              <div className="aboutTeam">
+                <div className="w-100">
+                  <img src={ceo} alt="" className="w-100" />
+                </div>
                 <h3 className="text-primary fw-bolder text-center">CEO</h3>
               </div>
-              <div className="mx-5">
-                <img src={directorCreativo} alt="" width="200" height="200" />
+              <div className="aboutTeam">
+                <img src={directorCreativo} alt="" className="w-100" />
                 <h3 className="text-primary fw-bolder text-center">
                   Director Creativo
                 </h3>

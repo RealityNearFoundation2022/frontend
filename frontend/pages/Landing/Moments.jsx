@@ -1,5 +1,5 @@
 /* eslint-disable global-require */
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import Slider from 'react-slick'
 import ThemeContext from '../../utils/useContextTheme'
@@ -8,34 +8,34 @@ import { momentsCarousel } from './momentsCarousel'
 export default function Moments() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
-  const [itemToShow, setItemShow] = useState(2)
 
   console.log(window.innerWidth)
   const settings = {
     className: 'center',
     infinite: true,
     centerPadding: '60px',
-    slidesToShow: itemToShow,
+    slidesToShow: 2,
     swipeToSlide: true,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
     afterChange(index) {
       console.log(
         `Slider Changed to: ${index + 1}, background: #222; color: #bada55`,
       )
     },
   }
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setItemShow(1)
-    } else {
-      setItemShow(2)
-    }
-  }, [itemToShow])
 
   const itemsCard = [...momentsCarousel]
   return (
     <section
       className={`${theme.bg} ${
-        window.innerHeight / window.innerWidth < 1.3 && 'h-100vh'
+        window.innerHeight / window.innerWidth < 0.8 && 'h-100vh'
       } near pt-5`}
       id="near"
     >
