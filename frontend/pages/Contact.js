@@ -33,8 +33,9 @@ function Contact() {
         <HeaderSections
           titleSection="Contáctanos"
           descriptionSection="¿En qué podríamos ayudarte?"
+          bgHeader="bg-header-contact"
         />
-        <div className="d-flex align-items-center container justify-content-between pt-5 w-100 h-40vh">
+        <div className="d-flex align-items-center container justify-content-between pt-5 w-100 h-50vh">
           <div>
             <h4 className="link-primary fs-6">Envíanos un mensaje</h4>
             <p className={theme.txt}>
@@ -44,8 +45,17 @@ function Contact() {
 
           <form
             onSubmit={handleSubmit}
-            className="d-flex flex-column align-items-center w-50 justify-content-center"
+            className="d-flex flex-column ps-5 w-50 justify-content-center"
           >
+            <label className="w-60">
+              <input
+                type="text"
+                className="form-control"
+                value={valueName}
+                placeholder="Select category"
+                onChange={handleChangeName}
+              />
+            </label>
             <label className="w-75">
               <input
                 type="text"
