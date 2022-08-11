@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import Slider from 'react-slick'
 import ThemeContext from '../../utils/useContextTheme'
 import HeaderSections from '../HeaderSections'
+import CardNotices from './CardNotices'
 import { dataNotices } from './dataNotices'
 
 export default function NoveltySection() {
@@ -30,9 +31,11 @@ export default function NoveltySection() {
       <HeaderSections
         titleSection={dataItem.title}
         descriptionSection={dataItem.description}
+        bgHeader="bg-header-novelty"
       />
       <div className="m-5 p-5 w-90 d-flex flex-wrap">
         <div className="w-60">
+          <h3>{dataItem.title}</h3>
           <p>{dataItem.sectionOne}</p>
         </div>
         <div className="w-40">
@@ -45,17 +48,14 @@ export default function NoveltySection() {
           <p>{dataItem.sectionSecond}</p>
         </div>
       </div>
-      <div className="w-90 p-5 m-5">
-        <div className={theme.txt}>Artículos similares</div>
+      <div className="my-3 mx-2 px-5">
+        <div className="d-flex align-items-center mt-5 mb-4">
+          <h1 className="m-1 text-primary pr-2">Artículos Similares</h1>
+        </div>
         <Slider {...settings}>
           {dataSection.map((element) => (
             <Link to={`/notices/novelties/${element.id}`}>
-              <div key={`novelties${element.id}`} className="w-75">
-                <img src={element.img} alt="" className="w-100" />
-                <h2>{element.title}</h2>
-                <p>{element.description}</p>
-                <p>{element.date}</p>
-              </div>
+              <CardNotices element={element} />
             </Link>
           ))}
         </Slider>
