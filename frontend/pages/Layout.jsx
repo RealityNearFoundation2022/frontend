@@ -1,8 +1,14 @@
+/* eslint-disable camelcase */
 import React, { useContext, useState } from 'react'
 /* eslint-disable import/no-extraneous-dependencies */
 import { Outlet, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { login, logout } from '../assets/js/near/utils'
+import {
+  login,
+  logout,
+  nft_tokens,
+  nft_tokens_for_owner,
+} from '../assets/js/near/utils'
 import logo from '../assets/img/logo.png'
 import buttonTheme from '../assets/img/random/botonTema.png'
 import ThemeContext from '../utils/useContextTheme'
@@ -41,6 +47,7 @@ function Layout() {
     },
   ]
 
+  console.log(nft_tokens('0', 10), nft_tokens('10', 20))
   const changeVisibilityNav = () => {
     if (window.scrollY >= 600) {
       setNavHidden(true)

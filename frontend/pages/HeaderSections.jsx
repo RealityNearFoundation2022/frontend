@@ -7,7 +7,7 @@ export default function HeaderSections({
   bgHeader,
 }) {
   return (
-    <div className={`${bgHeader} px-10porcent py-5`}>
+    <div className={`${bgHeader} px-7-5porcent py-5`}>
       <h1 className="title text-uppercase fw-bold text-white mb-2">
         {titleSection}
       </h1>

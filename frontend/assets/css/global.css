@@ -136,13 +136,34 @@ h1, .h1 {
 }
 
 h2, .h2 {
-  font-size: calc(1.325rem + 0.9vw);
+  font-size: calc(2.75vw);
 }
+@media (max-width: 1200px) {
+  h2, .h2 {
+    font-size: 3vw;
+  }
+}
+@media (max-width: 900px) {
+  h2, .h2 {
+    font-size: 3.25vw;
+  }
+}
+@media (max-width: 768px) {
+  h2, .h2 {
+    font-size: 3.5vw;
+  }
+}
+@media (max-width: 598px) {
+  h2, .h2 {
+    font-size: 3.75vw;
+  }
+}
+/* 
 @media (min-width: 1200px) {
   h2, .h2 {
     font-size: 2rem;
   }
-}
+} */
 
 h3, .h3 {
   font-size: calc(1.3rem + 0.6vw);
@@ -172,8 +193,8 @@ h6, .h6 {
 
 p {
   font-family: "Source Sans Pro", sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: 300;
+  line-height: 1.5;
   margin-top: 0;
   margin-bottom: 1rem;
 }
@@ -2170,19 +2191,21 @@ progress {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
-
+.aboutTeam{
+  width: 25%;
+}
 
 @media (max-width: 575.98px) {
   .table-responsive-sm {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-  h2, .h2 {
-    font-size: 0.6rem;
-  }
 }
-@media (max-width: 650px) {
-  #realityExperience{
+@media (max-width: 630px) {
+  .aboutTeam{
+    width: 35%;
+  }
+  #realityExperience, #realities{
     flex-direction: column;
   }
   #realityExperience .title{
@@ -2191,13 +2214,13 @@ progress {
   .realExperience{
     width: 100%;
   }
-  .hiddenByResponsive{
-    display: none;
+  .hiddenByResponsive, #hiddenByResponsive{
+    display: none !important;
   }
-  #realityToken{
+  #realityToken,#metaverseResponsive{
     display: block !important;
   }
-  #realityToken #realityTokenTxt{
+  #realityToken #realityTokenTxt,#metaverseResponsiveTxt, #realitiContain, #aboutTxt{
     width: 100% !important;
   }
 }
@@ -2207,17 +2230,11 @@ progress {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-  h2, .h2 {
-    font-size: 0.8rem;
-  }
 }
 @media (max-width: 991.98px) {
   .table-responsive-lg {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-  }
-  h2, .h2 {
-    font-size: 1rem;
   }
 }
 @media (max-width: 1199.98px) {
@@ -2225,17 +2242,11 @@ progress {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
-  h2, .h2 {
-    font-size: 1.25rem;
-  }
 }
 @media (max-width: 1399.98px) {
   .table-responsive-xxl {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-  }
-  h2, .h2 {
-    font-size: 1.5rem;
   }
 }
 .form-label {
@@ -3746,6 +3757,19 @@ textarea.form-control-lg {
 .obj-fit-cover{
   object-fit: cover !important;
 }
+.h-imagenes{
+  height: 200px;
+}
+@media (max-width: 576px) {
+  .h-imagenes{
+    height: 160px;
+  }
+}
+@media (max-width: 768px) {
+  .h-imagenes{
+    height: 180px;
+  }
+}
 @media (min-width: 576px) {
   .dropdown-menu-sm-start {
     --bs-position: start;
@@ -4183,6 +4207,7 @@ textarea.form-control-lg {
 }
 
 .navbar {
+  z-index: 100000;
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -7198,6 +7223,9 @@ textarea.form-control-lg {
 .h-75vh{
   height: 75vh;
 }
+.h-90{
+  height: 90% !important;
+}
 .h-100 {
   height: 100% !important;
 }
@@ -7733,6 +7761,12 @@ textarea.form-control-lg {
 }
 .ps-5porcent{
   padding-left: 5% !important;
+}
+.pe-7-5porcent{
+  padding-right: 7.5% !important;
+}
+.ps-7-5porcent{
+  padding-left: 7.5% !important;
 }
 .px-3porcent{
   padding-right: 3% !important;

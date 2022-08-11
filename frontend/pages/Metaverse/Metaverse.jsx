@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 // import { desktop, mobile, tablet } from '../../assets/img/background/index'
 import Slider from 'react-slick'
@@ -14,28 +14,28 @@ import { momentsCarousel } from '../Landing/momentsCarousel'
 function Metaverso() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
-  const [itemToShow, setItemShow] = useState(2)
   const itemsCard = [...momentsCarousel]
 
   const settings = {
     className: 'center',
     infinite: true,
     centerPadding: '60px',
-    slidesToShow: itemToShow,
+    slidesToShow: 2,
     swipeToSlide: true,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
     afterChange(index) {
       console.log(
         `Slider Changed to: ${index + 1}, background: #222; color: #bada55`,
       )
     },
   }
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setItemShow(1)
-    } else {
-      setItemShow(2)
-    }
-  }, [itemToShow])
 
   return (
     <div className="mt-5">
@@ -46,14 +46,20 @@ function Metaverso() {
         bgHeader="bg-header-metaverse"
       />
       {/* <!--  Section--> */}
-      <section className={`${theme.bg} page-section text-white`} id="about">
+      <section
+        className={`${theme.bg} ${
+          window.innerHeight / window.innerWidth < 0.8 && 'h-100vh'
+        } text-white px-7-5porcent`}
+        id="about"
+      >
         <div className="container pt-5">
           {/* <!--  Section Content--> */}
-          <div className="d-flex justify-content-between">
-            <div className="w-50">
-              <h2 className="text-primary fs-7 mb-4">
-                NURUK: CIUDAD DE REALIDADES
-              </h2>
+          <div
+            className="d-flex justify-content-between"
+            id="metaverseResponsive"
+          >
+            <div className="w-50" id="metaverseResponsiveTxt">
+              <h2 className="text-primary mb-4">NURUK: CIUDAD DE REALIDADES</h2>
               <p className={`lead ${theme.txt}`}>
                 {t(
                   'Nuruk es la principal y primera ciudad del multimetaverso 3D en Reality Near. El nombre se basa en la unión de dos palabras: new (nuevo en inglés) y uruk (la primera ciudad sobre la faz de la Tierra).',
@@ -73,7 +79,10 @@ function Metaverso() {
                 </button>
               </center>
             </div>
-            <div className="w-50 d-flex justify-content-end">
+            <div
+              className="w-50 d-flex justify-content-end"
+              id="hiddenByResponsive"
+            >
               <img src={metaverseNuruk} alt="" className="w-75" />
             </div>
           </div>
@@ -98,21 +107,21 @@ function Metaverso() {
       </section>
       {/* <!--  Section--> */}
       <section
-        className={`${theme.bg} page-section text-white mb-0`}
+        className={`${theme.bg} ${
+          window.innerHeight / window.innerWidth < 0.8 && 'h-100vh'
+        } px-7-5porcent text-white mb-0`}
         id="about"
       >
         <div className="container pt-5">
           {/* <!--  Section Content--> */}
-          <div className="d-flex justify-content-center">
-            <div className="w-50 px-5">
-              <img
-                height="400px"
-                src={imgMobile}
-                alt=""
-                className="w-100 h-75vh"
-              />
+          <div
+            className="d-flex justify-content-between"
+            id="metaverseResponsive"
+          >
+            <div className="w-50 hiddenByResponsive">
+              <img src={imgMobile} alt="" className="w-90 h-90" />
             </div>
-            <div className="w-50 px-2">
+            <div className="w-50 px-2" id="metaverseResponsiveTxt">
               <h2 className="text-primary">REALITY APP</h2>
               <p className={`${theme.txt} lead`}>
                 Reality Near App ofrece una nueva experiencia fusionando
@@ -131,9 +140,19 @@ function Metaverso() {
                 recibir mensajes; y, además, ver si están conectados o cerca
                 tuyo.
               </p>
-              <div className="d-flex justify-content-between">
-                <img src={appleStore} alt="" height="70" className="mt-3" />
-                <img src={googlePlay} alt="" height="100" className="mt-0" />
+              <div className="d-flex justify-content-between w-100">
+                <img
+                  src={appleStore}
+                  alt=""
+                  height="70"
+                  className="mt-3 w-50"
+                />
+                <img
+                  src={googlePlay}
+                  alt=""
+                  height="100"
+                  className="mt-0 w-50"
+                />
               </div>
             </div>
           </div>
