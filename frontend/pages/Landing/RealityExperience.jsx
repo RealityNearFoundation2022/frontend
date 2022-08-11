@@ -11,15 +11,22 @@ export default function RealityExperience() {
   return (
     <section className={`${theme.bg} near`} id="near">
       <div className="bg-img-realExperience bg-img-size-cover h-50vh w-100">
-        <div className="d-flex align-items-center w-100 justify-content-around h-100">
-          <div>
-            <h2 className="text-white text-uppercase text-secondary title mb-0">
-              Vive la experiencia
-            </h2>
-            <img src={logoRealityNear} alt="" className="w-60" />
+        <div
+          className="d-flex align-items-center justify-content-around w-100 h-100"
+          id="realityExperience"
+        >
+          <div className="realExperience">
+            <center>
+              <h2 className="text-white text-uppercase text-secondary title mb-0">
+                Vive la experiencia
+              </h2>
+            </center>
+            <center>
+              <img src={logoRealityNear} alt="" className="w-60" />
+            </center>
           </div>
           <button
-            className="rounded btn-xl btn-light"
+            className="rounded btn-xl btn-light realExperience"
             id="submitButton"
             type="submit"
           >

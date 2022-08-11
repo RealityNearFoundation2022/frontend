@@ -62,6 +62,7 @@ export const dataNotices = {
       id: 1,
       title: 'Evento 1',
       description: 'Nombre del evento 1',
+      date: '12/12/2022',
       img: imgFake,
       section:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultricies metus massa, in condimentum ante malesuada non. In dictum mauris convallis, tempus neque quis, mollis quam. Etiam vel tellus nibh. Proin a fermentum justo. Sed porta laoreet tempus. In malesuada nunc orci, ut consequat lectus finibus eu. Donec tempus urna vel aliquet feugiat. Vestibulum sollicitudin, velit eu blandit efficitur, justo mauris tempor est, sit amet bibendum arcu ex sed erat. Etiam hendrerit leo nisi, eget volutpat enim malesuada eget. Quisque finibus justo neque, vel congue leo porta ut. Quisque nec fermentum arcu, ac tempor lectus. Duis fermentum nulla quis massa congue ultrices. In pellentesque efficitur lectus, a porttitor elit eleifend sed.',
@@ -70,6 +71,7 @@ export const dataNotices = {
       id: 2,
       title: 'Evento 2',
       description: 'Nombre del evento 2',
+      date: '12/12/2022',
       img: imgFake,
       section:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultricies metus massa, in condimentum ante malesuada non. In dictum mauris convallis, tempus neque quis, mollis quam. Etiam vel tellus nibh. Proin a fermentum justo. Sed porta laoreet tempus. In malesuada nunc orci, ut consequat lectus finibus eu. Donec tempus urna vel aliquet feugiat. Vestibulum sollicitudin, velit eu blandit efficitur, justo mauris tempor est, sit amet bibendum arcu ex sed erat. Etiam hendrerit leo nisi, eget volutpat enim malesuada eget. Quisque finibus justo neque, vel congue leo porta ut. Quisque nec fermentum arcu, ac tempor lectus. Duis fermentum nulla quis massa congue ultrices. In pellentesque efficitur lectus, a porttitor elit eleifend sed.',
@@ -78,6 +80,7 @@ export const dataNotices = {
       id: 3,
       title: 'Evento 3',
       description: 'Nombre del evento 3',
+      date: '12/12/2022',
       img: imgFake,
       section:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultricies metus massa, in condimentum ante malesuada non. In dictum mauris convallis, tempus neque quis, mollis quam. Etiam vel tellus nibh. Proin a fermentum justo. Sed porta laoreet tempus. In malesuada nunc orci, ut consequat lectus finibus eu. Donec tempus urna vel aliquet feugiat. Vestibulum sollicitudin, velit eu blandit efficitur, justo mauris tempor est, sit amet bibendum arcu ex sed erat. Etiam hendrerit leo nisi, eget volutpat enim malesuada eget. Quisque finibus justo neque, vel congue leo porta ut. Quisque nec fermentum arcu, ac tempor lectus. Duis fermentum nulla quis massa congue ultrices. In pellentesque efficitur lectus, a porttitor elit eleifend sed.',
@@ -85,6 +88,7 @@ export const dataNotices = {
     {
       id: 4,
       title: 'Evento 4',
+      date: '12/12/2022',
       description: 'Nombre del evento 4',
       img: imgFake,
       section:
@@ -93,6 +97,7 @@ export const dataNotices = {
     {
       id: 5,
       title: 'Evento 5',
+      date: '12/12/2022',
       description: 'Nombre del evento 5',
       img: imgFake,
       section:

@@ -1,8 +1,14 @@
+/* eslint-disable camelcase */
 import React, { useContext, useState } from 'react'
 /* eslint-disable import/no-extraneous-dependencies */
 import { Outlet, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { login, logout } from '../assets/js/near/utils'
+import {
+  login,
+  logout,
+  nft_tokens,
+  nft_tokens_for_owner,
+} from '../assets/js/near/utils'
 import logo from '../assets/img/logo.png'
 import buttonTheme from '../assets/img/random/botonTema.png'
 import ThemeContext from '../utils/useContextTheme'
@@ -41,6 +47,7 @@ function Layout() {
     },
   ]
 
+  console.log(nft_tokens('0', 10), nft_tokens('10', 20))
   const changeVisibilityNav = () => {
     if (window.scrollY >= 600) {
       setNavHidden(true)
@@ -59,73 +66,73 @@ function Layout() {
   window.addEventListener('scroll', changeVisibilityNav)
 
   return (
-    <div className="d-flex justify-column">
-      <nav
-        className={`navbar navbar-expand-lg ${theme.bg} ${
-          navHidden && 'visual-hidden'
-        } text-uppercase fixed-top`}
-        id="mainNav"
+    <nav
+      className={`justify-content-evenly navbar d-flex navbar-expand-lg align-items-center w-100 ${
+        theme.bg
+      } ${navHidden && 'visual-hidden'} fixed-top`}
+      id="mainNav"
+    >
+      {/* <div className="d-flex w-100 px-5"> */}
+      <Link
+        className={`navbar-brand w-10 d-flex justify-content-center ${theme.txt}`}
+        to="/"
       >
-        <div className="d-flex w-100 px-5">
-          <Link class={`navbar-brand ${theme.txt} pt-3`} to="/">
-            <img src={logo} alt="" className="m-0" width="45" heigth="45" />
-          </Link>
-          <button
-            className="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarResponsive"
-            aria-controls="navbarResponsive"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            Menu
-            <i className="fas fa-bars"></i>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarResponsive">
-            <ul className="navbar-nav d-flex justify-content-between w-100 px-5">
-              {routes.map(({ label, link }) => (
-                <li className="nav-item">
-                  <Link
-                    className={`fw-light rounded nav-link${theme.txt}`}
-                    to={link}
-                  >
-                    {t(label)}
-                  </Link>
-                </li>
-              ))}
+        <img src={logo} alt="" className="m-0" width="45" heigth="45" />
+      </Link>
+      <div className="collapse navbar-collapse" id="navbarResponsive">
+        <ul className="navbar-nav justify-content-between w-95">
+          {routes.map(({ label, link }) => (
+            <li className="nav-item">
+              <Link
+                className={`fw-light rounded nav-link${theme.txt}`}
+                to={link}
+              >
+                {t(label)}
+              </Link>
+            </li>
+          ))}
 
-              {/* <button
+          {/* <button
                 type="button"
                 className="btn btn-warning btn-xl rounded"
                 onClick={currentUser ? logout : login}
               >
                 
               </button> */}
-            </ul>
-            <button
-              type="button"
-              className="btn-primary rounded 
-              ml-3 w-15"
-              onClick={currentUser ? logout : login}
-            >
-              {currentUser ? 'Log out' : 'Log In'}
-            </button>
-            <TranslationModal />
-            <button
-              type="button"
-              onClick={handleChangeTheme}
-              alt=""
-              className="bg-transparent border-0"
-            >
-              <img src={buttonTheme} alt="" />
-            </button>
-          </div>
-        </div>
-      </nav>
-
+        </ul>
+      </div>
+      <button
+        type="button"
+        className="btn-primary rounded w-10"
+        onClick={currentUser ? logout : login}
+      >
+        {currentUser ? 'Log out' : 'Log In'}
+      </button>
+      <TranslationModal />
+      <button
+        type="button"
+        onClick={handleChangeTheme}
+        alt=""
+        className="bg-transparent border-0 w-10"
+      >
+        <img src={buttonTheme} alt="" width="w-100" />
+      </button>
+      <button
+        className="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded w-10"
+        type="button"
+        aria-controls="navbarResponsive"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarResponsive"
+      >
+        <span className="navbar-toggler-icon"></span>
+        {/* Menu
+          <i className="fas fa-bars"></i> */}
+      </button>
       <Outlet />
-    </div>
+      {/* </div> */}
+    </nav>
   )
 }
 
