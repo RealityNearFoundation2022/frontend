@@ -7,7 +7,7 @@ import ThemeContext from '../../utils/useContextTheme'
 export default function Filter() {
   const { theme } = useContext(ThemeContext)
   return (
-    <div className="w-100 p-5 mx-5">
+    <div className="w-100 mt-5">
       <ul className="d-flex flex-column gap-2 align-item-start">
         <li>
           <Link to="/marketplace" className={`fw-normal nav-link${theme.txt}`}>

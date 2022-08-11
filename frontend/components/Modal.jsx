@@ -43,6 +43,7 @@ import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
 import LanguageIcon from '@mui/icons-material/Language'
 import { IconButton } from '@mui/material'
+import { useEffect } from 'react'
 
 const style = {
   position: 'absolute',
@@ -56,10 +57,37 @@ const style = {
   p: 4,
 }
 
-export default function BasicModal({ children, button, close }) {
+export default function BasicModal({
+  children,
+  button,
+  close,
+  setBox,
+  setValueWallet,
+  setRealities,
+}) {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const handleClose = () => {
+    if (
+      setBox !== undefined &&
+      setValueWallet !== undefined &&
+      setRealities !== undefined
+    ) {
+      setBox(0)
+      setValueWallet('')
+      setRealities('')
+    }
+    setOpen(false)
+  }
+  /* useEffect(() => {
+    console.log(close)
+    if (close === true) {
+      setOpen(false)
+    }
+    if (openModal === true) {
+      setOpen(true)
+    }
+  }, [close, openModal]) */
   return (
     <div>
       <div onClick={handleOpen}>{button}</div>
