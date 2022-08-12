@@ -136,13 +136,34 @@ h1, .h1 {
 }
 
 h2, .h2 {
-  font-size: calc(1.325rem + 0.9vw);
+  font-size: calc(2.75vw);
 }
+@media (max-width: 1200px) {
+  h2, .h2 {
+    font-size: 3vw;
+  }
+}
+@media (max-width: 900px) {
+  h2, .h2 {
+    font-size: 3.25vw;
+  }
+}
+@media (max-width: 768px) {
+  h2, .h2 {
+    font-size: 3.5vw;
+  }
+}
+@media (max-width: 598px) {
+  h2, .h2 {
+    font-size: 3.75vw;
+  }
+}
+/* 
 @media (min-width: 1200px) {
   h2, .h2 {
     font-size: 2rem;
   }
-}
+} */
 
 h3, .h3 {
   font-size: calc(1.3rem + 0.6vw);
@@ -171,6 +192,9 @@ h6, .h6 {
 }
 
 p {
+  font-family: "Source Sans Pro", sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 300;
+  line-height: 1.5;
   margin-top: 0;
   margin-bottom: 1rem;
 }
@@ -522,7 +546,7 @@ progress {
   color: #fff;
 }
 .title{
-  font-size: 3.5rem;
+  font-size: calc(4.75vw);
 }
 
 .display-1 {
@@ -530,6 +554,7 @@ progress {
   font-weight: 300;
   line-height: 1.2;
 }
+
 @media (min-width: 1200px) {
   .display-1 {
     font-size: 5rem;
@@ -690,6 +715,15 @@ progress {
 @media (min-width: 992px) {
   .container-lg, .container-md, .container-sm, .container {
     max-width: 960px;
+  }
+}
+@media (max-width: 992px) {
+  #navbarResponsive{
+    z-index: 3000;
+    position:absolute;
+    top: 7vh;
+    width: 100%;
+    
   }
 }
 @media (min-width: 1200px) {
@@ -2161,6 +2195,9 @@ progress {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
+.aboutTeam{
+  width: 25%;
+}
 
 @media (max-width: 575.98px) {
   .table-responsive-sm {
@@ -2168,6 +2205,30 @@ progress {
     -webkit-overflow-scrolling: touch;
   }
 }
+@media (max-width: 630px) {
+  .aboutTeam{
+    width: 35%;
+  }
+  #realityExperience, #realities{
+    flex-direction: column;
+  }
+  #realityExperience .title{
+    font-size: calc(8vw) !important;
+  }
+  .realExperience{
+    width: 100%;
+  }
+  .hiddenByResponsive, #hiddenByResponsive{
+    display: none !important;
+  }
+  #realityToken,#metaverseResponsive{
+    display: block !important;
+  }
+  #realityToken #realityTokenTxt,#metaverseResponsiveTxt, #realitiContain, #aboutTxt{
+    width: 100% !important;
+  }
+}
+
 @media (max-width: 767.98px) {
   .table-responsive-md {
     overflow-x: auto;
@@ -3029,7 +3090,7 @@ textarea.form-control-lg {
   z-index: 3;
 }
 
-.btn {
+/* .btn {
   display: inline-block;
   font-weight: 400;
   line-height: 1.5;
@@ -3049,7 +3110,7 @@ textarea.form-control-lg {
   font-weight: 600;
   border-radius: 2rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
+} */
 @media (prefers-reduced-motion: reduce) {
   .btn {
     transition: none;
@@ -3640,6 +3701,7 @@ textarea.form-control-lg {
   background-image: url(/frontend/assets/img/landingPage/reality-experience.png);
   background-repeat: no-repeat;/*yumari*/
   background-position: center center;/*yumari*/
+  background-color: #33CC99;
 }
 .bg-img-metaverse{
   background-image: url(/frontend/assets/img/metaverse/metaverse-banner.png);
@@ -3655,8 +3717,63 @@ textarea.form-control-lg {
 .bg-green{
   background-color: #33cc9948;
 }
+.bg-header-about, .bg-header-metaverse, .bg-header-marketplace, .bg-header-contact, .bg-header-mpcategory, .bg-header-terminos, .bg-header-notices, .bg-header-novelties, .bg-header-events, .bg-header-event, .bg-header-novelty{
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #33CC99;
+}
+.bg-header-metaverse{
+  background-image: url(/frontend/assets/img/headers/metaverse.png);
+}
+.bg-header-marketplace{
+  background-image: url(/frontend/assets/img/headers/marketplace.png);
+  
+}.bg-header-contact{
+  background-image: url(/frontend/assets/img/headers/contact.png);
 
-
+}.bg-header-about{
+  background-image: url(/frontend/assets/img/headers/about.png);
+}
+.bg-header-mpcategory{
+  background-image: url(/frontend/assets/img/headers/mp-category.png);
+}
+.bg-header-terminos{
+  background-image: url(/frontend/assets/img/headers/terminosCondiciones.png);
+}
+.bg-header-notices{
+  background-image: url(/frontend/assets/img/headers/notice.png);
+}
+.bg-header-novelties{
+  background-image: url(/frontend/assets/img/headers/novelties.png);
+}
+.bg-header-events{
+  background-image: url(/frontend/assets/img/headers/events.png);
+}
+.bg-header-novelty{
+  background-image: url(/frontend/assets/img/headers/novelty.png);
+}
+.bg-header-event{
+  background-image: url(/frontend/assets/img/headers/event.png);
+}
+.obj-fit-contain{
+  object-fit: contain !important;
+}
+.obj-fit-cover{
+  object-fit: cover !important;
+}
+.h-imagenes{
+  height: 200px;
+}
+@media (max-width: 576px) {
+  .h-imagenes{
+    height: 160px;
+  }
+}
+@media (max-width: 768px) {
+  .h-imagenes{
+    height: 180px;
+  }
+}
 @media (min-width: 576px) {
   .dropdown-menu-sm-start {
     --bs-position: start;
@@ -3999,7 +4116,7 @@ textarea.form-control-lg {
 
 .nav {
   display: flex;
-  flex-wrap: wrap;
+ /*  flex-wrap: wrap; */
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
@@ -4094,13 +4211,14 @@ textarea.form-control-lg {
 }
 
 .navbar {
+  z-index: 100000;
   position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  /* padding-top: 0.5rem;
+  padding-bottom: 0.5rem; */
   height: 10vh !important;
 }
 .navbar > .container,
@@ -4116,8 +4234,8 @@ textarea.form-control-lg {
   justify-content: space-between;
 }
 .navbar-brand {
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
+  /* padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem; */
   margin-right: 1rem;
   font-size: 1.25rem;
   text-decoration: none;
@@ -6607,17 +6725,13 @@ textarea.form-control-lg {
 .fixed-top {
   position: fixed;
   top: 0;
-  right: 0;
   left: 0;
-  z-index: 1030;
 }
 
 .fixed-bottom {
   position: fixed;
-  right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1030;
 }
 
 .sticky-top {
@@ -7034,6 +7148,9 @@ textarea.form-control-lg {
 .w-5{
   width: 5% !important;
 }
+.w-10{
+  width: 10% !important;
+}
 .w-15{
   width: 15% !important;
 }
@@ -7056,8 +7173,14 @@ textarea.form-control-lg {
 .w-75 {
   width: 75% !important;
 }
+.w-80 {
+  width: 80% !important;
+}
 .w-90{
   width: 90% !important;
+}
+.w-95{
+  width: 95% !important;
 }
 .w-100 {
   width: 100% !important;
@@ -7092,11 +7215,20 @@ textarea.form-control-lg {
 .h-60{
   height: 60% !important;
 }
+.h-65{
+  height: 65% !important;
+}
+.h-70{
+  height: 70% !important;
+}
 .h-75 {
   height: 75% !important;
 }
 .h-75vh{
   height: 75vh;
+}
+.h-90{
+  height: 90% !important;
 }
 .h-100 {
   height: 100% !important;
@@ -7622,6 +7754,36 @@ textarea.form-control-lg {
   padding-right: 6rem !important;
   padding-left: 6rem !important;
 }
+.pe-3porcent{
+  padding-right: 3% !important;
+}
+.ps-3porcent{
+  padding-left: 3% !important;
+}
+.pe-5porcent{
+  padding-right: 5% !important;
+}
+.ps-5porcent{
+  padding-left: 5% !important;
+}
+.pe-7-5porcent{
+  padding-right: 7.5% !important;
+}
+.ps-7-5porcent{
+  padding-left: 7.5% !important;
+}
+.px-3porcent{
+  padding-right: 3% !important;
+  padding-left: 3% !important;
+}
+.px-5porcent{
+  padding-right: 5% !important;
+  padding-left: 5% !important;
+}
+.px-7-5porcent{
+  padding-right: 7.5% !important;
+  padding-left: 7.5% !important;
+}
 .px-10porcent{
   padding-right: 10% !important;
   padding-left: 10% !important;
@@ -7792,7 +7954,7 @@ textarea.form-control-lg {
   font-size: 2rem !important;
 }
 .fs-7{
-  font-size: 3.5rem !important;
+  font-size: calc(5.5vw);
 }
 
 .fst-italic {
@@ -11539,8 +11701,8 @@ html {
 }
 
 #mainNav {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  /* padding-top: 1rem;
+  padding-bottom: 1rem; */
   font-family: "Source Sans Pro", sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
 }
