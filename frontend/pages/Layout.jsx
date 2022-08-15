@@ -7,7 +7,7 @@ import {
   login,
   logout,
   nft_tokens,
-  nft_tokens_for_owner,
+  // nft_tokens_for_owner,
 } from '../assets/js/near/utils'
 import logo from '../assets/img/logo.png'
 import buttonTheme from '../assets/img/random/botonTema.png'

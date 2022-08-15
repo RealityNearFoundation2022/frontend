@@ -38,7 +38,7 @@ function Metaverso() {
   }
 
   return (
-    <div className="mt-5">
+    <div className="w-100 mt-5">
       {/* <!-- Masthead--> */}
       <HeaderSections
         titleSection="Metaverse"
@@ -47,12 +47,10 @@ function Metaverso() {
       />
       {/* <!--  Section--> */}
       <section
-        className={`${theme.bg} ${
-          window.innerHeight / window.innerWidth < 0.8 && 'h-100vh'
-        } text-white px-7-5porcent`}
+        className={`${theme.bg}  text-white px-7-5porcent py-2`}
         id="about"
       >
-        <div className="container pt-5">
+        <div className="w-100 pt-5">
           {/* <!--  Section Content--> */}
           <div
             className="d-flex justify-content-between"
@@ -60,17 +58,17 @@ function Metaverso() {
           >
             <div className="w-50" id="metaverseResponsiveTxt">
               <h2 className="text-primary mb-4">NURUK: CIUDAD DE REALIDADES</h2>
-              <p className={`lead ${theme.txt}`}>
+              <p className={`${theme.txt}`}>
                 {t(
                   'Nuruk es la principal y primera ciudad del multimetaverso 3D en Reality Near. El nombre se basa en la unión de dos palabras: new (nuevo en inglés) y uruk (la primera ciudad sobre la faz de la Tierra).',
                 )}
               </p>
-              <p className={`lead ${theme.txt}`}>
+              <p className={`${theme.txt}`}>
                 {t(
                   'Podrás encontrar infinidad de actividades en nuestro multimetaverso. Por ejemplo, podrás asistir al partido de tu equipo favorito, contratar nuevos empleados para tu empresa o incluso enseñar a hablar francés. Todo depende de tu creatividad y de cómo aprovechas los beneficios que Reality Near provee.',
                 )}
               </p>
-              <center>
+              <center className="pt-5">
                 <button
                   type="button"
                   className="btn btn-primary btn-xl disabled w-50"
@@ -83,15 +81,22 @@ function Metaverso() {
               className="w-50 d-flex justify-content-end"
               id="hiddenByResponsive"
             >
-              <img src={metaverseNuruk} alt="" className="w-75" />
+              <img
+                src={metaverseNuruk}
+                alt=""
+                className="h-80 rounded obj-fit-cover w-75"
+              />
             </div>
           </div>
         </div>
       </section>
       {/* <!-- Section--> */}
-      <section className={`${theme.bg}`} id="">
-        <div className="w-100 pt-5 pb-4 mt-2">
-          <Slider {...settings} className="w-90 ms-5">
+      <section
+        className={`${theme.bg} w-100  px-7-5porcent py-5 d-flex align-items-center justify-content-center`}
+        id=""
+      >
+        <div className="w-100 d-lex align-items-center justify-content-center">
+          <Slider {...settings} className="w-100 ">
             {itemsCard.map((element) => (
               <div className="">
                 <img src={element.imgCarousel} alt="" className="mx-2 w-95" />
@@ -107,23 +112,25 @@ function Metaverso() {
       </section>
       {/* <!--  Section--> */}
       <section
-        className={`${theme.bg} ${
-          window.innerHeight / window.innerWidth < 0.8 && 'h-100vh'
-        } px-7-5porcent text-white mb-0`}
+        className={`${theme.bg} px-7-5porcent w-100 text-white mb-0`}
         id="about"
       >
-        <div className="container pt-5">
+        <div className="w-100">
           {/* <!--  Section Content--> */}
           <div
             className="d-flex justify-content-between"
             id="metaverseResponsive"
           >
             <div className="w-50 hiddenByResponsive">
-              <img src={imgMobile} alt="" className="w-90 h-90" />
+              <img
+                src={imgMobile}
+                alt=""
+                className="w-90 obj-fit-cover rounded h-90"
+              />
             </div>
             <div className="w-50 px-2" id="metaverseResponsiveTxt">
               <h2 className="text-primary">REALITY APP</h2>
-              <p className={`${theme.txt} lead`}>
+              <p className={`${theme.txt}`}>
                 Reality Near App ofrece una nueva experiencia fusionando
                 tecnología y realidad. Esta te permitirá ser parte de eventos,
                 ver publicidad, completar misiones, ver avatares y muchas cosas
@@ -141,18 +148,8 @@ function Metaverso() {
                 tuyo.
               </p>
               <div className="d-flex justify-content-between w-100">
-                <img
-                  src={appleStore}
-                  alt=""
-                  height="70"
-                  className="mt-3 w-50"
-                />
-                <img
-                  src={googlePlay}
-                  alt=""
-                  height="100"
-                  className="mt-0 w-50"
-                />
+                <img src={appleStore} alt="" className="my-3 w-50" />
+                <img src={googlePlay} alt="" className="mt-0 w-50" />
               </div>
             </div>
           </div>

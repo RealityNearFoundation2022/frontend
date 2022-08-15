@@ -11,7 +11,7 @@ function Footer() {
     >
       <div className="d-flex algign-items-center justify-content-center">
         <div className="px-5porcent">
-          <img src={logoFooter} alt="" />
+          <img src={logoFooter} alt="" className="footerHidden" />
         </div>
         <div className="">
           <ul>
