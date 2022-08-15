@@ -16,15 +16,19 @@ export default function IndexCentreland() {
     tileMap.draw(canvas, ctx)
 
     // gameLoop()
-
   }, [])
   // const gameLoop = () => {
   //   tileMap.draw(canvas, ctx)
   // }
- 
+
   return (
     <div className="top">
       <h1>centreland</h1>
-      <canvas id="centreland" type="module" className="centreland"></canvas>    </div>
+      <canvas
+        id="centreland"
+        type="module"
+        className="centreland"
+      ></canvas>{' '}
+    </div>
   )
 }
