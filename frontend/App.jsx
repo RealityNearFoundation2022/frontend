@@ -23,6 +23,7 @@ import { NewMapContextProvider } from './pages/Maps/context/NewMapContext'
 import { DashboardMarketPlace } from './routes/DashboardMarketPlace'
 import { CardSection } from './pages/MarketPlace/CardSection'
 import DashboardNotice from './routes/DashboardNotice'
+import IndexCentreland from './pages/Centreland/IndexCentreland'
 // import Realities from './pages/Realities'
 import Conditions from './pages/Conditions'
 import Realities from './pages/Realities/Realities'
@@ -54,6 +55,7 @@ export default function App() {
             <Route path="/marketplace/sell" element={<NftSell />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/centreland" element={<IndexCentreland />} />
             <Route path="/metaverso" element={<Metaverso />} />
             <Route
               path="/marketplace/detail/:category/:idCard"
