@@ -276,6 +276,10 @@ sup {
   line-height: 0;
   vertical-align: baseline;
 }
+.imgCentral{
+  width: 100vw;
+  height: 60vh;
+}
 
 sub {
   bottom: -0.25em;
