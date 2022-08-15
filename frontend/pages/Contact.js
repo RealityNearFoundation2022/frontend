@@ -35,7 +35,10 @@ function Contact() {
           descriptionSection="¿En qué podríamos ayudarte?"
           bgHeader="bg-header-contact"
         />
-        <div className="d-flex align-items-center container justify-content-between pt-5 w-100 h-50vh">
+        <div
+          className="d-flex align-items-center w-100 px-7-5porcent justify-content-between pt-5 w-100"
+          id="contactFormResponsive"
+        >
           <div>
             <h4 className="link-primary fs-6">Envíanos un mensaje</h4>
             <p className={theme.txt}>
@@ -45,9 +48,10 @@ function Contact() {
 
           <form
             onSubmit={handleSubmit}
-            className="d-flex flex-column ps-5 w-50 justify-content-center"
+            className="d-flex flex-column w-50 justify-content-center align-items-center"
+            id="contactResponsive"
           >
-            <label className="w-60">
+            <label className="w-60 me-15porcent">
               <input
                 type="text"
                 className="form-control"
@@ -91,7 +95,7 @@ function Contact() {
           </form>
         </div>
       </div>
-      <div className="h-40vh p-5 bg-img-realExperience bg-img-size-cover w-100">
+      <div className="p-5 bg-img-realExperience bg-img-size-cover w-100">
         <h1 className="d-flex justify-content-center m-0 h-50 align-items-center w-100 fs-7 text-white">
           ¡SÍGUENOS!
         </h1>
