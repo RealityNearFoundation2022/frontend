@@ -6,8 +6,8 @@ export default class TileMap {
   map = this.#createMap()
 
   #createMap() {
-    const arrayMap = Array.apply(null, Array(150)).map((e) =>
-      Array.apply(null, Array(150)).map(Number.prototype.valueOf, 0),
+    const arrayMap = Array.apply(null, Array(100)).map((e) =>
+      Array.apply(null, Array(100)).map(Number.prototype.valueOf, 0),
     );
     // [1, 7, 13, 19, 25, 42, 48, 54,60,66,72,78,84, 90, 96, 102, 108,  ].forEach((initialY) =>
     //   this.#addRegion(arrayMap, 1, initialY, 5, 5, 5),
@@ -22,6 +22,7 @@ export default class TileMap {
     this.#createBox(arrayMap, 14, 30, 38, 42, 5, 5, 5)
 
     // INTENTO YUMARI START
+    // arrayMap, initialX, finalX, initialY, finalY, sizeX, sizeY, value
     // this.#createBox(arrayMap, 2, 18, 294, 296, 5, 3, 5)
 
     // this.#createBox(arrayMap, 2, 18, 298, 301, 5, 4, 5)
@@ -64,6 +65,7 @@ export default class TileMap {
     // this.#createBox(arrayMap, 55, 59, 422, 492, 5, 11, 5)
     // this.#createBox(arrayMap, 61, 69, 309, 323, 9, 7, 5)
     // this.#createBox(arrayMap, 61, 69, 345, 358, 9, 4, 5)
+    // debugger
     // [ 71, 91].forEach((item) => {
     //   this.#createBox(arrayMap, item, item+4, 309, 323, 5, 7, 5)
     //   this.#createBox(arrayMap, item, item+4, 345, 358, 5, 4, 5)
