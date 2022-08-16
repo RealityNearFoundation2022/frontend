@@ -140,22 +140,31 @@ h2, .h2 {
 }
 @media (max-width: 1200px) {
   h2, .h2 {
-    font-size: 3vw;
+    font-size: 3.125vw;
   }
 }
 @media (max-width: 900px) {
   h2, .h2 {
-    font-size: 3.25vw;
+    font-size: 3.5vw;
   }
 }
 @media (max-width: 768px) {
   h2, .h2 {
-    font-size: 3.5vw;
+    font-size: 3.75vw;
   }
 }
 @media (max-width: 598px) {
   h2, .h2 {
-    font-size: 3.75vw;
+    font-size: 4.5vw;
+  }
+}
+@media (max-width: 450px) {
+  h2, .h2 {
+    font-size: 5.125vw;
+  }
+  #mpResponsive{
+    flex-direction: column;
+    align-items:flex-start !important;
   }
 }
 /* 
@@ -266,6 +275,10 @@ sup {
   font-size: 0.75em;
   line-height: 0;
   vertical-align: baseline;
+}
+.imgCentral{
+  width: 100vw;
+  height: 60vh;
 }
 
 sub {
@@ -698,14 +711,24 @@ progress {
   padding-left:8%;
 }
 
+.me-15porcent{
+  margin-right: 15%;
+}
+
 @media (min-width: 576px) {
   .container-sm, .container {
     max-width: 540px;
   }
 }
-@media (min-width: 768px) {
-  .container-md, .container-sm, .container {
-    max-width: 720px;
+@media (max-width: 680px) {
+  #contactResponsive{
+    width: 90% !important;
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+  }
+  #contactFormResponsive{
+    flex-direction: column !important;
+    height: auto !important;
   }
 }
 @media (min-width: 992px) {
@@ -716,9 +739,12 @@ progress {
 @media (max-width: 992px) {
   #navbarResponsive{
     z-index: 3000;
+    right: 0;
+    padding: 2% 7%;
+    background: #33cc99;
     position:absolute;
-    top: 7vh;
-    width: 100%;
+    top: 10vh;
+    width: 45%;
     
   }
 }
@@ -3759,6 +3785,11 @@ textarea.form-control-lg {
 }
 .h-imagenes{
   height: 200px;
+}
+@media (max-width: 400px) {
+  .footerHidden{
+    display: none;
+  }
 }
 @media (max-width: 576px) {
   .h-imagenes{
