@@ -1251,5 +1251,3 @@ Map.propTypes = {
   mapProvider: PropTypes.object,
   props: PropTypes.object,
 }
-
-export default IndexMaps

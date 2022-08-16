@@ -17,9 +17,13 @@ export default function IndexMaps() {
     if (map.current) return // initialize map only once
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/light-v9?optimize=true',
+      style: 'mapbox://styles/mapbox/satellite-streets-v11?optimize=true',
       center: [lng, lat],
       zoom,
+      tileLayer: {
+        continuousWorld: false,
+        noWrap: true,
+      },
     })
     prueba(map)
   })
@@ -268,16 +272,16 @@ export default function IndexMaps() {
         type: 'geojson',
         data: squareGrid, // Radius of each cluster when clustering points (defaults to 50)
       })
-      map.current.addLayer({
-        id: 'park-boundary',
-        type: 'fill',
-        source: 'national-park',
-        paint: {
-          'fill-color': '#888888',
-          'fill-opacity': 0.4,
-        },
-        filter: ['==', '$type', 'Polygon'],
-      })
+      // map.current.addLayer({
+      //   id: 'park-boundary',
+      //   type: 'fill',
+      //   source: 'national-park',
+      //   paint: {
+      //     'fill-color': '#888888',
+      //     'fill-opacity': 0.4,
+      //   },
+      //   filter: ['==', '$type', 'Polygon'],
+      // })
       map.current.addLayer({
         id: 'park-boundary-outline',
         type: 'line',
