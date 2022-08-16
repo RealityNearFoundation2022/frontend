@@ -14,69 +14,36 @@ export default function IndexCentreland() {
     // const tileMap = new TileMap(tileSize)
     // console.log(canvas)
     // tileMap.draw(canvas, ctx)
-    [0,1,2,3,4,5,6,7,8].map((i) => centreland('centreland' + i))
-  
+    ;[0, 1, 2, 3, 4].forEach((column) => {
+      ;[0, 1, 2, 3, 4].forEach((row) => {
+        getCentreland(row, column)
+      })
+    })
   }, [])
   // const gameLoop = () => {
   //   tileMap.draw(canvas, ctx)
   // }
- const centreland = (name) => {
-  const canvas = document.getElementById(name)
+  const getCentreland = (row, column) => {
+    const canvas = document.getElementById(`centreland${row}-${column}`)
     const ctx = canvas.getContext('2d')
 
-    const tileMap = new TileMap(tileSize)
-    console.log(canvas)
+    const tileMap = new TileMap(tileSize, row, column)
     tileMap.draw(canvas, ctx)
- }
+  }
   return (
     <div className="top">
       <h1>centreland</h1>
-      <canvas
-        id="centreland0"
-        type="module"
-        className="centreland"
-      ></canvas>
-<canvas
-        id="centreland1"
-        type="module"
-        className="centreland"
-      ></canvas>
-       <canvas
-        id="centreland2"
-        type="module"
-        className="centreland"
-      ></canvas>
-       <canvas
-        id="centreland3"
-        type="module"
-        className="centreland"
-      ></canvas>
-       <canvas
-        id="centreland4"
-        type="module"
-        className="centreland"
-      ></canvas>
-<canvas
-        id="centreland5"
-        type="module"
-        className="centreland"
-      ></canvas>
-       <canvas
-        id="centreland6"
-        type="module"
-        className="centreland"
-      ></canvas>
-       <canvas
-        id="centreland7"
-        type="module"
-        className="centreland"
-      ></canvas>
-       <canvas
-        id="centreland8"
-        type="module"
-        className="centreland"
-      ></canvas>
+      {[0, 1, 2, 3, 4].map((column) => (
+        <div className="d-flex">
+          {[0, 1, 2, 3, 4].map((row) => (
+            <canvas
+              id={`centreland${row}-${column}`}
+              type="module"
+              className="centreland"
+            ></canvas>
+          ))}
+        </div>
+      ))}
     </div>
-    
   )
 }

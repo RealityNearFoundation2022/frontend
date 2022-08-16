@@ -1,26 +1,62 @@
 export default class TileMap {
-  constructor(tileSize) {
+  constructor(tileSize, row, column) {
     this.tileSize = tileSize
+    this.row = row
+    this.column = column
+    this.map = this.#createMap()
     this.drawed = false
   }
-  map = this.#createMap()
+  setCanvas = {
+    '00': (arrayMap) => {
+      this.#createBox(arrayMap, 2, 30, 2, 6, 5, 5, 5)
+      this.#createBox(arrayMap, 32, 41, 2, 18, 10, 5, 5)
+      this.#createBox(arrayMap, 2, 12, 8, 48, 5, 5, 5)
+      this.#createBox(arrayMap, 26, 30, 8, 18, 5, 5, 5)
+      this.#createBox(arrayMap, 14, 24, 14, 18, 5, 5, 5)
+      this.#createBox(arrayMap, 20, 30, 26, 36, 5, 5, 5)
+      this.#createBox(arrayMap, 32, 41, 26, 42, 10, 5, 5)
+      this.#createBox(arrayMap, 14, 30, 38, 42, 5, 5, 5)
+    },
+    '01': (arrayMap) => {
+      //ejemplo
+      this.#createBox(arrayMap, 2, 30, 2, 6, 5, 5, 5)
+    },
+    '02': (arrayMap) => {},
+    '03': (arrayMap) => {},
+    '04': (arrayMap) => {},
+    '10': (arrayMap) => {},
+    '11': (arrayMap) => {},
+    '12': (arrayMap) => {},
+    '13': (arrayMap) => {},
+    '14': (arrayMap) => {},
+    '20': (arrayMap) => {},
+    '21': (arrayMap) => {},
+    '22': (arrayMap) => {
+      //ejemplo
+      this.#createBox(arrayMap, 2, 30, 2, 6, 5, 5, 5)
+    },
+    '23': (arrayMap) => {},
+    '24': (arrayMap) => {},
+    '30': (arrayMap) => {},
+    '31': (arrayMap) => {},
+    '32': (arrayMap) => {},
+    '33': (arrayMap) => {},
+    '34': (arrayMap) => {},
+    '40': (arrayMap) => {},
+    '41': (arrayMap) => {},
+    '42': (arrayMap) => {},
+    '43': (arrayMap) => {},
+    '44': (arrayMap) => {},
+  }
 
   #createMap() {
     const arrayMap = Array.apply(null, Array(100)).map((e) =>
       Array.apply(null, Array(100)).map(Number.prototype.valueOf, 0),
-    );
-    // [1, 7, 13, 19, 25, 42, 48, 54,60,66,72,78,84, 90, 96, 102, 108,  ].forEach((initialY) =>
-    //   this.#addRegion(arrayMap, 1, initialY, 5, 5, 5),
-    // )
-    this.#createBox(arrayMap, 2, 30, 2, 6, 5, 5, 5)
-    this.#createBox(arrayMap, 32, 41, 2, 18, 10, 5, 5);
-    this.#createBox(arrayMap, 2, 12, 8, 48, 5, 5, 5)
-    this.#createBox(arrayMap, 26, 30, 8, 18, 5, 5, 5)
-    this.#createBox(arrayMap, 14, 24, 14, 18, 5, 5, 5)
-    this.#createBox(arrayMap, 20, 30, 26, 36, 5, 5, 5)
-    this.#createBox(arrayMap, 32, 41, 26, 42, 10, 5, 5)
-    this.#createBox(arrayMap, 14, 30, 38, 42, 5, 5, 5)
-
+    )
+    console.log(this.row)
+    const index = `${this.row}${this.column}`;
+    console.log(index)
+    this.setCanvas[index](arrayMap)
     // INTENTO YUMARI START
     // arrayMap, initialX, finalX, initialY, finalY, sizeX, sizeY, value
     // this.#createBox(arrayMap, 2, 18, 294, 296, 5, 3, 5)
@@ -73,7 +109,7 @@ export default class TileMap {
     // })
     // debugger
     // /* this.#createBox(arrayMap, 71, 75, 309, 323, 5, 7, 5)
-    // this.#createBox(arrayMap, 71, 75, 345, 358, 5, 4, 5) 
+    // this.#createBox(arrayMap, 71, 75, 345, 358, 5, 4, 5)
     // this.#createBox(arrayMap, 71, 75, 360, 370, 5, 5, 5) */
     // this.#createBox(arrayMap, 61, 75, 379, 389, 15, 5, 5)
     // this.#createBox(arrayMap, 61, 75, 391, 393, 7, 3, 5)
@@ -121,8 +157,8 @@ export default class TileMap {
     // debugger
     // /* this.#addRegion(arrayMap, 71, 294, 5, 3, 5)
     // this.#addRegion(arrayMap, 71, 298, 5, 4, 5)
-    // this.#addRegion(arrayMap, 71, 303, 5, 5, 5) 
-    // this.#addRegion(arrayMap, 71, 325, 5, 4, 5) 
+    // this.#addRegion(arrayMap, 71, 303, 5, 5, 5)
+    // this.#addRegion(arrayMap, 71, 325, 5, 4, 5)
     // this.#addRegion(arrayMap, 71, 330, 5, 7, 5)
     // this.#addRegion(arrayMap, 71, 338, 5, 6, 5) */
     // this.#addRegion(arrayMap, 61, 430, 15, 4, 5)
@@ -147,8 +183,6 @@ export default class TileMap {
     // this.#addRegion(arrayMap, 32, 488, 4, 5, 5); */
     // // INTENTO YUMARI END
 
-
-
     // this.#addRegion(arrayMap, 14, 8, 11, 5, 5);
     // this.#addRegion(arrayMap, 14, 44, 11, 5, 5);
 
@@ -162,29 +196,38 @@ export default class TileMap {
     // })
     return arrayMap
   }
-  #createBox(arrayMap, initialX, finalX, initialY, finalY, sizeX, sizeY, value) {
-    for (let iX = initialX; iX <=finalX - sizeX + 1 ; iX = iX + sizeX+ 1) {
-      for (let iY = initialY; iY <= finalY - sizeY + 1 ; iY = iY + sizeY +1) {
+  #createBox(
+    arrayMap,
+    initialX,
+    finalX,
+    initialY,
+    finalY,
+    sizeX,
+    sizeY,
+    value,
+  ) {
+    for (let iX = initialX; iX <= finalX - sizeX + 1; iX = iX + sizeX + 1) {
+      for (let iY = initialY; iY <= finalY - sizeY + 1; iY = iY + sizeY + 1) {
         this.#addRegion(arrayMap, iX, iY, sizeX, sizeY, value)
       }
     }
   }
   #addRegion(array, initialX, initialY, sizeX, sizeY, value) {
-    for (let iY = initialY - 1; iY < initialY + sizeY -1 ; iY++) {
-      for (let iX = initialX - 1; iX < initialX + sizeX -1 ; iX++) {
-        console.log(iY,iX, array[iY][iX])
+    for (let iY = initialY - 1; iY < initialY + sizeY - 1; iY++) {
+      for (let iX = initialX - 1; iX < initialX + sizeX - 1; iX++) {
+        console.log(iY, iX, array[iY][iX])
         array[iY][iX] = value
       }
     }
   }
 
   #image(fileName, callback) {
-    const img = document.createElement("img");
+    const img = document.createElement('img')
     img.onload = function () {
       callback(img)
     }
-    img.src = `/assets/reelands/${fileName}.png`;
-    
+    img.src = `/assets/reelands/${fileName}.png`
+
     return img
   }
   #setCanvasSize(canvas) {
@@ -201,14 +244,15 @@ export default class TileMap {
       row.forEach((tile, columnIndex) => {
         this.#image(tile, (image) => {
           if (image) {
-          ctx.drawImage(
-            image,
-            columnIndex * this.tileSize,
-            rowIndex * this.tileSize,
-            this.tileSize,
-            this.tileSize,
-          )
-        }})
+            ctx.drawImage(
+              image,
+              columnIndex * this.tileSize,
+              rowIndex * this.tileSize,
+              this.tileSize,
+              this.tileSize,
+            )
+          }
+        })
       })
     })
     // document.addEventListener('click', this.#selected)
