@@ -263,6 +263,8 @@ export default class TileMap {
       let rect = canvas.getBoundingClientRect()
       let x = event.clientX - rect.left
       let y = event.clientY - rect.top
+      const posY = Math.ceil(y / this.tileSize);
+      const posX = Math.ceil(x / this.tileSize);
       console.log(Math.ceil(y / this.tileSize), Math.ceil(x / this.tileSize))
     }
     canvas.addEventListener('click', (e) => {
