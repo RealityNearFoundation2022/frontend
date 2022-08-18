@@ -129,7 +129,7 @@ const tourEiffelH3 = [
   '8c1fb4674184bff',
   '8c1fb46741ad7ff',
 ]
-function IndexMaps(props) {
+export default function IndexMaps(props) {
   const [selected, setSelected] = useState(null)
 
   // const history = useHistory()
