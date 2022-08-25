@@ -1,25 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import TileMap from '../../utils/tilemap'
 export default function IndexCentreland() {
   const tileSize = 15
+  const [columns, setColumns] = useState([0])
+  const [rows, setRows] = useState([0])
 
   // let canvas
   // let ctx
   // const tileSize = 5
   // const tileMap = new TileMap(tileSize)
   useEffect(() => {
-    // const canvas = document.getElementById('centreland')
-    // const ctx = canvas.getContext('2d')
-
-    // const tileMap = new TileMap(tileSize)
-    // console.log(canvas)
-    // tileMap.draw(canvas, ctx)
-    ;[0, 1, 2].forEach((column) => {
-      ;[0, 1, 2].forEach((row) => {
+    console.log('columns', columns)
+    rows.forEach((column) => {
+      columns.forEach((row) => {
         getCentreland(row, column)
       })
     })
-  }, [])
+  }, [columns])
+  useEffect(() => {
+    document.addEventListener('scroll', (e) => {
+      console.log(window.scrollX)
+      if (window.scrollX > 400) {
+        setColumns([0, 1])
+      }
+    })
+  })
   // const gameLoop = () => {
   //   tileMap.draw(canvas, ctx)
   // }
@@ -33,9 +38,9 @@ export default function IndexCentreland() {
   return (
     <div className="top">
       <h1>centreland</h1>
-      {[0, 1, 2, 3, 4].map((column) => (
+      {rows.map((column) => (
         <div className="d-flex">
-          {[0, 1, 2, 3, 4].map((row) => (
+          {columns.map((row) => (
             <canvas
               id={`centreland${row}-${column}`}
               type="module"
