@@ -578,7 +578,8 @@ a {
     background-color: #ff424d;
 }
 
-.centreland{
-    box-shadow: 5px 5px 10px black;
+.map-centreland{
+    /* box-shadow: 5px 5px 10px black; */
     /* width: 100vw; */
+    
 }
