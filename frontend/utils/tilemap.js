@@ -75,6 +75,10 @@ export default class TileMap {
         this.#createBox(arrayMap, 61, 69, item.initY, item.initY+item.sizeY-1, 9, item.sizeY, 5)
       }
       /*  */
+      this.#createBox(arrayMap, 20, 23, 73, 84, 4, 12, 5)
+      this.#createBox(arrayMap, 20, 23, 86, 91, 4, 6, 5)
+      this.#createBox(arrayMap, 20, 23, 93, 97, 4, 5, 5)
+      this.#createBox(arrayMap, 20, 23, 99, 100, 4, 2, 5)
       this.#createBox(arrayMap, 20, 27, 19, 23, 8, 5, 5)
       this.#createBox(arrayMap, 29, 38, 19, 23, 10, 5, 5)
       this.#createBox(arrayMap, 40, 48, 19, 23, 9, 5, 5)
@@ -108,7 +112,7 @@ export default class TileMap {
         this.#createBox(arrayMap, item.initX, item.initX+item.sizeX-1, 39, 45, item.sizeX, 7, 5)
       }
 
-      const arr5x5 = [[2, 24, 1, 11], [38, 60, 1, 11], [14, 48, 13, 17], [2, 18, 33, 37], [25, 53, 33, 37], [2, 18, 93, 97], [25, 53, 93, 97], [77, 99, 4, 26],[14, 18, 19, 23]];
+      const arr5x5 = [[2, 24, 1, 11], [38, 60, 1, 11], [14, 48, 13, 17], [2, 18, 33, 37], [25, 53, 33, 37], [2, 18, 93, 97], [25, 59, 93, 97], [77, 99, 4, 26],[14, 18, 19, 23]];
       for(let item of arr5x5){
         this.#createBox(arrayMap, item[0], item[1], item[2], item[3], 5, 5, 5)
       }
@@ -150,7 +154,41 @@ export default class TileMap {
     '03': (arrayMap) => {},
     '04': (arrayMap) => {},
     '10': (arrayMap) => {
-      const arr5x5 = [[2, 18, 3, 97], [32, 48, 3, 97], [1, 59, 80, 84]];
+
+      this.#createBox(arrayMap, 1, 1, 2, 18, 1, 5, 5)
+      this.#createBox(arrayMap, 1, 1, 32, 48, 1, 5, 5)
+      this.#createBox(arrayMap, 1, 1, 20, 30, 1, 11, 5)
+      this.#createBox(arrayMap, 1, 1, 50, 52, 1, 3, 5)
+      this.#createBox(arrayMap, 1, 1, 54, 58, 1, 5, 5)
+      this.#createBox(arrayMap, 1, 1, 60, 63, 1, 4, 5)
+
+      this.#createBox(arrayMap, 93, 97, 20, 30, 5, 11, 5)
+      this.#createBox(arrayMap, 1, 59, 75, 78, 5, 4, 5)
+      this.#createBox(arrayMap, 71, 81, 75, 78, 5, 4, 5)
+      this.#createBox(arrayMap, 45, 79, 60, 63, 5, 4, 5)
+      this.#createBox(arrayMap, 45, 79, 50, 52, 5, 3, 5)
+      this.#createBox(arrayMap, 3, 43, 50, 55, 5, 6, 5)
+      this.#createBox(arrayMap, 3, 43, 57, 63, 5, 7, 5)
+      this.#createBox(arrayMap, 25, 59, 65, 73, 11, 9, 5)
+      this.#createBox(arrayMap, 61, 69, 75, 84, 9, 10, 5)
+      this.#createBox(arrayMap, 61, 69, 86, 96, 9, 11, 5)
+      this.#createBox(arrayMap, 81, 99, 50, 55, 5, 6, 5)
+      this.#createBox(arrayMap, 81, 99, 57, 63, 5, 7, 5)
+      this.#createBox(arrayMap, 94, 100, 75, 78, 7, 4, 5)
+      this.#createBox(arrayMap, 94, 100, 80, 96, 7, 5, 5)
+      this.#createBox(arrayMap, 83, 92, 75, 84, 10, 10, 5)
+      this.#createBox(arrayMap, 83, 92, 86, 96, 10, 11, 5)
+      this.#createBox(arrayMap, 1, 14, 65, 73, 14, 9, 7)
+      this.#createBox(arrayMap, 99, 100, 2, 18, 2, 5, 5)
+      this.#createBox(arrayMap, 99, 100, 20, 30, 2, 5, 5)
+      this.#createBox(arrayMap, 99, 100, 32, 48, 2, 5, 5)
+      this.#createBox(arrayMap, 99, 100, 50, 55, 2, 6, 5)
+      this.#createBox(arrayMap, 99, 100, 57, 63, 2, 7, 5)
+      this.#createBox(arrayMap, 99, 100, 65, 73, 2, 9, 5)
+      this.#createBox(arrayMap, 87, 97, 65, 73, 11, 9, 5)
+
+
+      const arr5x5 = [[3, 97, 2, 18], [3, 97, 32, 48], [1, 59, 80, 84],[71, 81, 80, 96 ], [3, 7, 20, 30], [45, 79, 54, 58],[1, 11, 86, 96], [25, 59, 86, 96]];
       for(let item of arr5x5){
         this.#createBox(arrayMap, item[0], item[1], item[2], item[3], 5, 5, 5)
       }
@@ -159,20 +197,94 @@ export default class TileMap {
       for(let i=0;i<arr11x11.length;i++){
         this.#createBox(arrayMap, arr11x11[i].initX, arr11x11[i].initX+10, arr11x11[i].initY, arr11x11[i].initY+10, 11, 11, 5)
       }
+
+      for(let item of [9, 21, 33, 45, 57, 69, 81]){
+        this.#createBox(arrayMap, item, item+4, 20, 30, 5, 11, 5)
+        this.#createBox(arrayMap, item+6, item+10, 20, 30, 5, 5, 5)
+      }
+
+      for(let item of [{initX:16, sizeX:8}, {initX:61, sizeX:9}, {initX:71, sizeX:15}]){
+        this.#createBox(arrayMap, item.initX, item.initX+item.sizeX-1, 65, 73, item.sizeX, 9, 5)
+      }
     },
-    '11': (arrayMap) => {},
+    '11': (arrayMap) => {
+      this.#createBox(arrayMap, 1, 35, 28, 37, 5, 10, 5)
+
+      const arr5x5 = [[37, 59, 4, 26], [1, 35, 16, 26]];
+      for(let item of arr5x5){
+        this.#createBox(arrayMap, item[0], item[1], item[2], item[3], 5, 5, 5)
+      }
+
+      const arr11x11=[{initX:1, initY:4}, {initX:25, initY:4}]
+      for(let i=0;i<arr11x11.length;i++){
+        this.#createBox(arrayMap, arr11x11[i].initX, arr11x11[i].initX+10, arr11x11[i].initY, arr11x11[i].initY+10, 11, 11, 5)
+      }
+    },
     '12': (arrayMap) => {},
     '13': (arrayMap) => {},
     '14': (arrayMap) => {},
-    '20': (arrayMap) => {},
-    '21': (arrayMap) => {},
+    '20': (arrayMap) => {
+      for(let item of [[75, 93, 8, 9], [50, 62, 17, 13], [64, 68, 17, 5], [70, 73, 17, 4], [95, 100, 17, 6]]){
+        this.#createBox(arrayMap, 28, 44, item[0], item[1], item[2], item[3], 5)
+      }
+
+      for(let item of [[2, 18, 5], [20, 30, 11], [32, 48, 5], [50, 55, 6], [57, 63, 7]]){
+        this.#createBox(arrayMap, 5, 8, item[0], item[1], 4, item[2], 5)
+      }
+      this.#createBox(arrayMap, 1, 3, 50, 55, 3, 6, 5)
+      this.#createBox(arrayMap, 1, 3, 57, 63, 3, 7, 5)
+      this.#createBox(arrayMap, 1, 8, 65, 73, 8, 9, 5)
+      this.#createBox(arrayMap, 4, 8, 75, 87, 5, 6, 5)
+      this.#createBox(arrayMap, 4, 8, 89, 100, 5, 12, 5)
+      this.#createBox(arrayMap, 1, 2, 80, 96, 2, 5, 5)
+      this.#createBox(arrayMap, 1, 2, 75, 78, 2, 4, 5)
+      this.#createBox(arrayMap, 92, 100, 2, 48, 5, 5, 2)
+
+      const array = [{initX:1, sizeX:3}, {initX:10, sizeX:7}, {initX:18, sizeX:9}, {initX:28, sizeX:8}, {initX:37, sizeX:8}, {initX:46, sizeX:9}, {initX:56, sizeX:8}, {initX:65, sizeX:7}, {initX:73, sizeX:7}, {initX:81, sizeX:10}]
+      for(let item of array){
+        this.#createBox(arrayMap, item.initX, item.initX+item.sizeX-1, 2, 48, item.sizeX, 5, 5)
+      }
+
+
+      for(let item of [{initY:50, sizeY:19}, {initY:70, sizeY:4}, {initY:75, sizeY:6}, {initY:82, sizeY:6}, {initY:89, sizeY:5}, {initY:95, sizeY:6}]){
+        this.#createBox(arrayMap, 10, 16, item.initY, item.initY+item.sizeY-1, 7, item.sizeY, 5)
+        this.#createBox(arrayMap, 18, 26, item.initY, item.initY+item.sizeY-1, 9, item.sizeY, 5)
+      }
+
+      for(let item of [{initY:50, sizeY:6}, {initY:57, sizeY:6}, {initY:64, sizeY:10}]){
+        this.#createBox(arrayMap, 46, 54, item.initY, item.initY+item.sizeY-1, 9, item.sizeY, 5)
+        this.#createBox(arrayMap, 56, 63, item.initY, item.initY+item.sizeY-1, 8, item.sizeY, 5)
+      }
+
+      for(let item of [{initY:57, sizeY:6}, {initY:64, sizeY:5}, {initY:70, sizeY:4}]){
+        this.#createBox(arrayMap, 65, 79, item.initY, item.initY+item.sizeY-1, 7, item.sizeY, 5)
+      }
+      for(let item of [{initY:50, sizeY:6}, {initY:75, sizeY:9}, {initY:85, sizeY:9}, {initY:95, sizeY:6}]){
+        this.#createBox(arrayMap, 65, 79, item.initY, item.initY+item.sizeY-1, 15, item.sizeY, 5)
+      }
+    },
+    '21': (arrayMap) => {
+      for(let item of [{initX:10, sizeX:7}, {initX:18, sizeX:9}, {initX:28, sizeX:6}, {initX:35, sizeX:5}, {initX:41, sizeX:6}, {initX:48, sizeX:6}, {initX:55, sizeX:7}]){
+        this.#createBox(arrayMap, item.initX, item.initX+item.sizeX-1, 20, 26, item.sizeX, 7, 5)
+        this.#createBox(arrayMap, item.initX, item.initX+item.sizeX-1, 28, 31, item.sizeX, 4, 5)
+        this.#createBox(arrayMap, item.initX, item.initX+item.sizeX-1, 33, 37, item.sizeX, 5, 5)
+        this.#createBox(arrayMap, item.initX, item.initX+item.sizeX-1, 39, 45, item.sizeX, 7, 5)
+        this.#createBox(arrayMap, item.initX, item.initX+item.sizeX-1, 47, 54, item.sizeX, 8, 5)
+        this.#createBox(arrayMap, item.initX, item.initX+item.sizeX-1, 56, 61, item.sizeX, 6, 5)
+        this.#createBox(arrayMap, item.initX, item.initX+item.sizeX-1, 63, 67, item.sizeX, 5, 5)
+      }
+    },
     '22': (arrayMap) => {
       //ejemplo
       this.#createBox(arrayMap, 2, 30, 2, 6, 5, 5, 4)
     },
     '23': (arrayMap) => {},
     '24': (arrayMap) => {},
-    '30': (arrayMap) => {},
+    '30': (arrayMap) => {
+      for(let item of [{initX:1, sizeX:2}, {initX:3, sizeX:6}, {initX:10, sizeX:5}, {initX:16, sizeX:8}, {initX:25, sizeX:5}, {initX:31, sizeX:8}, {initX:57, sizeX:11}, {initX:69, sizeX:10}, {initX:80, sizeX:13}, {initX:94, sizeX:7}, {initX:1, sizeX:1}]){
+        this.#createBox(arrayMap, item.initX, item.initX+item.sizeX-1, 2, 48, item.sizeX, 5, 2)
+      }
+    },
     '31': (arrayMap) => {},
     '32': (arrayMap) => {},
     '33': (arrayMap) => {},
