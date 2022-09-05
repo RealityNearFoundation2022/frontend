@@ -15,7 +15,7 @@ export default function IndexCentreland() {
     // console.log(canvas)
     // tileMap.draw(canvas, ctx)
     ;[0, 1, 2, 3].forEach((column) => {
-      ;[0, 1, 2].forEach((row) => {
+      ;[0, 1, 2, 3].forEach((row) => {
         getCentreland(row, column)
       })
     })
