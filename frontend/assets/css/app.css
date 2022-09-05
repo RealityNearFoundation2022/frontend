@@ -577,9 +577,33 @@ a {
     border-color: #fff;
     background-color: #ff424d;
 }
-
-.map-centreland{
-    /* box-shadow: 5px 5px 10px black; */
-    /* width: 100vw; */
-    
-}
+.slide{
+    height:500px;
+    /* width: 1000px; */
+    position: relative;
+    overflow-x: scroll;
+    overflow-y: scroll;
+  }
+  .ctrl-btn{
+    cursor: pointer;
+    top: 50%;
+    width: auto;
+    position: absolute;
+  }
+  
+  .ctrl-btn-next{
+    right: 1rem;
+  }
+  .ctrl-btn-back{
+    left: 1rem;
+  }
+  .ctrl-btn-top{
+    position: relative;
+    bottom:  495px;
+    left: 47%;
+  }
+  .ctrl-btn-bottom{
+    position: relative;
+    bottom:  60px;
+    left: 47%;
+  }
