@@ -1231,7 +1231,6 @@ export default class TileMap {
   #addRegion(array, initialX, initialY, sizeX, sizeY, value) {
     for (let iY = initialY - 1; iY < initialY + sizeY - 1; iY++) {
       for (let iX = initialX - 1; iX < initialX + sizeX - 1; iX++) {
-        console.log(iY, iX, array[iY][iX])
         array[iY][iX] = value
       }
     }
@@ -1282,13 +1281,15 @@ export default class TileMap {
       const selectedIdX =Math.ceil(x / this.tileSize);
       const selectedIdY =Math.ceil(y / this.tileSize);
       const newMap = this.map;
-      const newSelected = this.map[selectedIdY-1][selectedIdX -1].toString().includes('s') ? this.map[selectedIdX][selectedIdY] : `${this.map[selectedIdX][selectedIdY]}-s`
+      const newSelected = this.map[selectedIdY-1][selectedIdX -1].toString().includes('s') ? this.map[selectedIdX-1][selectedIdY-1] : `${this.map[selectedIdX-1][selectedIdY-1]}-s`
+      console.log('newSelected', newSelected)
+      debugger
       newMap[selectedIdY-1][selectedIdX-1] = newSelected
       this.map = newMap
       this.#drawMap(ctx)
       const posY = this.row*100 +(selectedIdY);
       const posX =this.column * 100 +(selectedIdX);
-      console.log( 'posY', posY,'posY', posX)
+      console.log( 'posY', posY,'posX', posX)
     }
     canvas.addEventListener('click', (e) => {
       getMousePosition(canvas, e)

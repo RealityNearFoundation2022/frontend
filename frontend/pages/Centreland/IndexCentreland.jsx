@@ -1,49 +1,96 @@
-import React, { useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
+// eslint-disable-next-line import/no-named-as-default-member
 import TileMap from '../../utils/tilemap'
+import MockUp from '../../assets/img/MapaMockUp.jpg'
 export default function IndexCentreland() {
   const tileSize = 15
+  const [column, setColumn] = useState(0)
+  const [row, setRow] = useState(0)
+  const [top, setTop] = useState(false)
+  const [bottom, setBottom] = useState(false)
+  const [left, setLeft] = useState(false)
+  const [rigth, setRigth] = useState(false)
+  const slide = useRef(null)
+  const maxColumnsRows = 4
 
-  // let canvas
-  // let ctx
-  // const tileSize = 5
-  // const tileMap = new TileMap(tileSize)
   useEffect(() => {
-    // const canvas = document.getElementById('centreland')
-    // const ctx = canvas.getContext('2d')
+    getCentreland(row, column)
+  }, [column, row])
 
-    // const tileMap = new TileMap(tileSize)
-    // console.log(canvas)
-    // tileMap.draw(canvas, ctx)
-    ;[0, 1, 2, 3, 4].forEach((column) => {
-      ;[0, 1, 2, 3, 4].forEach((row) => {
-        getCentreland(row, column)
-      })
+  useEffect(() => {
+    slide.current.addEventListener('scroll', (event) => {
+      const {
+        scrollHeight,
+        scrollWidth,
+        scrollTop,
+        scrollLeft,
+        clientHeight,
+        clientWidth,
+      } = event.target
+      setBottom(
+        scrollHeight - scrollTop === clientHeight && column < maxColumnsRows,
+      )
+      setTop(scrollTop === 0 && column > 0)
+      setLeft(scrollLeft === 0 && row > 0)
+      setRigth(scrollWidth - scrollLeft === clientWidth && row < maxColumnsRows)
     })
-  }, [])
-  // const gameLoop = () => {
-  //   tileMap.draw(canvas, ctx)
-  // }
-  const getCentreland = (row, column) => {
-    const canvas = document.getElementById(`centreland${row}-${column}`)
+  })
+  const getCentreland = (_row, _column) => {
+    const canvas = document.getElementById(`centreland${_row}-${_column}`)
     const ctx = canvas.getContext('2d')
 
-    const tileMap = new TileMap(tileSize, row, column)
+    const tileMap = new TileMap(tileSize, _row, _column)
     tileMap.draw(canvas, ctx)
   }
   return (
-    <div className="top">
-      <h1>centreland</h1>
-      {[0, 1, 2, 3, 4].map((column) => (
-        <div className="d-flex">
-          {[0, 1, 2, 3, 4].map((row) => (
-            <canvas
-              id={`centreland${row}-${column}`}
-              type="module"
-              className="centreland"
-            ></canvas>
-          ))}
-        </div>
-      ))}
+    <div>
+      <div className="slide" ref={slide}>
+        <canvas
+          id={`centreland${row}-${column}`}
+          type="module"
+          className="centreland"
+        ></canvas>
+      </div>
+      {left && (
+        <button
+          className="btn ctrl-btn ctrl-btn-back"
+          type="button"
+          onClick={() => setRow((r) => r - 1)}
+        >
+          L
+        </button>
+      )}
+      {rigth && (
+        <button
+          className="btn ctrl-btn ctrl-btn-next"
+          type="button"
+          onClick={() => setRow((r) => r + 1)}
+        >
+          R
+        </button>
+      )}
+      {top && (
+        <button
+          className="btn ctrl-btn-top"
+          type="button"
+          onClick={() => setColumn((r) => r - 1)}
+        >
+          T
+        </button>
+      )}
+      {bottom && (
+        <button
+          className="btn ctrl-btn-bottom"
+          type="button"
+          onClick={() => setColumn((r) => r + 1)}
+        >
+          B
+        </button>
+      )}
+      <div>
+        <img className="img-mockup" src={MockUp} alt="..." />
+        <div className={`boxImg boxImg-${row}${column}`}></div>
+      </div>
     </div>
   )
 }
