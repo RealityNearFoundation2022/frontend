@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
+// eslint-disable-next-line import/no-named-as-default-member
 import TileMap from '../../utils/tilemap'
+import MockUp from '../../assets/img/MapaMockUp.jpg'
 export default function IndexCentreland() {
   const tileSize = 15
   const [column, setColumn] = useState(0)
@@ -12,12 +14,9 @@ export default function IndexCentreland() {
   const maxColumnsRows = 4
 
   useEffect(() => {
-    // rows.forEach((column) => {
-    //   columns.forEach((row) => {
     getCentreland(row, column)
-    //   })
-    // })
   }, [column, row])
+
   useEffect(() => {
     slide.current.addEventListener('scroll', (event) => {
       const {
@@ -29,23 +28,13 @@ export default function IndexCentreland() {
         clientWidth,
       } = event.target
       setBottom(
-        scrollHeight - scrollTop === clientHeight && row < maxColumnsRows,
+        scrollHeight - scrollTop === clientHeight && column < maxColumnsRows,
       )
-      setTop(scrollTop === 0 && row > 0)
-      setLeft(scrollLeft === 0 && column > 0)
-      setRigth(
-        scrollWidth - scrollLeft === clientWidth && column < maxColumnsRows,
-      )
+      setTop(scrollTop === 0 && column > 0)
+      setLeft(scrollLeft === 0 && row > 0)
+      setRigth(scrollWidth - scrollLeft === clientWidth && row < maxColumnsRows)
     })
-    // return () => {
-    //   slide?.current.removeEventListener((e) => {
-    //     console.log(e)
-    //   })
-    // }
   })
-  // const gameLoop = () => {
-  //   tileMap.draw(canvas, ctx)
-  // }
   const getCentreland = (_row, _column) => {
     const canvas = document.getElementById(`centreland${_row}-${_column}`)
     const ctx = canvas.getContext('2d')
@@ -54,28 +43,29 @@ export default function IndexCentreland() {
     tileMap.draw(canvas, ctx)
   }
   return (
-    <div className="top">
-      <h1>Nuruk</h1>
-      <div className="slide" ref={slide} t>
-        {/* {rows.map((column) => (
-          <div className="d-flex">
-            {columns.map((row) => ( */}
+    <div>
+      <div className="slide" ref={slide}>
         <canvas
           id={`centreland${row}-${column}`}
           type="module"
           className="centreland"
         ></canvas>
-        {/* ))}
-          </div>
-        ))} */}
       </div>
       {left && (
-        <button className="btn ctrl-btn ctrl-btn-back" type="button">
+        <button
+          className="btn ctrl-btn ctrl-btn-back"
+          type="button"
+          onClick={() => setRow((r) => r - 1)}
+        >
           L
         </button>
       )}
       {rigth && (
-        <button className="btn ctrl-btn ctrl-btn-next" type="button">
+        <button
+          className="btn ctrl-btn ctrl-btn-next"
+          type="button"
+          onClick={() => setRow((r) => r + 1)}
+        >
           R
         </button>
       )}
@@ -83,7 +73,7 @@ export default function IndexCentreland() {
         <button
           className="btn ctrl-btn-top"
           type="button"
-          onClick={() => setRow((r) => r - 1)}
+          onClick={() => setColumn((r) => r - 1)}
         >
           T
         </button>
@@ -92,11 +82,15 @@ export default function IndexCentreland() {
         <button
           className="btn ctrl-btn-bottom"
           type="button"
-          onClick={() => setRow((r) => r + 1)}
+          onClick={() => setColumn((r) => r + 1)}
         >
           B
         </button>
       )}
+      <div>
+        <img className="img-mockup" src={MockUp} alt="..." />
+        <div className={`boxImg boxImg-${row}${column}`}></div>
+      </div>
     </div>
   )
 }
