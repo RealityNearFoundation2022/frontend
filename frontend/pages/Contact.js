@@ -29,7 +29,7 @@ function Contact() {
   const handleSubmit = () => {}
   return (
     <section className={`${theme.bg} near w-100`} id="near">
-      <div className="w-100 page-section">
+      <div className="w-100 p-7-5vh">
         <HeaderSections
           titleSection="Contáctanos"
           descriptionSection="¿En qué podríamos ayudarte?"
