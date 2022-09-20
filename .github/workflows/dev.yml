@@ -3,7 +3,7 @@ name: compile frontend
 on:
   push:
     branches:
-      - main
+      - dev
 
 jobs:
   create-deployment-artifacts:
@@ -35,9 +35,9 @@ jobs:
       - name: Upload
         uses: appleboy/scp-action@master
         with:
-          host: ${{ secrets.PROD_HOST_FRONTEND }}
-          username: ${{ secrets.PROD_HOST_FE_USERNAME }}
-          password: ${{ secrets.PROD_HOST_FE_PASSWORD }}
+          host: ${{ secrets.QA_HOST_FRONTEND }}
+          username: ${{ secrets.QA_HOST_FE_USERNAME }}
+          password: ${{ secrets.QA_HOST_FE_PASSWORD }}
           source: ${{ github.sha }}.tar.gz
           target: artifacts
       - name: connect server
@@ -45,9 +45,9 @@ jobs:
         env:
           GITHUB_SHA: ${{ github.sha }}
         with:
-          host: ${{ secrets.PROD_HOST_FRONTEND }}
-          username: ${{ secrets.PROD_HOST_FE_USERNAME }}
-          password: ${{ secrets.PROD_HOST_FE_PASSWORD }}
+          host: ${{ secrets.QA_HOST_FRONTEND }}
+          username: ${{ secrets.QA_HOST_FE_USERNAME }}
+          password: ${{ secrets.QA_HOST_FE_PASSWORD }}
           envs: GITHUB_SHA
           script: |
             mkdir -p "releases/${GITHUB_SHA}"

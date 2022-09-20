@@ -23,13 +23,13 @@ export default function Realities() {
             </span>
           </div>
           <br />
-          <p className={`lead ${theme.txt}`}>
+          <p className={`${theme.txt}`}>
             {t(
               "Para que las transacciones sean posibles, creamos tokens llamados 'Realities', los cuales se utilizan como moneda en nuestro metaverso. Con estos se realizan todas las transacciones financieras dentro de este multimetaverso. Podrás comprar parcelas( Realands y Patchas ), accesorios, ropa, servicios, y todo lo que se encuentre a la venta en Nuruk.",
             )}
           </p>
           <h2 className="text-primary">{t('¿Cómo funciona?')}</h2>
-          <p className={`lead ${theme.txt}`}>
+          <p className={`${theme.txt}`}>
             {t(
               'El reality token funciona dentro del ecosistema de Near. En este ecosistema es que se almacena el registro de transacciones en la blockchain. Tus realities se almacenan en tu Near Wallet, y se verán reflejados en tu perfil de Nuruk en la app de Reality Near. En nuestro metaverso puedes realizar infinidad de compras y ventas, adquirir tesoros o NFTs; y todo esto mediante transacciones de realities.',
             )}
@@ -39,7 +39,7 @@ export default function Realities() {
           className="w-40 d-flex flex-column align-item-center justify-content-center"
           id="realitiContain"
         >
-          <img src={logos} alt="" className="lead w-80 mx-5" />
+          <img src={logos} alt="" className="w-80 mx-5" />
           <center>
             <RealityModal />
             {/* <button
