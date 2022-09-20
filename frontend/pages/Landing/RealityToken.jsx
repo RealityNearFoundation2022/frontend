@@ -10,12 +10,7 @@ export default function RealityToken() {
   const { t } = useTranslation()
 
   return (
-    <section
-      className={`${theme.bg} ${
-        window.innerHeight / window.innerWidth < 1.25 ? 'page-section' : 'py-5'
-      } text-white mb-0 w-100`}
-      id=""
-    >
+    <section className={`${theme.bg} py-5 text-white mb-0 w-100 my-2`} id="">
       <div
         className={`${theme.txt} d-flex w-100 align-items-center px-7-5porcent`}
       >
@@ -29,7 +24,7 @@ export default function RealityToken() {
         id="realityToken"
       >
         <div className="w-60" id="realityTokenTxt">
-          <p className={`lead ${theme.txt} w-100`}>
+          <p className={`${theme.txt} w-100`}>
             {t(
               'Reality Near te permite hacer negocios, tales como adquirir y vender bienes a través de todas nuestras plataformas: App Reality Near,  Marketplace en el sitio web y en Nuruk. \n Para que las transacciones sean posibles, creamos tokens llamados “REALITIES”, los cuales se utilizan como moneda en nuestro metaverso. Con los realities podrás comprar y vender parcelas, así como también NFTs  o cualquier artículo a la venta. Además, podrás intercambiar bienes con los demás usuarios mediante transacciones P2P. \n Contarás con una wallet, donde podrás administrar tus Realities, al igual que llevar registro de tus transacciones. También podrás ver el tipo de cambio al dolar. \n El Reality es transaccional con todas las Near Wallet, asi que no tendrás ningun inconveniente en transferirle a amigos. Podrás cambiar Nears a  realities en el Marketplace en nuestro sitio web.',
             )}

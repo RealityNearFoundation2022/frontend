@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useState } from 'react'
 import { Typography } from '@mui/material'
@@ -6,7 +7,7 @@ import { CaretRight } from 'phosphor-react'
 import { Link } from 'react-router-dom'
 import Card from './Card'
 import ThemeContext from '../../utils/useContextTheme'
-import { filtersMarketplace } from './Data_Categories/Categories'
+// import { filtersMarketplace } from './Data_Categories/Categories'
 import { nft_tokens } from '../../assets/js/near/utils'
 // import { Category } from './Category'
 
@@ -83,6 +84,12 @@ export default function Section() {
           slidesToShow: 2.5,
         },
       },
+      {
+        breakpoint: 420,
+        settings: {
+          slidesToShow: 1.5,
+        },
+      },
     ],
     swipeToSlide: true,
     afterChange(index) {
@@ -102,7 +109,7 @@ export default function Section() {
         )
         .map((item) => (
           <div className="w-100">
-            <div className="d-flex align-items-center pb-4">
+            <div className="d-flex align-items-center pb-4" id="mpResponsive">
               <h1 className={`${theme.txt} m-1 text-primary pr-2`}>
                 {item.title}
               </h1>

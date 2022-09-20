@@ -16,7 +16,7 @@ export default function Card({ elementsCard, category }) {
           <img
             src={elementsCard.img}
             alt=""
-            className="w-90 obj-fit-cover h-100"
+            className="w-90 obj-fit-cover rounded h-100"
           />
         </div>
         <h3 className="text-grey fs-0">{elementsCard.titleItem}</h3>

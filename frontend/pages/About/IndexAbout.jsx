@@ -20,21 +20,21 @@ function About() {
           <div className="d-flex">
             <div className="d-flex flex-column gap-2 w-50" id="aboutTxt">
               <h2 className="text-primary">¿QUÉ ES REALITY NEAR?</h2>
-              <p className={`${theme.txt} lead`}>
+              <p className={`${theme.txt}`}>
                 Reality Near es un multimetaverso que combina tecnlogía y
                 realidad, de tal forma que los usuarios puedan desarrollarse en
                 un nuevo ambiente completamente inmersivo y digital que, además,
                 genera valor en su experiencia.
               </p>
               <h2 className="text-primary">¿CUÁL ES EL PROBLEMA?</h2>
-              <p className={`${theme.txt} lead`}>
+              <p className={`${theme.txt}`}>
                 Cada día que pasa, más son las limitaciones socioecónomicas y
                 educativas a nivel global. Muchas personas emplean la mayoría de
                 sus recursos en conseguir oportunidades de desarrollo, las
                 cuales no siempre garantizan que salgan adelante.
               </p>
               <h2 className="text-primary">UN MUNDO DE OPORTUNIDADES</h2>
-              <p className={`${theme.txt} lead`}>
+              <p className={`${theme.txt}`}>
                 En Reality Near buscamos generar oportunidades para el
                 desarrollo de los usuarios en ámbitos socioeconómicos y
                 educativos, dentro de un ambiente descentralizado que garantiza
