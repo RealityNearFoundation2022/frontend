@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from 'react'
-// eslint-disable-next-line import/no-named-as-default-member
 import TileMap from '../../utils/tilemap'
 import MockUp from '../../assets/img/MapaMockUp.jpg'
 export default function IndexCentreland() {

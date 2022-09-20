@@ -608,6 +608,7 @@ a {
     left: 47%;
   }
   .img-mockup{
+    /* border-radius: 100px; */
     width: var(--sizeMockup);
     height: var(--sizeMockup);
   }
