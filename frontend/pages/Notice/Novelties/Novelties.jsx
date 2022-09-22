@@ -1,11 +1,15 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+// import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
-import HeaderSections from '../HeaderSections'
-import CardNotices from './CardNotices'
-import { dataNotices } from './dataNotices'
+import HeaderSections from '../../HeaderSections'
+// import CardNotices from '../CardNotices'
+// import { dataNotices } from '../dataNotices'
+import CarouselNovelty from './CarouselNovelty'
+import imgFake from '../../../assets/img/random/cabin.png'
 
-export default function Events() {
+export default function Novelties() {
+  const [carousel, setCarousel] = useState([])
+
   const settings1 = {
     dots: true,
     infinite: true,
@@ -17,25 +21,29 @@ export default function Events() {
     cssEase: 'linear',
   }
 
-  const settings2 = {
-    className: 'center',
-    infinite: true,
-    centerPadding: '60px',
-    slidesToShow: 3,
-    swipeToSlide: true,
-    afterChange(index) {
-      console.log(
-        `Slider Changed to: ${index + 1}, background: #222; color: #bada55`,
+  const apiGet = () => {
+    fetch('http://localhost:3000/news')
+      .then(
+        (response) => response.json(),
+        // setCarousel([...response.json()])
       )
-    },
+      .then((data) => {
+        console.log(data)
+        setCarousel([...data])
+      })
   }
-  const carousel = [...dataNotices.events]
+
+  useEffect(() => {
+    apiGet()
+  }, [])
+
+  // const carousel = [...dataNotices.novelties]
   return (
     <div className="mt-5">
       <HeaderSections
-        titleSection="Eventos"
-        descriptionSection="Dale un vistazo a los eventos del momento"
-        bgHeader="bg-header-events"
+        titleSection="Novedades"
+        descriptionSection="Conoce las nuevas actualizaciones en el mundo de Reality Near"
+        bgHeader="bg-header-novelties"
       />
       <div className="container mt-5 pt-5">
         <div className="w-100 d-flex align-items-center justify-content-center">
@@ -44,7 +52,7 @@ export default function Events() {
               {carousel.map((element) => (
                 <div className="rounded position-relative">
                   <img
-                    src={element.img}
+                    src={imgFake}
                     alt=""
                     className="w-100 obj-fit-cover"
                     width="300"
@@ -61,15 +69,9 @@ export default function Events() {
         </div>
         <div>
           <div className="d-flex align-items-center mt-5 mb-4">
-            <h1 className="m-1 text-primary pr-2">Eventos Relacionados</h1>
+            <h1 className="m-1 text-primary pr-2">Novedades Relacionadas</h1>
           </div>
-          <Slider {...settings2}>
-            {carousel.map((element) => (
-              <Link to={`/notices/events/${element.id}`}>
-                <CardNotices element={element} />
-              </Link>
-            ))}
-          </Slider>
+          <CarouselNovelty />
         </div>
       </div>
     </div>
