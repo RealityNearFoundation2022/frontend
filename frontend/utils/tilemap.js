@@ -7,7 +7,6 @@ export default class TileMap {
     this.drawed = false
   }
   #createMap() {
-    console.log('create map')
     const arrayMap = Array.apply(null, Array(100)).map((e) =>
       Array.apply(null, Array(100)).map(Number.prototype.valueOf, 0),
     )
@@ -3579,42 +3578,33 @@ export default class TileMap {
         })
       })
     })
-    console.log('fin')
   }
 
   #getPosition(canvas, ctx, newMap, event) {
-    console.log('clg', this.row)
-    // canvas.removeEventListener('click', (e) => {
-    //   getMousePosition(canvas, e)
-    // })
     let rect = canvas.getBoundingClientRect()
     let x = event.clientX - rect.left
     let y = event.clientY - rect.top
     const selectedIdX = Math.ceil(x / this.tileSize)
     const selectedIdY = Math.ceil(y / this.tileSize)
-    console.log('map', this.map)
     const nm = newMap[selectedIdY - 1][selectedIdX - 1];
-    console.log(selectedIdY - 1, selectedIdX - 1, nm)
     const newSelected = nm.toString().includes('s')
       ? nm.substring(0, nm.length - 2)
       : `${nm}-s`
     newMap[selectedIdY-1][selectedIdX-1] = newSelected
-    console.log(newSelected)
     this.map = newMap
     this.#drawMap(ctx)
     const posY = this.row*100 +(selectedIdY);
     const posX =this.column * 100 +(selectedIdX);
-    console.log( 'posY', posY,'posX', posX)
     
   }
  
   draw(canvas, ctx) {
     this.#setCanvasSize(canvas)
-    // this.clearCanvas(canvas, ctx)
     this.#drawMap(ctx)
     const getP = (e) => {
       const rw = localStorage.getItem('row');
-      if(Number(rw) !== this.row){
+      const cl = localStorage.getItem('col')
+      if(Number(rw) !== this.row || Number(cl) !== this.column){
         canvas.removeEventListener('click', getP, true)
       } else {
         this.#getPosition(canvas, ctx, this.map, e)
@@ -3622,6 +3612,7 @@ export default class TileMap {
     }
     canvas.addEventListener('click', getP, true)
     localStorage.setItem('row',this.row)
+    localStorage.setItem('col',this.col)
     this.drawed = true
   }
 }
