@@ -1070,7 +1070,6 @@ export default function IndexMaps(props) {
       obj[data[key]] = Math.random()
       return obj
     }, {})
-    debugger
     return newData
   }
 

@@ -1,6 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react'
+import NavigateNextIcon from '@mui/icons-material/NavigateNext'
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+
 import TileMap from '../../utils/tilemap'
 import MockUp from '../../assets/img/MapaMockUp.jpg'
+
 export default function IndexCentreland() {
   const tileSize = 15
   const [column, setColumn] = useState(0)
@@ -37,8 +43,8 @@ export default function IndexCentreland() {
   const getCentreland = (_row, _column) => {
     const canvas = document.getElementById(`centreland${_row}-${_column}`)
     const ctx = canvas.getContext('2d')
-
     const tileMap = new TileMap(tileSize, _row, _column)
+    tileMap.clearCanvas(canvas, ctx)
     tileMap.draw(canvas, ctx)
   }
   return (
@@ -56,7 +62,7 @@ export default function IndexCentreland() {
           type="button"
           onClick={() => setRow((r) => r - 1)}
         >
-          L
+          <ArrowBackIosNewIcon />
         </button>
       )}
       {rigth && (
@@ -65,7 +71,7 @@ export default function IndexCentreland() {
           type="button"
           onClick={() => setRow((r) => r + 1)}
         >
-          R
+          <NavigateNextIcon />
         </button>
       )}
       {top && (
@@ -74,7 +80,7 @@ export default function IndexCentreland() {
           type="button"
           onClick={() => setColumn((r) => r - 1)}
         >
-          T
+          <KeyboardArrowUpIcon />
         </button>
       )}
       {bottom && (
@@ -83,7 +89,7 @@ export default function IndexCentreland() {
           type="button"
           onClick={() => setColumn((r) => r + 1)}
         >
-          B
+          <KeyboardArrowDownIcon />
         </button>
       )}
       <div>
