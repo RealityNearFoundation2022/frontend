@@ -1,12 +1,13 @@
 export default class TileMap {
-  constructor(tileSize, row, column) {
+  constructor(tileSize, row, column, handleOpen) {
     this.tileSize = tileSize
     this.row = row
     this.column = column
-    this.map = this.#createMap()
+    this.map = this.createMap()
     this.drawed = false
+    this.handleOpen = handleOpen
   }
-  #createMap() {
+  createMap() {
     const arrayMap = Array.apply(null, Array(100)).map((e) =>
       Array.apply(null, Array(100)).map(Number.prototype.valueOf, 0),
     )
@@ -3584,17 +3585,23 @@ export default class TileMap {
     let rect = canvas.getBoundingClientRect()
     let x = event.clientX - rect.left
     let y = event.clientY - rect.top
-    const selectedIdX = Math.ceil(x / this.tileSize)
     const selectedIdY = Math.ceil(y / this.tileSize)
+    const selectedIdX = Math.ceil(x / this.tileSize)
     const nm = newMap[selectedIdY - 1][selectedIdX - 1];
+    if(nm === 0 || nm === 6 || nm === 7){
+      return;
+
+    }
     const newSelected = nm.toString().includes('s')
       ? nm.substring(0, nm.length - 2)
       : `${nm}-s`
     newMap[selectedIdY-1][selectedIdX-1] = newSelected
+    const posY = this.row*100 +selectedIdY ;
+    const posX =this.column * 100 +selectedIdX;
     this.map = newMap
+    this.handleOpen(posX, posY)
     this.#drawMap(ctx)
-    const posY = this.row*100 +(selectedIdY);
-    const posX =this.column * 100 +(selectedIdX);
+    
     
   }
  
@@ -3612,7 +3619,7 @@ export default class TileMap {
     }
     canvas.addEventListener('click', getP, true)
     localStorage.setItem('row',this.row)
-    localStorage.setItem('col',this.col)
+    localStorage.setItem('col',this.column)
     this.drawed = true
   }
 }
