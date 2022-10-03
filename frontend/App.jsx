@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './assets/css/global.css'
 import Maps from './pages/Maps/IndexMaps'
 import Maps2 from './pages/Maps/IndexMaps2'
+import './assets/css/app.css'
 
 import Layout from './pages/Layout'
 // import Marketplace from './pages/MarketPlace/IndexMarketplace'

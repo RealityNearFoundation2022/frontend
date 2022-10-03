@@ -502,7 +502,6 @@ export default function IndexMaps(props) {
     console.log('hexags', Object.keys(hexags), (hex) => ({
       value: hexags[hex],
     }))
-    debugger
     const geojson = geojson2h3.h3SetToFeatureCollection(
       Object.keys(hexags),
       (hex) => ({
@@ -1071,7 +1070,6 @@ export default function IndexMaps(props) {
       obj[data[key]] = Math.random()
       return obj
     }, {})
-    debugger
     return newData
   }
 

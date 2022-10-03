@@ -35,7 +35,7 @@ export default function ResetPasswordIndex() {
   }
 
   return (
-    <div className="top">
+    <div className="top ">
       <div className="d-flex align-items-center w-100 reset-psw">
         <span className={`${theme.txt} text-center text-uppercase fs-7`}>
           Restablecer contraseña
@@ -43,10 +43,10 @@ export default function ResetPasswordIndex() {
       </div>
       <form
         onSubmit={handleSubmit}
-        className="d-flex flex-column w-50 justify-content-center align-items-center"
+        className="d-flex flex-column w-100 justify-content-center align-items-center"
         id="contactResponsive"
       >
-        <label className="w-60 me-15porcent">
+        <label className="w-30">
           <input
             type="text"
             className="form-control"
@@ -56,7 +56,7 @@ export default function ResetPasswordIndex() {
           />
         </label>
         <p className="error-label">{error}</p>
-        <label className="w-60 me-15porcent">
+        <label className="w-30 ">
           <input
             type="text"
             className="form-control"
