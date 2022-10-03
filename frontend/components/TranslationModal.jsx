@@ -15,14 +15,17 @@ export default function TranslationModal() {
   const { t, i18n } = useTranslation()
   const currentLng = languages.find(({ key }) => key === i18n.language)
   const [language, setLanguage] = React.useState(currentLng)
+  const [closeModal, setClose] = React.useState(false)
   const handleChangeLanguage = (event) => {
     const lng = event.target.value
     const newLanguage = languages.find(({ key }) => key === lng)
     setLanguage(newLanguage)
     i18n.changeLanguage(lng, (err) => err)
+    setClose(true)
   }
   return (
     <Modal
+      close={closeModal}
       button={
         <IconButton className="d-flex flex-column w-100">
           <LanguageIcon style={{ color: '#33cc99', 'font-size': '30px' }} />

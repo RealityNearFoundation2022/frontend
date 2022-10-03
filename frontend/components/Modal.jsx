@@ -1,3 +1,7 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 // import * as React from 'react'
 // import { createPortal } from 'react-dom'
 // import { CloseIcon } from './Close'
@@ -79,15 +83,11 @@ export default function BasicModal({
     }
     setOpen(false)
   }
-  /* useEffect(() => {
-    console.log(close)
+  useEffect(() => {
     if (close === true) {
-      setOpen(false)
+      handleClose()
     }
-    if (openModal === true) {
-      setOpen(true)
-    }
-  }, [close, openModal]) */
+  }, [close])
   return (
     <div>
       <div onClick={handleOpen}>{button}</div>

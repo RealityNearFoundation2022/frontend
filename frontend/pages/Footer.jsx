@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import logoFooter from '../assets/img/random/logoFooter.png'
@@ -15,11 +16,17 @@ function Footer() {
         </div>
         <div className="">
           <ul>
-            <li className={theme.txt}>Home</li>
+            <Link to="/">
+              <li className={theme.txt}>Home</li>
+            </Link>
             <li className={theme.txt}>MarketPlace</li>
             <li className={theme.txt}>Maps</li>
-            <li className={theme.txt}>Metaverse</li>
-            <li className={theme.txt}>Nosotros</li>
+            <Link to="/metaverso">
+              <li className={theme.txt}>Metaverse</li>
+            </Link>
+            <Link to="/about">
+              <li className={theme.txt}>Nosotros</li>
+            </Link>
           </ul>
         </div>
       </div>
