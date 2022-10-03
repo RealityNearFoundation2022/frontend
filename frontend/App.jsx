@@ -26,8 +26,8 @@ import DashboardNotice from './routes/DashboardNotice'
 import IndexCentreland from './pages/Centreland/IndexCentreland'
 // import Realities from './pages/Realities'
 import Conditions from './pages/Conditions'
-import Realities from './pages/Realities/Realities'
-
+// import Realities from './pages/Realities/Realities'
+import ResetPassword from './pages/ResetPassword/ResetPassword'
 export default function App() {
   const [theme, setTheme] = useState({ ...themes.light })
 
@@ -62,8 +62,9 @@ export default function App() {
               element={<CardSection />}
             />
             <Route path="/notices/*" element={<DashboardNotice />} />
-            <Route path="/realities" element={<Realities />} />
+            {/* <Route path="/realities" element={<Realities />} /> */}
             <Route path="/terminos-condiciones" element={<Conditions />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
           </Routes>
           <Footer />
         </NewMapContextProvider>

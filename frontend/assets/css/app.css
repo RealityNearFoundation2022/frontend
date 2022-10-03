@@ -583,3 +583,17 @@ a {
     /* width: 100vw; */
     
 }
+
+.reset-psw{
+    height: 150px;
+    width: 100vw;
+    background-color: #C1C1C1;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.error-label{
+    font-size: 10px;
+    color: #ff424d;
+}
