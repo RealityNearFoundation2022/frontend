@@ -11863,6 +11863,12 @@ html {
     font-size: 1.5rem;
   }
 }
+
+@media (max-width: 992px) {
+  #mainNav .navbar-nav li.nav-item a.nav-link-text-light, a.nav-link-text-light{
+    color: #fff !important;
+  }
+}
 .near .near-item {
   min-width: 15rem;/*yumari*/
   cursor: pointer;
@@ -11909,6 +11915,10 @@ html {
     font-size: 3rem;
     line-height: 2.5rem;
   }
+}
+
+.react-slideshow-container .default-nav {
+  display: none !important;
 }
 
 .footer {

@@ -103,7 +103,7 @@ function Layout() {
       </div>
       <button
         type="button"
-        className="btn-primary rounded w-10"
+        className="btn-primary rounded"
         onClick={currentUser ? logout : login}
       >
         {currentUser ? 'Log out' : 'Log In'}
@@ -126,7 +126,7 @@ function Layout() {
         data-bs-toggle="collapse"
         data-bs-target="#navbarResponsive"
       >
-        <span className="navbar-toggler-icon"></span>
+        <span className=""></span>
         {/* Menu
           <i className="fas fa-bars"></i> */}
       </button>

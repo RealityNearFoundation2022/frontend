@@ -3,33 +3,28 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 // import Slider from 'react-slick'
 // import ThemeContext from '../../../utils/useContextTheme'
+// import axios from 'axios'
 import HeaderSections from '../../HeaderSections'
+import { api } from '../rutaApiNotices'
 // import CardNotices from '../CardNotices'
 import CarouselNovelty from './CarouselNovelty'
-import imgFake from '../../../assets/img/random/cabin.png'
+// import imgFake from '../../../assets/img/random/cabin.png'
 // import { dataNotices } from '../dataNotices'
 
 export default function NoveltySection() {
   const { idNovelties } = useParams()
   const [dataItem, setDataItem] = useState({})
+  const [articles, setArticles] = useState([])
   // const { theme } = useContext(ThemeContext)
 
   const apiGet = () => {
-    fetch(`http://localhost:3000/news/${idNovelties}`)
+    fetch(`${api}/api/v1/news/${idNovelties}`)
       .then(
-        (response) => {
-          const resp = response.json()
-          console.log(resp)
-          return resp
-        }, // setCarousel([...response.json()])
+        (response) => response.json(), // setCarousel([...response.json()])
       )
-      .then((data) => {
-        const arr = []
-        for (const item of data.articles) {
-          arr.push({ ...item })
-          console.log(JSON.parse(item))
-        }
-        setDataItem({ ...data, articles: arr })
+      .then((obj) => {
+        setArticles([...obj.articles])
+        setDataItem({ ...obj })
       })
   }
 
@@ -38,7 +33,7 @@ export default function NoveltySection() {
   }, [])
 
   return (
-    <div className="mt-5">
+    <div className="">
       <HeaderSections
         titleSection={dataItem.title}
         descriptionSection={dataItem.description}
@@ -46,14 +41,18 @@ export default function NoveltySection() {
       />
       <div className="m-5 p-5 w-90 d-flex flex-wrap">
         <h3 className="w-100">{dataItem.title}</h3>
-        {dataItem.articles.map((elmnt, index) =>
+        {articles.map((elmnt, index) =>
           index % 2 === 0 ? (
             <div className="w-100 d-flex">
               <div className="w-60">
                 <p>{elmnt.data}</p>
               </div>
               <div className="w-40">
-                <img src={imgFake} alt="" className="w-100" />
+                <img
+                  src={`${api}${elmnt.image}`}
+                  alt=""
+                  className="w-100 rounded"
+                />
               </div>
             </div>
           ) : (
@@ -62,7 +61,11 @@ export default function NoveltySection() {
                 <p>{elmnt.data}</p>
               </div>
               <div className="w-40">
-                <img src={imgFake} alt="" className="w-100" />
+                <img
+                  src={`${api}${elmnt.image}`}
+                  alt=""
+                  className="w-100 rounded"
+                />
               </div>
             </div>
           ),

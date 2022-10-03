@@ -42,6 +42,7 @@
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.5",
     "@turf/square-grid": "^6.5.0",
+    "axios": "^0.27.2",
     "geojson2h3": "^1.2.0",
     "h3-js": "^3.7.2",
     "i18next": "^21.8.10",
@@ -58,6 +59,7 @@
     "react-i18next": "^11.17.2",
     "react-router-dom": "^6.3.0",
     "react-slick": "^0.29.0",
+    "react-slideshow-image": "^4.0.5",
     "regenerator-runtime": "~0.13.9",
     "slick-carousel": "^1.8.1"
   },

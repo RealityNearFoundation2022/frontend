@@ -38,10 +38,10 @@ function Metaverso() {
   }
 
   return (
-    <div className="w-100 mt-5">
+    <div className="w-100">
       {/* <!-- Masthead--> */}
       <HeaderSections
-        titleSection="Metaverse"
+        titleSection="Metaverso"
         descriptionSection="Conoce más del multimetaverso Reality Near"
         bgHeader="bg-header-metaverse"
       />
@@ -57,7 +57,9 @@ function Metaverso() {
             id="metaverseResponsive"
           >
             <div className="w-50" id="metaverseResponsiveTxt">
-              <h2 className="text-primary mb-4">NURUK: CIUDAD DE REALIDADES</h2>
+              <h2 className="text-primary mb-4">
+                {t('NURUK: CIUDAD DE REALIDADES')}
+              </h2>
               <p className={`${theme.txt}`}>
                 {t(
                   'Nuruk es la principal y primera ciudad del multimetaverso 3D en Reality Near. El nombre se basa en la unión de dos palabras: new (nuevo en inglés) y uruk (la primera ciudad sobre la faz de la Tierra).',
@@ -73,7 +75,7 @@ function Metaverso() {
                   type="button"
                   className="btn btn-primary btn-xl disabled w-50"
                 >
-                  Dar un Vistazo
+                  {t('Dar un vistazo')}
                 </button>
               </center>
             </div>
@@ -131,21 +133,19 @@ function Metaverso() {
             <div className="w-50 px-2" id="metaverseResponsiveTxt">
               <h2 className="text-primary">REALITY APP</h2>
               <p className={`${theme.txt}`}>
-                Reality Near App ofrece una nueva experiencia fusionando
-                tecnología y realidad. Esta te permitirá ser parte de eventos,
-                ver publicidad, completar misiones, ver avatares y muchas cosas
-                más en la vida real usando sólo la cámara de tu teléfono. Dicho
-                contenido te permitirá interactuar con la vida real a través de
-                tu dispositivo móvil, generando una experiencia totalmente
-                inmersiva y valiosa. <br />
-                <br /> Todo contenido creado podrás visualizarlo en las tierras
-                de los demás usuarios y, si posees una, podrás crear y compartir
-                tu creación con la comunidad Reality Near. <br />
-                <br /> En la misma aplicación contarás con una wallet, donde
-                administrarás tus Realities y NFTs, así como tus transacciones
-                pasadas. También podrás añadir amigos fácilmente; enviarles y
-                recibir mensajes; y, además, ver si están conectados o cerca
-                tuyo.
+                {t(
+                  'Reality Near App ofrece una nueva experiencia fusionando tecnología y realidad. Esta te permitirá ser parte de eventos, ver publicidad, completar misiones, ver avatares y muchas cosas más en la vida real usando sólo la cámara de tu teléfono. Dicho contenido te permitirá interactuar con la vida real a través de tu dispositivo móvil, generando una experiencia totalmente inmersiva y valiosa.',
+                )}
+                <br />
+                <br />
+                {t(
+                  'Todo contenido creado podrás visualizarlo en las tierras de los demás usuarios y, si posees una, podrás crear y compartir tu creación con la comunidad Reality Near.',
+                )}
+                <br />
+                <br />
+                {t(
+                  'En la misma aplicación contarás con una wallet, donde administrarás tus Realities y NFTs, así como tus transacciones pasadas. También podrás añadir amigos fácilmente; enviarles y recibir mensajes; y, además, ver si están conectados o cerca tuyo.',
+                )}
               </p>
               <div className="d-flex justify-content-between w-100">
                 <img src={appleStore} alt="" className="my-3 w-50" />

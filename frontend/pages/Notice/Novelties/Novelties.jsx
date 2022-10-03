@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 // import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 import HeaderSections from '../../HeaderSections'
+import { api } from '../rutaApiNotices'
 // import CardNotices from '../CardNotices'
 // import { dataNotices } from '../dataNotices'
 import CarouselNovelty from './CarouselNovelty'
-import imgFake from '../../../assets/img/random/cabin.png'
+// import imgFake from '../../../assets/img/random/cabin.png'
 
 export default function Novelties() {
   const [carousel, setCarousel] = useState([])
@@ -22,7 +23,7 @@ export default function Novelties() {
   }
 
   const apiGet = () => {
-    fetch('http://localhost:3000/news')
+    fetch(`${api}/api/v1/news`)
       .then(
         (response) => response.json(),
         // setCarousel([...response.json()])
@@ -52,9 +53,9 @@ export default function Novelties() {
               {carousel.map((element) => (
                 <div className="rounded position-relative">
                   <img
-                    src={imgFake}
+                    src={`${api}${element.image}`}
                     alt=""
-                    className="w-100 obj-fit-cover"
+                    className="w-100 obj-fit-cover rounded"
                     width="300"
                     height="450"
                   />

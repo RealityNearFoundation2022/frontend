@@ -1,31 +1,16 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-// import Slider from 'react-slick'
 import { CaretRight } from 'phosphor-react'
 import ThemeContext from '../../utils/useContextTheme'
 import HeaderSections from '../HeaderSections'
-// import { dataNotices } from './dataNotices'
-// import CardNotices from './CardNotices'
 import CarouselNovelty from './Novelties/CarouselNovelty'
 import CarouselEvents from './Events/CarouselEvents'
 
 export default function Notices() {
   const { theme } = useContext(ThemeContext)
-  // const notices = { ...dataNotices }
-  /* const settings = {
-    className: 'center',
-    infinite: true,
-    centerPadding: '60px',
-    slidesToShow: 3,
-    swipeToSlide: true,
-    afterChange(index) {
-      console.log(
-        `Slider Changed to: ${index + 1}, background: #222; color: #bada55`,
-      )
-    },
-  } */
+
   return (
-    <div className={`${theme.bg} mt-5`}>
+    <div className={`${theme.bg}`}>
       <HeaderSections
         titleSection="Noticias"
         descriptionSection="Entérate de las últimas novedades en Reality Near"

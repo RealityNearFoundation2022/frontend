@@ -1,7 +1,9 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 import CardNotices from '../CardNotices'
+import { api } from '../rutaApiNotices'
 
 export default function CarouselEvents() {
   const [carousel, setCarousel] = useState([])
@@ -19,13 +21,13 @@ export default function CarouselEvents() {
   }
 
   const apiGet = () => {
-    fetch('http://localhost:3000/events')
+    fetch(`${api}/api/v1/events`)
       .then(
         (response) => response.json(),
         // setCarousel([...response.json()])
       )
       .then((data) => {
-        console.log(data)
+        // console.log(data)
         setCarousel([...data])
       })
   }
@@ -36,8 +38,11 @@ export default function CarouselEvents() {
   return (
     <Slider {...settings2}>
       {carousel.map((element) => (
-        <Link to={`/notices/events/${element.id}`}>
-          <CardNotices element={element} />
+        <Link to={`/notices/events/${element._id}`}>
+          <CardNotices
+            element={element}
+            medias={element.media.map((obj) => `${api}${obj.path}`)}
+          />
         </Link>
       ))}
     </Slider>

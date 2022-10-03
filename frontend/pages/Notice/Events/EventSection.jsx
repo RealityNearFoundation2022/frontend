@@ -1,17 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { Fade } from 'react-slideshow-image'
 import ThemeContext from '../../../utils/useContextTheme'
 import HeaderSections from '../../HeaderSections'
 import imgFake from '../../../assets/img/random/cabin.png'
 import CarouselEvents from './CarouselEvents'
+import 'react-slideshow-image/dist/styles.css'
+import { api } from '../rutaApiNotices'
 
 export default function EventSection() {
   const { idEvents } = useParams()
   const [dataItem, setDataItem] = useState({})
+  // const [imgsData, setImages] = useState([])
   const { theme } = useContext(ThemeContext)
 
   const apiGet = () => {
-    fetch(`http://localhost:3000/events/${idEvents}`)
+    fetch(`${api}/api/v1/events/${idEvents}`)
       .then(
         (response) => response.json(),
         // setCarousel([...response.json()])
@@ -19,6 +23,7 @@ export default function EventSection() {
       .then((data) => {
         console.log(data)
         setDataItem({ ...data })
+        // setImages([...data.media]) ----no esta trayendo el endeponit por id las medias
       })
   }
 
@@ -27,7 +32,7 @@ export default function EventSection() {
   }, [])
 
   return (
-    <div className={`${theme.bg} mt-5`}>
+    <div className={`${theme.bg}`}>
       <HeaderSections
         titleSection={dataItem.title}
         descriptionSection={dataItem.description}
@@ -44,7 +49,22 @@ export default function EventSection() {
           </center>
         </div>
         <div className="w-40">
-          <img src={imgFake} alt="" className="w-100 rounded" />
+          <div className="slide-container w-100 h-100 rounded">
+            <Fade>
+              {/* imgsData.map((eachImg) => ( */}
+              {[1, 2].map((eachImg) => (
+                <div className="each-fade h-100 w-100">
+                  <img
+                    src={imgFake}
+                    /* src={api+eachImg.path} */
+                    className="bg-img-size-cover w-100 rounded"
+                    style={{ height: '100%' }}
+                    alt=""
+                  />
+                </div>
+              ))}
+            </Fade>
+          </div>
         </div>
       </div>
       <div className="px-7-5porcent w-100">

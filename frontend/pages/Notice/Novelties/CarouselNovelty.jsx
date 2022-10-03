@@ -1,7 +1,9 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 import CardNotices from '../CardNotices'
+import { api } from '../rutaApiNotices'
 
 export default function CarouselNovelty() {
   const [carousel, setCarousel] = useState([])
@@ -19,11 +21,8 @@ export default function CarouselNovelty() {
   }
 
   const apiGet = () => {
-    fetch('http://localhost:3000/news')
-      .then(
-        (response) => response.json(),
-        // setCarousel([...response.json()])
-      )
+    fetch(`${api}/api/v1/news`)
+      .then((response) => response.json())
       .then((data) => {
         console.log(data)
         setCarousel([...data])
@@ -36,8 +35,8 @@ export default function CarouselNovelty() {
   return (
     <Slider {...settings2}>
       {carousel.map((element) => (
-        <Link to={`/notices/novelties/${element.id}`}>
-          <CardNotices element={element} />
+        <Link to={`/notices/novelties/${element._id}`}>
+          <CardNotices element={element} medias={[`${api}${element.image}`]} />
         </Link>
       ))}
     </Slider>

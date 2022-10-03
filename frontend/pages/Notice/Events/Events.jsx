@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick'
 import HeaderSections from '../../HeaderSections'
-import imgFake from '../../../assets/img/random/cabin.png'
+import { api } from '../rutaApiNotices'
 import CarouselEvents from './CarouselEvents'
 
 export default function Events() {
@@ -19,7 +19,7 @@ export default function Events() {
   }
 
   const apiGet = () => {
-    fetch('http://localhost:3000/events')
+    fetch(`${api}/api/v1/events`)
       .then(
         (response) => response.json(),
         // setCarousel([...response.json()])
@@ -34,7 +34,7 @@ export default function Events() {
     apiGet()
   }, [])
   return (
-    <div className="mt-5">
+    <div className="">
       <HeaderSections
         titleSection="Eventos"
         descriptionSection="Dale un vistazo a los eventos del momento"
@@ -47,9 +47,9 @@ export default function Events() {
               {carousel.map((element) => (
                 <div className="rounded position-relative" key={element.id}>
                   <img
-                    src={imgFake}
+                    src={`${api}${element.media[0].path}`}
                     alt=""
-                    className="w-100 obj-fit-cover"
+                    className="w-100 obj-fit-cover rounded"
                     width="300"
                     height="450"
                   />
