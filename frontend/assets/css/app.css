@@ -349,14 +349,16 @@ ul {
 .btn {
     display: inline-block;
     background-color: #33cc99;
-    border-radius: 9999px;
+    border-radius: 50%;
     color: #fff;
+    height: 50px;
+    width: 50px !important;
     font-weight: 500;
     border: 2px solid transparent;
     line-height: 1.9;
-    padding: .46875rem 1rem;
-    font-size: .875rem!important;
+    font-size: 1;
     cursor: pointer;
+
 }
 
 
@@ -586,28 +588,30 @@ a {
   }
   .ctrl-btn{
     cursor: pointer;
-    top: 50%;
     width: auto;
     position: absolute;
   }
   
   .ctrl-btn-next{
+    top: 380px;
     right: 1rem;
   }
   .ctrl-btn-back{
+    top: 380px;
     left: 1rem;
   }
   .ctrl-btn-top{
-    position: relative;
-    bottom:  495px;
     left: 47%;
+    position: absolute;
+    top: 110px;
   }
   .ctrl-btn-bottom{
-    position: absolute;
-    bottom:  270px;
     left: 47%;
+    position: relative;
+    bottom: 60px;
   }
   .img-mockup{
+    /* border-radius: 100px; */
     width: var(--sizeMockup);
     height: var(--sizeMockup);
   }

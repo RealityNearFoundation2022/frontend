@@ -1,7 +1,15 @@
+/* eslint-disable import/no-named-as-default-member */
 import React, { useRef, useEffect, useState } from 'react'
-// eslint-disable-next-line import/no-named-as-default-member
+import NavigateNextIcon from '@mui/icons-material/NavigateNext'
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import Modal from '@mui/material/Modal'
+import Box from '@mui/material/Box'
+
 import TileMap from '../../utils/tilemap'
 import MockUp from '../../assets/img/MapaMockUp.jpg'
+
 export default function IndexCentreland() {
   const tileSize = 15
   const [column, setColumn] = useState(0)
@@ -11,12 +19,35 @@ export default function IndexCentreland() {
   const [left, setLeft] = useState(false)
   const [rigth, setRigth] = useState(false)
   const slide = useRef(null)
-  const maxColumnsRows = 4
+  const [open, setOpen] = useState(false)
+  const [posX, setPosX] = useState(0)
+  const [posY, setPosY] = useState(0)
 
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
+  }
+  const handleOpen = (posx, posy) => {
+    setPosX(posx)
+    setPosY(posy)
+    setOpen(true)
+  }
+  const handleClose = () => {
+    setOpen(false)
+  }
   useEffect(() => {
     getCentreland(row, column)
   }, [column, row])
-
+  const maxColumnsRows = 4
   useEffect(() => {
     slide.current.addEventListener('scroll', (event) => {
       const {
@@ -38,8 +69,8 @@ export default function IndexCentreland() {
   const getCentreland = (_row, _column) => {
     const canvas = document.getElementById(`centreland${_row}-${_column}`)
     const ctx = canvas.getContext('2d')
-
-    const tileMap = new TileMap(tileSize, _row, _column)
+    const tileMap = new TileMap(tileSize, _row, _column, handleOpen)
+    tileMap.clearCanvas(canvas, ctx)
     tileMap.draw(canvas, ctx)
   }
   return (
@@ -57,7 +88,7 @@ export default function IndexCentreland() {
           type="button"
           onClick={() => setRow((r) => r - 1)}
         >
-          L
+          <ArrowBackIosNewIcon />
         </button>
       )}
       {rigth && (
@@ -66,7 +97,7 @@ export default function IndexCentreland() {
           type="button"
           onClick={() => setRow((r) => r + 1)}
         >
-          R
+          <NavigateNextIcon />
         </button>
       )}
       {top && (
@@ -75,7 +106,7 @@ export default function IndexCentreland() {
           type="button"
           onClick={() => setColumn((r) => r - 1)}
         >
-          T
+          <KeyboardArrowUpIcon />
         </button>
       )}
       {bottom && (
@@ -84,13 +115,26 @@ export default function IndexCentreland() {
           type="button"
           onClick={() => setColumn((r) => r + 1)}
         >
-          B
+          <KeyboardArrowDownIcon />
         </button>
       )}
       <div>
         <img className="img-mockup" src={MockUp} alt="..." />
         <div className={`boxImg boxImg-${row}${column}`}></div>
       </div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={{ ...style, width: 200 }}>
+          <h2 id="child-modal-title">Land selected</h2>
+          <p id="child-modal-description">
+            Usted selecciono X: {posX} Y : {posY}
+          </p>
+        </Box>
+      </Modal>
     </div>
   )
 }
