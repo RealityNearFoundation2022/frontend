@@ -8,7 +8,7 @@ export default function Realities() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
   return (
-    <section className={`${theme.bg} p-7-5vh text-white mb-0 mt-5`} id="">
+    <section className={`${theme.bg} p-7-5vh text-white mb-0`} id="">
       <div
         className="d-flex w-100 px-7-5porcent justify-content-between"
         id="realities"
