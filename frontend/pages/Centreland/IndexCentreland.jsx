@@ -1,49 +1,140 @@
-import React, { useEffect } from 'react'
+/* eslint-disable import/no-named-as-default-member */
+import React, { useRef, useEffect, useState } from 'react'
+import NavigateNextIcon from '@mui/icons-material/NavigateNext'
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import Modal from '@mui/material/Modal'
+import Box from '@mui/material/Box'
+
 import TileMap from '../../utils/tilemap'
+import MockUp from '../../assets/img/MapaMockUp.jpg'
+
 export default function IndexCentreland() {
   const tileSize = 15
+  const [column, setColumn] = useState(0)
+  const [row, setRow] = useState(0)
+  const [top, setTop] = useState(false)
+  const [bottom, setBottom] = useState(false)
+  const [left, setLeft] = useState(false)
+  const [rigth, setRigth] = useState(false)
+  const slide = useRef(null)
+  const [open, setOpen] = useState(false)
+  const [posX, setPosX] = useState(0)
+  const [posY, setPosY] = useState(0)
 
-  // let canvas
-  // let ctx
-  // const tileSize = 5
-  // const tileMap = new TileMap(tileSize)
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
+  }
+  const handleOpen = (posx, posy) => {
+    setPosX(posx)
+    setPosY(posy)
+    setOpen(true)
+  }
+  const handleClose = () => {
+    setOpen(false)
+  }
   useEffect(() => {
-    // const canvas = document.getElementById('centreland')
-    // const ctx = canvas.getContext('2d')
-
-    // const tileMap = new TileMap(tileSize)
-    // console.log(canvas)
-    // tileMap.draw(canvas, ctx)
-    ;[0, 1, 2].forEach((column) => {
-      ;[0, 1, 2].forEach((row) => {
-        getCentreland(row, column)
-      })
+    getCentreland(row, column)
+  }, [column, row])
+  const maxColumnsRows = 4
+  useEffect(() => {
+    slide.current.addEventListener('scroll', (event) => {
+      const {
+        scrollHeight,
+        scrollWidth,
+        scrollTop,
+        scrollLeft,
+        clientHeight,
+        clientWidth,
+      } = event.target
+      setBottom(
+        scrollHeight - scrollTop === clientHeight && column < maxColumnsRows,
+      )
+      setTop(scrollTop === 0 && column > 0)
+      setLeft(scrollLeft === 0 && row > 0)
+      setRigth(scrollWidth - scrollLeft === clientWidth && row < maxColumnsRows)
     })
-  }, [])
-  // const gameLoop = () => {
-  //   tileMap.draw(canvas, ctx)
-  // }
-  const getCentreland = (row, column) => {
-    const canvas = document.getElementById(`centreland${row}-${column}`)
+  })
+  const getCentreland = (_row, _column) => {
+    const canvas = document.getElementById(`centreland${_row}-${_column}`)
     const ctx = canvas.getContext('2d')
-
-    const tileMap = new TileMap(tileSize, row, column)
+    const tileMap = new TileMap(tileSize, _row, _column, handleOpen)
+    tileMap.clearCanvas(canvas, ctx)
     tileMap.draw(canvas, ctx)
   }
   return (
-    <div className="top">
-      <h1>centreland</h1>
-      {[0, 1, 2, 3, 4].map((column) => (
-        <div className="d-flex">
-          {[0, 1, 2, 3, 4].map((row) => (
-            <canvas
-              id={`centreland${row}-${column}`}
-              type="module"
-              className="centreland"
-            ></canvas>
-          ))}
-        </div>
-      ))}
+    <div>
+      <div className="slide" ref={slide}>
+        <canvas
+          id={`centreland${row}-${column}`}
+          type="module"
+          className="centreland"
+        ></canvas>
+      </div>
+      {left && (
+        <button
+          className="btn ctrl-btn ctrl-btn-back"
+          type="button"
+          onClick={() => setRow((r) => r - 1)}
+        >
+          <ArrowBackIosNewIcon />
+        </button>
+      )}
+      {rigth && (
+        <button
+          className="btn ctrl-btn ctrl-btn-next"
+          type="button"
+          onClick={() => setRow((r) => r + 1)}
+        >
+          <NavigateNextIcon />
+        </button>
+      )}
+      {top && (
+        <button
+          className="btn ctrl-btn-top"
+          type="button"
+          onClick={() => setColumn((r) => r - 1)}
+        >
+          <KeyboardArrowUpIcon />
+        </button>
+      )}
+      {bottom && (
+        <button
+          className="btn ctrl-btn-bottom"
+          type="button"
+          onClick={() => setColumn((r) => r + 1)}
+        >
+          <KeyboardArrowDownIcon />
+        </button>
+      )}
+      <div>
+        <img className="img-mockup" src={MockUp} alt="..." />
+        <div className={`boxImg boxImg-${row}${column}`}></div>
+      </div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={{ ...style, width: 200 }}>
+          <h2 id="child-modal-title">Land selected</h2>
+          <p id="child-modal-description">
+            Usted selecciono X: {posX} Y : {posY}
+          </p>
+        </Box>
+      </Modal>
     </div>
   )
 }
