@@ -2,15 +2,13 @@ import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import ThemeContext from '../../utils/useContextTheme'
 import logos from '../../assets/img/reality/Token Reality 1.png'
-// import AddRealityModal from './AddRealityModal'
 import RealityModal from '../../components/RealityModal'
-// import AddRealityModal from '../../components/AddRealityModal'
 
 export default function Realities() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
   return (
-    <section className={`${theme.bg} page-section text-white mb-0 mt-5`} id="">
+    <section className={`${theme.bg} p-7-5vh text-white mb-0 mt-5`} id="">
       <div
         className="d-flex w-100 px-7-5porcent justify-content-between"
         id="realities"
@@ -42,38 +40,9 @@ export default function Realities() {
           <img src={logos} alt="" className="w-80 mx-5" />
           <center>
             <RealityModal />
-            {/* <button
-              className="btn btn-primary btn-xl disabled w-75"
-              id="submitButton"
-              type="button"
-            >
-              ADQUIRIR REALITIES
-            </button> */}
           </center>
         </div>
       </div>
-
-      {/* <div className="d-flex flex-wrap align-items-end justify-content-center">
-        <div className="p-4">
-          <button
-            className="btn btn-primary btn-xl disabled"
-            id="submitButton"
-            type="submit"
-          >
-            ADQUIRIR REALITIES
-          </button>
-        </div>
-        <div className="p-4 d-flex flex-column align-items-center">
-          <p className="lead">¿No tienes una wallet?</p>
-          <button
-            className="btn btn-secondary btn-xl disabled"
-            id="submitButton"
-            type="submit"
-          >
-            CREA TU WALLET NEAR
-          </button>
-        </div>
-      </div> */}
     </section>
   )
 }

@@ -53,6 +53,7 @@
   --bs-body-line-height: 1.5;
   --bs-body-color: #212529;
   --bs-body-bg: #fff;
+  --sizeMockup: 200px;
 }
 
 *,
@@ -6750,7 +6751,7 @@ textarea.form-control-lg {
 }
 
 .fixed-top {
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   left: 0;
 }
@@ -7940,6 +7941,10 @@ textarea.form-control-lg {
 
 .ps-5 {
   padding-left: 3rem !important;
+}
+
+.p-7-5vh{
+  padding: 7.5vh 0;
 }
 
 .font-monospace {
