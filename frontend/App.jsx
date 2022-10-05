@@ -6,7 +6,6 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './assets/css/global.css'
 import Maps from './pages/Maps/IndexMaps'
-import Maps2 from './pages/Maps/IndexMaps2'
 import './assets/css/app.css'
 
 import Layout from './pages/Layout'
@@ -25,10 +24,8 @@ import { DashboardMarketPlace } from './routes/DashboardMarketPlace'
 import { CardSection } from './pages/MarketPlace/CardSection'
 import DashboardNotice from './routes/DashboardNotice'
 import IndexCentreland from './pages/Centreland/IndexCentreland'
-// import Realities from './pages/Realities'
+import Realities from './pages/Realities/IndexRealities'
 import Conditions from './pages/Conditions'
-import Realities from './pages/Realities/Realities'
-
 export default function App() {
   const [theme, setTheme] = useState({ ...themes.light })
 
@@ -47,11 +44,9 @@ export default function App() {
           <Layout />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/maps2" element={<Maps2 />} />
+            <Route path="/maps2" element={<Maps />} />
 
             <Route path="/marketplace/*" element={<DashboardMarketPlace />} />
-            <Route path="/maps" element={<Maps />} />
-
             <Route path="/marketplace/me" element={<NftMe />} />
             <Route path="/marketplace/sell" element={<NftSell />} />
             <Route path="/about" element={<About />} />
