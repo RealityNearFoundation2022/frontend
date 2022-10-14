@@ -28,9 +28,9 @@ export default function TranslationModal() {
       close={closeModal}
       button={
         <IconButton className="d-flex flex-column w-100">
-          <LanguageIcon style={{ color: '#33cc99', 'font-size': '30px' }} />
+          <LanguageIcon style={{ color: '#33cc99', fontSize: '30px' }} />
 
-          <Typography style={{ color: '#33cc99', 'font-size': '15px' }}>
+          <Typography style={{ color: '#33cc99', fontSize: '15px' }}>
             {language.name}
           </Typography>
         </IconButton>
@@ -43,7 +43,7 @@ export default function TranslationModal() {
           alignItems: 'center',
         }}
       >
-        <LanguageIcon style={{ color: 'green', 'font-size': '50px' }} />
+        <LanguageIcon style={{ color: 'green', fontSize: '50px' }} />
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">
             {t('Buscar idioma')}...
