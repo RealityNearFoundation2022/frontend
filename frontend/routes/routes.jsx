@@ -15,6 +15,7 @@ import IndexCentreland from '../pages/Centreland/IndexCentreland'
 import Conditions from '../pages/Conditions'
 import Realities from '../pages/Realities/IndexRealities'
 import Maps from '../pages/Maps/IndexMaps'
+import ResetPassword from '../pages/ResetPassword/ResetPasswordIndex'
 
 export const routes = [
   {
@@ -68,5 +69,9 @@ export const routes = [
   {
     path: '/terminos-condiciones',
     element: <Conditions />,
+  },
+  {
+    path: '/reset-password',
+    element: <ResetPassword />,
   },
 ]

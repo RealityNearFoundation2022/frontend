@@ -622,8 +622,27 @@ a {
     opacity: 0.6;
     z-index: 5;
     position: relative;
-
   }
+.map-centreland{
+    /* box-shadow: 5px 5px 10px black; */
+    /* width: 100vw; */
+    
+}
+
+.reset-psw{
+    height: 150px;
+    width: 100vw;
+    background-color: #C1C1C1;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.error-label{
+    font-size: 10px;
+    color: #ff424d;
+}
+  
   .boxImg-00{
     bottom:var(--sizeMockup);
   }
