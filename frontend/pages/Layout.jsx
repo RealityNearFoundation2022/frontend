@@ -3,12 +3,7 @@ import React, { useContext, useState } from 'react'
 /* eslint-disable import/no-extraneous-dependencies */
 import { Outlet, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import {
-  login,
-  logout,
-  nft_tokens,
-  // nft_tokens_for_owner,
-} from '../assets/js/near/utils'
+import { login, logout } from '../assets/js/near/utils'
 import logo from '../assets/img/logo.png'
 import buttonTheme from '../assets/img/random/botonTema.png'
 import ThemeContext from '../utils/useContextTheme'
@@ -20,7 +15,7 @@ function Layout() {
   const { theme, handleChangeTheme } = useContext(ThemeContext)
 
   const currentUser = window.accountId || ''
-  const routes = [
+  const links = [
     {
       label: 'Marketplace',
       link: '/marketplace',
@@ -47,20 +42,9 @@ function Layout() {
     },
   ]
 
-  console.log(nft_tokens('0', 10), nft_tokens('10', 20))
   const changeVisibilityNav = () => {
-    if (window.scrollY >= 600) {
-      setNavHidden(true)
-    } else {
-      setNavHidden(false)
-      /* let scrollPos = 0
-      if (document.body.getBoundingClientRect().top > scrollPos) {
-        setNavHidden(false) // ARRIBA
-      } else {
-        setNavHidden(true)
-        scrollPos = document.body.getBoundingClientRect().top
-      } // ABAJO */
-    }
+    const isNavHidden = window.scrollY >= 600
+    setNavHidden(isNavHidden)
   }
 
   window.addEventListener('scroll', changeVisibilityNav)
@@ -72,7 +56,6 @@ function Layout() {
       } ${navHidden && 'visual-hidden'} fixed-top`}
       id="mainNav"
     >
-      {/* <div className="d-flex w-100 px-5"> */}
       <Link
         className={`navbar-brand w-10 d-flex justify-content-center ${theme.txt}`}
         to="/"
@@ -81,7 +64,7 @@ function Layout() {
       </Link>
       <div className="collapse navbar-collapse" id="navbarResponsive">
         <ul className="navbar-nav justify-content-between w-95">
-          {routes.map(({ label, link }) => (
+          {links.map(({ label, link }) => (
             <li className="nav-item">
               <Link
                 className={`fw-light rounded nav-link${theme.txt}`}
@@ -91,19 +74,11 @@ function Layout() {
               </Link>
             </li>
           ))}
-
-          {/* <button
-                type="button"
-                className="btn btn-warning btn-xl rounded"
-                onClick={currentUser ? logout : login}
-              >
-                
-              </button> */}
         </ul>
       </div>
       <button
         type="button"
-        className="btn-primary rounded w-10"
+        className="btn-primary rounded"
         onClick={currentUser ? logout : login}
       >
         {currentUser ? 'Log out' : 'Log In'}
@@ -126,12 +101,9 @@ function Layout() {
         data-bs-toggle="collapse"
         data-bs-target="#navbarResponsive"
       >
-        <span className="navbar-toggler-icon"></span>
-        {/* Menu
-          <i className="fas fa-bars"></i> */}
+        <span className=""></span>
       </button>
       <Outlet />
-      {/* </div> */}
     </nav>
   )
 }

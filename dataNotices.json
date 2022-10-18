@@ -1,0 +1,68 @@
+{
+    "events": [
+        {
+            "id": "6317742c27811369d3473565",
+            "title": "Lutta livre expose",
+            "description": "",
+            "planners": "",
+            "date": "",
+            "long_description": "",
+            "url": "nuruk",
+            "location": null,
+            "media": [
+                {
+                    "guid": "20dd623c-b22c-4d33-b09f-94e5dbda82c6",
+                    "type": "image",
+                    "path": "/api/v1/static/events/20d3dca4-3558-4fbc-8c40-5be95423a928.jpg"
+                },
+                {
+                    "guid": "2968b2e0-7c02-485e-af83-411194a22a02",
+                    "type": "image",
+                    "path": "/api/v1/static/events/640c037c-30ff-4953-8811-90423cf6b67b.png"
+                }
+            ]
+        },
+        {
+            "id": "6317a56040763d2ea3fa70ee",
+            "title": "Lutta livre expose",
+            "description": "",
+            "planners": "",
+            "date": "",
+            "long_description": "",
+            "url": "nuruk",
+            "location": {
+                "lat": "333333333",
+                "lng": "111111111",
+                "address": "calle 5 la plata - buenos aires - argentina"
+            },
+            "media": [
+                {
+                    "guid": "b5dde3b4-ff4e-48e2-85f0-a6d30b6a0a1d",
+                    "type": "image",
+                    "path": "/api/v1/static/events/cc9c6270-0582-4162-96d0-50e6780c58b4.png"
+                }
+            ]
+        }
+    ],
+    "news": [
+        {
+            "id": "6317a5ac7afb0f979fb7a9fb",
+            "image": "/api/v1/static/news/54301998-7f43-40ef-9204-c5a6a1cecaee.png",
+            "title": "Nuevos Skins",
+            "description": "Mira los nuevos Skins que tenemos para ti",
+            "planners": "Reality Near Foundation",
+            "date": "",
+            "url": "",
+            "articles": [
+                {
+                    "data": "hola un articulo",
+                    "image": "/api/v1/static/news/8562f098-e7ea-44b5-9c47-4de937cafebb.png"
+                },
+                {
+                    "data": "esto es una noticia",
+                    "image": "/api/v1/static/news/6e8c2b3e-8142-4bcb-8532-07205ae65a22.png"
+                }
+            ]
+        }
+    ]
+}
