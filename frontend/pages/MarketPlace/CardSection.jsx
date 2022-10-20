@@ -17,7 +17,6 @@ export function CardSection() {
   useEffect(() => {
     async function fetchList() {
       const listMenu = await nft_tokens('0', 20)
-      console.log(listMenu)
       const data = listMenu.map((e) => ({
         ...e.metadata,
         author: e.owner_id,

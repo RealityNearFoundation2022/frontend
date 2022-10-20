@@ -6,7 +6,7 @@ import HeaderSections from '../../HeaderSections'
 import imgFake from '../../../assets/img/random/cabin.png'
 import CarouselEvents from './CarouselEvents'
 import 'react-slideshow-image/dist/styles.css'
-import { api } from '../rutaApiNotices'
+import { getData } from '../../../api/methods'
 
 export default function EventSection() {
   const { idEvents } = useParams()
@@ -14,17 +14,9 @@ export default function EventSection() {
   // const [imgsData, setImages] = useState([])
   const { theme } = useContext(ThemeContext)
 
-  const apiGet = () => {
-    fetch(`${api}/api/v1/events/${idEvents}`)
-      .then(
-        (response) => response.json(),
-        // setCarousel([...response.json()])
-      )
-      .then((data) => {
-        console.log(data)
-        setDataItem({ ...data })
-        // setImages([...data.media]) ----no esta trayendo el endeponit por id las medias
-      })
+  const apiGet = async () => {
+    const data = await getData(`events/${idEvents}`)
+    setDataItem({ ...data })
   }
 
   useEffect(() => {
