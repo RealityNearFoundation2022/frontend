@@ -2,21 +2,15 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getData } from '../../../api/methods'
-// import Slider from 'react-slick'
-// import ThemeContext from '../../../utils/useContextTheme'
-// import axios from 'axios'
 import HeaderSections from '../../HeaderSections'
-import { api } from '../rutaApiNotices'
-// import CardNotices from '../CardNotices'
 import CarouselNovelty from './CarouselNovelty'
-// import imgFake from '../../../assets/img/random/cabin.png'
-// import { dataNotices } from '../dataNotices'
+require('dotenv').config()
+const api = process.env.REACT_APP_API
 
 export default function NoveltySection() {
   const { idNovelties } = useParams()
   const [dataItem, setDataItem] = useState({})
   const [articles, setArticles] = useState([])
-  // const { theme } = useContext(ThemeContext)
 
   const apiGet = async () => {
     const obj = await getData(`news/${idNovelties}`)

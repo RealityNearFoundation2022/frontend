@@ -3,10 +3,11 @@ import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick'
 import { getData } from '../../../api/methods'
 import HeaderSections from '../../HeaderSections'
-import { api } from '../rutaApiNotices'
 // import CardNotices from '../CardNotices'
 // import { dataNotices } from '../dataNotices'
 import CarouselNovelty from './CarouselNovelty'
+require('dotenv').config()
+const api = process.env.REACT_APP_API
 // import imgFake from '../../../assets/img/random/cabin.png'
 
 export default function Novelties() {
@@ -24,8 +25,12 @@ export default function Novelties() {
   }
 
   const apiGet = async () => {
+    try {
       const data = await getData('news')
       setCarousel([...data])
+    } finally {
+      console.log('TO DO')
+    }
   }
 
   useEffect(() => {
