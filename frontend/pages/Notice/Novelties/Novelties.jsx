@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 // import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
+import { getData } from '../../../api/methods'
 import HeaderSections from '../../HeaderSections'
 import { api } from '../rutaApiNotices'
 // import CardNotices from '../CardNotices'
@@ -22,16 +23,9 @@ export default function Novelties() {
     cssEase: 'linear',
   }
 
-  const apiGet = () => {
-    fetch(`${api}/api/v1/news`)
-      .then(
-        (response) => response.json(),
-        // setCarousel([...response.json()])
-      )
-      .then((data) => {
-        console.log(data)
-        setCarousel([...data])
-      })
+  const apiGet = async () => {
+      const data = await getData('news')
+      setCarousel([...data])
   }
 
   useEffect(() => {

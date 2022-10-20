@@ -1,9 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick'
+import { getData } from '../../../api/methods'
 import HeaderSections from '../../HeaderSections'
-import { api } from '../rutaApiNotices'
 import CarouselEvents from './CarouselEvents'
+require('dotenv').config()
+const api = process.env.REACT_APP_API
 
 export default function Events() {
   const [carousel, setCarousel] = useState([])
@@ -18,16 +20,9 @@ export default function Events() {
     cssEase: 'linear',
   }
 
-  const apiGet = () => {
-    fetch(`${api}/api/v1/events`)
-      .then(
-        (response) => response.json(),
-        // setCarousel([...response.json()])
-      )
-      .then((data) => {
-        console.log(data)
-        setCarousel([...data])
-      })
+  const apiGet = async () => {
+    const events = await getData('events')
+    setCarousel([...events])
   }
 
   useEffect(() => {

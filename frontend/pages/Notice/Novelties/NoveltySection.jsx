@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { getData } from '../../../api/methods'
 // import Slider from 'react-slick'
 // import ThemeContext from '../../../utils/useContextTheme'
 // import axios from 'axios'
@@ -17,15 +18,10 @@ export default function NoveltySection() {
   const [articles, setArticles] = useState([])
   // const { theme } = useContext(ThemeContext)
 
-  const apiGet = () => {
-    fetch(`${api}/api/v1/news/${idNovelties}`)
-      .then(
-        (response) => response.json(), // setCarousel([...response.json()])
-      )
-      .then((obj) => {
-        setArticles([...obj.articles])
-        setDataItem({ ...obj })
-      })
+  const apiGet = async () => {
+    const obj = await getData(`news/${idNovelties}`)
+    setArticles([...obj.articles])
+    setDataItem({ ...obj })
   }
 
   useEffect(() => {

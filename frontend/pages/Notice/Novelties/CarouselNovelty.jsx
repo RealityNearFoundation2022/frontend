@@ -2,8 +2,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
+import { getData } from '../../../api/methods'
 import CardNotices from '../CardNotices'
-import { api } from '../rutaApiNotices'
+require('dotenv').config()
+const api = process.env.REACT_APP_API
 
 export default function CarouselNovelty() {
   const [carousel, setCarousel] = useState([])
@@ -20,13 +22,9 @@ export default function CarouselNovelty() {
     },
   }
 
-  const apiGet = () => {
-    fetch(`${api}/api/v1/news`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data)
-        setCarousel([...data])
-      })
+  const apiGet = async () => {
+    const data = await getData('news')
+    setCarousel([...data])
   }
 
   useEffect(() => {
