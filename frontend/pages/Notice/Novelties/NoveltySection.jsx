@@ -1,31 +1,21 @@
 /* eslint-disable no-restricted-syntax */
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-// import Slider from 'react-slick'
-// import ThemeContext from '../../../utils/useContextTheme'
-// import axios from 'axios'
+import { getData } from '../../../api/methods'
 import HeaderSections from '../../HeaderSections'
-import { api } from '../rutaApiNotices'
-// import CardNotices from '../CardNotices'
 import CarouselNovelty from './CarouselNovelty'
-// import imgFake from '../../../assets/img/random/cabin.png'
-// import { dataNotices } from '../dataNotices'
+require('dotenv').config()
+const api = process.env.REACT_APP_API
 
 export default function NoveltySection() {
   const { idNovelties } = useParams()
   const [dataItem, setDataItem] = useState({})
   const [articles, setArticles] = useState([])
-  // const { theme } = useContext(ThemeContext)
 
-  const apiGet = () => {
-    fetch(`${api}/api/v1/news/${idNovelties}`)
-      .then(
-        (response) => response.json(), // setCarousel([...response.json()])
-      )
-      .then((obj) => {
-        setArticles([...obj.articles])
-        setDataItem({ ...obj })
-      })
+  const apiGet = async () => {
+    const obj = await getData(`news/${idNovelties}`)
+    setArticles([...obj.articles])
+    setDataItem({ ...obj })
   }
 
   useEffect(() => {
