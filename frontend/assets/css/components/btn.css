@@ -1,0 +1,18 @@
+.btn {
+  display: inline-block;
+  background-color: #33cc99;
+  border-radius: 9999px;
+  color: #fff;
+  font-weight: 500;
+  border: 2px solid transparent;
+  line-height: 1.9;
+  padding: .46875rem 1rem;
+  font-size: .875rem !important;
+  cursor: pointer;
+}
+
+.btn:hover {
+  color: #33cc99;
+  border-color: #33cc99;
+  background-color: #fff;
+}
