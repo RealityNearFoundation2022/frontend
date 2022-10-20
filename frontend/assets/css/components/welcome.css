@@ -1,0 +1,8 @@
+.welcome-wrapper {
+  display: block;
+}
+
+.welcome-text {
+  font-size: 1.2rem;
+  font-weight: 500;
+}

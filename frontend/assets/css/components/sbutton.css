@@ -1,0 +1,12 @@
+.sbutton {
+  border-style: none;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0.9375rem;
+  justify-content: right;
+  transition-duration: .15s;
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  background-color: transparent;
+  background-image: none;
+}

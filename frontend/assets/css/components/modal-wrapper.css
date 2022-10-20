@@ -1,0 +1,38 @@
+.modal-wrapper {
+  display: flex;
+  justify-content: center;
+  left: 0;
+  outline: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  top: 25%;
+  width: 100%;
+  z-index: 1000;
+}
+
+.s-modal {
+  display: flex;
+  justify-content: center;
+  left: 0;
+  outline: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  top: 25%;
+  width: 100%;
+  z-index: 1000;
+}
+
+.modal-overlay {
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  width: 100vw;
+  z-index: 500;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, .35);
+}
