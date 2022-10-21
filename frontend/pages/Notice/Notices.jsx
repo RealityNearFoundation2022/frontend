@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { CaretRight } from 'phosphor-react'
 import ThemeContext from '../../utils/useContextTheme'
 import HeaderSections from '../HeaderSections'
-import CarouselNovelty from './Novelties/CarouselNovelty'
+import CarouselNovelty from './Novelties/Carousel'
 import CarouselEvents from './Events/CarouselEvents'
 
 export default function Notices() {

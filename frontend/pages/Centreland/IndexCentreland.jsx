@@ -129,26 +129,54 @@ export default function IndexCentreland() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={{ ...style, width: 700, borderRadius: '20px', border: 0, padding: 2 }}>
-          <div className='row'>
-            <div className='col col-md-3'>
-              <img src="https://via.placeholder.com/500" className='rounded' style={{ maxWidth: '100%' }} alt="" />
+        <Box
+          sx={{
+            ...style,
+            width: 700,
+            borderRadius: '20px',
+            border: 0,
+            padding: 2,
+          }}
+        >
+          <div className="row">
+            <div className="col col-md-3">
+              <img
+                src="https://via.placeholder.com/500"
+                className="rounded"
+                style={{ maxWidth: '100%' }}
+                alt=""
+              />
             </div>
-            <div className='col col-md-5 p-2'>
-              <h2 className="h4" id="child-modal-title">Realand #{posX}{posY}</h2>
-              <p id="child-modal-description" className='h5 text-grey'>
-                <span className='pr-2'>
-                  <img src={WhiteIcon} className="bg-primary rounded-pill" style={{width: 30}} alt="" />
+            <div className="col col-md-5 p-2">
+              <h2 className="h4" id="child-modal-title">
+                Realand #{posX}
+                {posY}
+              </h2>
+              <p id="child-modal-description" className="h5 text-grey">
+                <span className="pr-2">
+                  <img
+                    src={WhiteIcon}
+                    className="bg-primary rounded-pill"
+                    style={{ width: 30 }}
+                    alt=""
+                  />
                 </span>
                 10000.000000
               </p>
-              <p className='h5 font-weight-bold text-grey'>
-                Disponible
-              </p>
+              <p className="h5 font-weight-bold text-grey">Disponible</p>
             </div>
-            <div style={{minHeight: 150}} className='col col-md-4 d-flex align-items-center justify-content-center'>
+            <div
+              style={{ minHeight: 150 }}
+              className="col col-md-4 d-flex align-items-center justify-content-center"
+            >
               <div>
-                <button className='rounded btn-xl btn-primary' style={{shadow: 'none', border: 'none'}}> Comprar </button>
+                <button
+                  type="button"
+                  className="rounded btn-xl btn-primary"
+                  style={{ shadow: 'none', border: 'none' }}
+                >
+                  Comprar
+                </button>
               </div>
             </div>
           </div>
