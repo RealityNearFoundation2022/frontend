@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getData } from '../../../api/methods'
 import HeaderSections from '../../HeaderSections'
-import CarouselNovelty from './CarouselNovelty'
+import CarouselNovelty from './Carousel'
 require('dotenv').config()
 const api = process.env.REACT_APP_API
 

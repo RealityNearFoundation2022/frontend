@@ -5,7 +5,7 @@ import { getData } from '../../../api/methods'
 import HeaderSections from '../../HeaderSections'
 // import CardNotices from '../CardNotices'
 // import { dataNotices } from '../dataNotices'
-import CarouselNovelty from './CarouselNovelty'
+import CarouselNovelty from './Carousel'
 require('dotenv').config()
 const api = process.env.REACT_APP_API
 // import imgFake from '../../../assets/img/random/cabin.png'
