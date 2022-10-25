@@ -16,6 +16,7 @@ import Conditions from '../pages/Conditions'
 import Realities from '../pages/Realities/IndexRealities'
 import Maps from '../pages/Maps/IndexMaps'
 import ResetPassword from '../pages/ResetPassword/ResetPasswordIndex'
+import ResetPasswordCompleted from '../pages/ResetPassword/ResetPasswordCompleted'
 
 export const routes = [
   {
@@ -73,5 +74,9 @@ export const routes = [
   {
     path: '/reset-password',
     element: <ResetPassword />,
+  },
+  {
+    path: '/reset-password/completed',
+    element: <ResetPasswordCompleted />,
   },
 ]
