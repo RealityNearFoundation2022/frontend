@@ -18,6 +18,7 @@
 @import url('components/navbar.css');
 @import url('components/list.css');
 @import url('components/form-control.css');
+@import url('components/centreland.css');
 
 @font-face {
   font-family: 'Inter';

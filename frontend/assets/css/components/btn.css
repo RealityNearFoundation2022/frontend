@@ -1,13 +1,14 @@
 .btn {
   display: inline-block;
   background-color: #33cc99;
-  border-radius: 9999px;
+  border-radius: 50%;
   color: #fff;
+  height: 50px;
+  width: 50px !important;
   font-weight: 500;
   border: 2px solid transparent;
   line-height: 1.9;
-  padding: .46875rem 1rem;
-  font-size: .875rem !important;
+  font-size: 1;
   cursor: pointer;
 }
 
