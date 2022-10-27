@@ -1,10 +1,10 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Events from '../pages/Notice/Events'
-import EventSection from '../pages/Notice/EventSection'
+import Events from '../pages/Notice/Events/Events'
+import EventSection from '../pages/Notice/Events/EventSection'
 import Notices from '../pages/Notice/Notices'
-import Novelties from '../pages/Notice/Novelties'
-import NoveltySection from '../pages/Notice/NoveltySection'
+import Novelties from '../pages/Notice/Novelties/Novelties'
+import NoveltySection from '../pages/Notice/Novelties/Section'
 
 export default function DashboardNotice() {
   return (

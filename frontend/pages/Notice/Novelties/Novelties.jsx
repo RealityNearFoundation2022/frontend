@@ -1,11 +1,18 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+// import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
-import HeaderSections from '../HeaderSections'
-import CardNotices from './CardNotices'
-import { dataNotices } from './dataNotices'
+import { getData } from '../../../api/methods'
+import HeaderSections from '../../HeaderSections'
+// import CardNotices from '../CardNotices'
+// import { dataNotices } from '../dataNotices'
+import CarouselNovelty from './Carousel'
+require('dotenv').config()
+const api = process.env.REACT_APP_API
+// import imgFake from '../../../assets/img/random/cabin.png'
 
 export default function Novelties() {
+  const [carousel, setCarousel] = useState([])
+
   const settings1 = {
     dots: true,
     infinite: true,
@@ -17,19 +24,20 @@ export default function Novelties() {
     cssEase: 'linear',
   }
 
-  const settings2 = {
-    className: 'center',
-    infinite: true,
-    centerPadding: '60px',
-    slidesToShow: 3,
-    swipeToSlide: true,
-    afterChange(index) {
-      console.log(
-        `Slider Changed to: ${index + 1}, background: #222; color: #bada55`,
-      )
-    },
+  const apiGet = async () => {
+    try {
+      const data = await getData('news')
+      setCarousel([...data])
+    } finally {
+      console.log('TO DO')
+    }
   }
-  const carousel = [...dataNotices.novelties]
+
+  useEffect(() => {
+    apiGet()
+  }, [])
+
+  // const carousel = [...dataNotices.novelties]
   return (
     <div className="mt-5">
       <HeaderSections
@@ -44,9 +52,9 @@ export default function Novelties() {
               {carousel.map((element) => (
                 <div className="rounded position-relative">
                   <img
-                    src={element.img}
+                    src={`${api}${element.image}`}
                     alt=""
-                    className="w-100 obj-fit-cover"
+                    className="w-100 obj-fit-cover rounded"
                     width="300"
                     height="450"
                   />
@@ -63,13 +71,7 @@ export default function Novelties() {
           <div className="d-flex align-items-center mt-5 mb-4">
             <h1 className="m-1 text-primary pr-2">Novedades Relacionadas</h1>
           </div>
-          <Slider {...settings2}>
-            {carousel.map((element) => (
-              <Link to={`/notices/novelties/${element.id}`}>
-                <CardNotices element={element} />
-              </Link>
-            ))}
-          </Slider>
+          <CarouselNovelty />
         </div>
       </div>
     </div>
