@@ -15,7 +15,10 @@ export default function ResetPasswordIndex() {
     setErrorNew(isValid ? null : 'Las contraseñas deben coincidir')
   }
 
-  const handleSubmit = () => {}
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    window.location = '/reset-password/completed'
+  }
   const handleChangePassword = (e) => {
     const { value } = e.target
     setPassword(value)
@@ -35,15 +38,15 @@ export default function ResetPasswordIndex() {
   }
 
   return (
-    <div className="top ">
-      <div className="d-flex align-items-center w-100 reset-psw">
-        <span className={`${theme.txt} text-center text-uppercase fs-7`}>
-          Restablecer contraseña
+    <div className="top">
+      <div style={{height: '25vh'}} className="mb-5 d-flex justify-content-center align-items-center w-100 reset-psw bg-primary">
+        <span className={`${theme.txt} text-light text-center h1`}>
+          Restablecer Contraseña
         </span>
       </div>
       <form
         onSubmit={handleSubmit}
-        className="d-flex flex-column w-100 justify-content-center align-items-center"
+        className="d-flex flex-column w-100 justify-content-center align-items-center mb-5"
         id="contactResponsive"
       >
         <label className="w-30">
@@ -67,7 +70,7 @@ export default function ResetPasswordIndex() {
           />
         </label>
         <p className="error-label">{errorNew}</p>
-        <button type="submit">Enviar</button>
+        <button type="submit" className='btn-primary btn-lg rounded _btn'>Enviar</button>
       </form>
     </div>
   )
