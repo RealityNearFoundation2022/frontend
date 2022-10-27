@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 import { getData } from '../../../api/methods'
 import CardNotices from '../CardNotices'
-
-
 require('dotenv').config()
 const api = process.env.REACT_APP_API
 

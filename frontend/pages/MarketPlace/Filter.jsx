@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { CaretDown } from 'phosphor-react'
+// import { CaretDown } from 'phosphor-react'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import ThemeContext from '../../utils/useContextTheme'
@@ -31,21 +31,16 @@ export default function Filter() {
           </Link>
         </li>
         <li>
-          <Link
-            to="/marketplace/realands"
-            className={`fw-normal d-flex nav-link${theme.txt}`}
-          >
-            <CaretDown size={28} color="#33cc99" weight="bold" />
-            <p className="px-2">Realands</p>
+          <Link to="/nuruk" className={`fw-normal d-flex nav-link${theme.txt}`}>
+            Realands
           </Link>
         </li>
         <li>
           <Link
-            to="/marketplace/patchas"
+            to="/patchas"
             className={`fw-normal d-flex nav-link${theme.txt}`}
           >
-            <CaretDown size={28} color="#33cc99" weight="bold" />
-            <p className="px-2">Patchas</p>
+            Patchas
           </Link>
         </li>
         <li>
