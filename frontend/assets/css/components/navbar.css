@@ -1,0 +1,18 @@
+.navbar-ul {
+  display: flex
+}
+
+.navbar-li {
+  padding: 0rem;
+}
+
+.navbar-left {
+  width: auto;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 1rem;
+}

@@ -1,0 +1,31 @@
+.asset-anchor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.asset-anchor-wrapper {
+  height: 322px;
+  width: 322px;
+}
+
+.asset-anchor-wrapper-inner {
+  min-height: inherit;
+  border-radius: inherit;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+}
+
+.asset-anchor-wrapper-inner-2 {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  max-height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px;
+
+}
