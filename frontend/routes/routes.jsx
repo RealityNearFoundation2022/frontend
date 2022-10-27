@@ -11,7 +11,7 @@ import Metaverso from '../pages/Metaverse/Metaverse'
 import { DashboardMarketPlace } from './DashboardMarketPlace'
 import { CardSection } from '../pages/MarketPlace/CardSection'
 import DashboardNotice from './DashboardNotice'
-import IndexCentreland from '../pages/Centreland/IndexCentreland'
+import Nuruk from '../pages/Nuruk/IndexNuruk'
 import Conditions from '../pages/Conditions'
 import Realities from '../pages/Realities/IndexRealities'
 import Maps from '../pages/Maps/IndexMaps'
@@ -23,7 +23,7 @@ export const routes = [
     element: <Home />,
   },
   {
-    path: '/maps',
+    path: '/patchas',
     element: <Maps />,
   },
   {
@@ -47,8 +47,8 @@ export const routes = [
     element: <Contact />,
   },
   {
-    path: '/centreland',
-    element: <IndexCentreland />,
+    path: '/nuruk',
+    element: <Nuruk />,
   },
   {
     path: '/metaverso',
