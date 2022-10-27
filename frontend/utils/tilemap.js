@@ -627,7 +627,6 @@ export default class TileMap {
       this.#createBox(arrayMap, 99, 100, 57, 63, 2, 7, 5)
       this.#createBox(arrayMap, 99, 100, 65, 73, 2, 9, 5)
       this.#createBox(arrayMap, 87, 97, 65, 73, 11, 9, 5)
-
       this.#createBox(arrayMap, 61, 69, 98, 100, 9, 3, 5)
       this.#createBox(arrayMap, 83, 92, 98, 100, 10, 3, 5)
       this.#createBox(arrayMap, 94, 100, 98, 100, 7, 3, 5)
