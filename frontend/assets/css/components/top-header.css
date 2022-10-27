@@ -1,0 +1,11 @@
+.top-header {
+  width: 100%;
+  box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
+  max-width: 100vw;
+  height: 72px;
+  top: 0px;
+  position: sticky;
+  z-index: 110;
+  transition: top 0.5s ease 0s;
+  background-color: rgb(255, 255, 255);
+}

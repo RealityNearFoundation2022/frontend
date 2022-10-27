@@ -1,0 +1,101 @@
+.form-wrapper {
+  margin-top: 150px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(229, 227, 221);
+  border-radius: 4px;
+  box-shadow: none;
+  background-color: rgb(255, 255, 255);
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 0px auto;
+  max-width: 32rem;
+  width: 100%;
+}
+
+.outform-wrapper {
+  box-sizing: border-box;
+  transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+  padding: 0rem;
+  margin: 0rem;
+  max-width: 32rem;
+}
+
+.label {
+  box-sizing: border-box;
+  transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+  padding: 0rem;
+  margin: 0rem;
+}
+
+.form-in-wrapper {
+  margin-top: 150px;
+  box-sizing: border-box;
+  transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+  padding: 1.5rem;
+  margin: 0rem;
+}
+
+.input-wrapper {
+  align-items: center;
+  display: flex;
+  margin-bottom: 0.5rem;
+  position: relative;
+  margin-top: 0.5rem;
+}
+
+.input-box {
+  resize: none;
+  min-width: 0px;
+  width: 100%;
+  font-weight: normal;
+  appearance: none;
+  background: rgb(245, 244, 242);
+  border: 1px solid rgb(229, 227, 221);
+  box-shadow: none;
+  box-sizing: border-box;
+  color: rgb(36, 30, 18);
+  height: 3rem;
+  outline: none;
+  padding: 0.75rem 1rem;
+  transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+  border-radius: 4px;
+  font-size: 1rem !important;
+}
+
+.form-btn:hover {
+  color: #ff424d;
+  border-color: #ff424d;
+  background-color: #fff;
+}
+
+.form-btn-wrapper {
+  margin: 1rem 0rem
+}
+
+.form-btn {
+  align-items: center;
+  backface-visibility: hidden;
+  background-color: rgb(255, 66, 77);
+  border-radius: 9999px;
+  border: 1px solid rgb(255, 66, 77);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  font-weight: 500;
+  height: unset;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding: 0.78125rem 1.5rem;
+  position: relative;
+  pointer-events: unset;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+  user-select: none;
+  white-space: unset;
+  width: 100%;
+  color: rgb(255, 255, 255);
+  font-size: 1rem !important;
+}

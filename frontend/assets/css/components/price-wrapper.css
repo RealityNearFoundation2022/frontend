@@ -1,0 +1,21 @@
+.price-wrapper {
+  font-size: 14px;
+  height: initial;
+  justify-content: flex-end;
+  max-width: 13ch;
+  -webkit-box-align: center;
+  align-items: center;
+  display: flex;
+  font-weight: 600;
+  color: rgb(53, 56, 64);
+  width: fit-content;
+}
+
+.price {
+  margin-left: 0.3em;
+  width: 100%;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box'
+import { useTranslation } from 'react-i18next'
 import Modal from './Modal'
+import nearImport from '../assets/img/random/nearImport.png'
+import realitiesLogo from '../assets/img/random/logo1.png'
 
 export default function RealityModal() {
   const [walletValue, setValueWallet] = useState('')
   const [realities, setRealities] = useState('')
-
-  const [currentBox, setBox] = useState(0)
+  const [closeModal, setClose] = useState(false)
+  // const { theme } = useContext(ThemeContext)
+  const { t } = useTranslation()
+  const currentUser = window.accountId || ''
+  const [currentBox, setBox] = useState(currentUser ? 3 : -1)
 
   useEffect(() => {
     console.log(walletValue.length)
@@ -14,19 +20,42 @@ export default function RealityModal() {
 
   return (
     <Modal
+      close={closeModal}
       button={
         <button
           className="btn btn-primary btn-xl w-75"
           id="submitButton"
           type="button"
         >
-          ADQUIRIR REALITIES
+          {t('ADQUIRIR REALITIES')}
         </button>
       }
       setBox={setBox}
       setValueWallet={setValueWallet}
       setRealities={setRealities}
     >
+      {currentBox === -1 && (
+        <Box
+          className="rounded"
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <div>Inicia sesón para continuar con la transacción</div>
+          <button
+            className="btn btn-primary btn-xl w-75"
+            id="submitButton2"
+            type="button"
+            onClick={() => {
+              setClose(true)
+            }}
+          >
+            OK
+          </button>
+        </Box>
+      )}
       {currentBox === 0 && (
         <Box
           className="rounded"
@@ -36,13 +65,14 @@ export default function RealityModal() {
             alignItems: 'center',
           }}
         >
-          <div>A ver ahora</div>
+          <div>Ingresa tu near Wallet</div>
           <input
             type="text"
             placeholder="Ingresa tu Near Walet"
             value={walletValue}
             onChange={(e) => setValueWallet(e.target.value)}
           />
+          <p>{walletValue}</p>
           <button
             className="btn btn-primary btn-xl w-75"
             id="submitButton2"
@@ -126,17 +156,75 @@ export default function RealityModal() {
           <div>¿Cuantos Realities desea?</div>
           <input
             type="text"
-            placeholder="Ingresa tu Near Walet"
+            placeholder="Importe en Realities"
             value={realities}
             onChange={(e) => setRealities(e.target.value)}
           />
-          <p>{realities}</p>
+          <p>
+            <span>
+              <img src={nearImport} alt="" />
+            </span>
+            {realities !== '' ? realities : 0}.00
+          </p>
           <button
             className="btn btn-primary btn-xl w-75"
             id="submitButton3"
             type="button"
+            onClick={() => {
+              if (realities !== '') {
+                setBox(4)
+              } else {
+                setBox(3)
+              }
+            }}
           >
             ACEPTAR
+          </button>
+        </Box>
+      )}
+      {currentBox === 4 && (
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <div>Resumen de la transacción</div>
+          <p>
+            <span>
+              <img src={realitiesLogo} alt="" width="40" height="40" />
+            </span>
+            {realities}.00
+          </p>
+          <p>
+            <span>
+              Costo
+              <img src={nearImport} alt="" />
+            </span>
+            {realities}.00
+          </p>
+          <button
+            className="btn btn-primary btn-xl w-75"
+            id="submitButton3"
+            type="button"
+            onClick={() => {
+              setRealities('')
+              setClose(true)
+            }}
+          >
+            ACEPTAR
+          </button>
+          <button
+            className="btn btn-primary btn-xl w-75"
+            id="submitButton3"
+            type="button"
+            onClick={() => {
+              setRealities('')
+              setBox(3)
+            }}
+          >
+            VOLVER
           </button>
         </Box>
       )}

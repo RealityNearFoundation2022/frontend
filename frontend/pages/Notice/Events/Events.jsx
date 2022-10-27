@@ -1,11 +1,14 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+/* eslint-disable no-underscore-dangle */
+import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick'
-import HeaderSections from '../HeaderSections'
-import CardNotices from './CardNotices'
-import { dataNotices } from './dataNotices'
+import { getData } from '../../../api/methods'
+import HeaderSections from '../../HeaderSections'
+import CarouselEvents from './CarouselEvents'
+require('dotenv').config()
+const api = process.env.REACT_APP_API
 
 export default function Events() {
+  const [carousel, setCarousel] = useState([])
   const settings1 = {
     dots: true,
     infinite: true,
@@ -17,21 +20,16 @@ export default function Events() {
     cssEase: 'linear',
   }
 
-  const settings2 = {
-    className: 'center',
-    infinite: true,
-    centerPadding: '60px',
-    slidesToShow: 3,
-    swipeToSlide: true,
-    afterChange(index) {
-      console.log(
-        `Slider Changed to: ${index + 1}, background: #222; color: #bada55`,
-      )
-    },
+  const apiGet = async () => {
+    const events = await getData('events')
+    setCarousel([...events])
   }
-  const carousel = [...dataNotices.events]
+
+  useEffect(() => {
+    apiGet()
+  }, [])
   return (
-    <div className="mt-5">
+    <div className="">
       <HeaderSections
         titleSection="Eventos"
         descriptionSection="Dale un vistazo a los eventos del momento"
@@ -42,11 +40,11 @@ export default function Events() {
           <div className="w-90">
             <Slider {...settings1}>
               {carousel.map((element) => (
-                <div className="rounded position-relative">
+                <div className="rounded position-relative" key={element.id}>
                   <img
-                    src={element.img}
+                    src={`${api}${element.media[0].path}`}
                     alt=""
-                    className="w-100 obj-fit-cover"
+                    className="w-100 obj-fit-cover rounded"
                     width="300"
                     height="450"
                   />
@@ -63,13 +61,7 @@ export default function Events() {
           <div className="d-flex align-items-center mt-5 mb-4">
             <h1 className="m-1 text-primary pr-2">Eventos Relacionados</h1>
           </div>
-          <Slider {...settings2}>
-            {carousel.map((element) => (
-              <Link to={`/notices/events/${element.id}`}>
-                <CardNotices element={element} />
-              </Link>
-            ))}
-          </Slider>
+          <CarouselEvents />
         </div>
       </div>
     </div>

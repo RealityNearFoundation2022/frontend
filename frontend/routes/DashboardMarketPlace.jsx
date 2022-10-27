@@ -28,6 +28,8 @@ export function DashboardMarketPlace() {
       const resultOferts = []
       const resultNfts = []
       data.forEach((element, index) => {
+        // TO DO:
+        // Preguntar como diferenciar los nfts novedades, ofertas, general
         if (index <= 4) {
           resultNovelties.push({
             id: element.id,
@@ -66,7 +68,6 @@ export function DashboardMarketPlace() {
         { id: 6, title: 'Otros', itemCards: [] },
       ]
       setCategories(result)
-      console.log(data)
     }
     fetchList()
   }, [])
@@ -78,12 +79,10 @@ export function DashboardMarketPlace() {
     'Patchas',
     'Otros',
   ]
-  console.log(dataCategories)
   const { theme } = useContext(ThemeContext)
 
   const findCategory = (condition) => {
     const finded = dataCategories.filter((item) => item.title === condition)[0]
-    console.log(finded)
     return finded
   }
   return (
