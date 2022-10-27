@@ -3,7 +3,7 @@ import HeaderSections from './HeaderSections'
 
 export default function Conditions() {
   return (
-    <div className="mt-5">
+    <div className="">
       <HeaderSections
         titleSection="Términos y Condiciones"
         bgHeader="bg-header-terminos"

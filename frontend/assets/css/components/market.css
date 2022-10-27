@@ -1,0 +1,16 @@
+.market-inner-wrapper {
+
+  padding-top: 1rem;
+  padding-bottom: 1rem
+}
+
+.market-result-wrapper {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+}
+
+.market-header {
+  text-align: center;
+  width: 100%;
+}
