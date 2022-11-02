@@ -1,8 +1,8 @@
 export default function ResetPasswordCompleted() {
   return (
-    <div className="top">
-      <div style={{ height: '25vh' }} className="mb-5 d-flex justify-content-center align-items-center w-100 reset-psw bg-primary">
-        <span className='text-light text-center h1'>
+    <div>
+      <div className="py-5 mb-5 text-center w-100 reset-psw bg-primary">
+        <span className='text-light h1'>
           Restablecer Contraseña
         </span>
       </div>

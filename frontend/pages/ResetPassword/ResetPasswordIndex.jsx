@@ -1,7 +1,10 @@
 import React, { useContext, useState } from 'react'
 import ThemeContext from '../../utils/useContextTheme'
+import { useNavigate } from 'react-router-dom'
 
 export default function ResetPasswordIndex() {
+  const navigate = useNavigate()
+
   const { theme } = useContext(ThemeContext)
   const [password, setPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
@@ -17,7 +20,7 @@ export default function ResetPasswordIndex() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    window.location = '/reset-password/completed'
+    navigate('/reset-password/completed')
   }
   const handleChangePassword = (e) => {
     const { value } = e.target
@@ -38,9 +41,9 @@ export default function ResetPasswordIndex() {
   }
 
   return (
-    <div className="top">
-      <div style={{height: '25vh'}} className="mb-5 d-flex justify-content-center align-items-center w-100 reset-psw bg-primary">
-        <span className={`${theme.txt} text-light text-center h1`}>
+    <div>
+      <div className="mb-5 py-5 text-center w-100 reset-psw bg-primary">
+        <span className={`${theme.txt} text-light h1`}>
           Restablecer Contraseña
         </span>
       </div>
