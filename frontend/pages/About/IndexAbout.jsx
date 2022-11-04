@@ -5,6 +5,7 @@ import ceo from '../../assets/img/about/ceo.png'
 import directorCreativo from '../../assets/img/about/directorCreativo.png'
 import ThemeContext from '../../utils/useContextTheme'
 import HeaderSections from '../HeaderSections'
+import linkedinIcon from '../../assets/img/about/linkedinIcon.png'
 
 function About() {
   const { theme } = useContext(ThemeContext)
@@ -58,20 +59,82 @@ function About() {
       <section className={`${theme.bg} w-100 px-7-5porcent`} id="">
         <div className="w-100">
           {/* <!--  Section Heading--> */}
-          <div className="d-flex flex-column justify-content-center">
-            <h2 className="text-primary text-center my-5">{t('FUNDADORES')}</h2>
-            <div className="d-flex justify-content-around align-items-center px-7-5porcent">
-              <div className="aboutTeam">
-                <div className="w-100">
-                  <img src={ceo} alt="" className="w-100" />
-                </div>
-                <h3 className="text-primary fw-bolder text-center">CEO</h3>
+          <div className="row position-relative">
+            <div className="col-12">
+              <h2 className="text-primary text-center my-5">{t('Fundadores')}</h2>
+            </div>
+            <div style={{
+              top: '40px',
+              position: 'absolute',
+              width: '477px',
+              height: '477px',
+              left: '-440px',
+              background: '#33CC99',
+            }} className='rounded-pill d-lg-block d-none mt-5'>
+
+            </div>
+            <div style={{
+              top: '40px',
+              position: 'absolute',
+              width: '477px',
+              height: '477px',
+              right: '-440px',
+              background: '#33CC99',
+            }} className='rounded-pill d-lg-block d-none mt-5'>
+
+            </div>
+          </div>
+          <div className='row justify-content-evenly'>
+            <div className='col-sm-6 col-md-4 col-lg-3 mb-5'>
+              <div className="w-100 px-5 position-relative">
+                <img src={ceo} alt="" className="w-100" />
+                <img 
+                  src={linkedinIcon} 
+                  alt="" 
+                  className='position-absolute'
+                  style={{
+                    width: '50px',
+                    bottom: 0,
+                    right: 50
+                   }}
+                />
               </div>
-              <div className="aboutTeam">
+              <div className='mt-3'>
+                <div className="text-dark fw-bolder text-center h4">Javier Bambaren</div>
+                <div className="text-primary fw-bolder text-center h4">CEO</div>
+              </div>
+              <div className="mt-3">
+                <ul className='text-center'>
+                  <li className='mb-2'><span className='pr-2'>•</span> Business owner & Expert in the field of entertainment and retail for more than 18 years</li>
+                  <li className='mb-2'><span className='pr-2'>•</span> Blockchain certified by MIT</li>
+                  <li className='mb-2'><span className='pr-2'>•</span> Full stack developer</li>
+                </ul>
+              </div>
+            </div>
+            <div className='col-sm-6 col-md-4 col-lg-3 mb-5'>
+              <div className="w-100 px-5 position-relative">
                 <img src={directorCreativo} alt="" className="w-100" />
-                <h3 className="text-primary fw-bolder text-center">
-                  Director Creativo
-                </h3>
+                <img 
+                  src={linkedinIcon} 
+                  alt="" 
+                  className='position-absolute'
+                  style={{
+                    width: '50px',
+                    bottom: 0,
+                    right: 50
+                   }}
+                />
+              </div>
+              <div className='mt-3'>
+                <div className="text-dark fw-bolder text-center h4">Damián Gamarra</div>
+                <div className="text-primary fw-bolder text-center h4">CCO</div>
+              </div>
+              <div className="mt-3">
+                <ul className='text-center'>
+                  <li className='mb-2'><span className='pr-2'>•</span> Graphic Designer specialized in Branding and Marketing</li>
+                  <li className='mb-2'><span className='pr-2'>•</span> Videogame design experience</li>
+                  <li className='mb-2'><span className='pr-2'>•</span> NoCode</li>
+                </ul>
               </div>
             </div>
           </div>
