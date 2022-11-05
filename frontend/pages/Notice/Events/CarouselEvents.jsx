@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Slider from 'react-slick'
 import { getData } from '../../../api/methods'
 import CardNotices from '../CardNotices'
@@ -23,8 +24,13 @@ export default function CarouselEvents() {
   }
 
   const apiGet = async () => {
-    const data = await getData('events')
-    setCarousel(data)
+    try {
+      const data = await getData('events')
+      setCarousel(data)
+    } catch (error) {
+      console.log('HOLAA')
+      navigate('/500')
+    }
   }
 
   useEffect(() => {
