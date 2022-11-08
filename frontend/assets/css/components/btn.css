@@ -1,15 +1,15 @@
 .btn {
   display: inline-block;
   background-color: #33cc99;
-  border-radius: 50%;
-  color: #fff;
+  border-radius: 30px;
+  color: #ffff !important;
   height: 50px;
-  width: 50px !important;
   font-weight: 500;
+  width: 150px !important;
   border: 2px solid transparent;
   line-height: 1.9;
-  font-size: 1;
-  cursor: pointer;
+  font-size: 13px;
+  cursor: pointer !important;
 }
 
 .btn:hover {
