@@ -13,6 +13,11 @@ import WhiteIcon from '../../assets/img/logo-white.svg'
 
 export default function IndexCentreland() {
   const tileSize = 15
+  /*
+    Desc: Size of global.css --sizeMockup
+  */
+  const sizeMockup = 200
+  const sizeBoxImg = sizeMockup / 5
   const [column, setColumn] = useState(0)
   const [row, setRow] = useState(0)
   const [top, setTop] = useState(false)
@@ -37,6 +42,16 @@ export default function IndexCentreland() {
     px: 4,
     pb: 3,
   }
+  const getPosition = (e) => {
+    const cursorX = e.pageX
+    const cursorY = e.pageY
+    const [element] = document.getElementsByClassName('img-mockup')
+    const rect = element.getBoundingClientRect()
+    const newPosX = Math.floor((cursorX - rect.left) / sizeBoxImg)
+    const newPosY = Math.floor((cursorY - rect.top) / sizeBoxImg)
+    setRow(newPosX)
+    setColumn(newPosY)
+  }
   const handleOpen = (posx, posy) => {
     setPosX(posx)
     setPosY(posy)
@@ -48,6 +63,39 @@ export default function IndexCentreland() {
   useEffect(() => {
     getCentreland(row, column)
   }, [column, row])
+  useEffect(() => {
+    window.addEventListener(
+      'keydown',
+      ({ keyCode }) => {
+        switch (keyCode) {
+          case 37:
+            // left
+            setRow((r) => (r > 0 ? r - 1 : r))
+
+            break
+          case 38:
+            // up
+            setColumn((r) => (r > 0 ? r - 1 : r))
+
+            break
+          case 39:
+            // right
+            setRow((r) => (r < maxColumnsRows ? r + 1 : r))
+
+            break
+          case 40:
+            // down
+            setColumn((r) => (r < maxColumnsRows ? r + 1 : r))
+            break
+          default:
+            // do nothing
+            break
+        }
+      },
+      false,
+    )
+  }, [])
+
   const maxColumnsRows = 4
   useEffect(() => {
     slide.current.addEventListener('scroll', (event) => {
@@ -75,7 +123,7 @@ export default function IndexCentreland() {
     tileMap.draw(canvas, ctx)
   }
   return (
-    <div>
+    <div className="justify-content-xxl-center">
       <div className="slide" ref={slide}>
         <canvas
           id={`centreland${row}-${column}`}
@@ -85,7 +133,7 @@ export default function IndexCentreland() {
       </div>
       {left && (
         <button
-          className="btn ctrl-btn ctrl-btn-back"
+          className="ctrl-btn ctrl-btn-back"
           type="button"
           onClick={() => setRow((r) => r - 1)}
         >
@@ -94,7 +142,7 @@ export default function IndexCentreland() {
       )}
       {rigth && (
         <button
-          className="btn ctrl-btn ctrl-btn-next"
+          className="ctrl-btn ctrl-btn-next"
           type="button"
           onClick={() => setRow((r) => r + 1)}
         >
@@ -103,7 +151,7 @@ export default function IndexCentreland() {
       )}
       {top && (
         <button
-          className="btn ctrl-btn-top"
+          className=" ctrl-btn ctrl-btn-top"
           type="button"
           onClick={() => setColumn((r) => r - 1)}
         >
@@ -112,7 +160,7 @@ export default function IndexCentreland() {
       )}
       {bottom && (
         <button
-          className="btn ctrl-btn-bottom"
+          className=" ctrl-btn ctrl-btn-bottom"
           type="button"
           onClick={() => setColumn((r) => r + 1)}
         >
@@ -120,7 +168,9 @@ export default function IndexCentreland() {
         </button>
       )}
       <div>
-        <img className="img-mockup" src={MockUp} alt="..." />
+        <button type="button" className="little-map" onClick={getPosition}>
+          <img className="img-mockup" src={MockUp} alt="..." />
+        </button>
         <div className={`boxImg boxImg-${row}${column}`}></div>
       </div>
       <Modal
