@@ -6,7 +6,7 @@ import Home from '../pages/Landing/IndexLanding'
 import NftMe from '../components/nft/Me'
 import NftSell from '../components/nft/Sell'
 import About from '../pages/About/IndexAbout'
-import Contact from '../pages/Contact'
+import Contact from '../pages/Contact/Contact'
 import Metaverso from '../pages/Metaverse/Metaverse'
 import { DashboardMarketPlace } from './DashboardMarketPlace'
 import { CardSection } from '../pages/MarketPlace/CardSection'
@@ -82,6 +82,6 @@ export const routes = [
   },
   {
     path: '/500',
-    element: <Error500/>
-  }
+    element: <Error500 />,
+  },
 ]

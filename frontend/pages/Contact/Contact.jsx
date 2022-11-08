@@ -1,13 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Modal from '@mui/material/Modal'
 import Box from '@mui/material/Box'
-import igIcon from '../assets/img/social-network/instagramIcon.png'
-import githubIcon from '../assets/img/social-network/githubIcon.png'
-import discordIcon from '../assets/img/social-network/discordIcon.png'
-import frIcon from '../assets/img/social-network/free-redditIcon.png'
-import ThemeContext from '../utils/useContextTheme'
-import HeaderSections from './HeaderSections'
+import ThemeContext from '../../utils/useContextTheme'
+import HeaderSections from '../HeaderSections'
+import FollowInfo from '../../components/FollowInfo'
 
 function Contact() {
   const [openCompleted, setOpenCompleted] = useState(false)
@@ -124,17 +121,7 @@ function Contact() {
           </div>
         </div>
       </div>
-      <div className="p-5 bg-img-realExperience bg-img-size-cover w-100">
-        <h1 className="d-flex justify-content-center m-0 h-50 align-items-center w-100 fs-7 text-white">
-          ¡SÍGUENOS!
-        </h1>
-        <div className="d-flex justify-content-center m-0 h-50 align-items-center w-100 py-5">
-          <img src={discordIcon} alt="" className="px-2" />
-          <img src={igIcon} alt="" className="px-2" />
-          <img src={githubIcon} alt="" className="px-2" />
-          <img src={frIcon} alt="" className="px-2" />
-        </div>
-      </div>
+      <FollowInfo isBackground />
       <Modal
         open={openSpinner}
         onClose={handleClose}
