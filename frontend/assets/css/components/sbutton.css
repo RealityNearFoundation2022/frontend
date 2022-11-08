@@ -10,3 +10,9 @@
   background-color: transparent;
   background-image: none;
 }
+
+._btn {
+  box-shadow: none;
+  border: none;
+  font-weight: bold;
+}

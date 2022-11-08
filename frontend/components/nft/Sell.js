@@ -3,9 +3,6 @@ import React from 'react'
 import { Link, Route } from 'react-router-dom';
 
 const NftSell = () => {
-
-    console.log('aqui')
-
     return <div style={{marginTop:200 + 'px'}}>
     <p>NFT Sell</p>
 
