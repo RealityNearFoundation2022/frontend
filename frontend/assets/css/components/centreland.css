@@ -110,8 +110,12 @@
 
 .ctrl-btn{
   cursor: pointer;
-  width: auto;
+  width: 40px;
+  height: 40px;
   position: absolute;
+  background-color: #33cc99;
+  border-radius: 50%;
+  color: #ffff !important;
 }
 
 .ctrl-btn-next{
@@ -142,8 +146,14 @@
 
 .slide{
   height:500px;
-  /* width: 1000px; */
+  width: 100vw;
   position: relative;
   overflow-x: scroll;
   overflow-y: scroll;
+}
+
+.little-map{
+  border: transparent 0px;
+  padding: 0px;
+  margin: 0px;
 }
