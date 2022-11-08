@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
-import ThemeContext from '../../utils/useContextTheme'
 import { useNavigate } from 'react-router-dom'
+import ThemeContext from '../../utils/useContextTheme'
 
 export default function ResetPasswordIndex() {
   const navigate = useNavigate()
@@ -73,7 +73,9 @@ export default function ResetPasswordIndex() {
           />
         </label>
         <p className="error-label">{errorNew}</p>
-        <button type="submit" className='btn-primary btn-lg rounded _btn'>Enviar</button>
+        <button type="submit" className="btn-primary btn-lg rounded _btn">
+          Enviar
+        </button>
       </form>
     </div>
   )
