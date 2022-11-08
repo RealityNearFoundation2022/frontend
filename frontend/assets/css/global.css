@@ -2552,6 +2552,10 @@ textarea.form-control-lg {
     transition: none;
   }
 }
+
+.icon{
+  width: 70px;
+}
 .form-select:focus {
   border-color: #8ddece;
   outline: 0;
