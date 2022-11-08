@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Slider from 'react-slick'
 import { getData } from '../../../api/methods'
 import CardNotices from '../CardNotices'
@@ -10,6 +9,7 @@ const api = process.env.REACT_APP_API
 
 export default function CarouselEvents() {
   const [carousel, setCarousel] = useState([])
+  const navigate = useNavigate()
   const settings2 = {
     className: 'center',
     infinite: false,
@@ -28,7 +28,6 @@ export default function CarouselEvents() {
       const data = await getData('events')
       setCarousel(data)
     } catch (error) {
-      console.log('HOLAA')
       navigate('/500')
     }
   }
