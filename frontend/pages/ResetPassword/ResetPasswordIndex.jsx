@@ -1,7 +1,10 @@
 import React, { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import ThemeContext from '../../utils/useContextTheme'
 
 export default function ResetPasswordIndex() {
+  const navigate = useNavigate()
+
   const { theme } = useContext(ThemeContext)
   const [password, setPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
@@ -15,7 +18,10 @@ export default function ResetPasswordIndex() {
     setErrorNew(isValid ? null : 'Las contraseñas deben coincidir')
   }
 
-  const handleSubmit = () => {}
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    navigate('/reset-password/completed')
+  }
   const handleChangePassword = (e) => {
     const { value } = e.target
     setPassword(value)
@@ -35,15 +41,15 @@ export default function ResetPasswordIndex() {
   }
 
   return (
-    <div className="top ">
-      <div className="d-flex align-items-center w-100 reset-psw">
-        <span className={`${theme.txt} text-center text-uppercase fs-7`}>
-          Restablecer contraseña
+    <div>
+      <div className="mb-5 py-5 text-center w-100 reset-psw bg-primary">
+        <span className={`${theme.txt} text-light h1`}>
+          Restablecer Contraseña
         </span>
       </div>
       <form
         onSubmit={handleSubmit}
-        className="d-flex flex-column w-100 justify-content-center align-items-center"
+        className="d-flex flex-column w-100 justify-content-center align-items-center mb-5"
         id="contactResponsive"
       >
         <label className="w-30">
@@ -67,7 +73,9 @@ export default function ResetPasswordIndex() {
           />
         </label>
         <p className="error-label">{errorNew}</p>
-        <button type="submit">Enviar</button>
+        <button type="submit" className="btn-primary btn-lg rounded _btn">
+          Enviar
+        </button>
       </form>
     </div>
   )
