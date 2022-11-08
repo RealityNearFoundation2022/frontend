@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 // import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 import { getData } from '../../../api/methods'
@@ -12,6 +13,8 @@ const api = process.env.REACT_APP_API
 
 export default function Novelties() {
   const [carousel, setCarousel] = useState([])
+
+  const navigate = useNavigate()
 
   const settings1 = {
     dots: true,
@@ -28,6 +31,9 @@ export default function Novelties() {
     try {
       const data = await getData('news')
       setCarousel([...data])
+    } catch (error) {
+      console.log('HOLAA')
+      navigate('/500')
     } finally {
       console.log('TO DO')
     }

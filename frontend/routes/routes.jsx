@@ -17,6 +17,7 @@ import Realities from '../pages/Realities/IndexRealities'
 import Maps from '../pages/Maps/IndexMaps'
 import ResetPassword from '../pages/ResetPassword/ResetPasswordIndex'
 import ResetPasswordCompleted from '../pages/ResetPassword/ResetPasswordCompleted'
+import Error500 from '../pages/ErrorPage/Error500'
 
 export const routes = [
   {
@@ -79,4 +80,8 @@ export const routes = [
     path: '/reset-password/completed',
     element: <ResetPasswordCompleted />,
   },
+  {
+    path: '/500',
+    element: <Error500/>
+  }
 ]
