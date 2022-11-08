@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 import { getData } from '../../../api/methods'
+import { useNavigate } from 'react-router-dom'
 import CardNotices from '../CardNotices'
 require('dotenv').config()
 const api = process.env.REACT_APP_API
@@ -23,8 +24,13 @@ export default function CarouselNovelty() {
   }
 
   const apiGet = async () => {
-    const data = await getData('news')
-    setCarousel([...data])
+    try {
+      const data = await getData('news')
+      setCarousel([...data])
+    } catch (error) {
+      console.log('HOLAA')
+      navigate('/500')
+    }
   }
 
   useEffect(() => {
