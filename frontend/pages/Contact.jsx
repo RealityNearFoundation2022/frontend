@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import Modal from '@mui/material/Modal'
+import Box from '@mui/material/Box'
 import igIcon from '../assets/img/social-network/instagramIcon.png'
 import githubIcon from '../assets/img/social-network/githubIcon.png'
 import discordIcon from '../assets/img/social-network/discordIcon.png'
 import frIcon from '../assets/img/social-network/free-redditIcon.png'
 import ThemeContext from '../utils/useContextTheme'
 import HeaderSections from './HeaderSections'
-import Modal from '@mui/material/Modal'
-import Box from '@mui/material/Box'
 
 function Contact() {
   const [openCompleted, setOpenCompleted] = useState(false)
@@ -41,22 +41,19 @@ function Contact() {
   const handleChangeMensaje = ({ target }) => {
     setValueMensaje(target.value)
   }
-  useEffect(() => {
-    console.log(valueName)
-  }, [valueName])
 
   const handleClose = () => {
     setOpenCompleted(false)
     setOpenSpinner(false)
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = () => {
     setOpenSpinner(true)
     setTimeout(() => {
       handleClose()
       setOpenCompleted(true)
-    }, 3000);
-    event.preventDefault()
+    }, 3000)
+    // event.preventDefault()
   }
   return (
     <section className={`${theme.bg} near w-100`} id="near">
@@ -77,9 +74,8 @@ function Contact() {
             </p>
           </div>
 
-          <form
-            onSubmit={handleSubmit}
-            className="d-flex flex-column w-50 justify-content-center align-items-center"
+          <div
+            className="d-flex flex-column w-50 justify-content-center align-items-center py-3"
             id="contactResponsive"
           >
             <label className="w-60 me-15porcent">
@@ -87,7 +83,7 @@ function Contact() {
                 type="text"
                 className="form-control"
                 value={valueName}
-                placeholder="Select category"
+                placeholder="Selecciona categoría"
                 onChange={handleChangeName}
               />
             </label>
@@ -118,12 +114,14 @@ function Contact() {
                 onChange={handleChangeMensaje}
               />
             </label>
-            <input
+            <button
               type="submit"
-              value="Submit"
-              className="btn btn-primary disabled w-25"
-            />
-          </form>
+              className="btn btn-primary w-25"
+              onClick={handleSubmit}
+            >
+              Enviar
+            </button>
+          </div>
         </div>
       </div>
       <div className="p-5 bg-img-realExperience bg-img-size-cover w-100">
@@ -151,7 +149,7 @@ function Contact() {
             padding: 4,
           }}
         >
-          <div className='text-center'>
+          <div className="text-center">
             <div className="spinner-border text-secondary" role="status"></div>
           </div>
         </Box>
@@ -168,22 +166,26 @@ function Contact() {
             borderRadius: '20px',
             border: 0,
             padding: 4,
-            width: 400
+            width: 400,
           }}
         >
           <div>
             <div className="h3 text-center mb-4">¡MENSAJE ENVIADO!</div>
-            <div className='text-center'>
+            <div className="text-center">
               Tu mensaje ha sido enviado correctamente.
             </div>
-            <textarea disabled cols="30" rows="3" className='form-control mx-0'>
+            <textarea disabled cols="30" rows="3" className="form-control mx-0">
               {valueMensaje}
             </textarea>
-            <div className='mt-3 text-center'>
+            <div className="mt-3 text-center">
               Nuestro equipo enviará la respuesta a tu correo pronto.
             </div>
             <div className="text-center mt-3">
-              <button className="_btn btn-lg btn-primary rounded">
+              <button
+                type="button"
+                className="_btn btn-lg btn-primary rounded"
+                onClick={() => setOpenCompleted(false)}
+              >
                 Ok
               </button>
             </div>
