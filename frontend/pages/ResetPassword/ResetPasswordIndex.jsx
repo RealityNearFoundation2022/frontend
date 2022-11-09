@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ThemeContext from '../../utils/useContextTheme'
-
+import { postData } from '../../api/methods'
+import '../../assets/css/components/events.css'
 export default function ResetPasswordIndex() {
   const navigate = useNavigate()
 
@@ -18,9 +19,20 @@ export default function ResetPasswordIndex() {
     setErrorNew(isValid ? null : 'Las contraseñas deben coincidir')
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    navigate('/reset-password/completed')
+    try {
+      const body = {
+        // eslint-disable-next-line camelcase
+        token: '',
+        new_password: password,
+      }
+      await postData('reset-password', body)
+
+      navigate('/reset-password/completed')
+    } catch {
+      navigate('/500')
+    }
   }
   const handleChangePassword = (e) => {
     const { value } = e.target
@@ -42,8 +54,8 @@ export default function ResetPasswordIndex() {
 
   return (
     <div>
-      <div className="mb-5 py-5 text-center w-100 reset-psw bg-primary">
-        <span className={`${theme.txt} text-light h1`}>
+      <div className="mb-5 py-5 text-center w-100 reset-psw bg-primary bg-img-realExperience">
+        <span className={`${theme.txt} text-light h1 `}>
           Restablecer Contraseña
         </span>
       </div>
