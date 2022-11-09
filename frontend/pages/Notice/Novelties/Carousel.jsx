@@ -11,16 +11,39 @@ export default function CarouselNovelty() {
   const navigate = useNavigate()
   const [carousel, setCarousel] = useState([])
   const settings2 = {
-    className: 'center',
+    className: 'slider variable-width',
+    dots: true,
     infinite: false,
-    centerPadding: '60px',
-    slidesToShow: 3,
-    swipeToSlide: true,
-    afterChange(index) {
-      console.log(
-        `Slider Changed to: ${index + 1}, background: #222; color: #bada55`,
-      )
-    },
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   }
 
   const apiGet = async () => {

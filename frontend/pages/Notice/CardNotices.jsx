@@ -22,17 +22,16 @@ export default function CardNotices({ element, medias }) {
   return (
     <div
       key={`novelties${element._id}`}
-      className="w-95 position-relative rounded"
-      style={{ height: '235px' }}
+      className="slide-container position-relative rounded"
     >
-      <div className="slide-container w-100 h-100 rounded">
+      <div className="rounded">
         <Fade>
           {fadeImages.map((eachImg) => (
             <div className="each-fade h-100 w-100">
               <img
                 src={eachImg}
                 className="bg-img-size-cover w-100 rounded"
-                style={{ height: '235px' }}
+                style={{ height: '200px' }}
               />
             </div>
           ))}
@@ -42,7 +41,7 @@ export default function CardNotices({ element, medias }) {
         className={`${theme.bg} position-absolute bottom-0 w-100 p-3`}
         style={{ zIndex: '5000', height: '50%' }}
       >
-        <h2 className={`${theme.txt} my-0 py-0`}>{element.title}</h2>
+        <h4 className={`${theme.txt} my-0 py-0`}>{element.title}</h4>
         <p className={`${theme.txt} my-0 py-0 fw-bolder`}>
           {element.description}
         </p>

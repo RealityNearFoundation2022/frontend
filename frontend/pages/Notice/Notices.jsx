@@ -21,7 +21,7 @@ export default function Notices() {
           <div className="d-flex align-items-center mt-5 mb-4">
             <h1 className={`${theme.txt} m-1 text-primary pr-2`}>Novedades</h1>
             <Link to="/notices/novelties">
-              <span className="text-grey fw-bolder"> Ver más</span>
+              <span className="text-grey fw-bolder pt-4"> Ver más</span>
               <CaretRight size={28} color="#33cc99" weight="bold" />
             </Link>
           </div>
