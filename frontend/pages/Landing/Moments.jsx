@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import Slider from 'react-slick'
 import ThemeContext from '../../utils/useContextTheme'
 import { getData } from '../../api/methods'
-
+import '../../assets/css/components/events.css'
 export default function Moments() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
