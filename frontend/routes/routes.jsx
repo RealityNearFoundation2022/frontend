@@ -18,6 +18,7 @@ import Maps from '../pages/Maps/IndexMaps'
 import ResetPassword from '../pages/ResetPassword/ResetPasswordIndex'
 import ResetPasswordCompleted from '../pages/ResetPassword/ResetPasswordCompleted'
 import Error500 from '../pages/ErrorPage/Error500'
+import PlotNuruk from '../pages/Nuruk/PlotNuruk'
 
 export const routes = [
   {
@@ -51,6 +52,10 @@ export const routes = [
   {
     path: '/nuruk',
     element: <Nuruk />,
+  },
+  {
+    path: '/nuruk/:position',
+    element: <PlotNuruk/>,
   },
   {
     path: '/metaverso',
