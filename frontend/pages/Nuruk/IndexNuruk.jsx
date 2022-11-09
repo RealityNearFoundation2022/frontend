@@ -6,10 +6,12 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import Modal from '@mui/material/Modal'
 import Box from '@mui/material/Box'
+import { useNavigate } from 'react-router-dom'
 
 import TileMap from '../../utils/tilemap'
 import MockUp from '../../assets/img/MapaMockUp.jpg'
 import WhiteIcon from '../../assets/img/logo-white.svg'
+import { useNavigate } from 'react-router-dom'
 
 export default function IndexCentreland() {
   const tileSize = 15
@@ -18,6 +20,7 @@ export default function IndexCentreland() {
   */
   const sizeMockup = 200
   const sizeBoxImg = sizeMockup / 5
+  const navigate = useNavigate()
   const [column, setColumn] = useState(0)
   const [row, setRow] = useState(0)
   const [top, setTop] = useState(false)
@@ -115,6 +118,11 @@ export default function IndexCentreland() {
       setRigth(scrollWidth - scrollLeft === clientWidth && row < maxColumnsRows)
     })
   })
+
+  function goToPlotNurk(position) {
+    navigate(`/nuruk/${position}`)
+  }
+
   const getCentreland = (_row, _column) => {
     const canvas = document.getElementById(`centreland${_row}-${_column}`)
     const ctx = canvas.getContext('2d')
@@ -222,6 +230,7 @@ export default function IndexCentreland() {
               <div>
                 <button
                   type="button"
+                  onClick={function () { return goToPlotNurk(`${posX}${posY}`) }}
                   className="rounded btn-xl btn-primary"
                   style={{ shadow: 'none', border: 'none' }}
                 >
