@@ -1,15 +1,16 @@
 /* eslint-disable global-require */
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import Slider from 'react-slick'
 import ThemeContext from '../../utils/useContextTheme'
-import { momentsCarousel } from './momentsCarousel'
+import { getData } from '../../api/methods'
 
 export default function Moments() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
+  const api = process.env.REACT_APP_API
 
-  console.log(window.innerWidth)
+  const [events, setEvents] = useState([])
   const settings = {
     className: 'center',
     infinite: true,
@@ -31,7 +32,14 @@ export default function Moments() {
     },
   }
 
-  const itemsCard = [...momentsCarousel]
+  useEffect(() => {
+    apiGet()
+  }, [])
+
+  const apiGet = async () => {
+    const eventsData = await getData('events')
+    setEvents(eventsData)
+  }
   return (
     <section
       className={`${theme.bg} ${
@@ -45,13 +53,15 @@ export default function Moments() {
         </p>
         <div className="w-100 bg-primary h-70 d-flex align-items-center py-5 mt-2">
           <Slider {...settings} className="w-90 ps-5porcent">
-            {itemsCard.map((element) => (
+            {events.map(({ title, media }) => (
               <div className="">
-                <img src={element.imgCarousel} alt="" className="mx-2 w-95" />
+                <img
+                  src={`${api}${media[0].path}`}
+                  alt=""
+                  className="mx-2 w-95 events-img"
+                />
                 <center>
-                  <p className="fw-bold fs-5 mt-2 text-white">
-                    {element.titleEvent}
-                  </p>
+                  <p className="fw-bold fs-5 mt-2 text-white">{title}</p>
                 </center>
               </div>
             ))}
