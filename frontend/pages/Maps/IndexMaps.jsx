@@ -2,7 +2,10 @@
 import React, { useRef, useEffect, useState } from 'react'
 import mapboxgl from 'mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
 import turf from '@turf/square-grid'
+import { useNavigate } from 'react-router-dom'
 import { tokenMapBox } from '../../utils/mapboxUtils'
+import ModalBuy from '../../components/ModalBuy'
+
 mapboxgl.accessToken = tokenMapBox
 export default function IndexMaps() {
   const mapContainer = useRef(null)
@@ -12,6 +15,9 @@ export default function IndexMaps() {
   const [zoom, setZoom] = useState(3)
   const [showLand, setShowLand] = useState(true)
   const [selected, setSelected] = useState([])
+  const [open, setOpen] = useState(false)
+  const [selectedId, setSelectedId] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (map.current) return // initialize map only once
@@ -41,6 +47,12 @@ export default function IndexMaps() {
       })
     }
   })
+  const handleClose = () => {
+    setOpen(false)
+  }
+  const goToPlot = (position) => {
+    navigate(`/nuruk/${position}`)
+  }
   const searchSquare = (latitude, longitude) => {
     const sourceData = map.current.getSource('national-park')
     let id
@@ -61,6 +73,7 @@ export default function IndexMaps() {
         }
         return isThere
       })
+      setSelectedId(id)
       let features = selected
       let featuresData = [{ id, ...newSelected }]
       const isSelected = selected.some((e) => e.id === id)
@@ -92,6 +105,7 @@ export default function IndexMaps() {
         source = map.current.getSource(`grid${id}`)
       }
       source.setData(data)
+      setOpen(true)
     }
   }
   useEffect(() => {
@@ -272,16 +286,6 @@ export default function IndexMaps() {
         type: 'geojson',
         data: squareGrid, // Radius of each cluster when clustering points (defaults to 50)
       })
-      // map.current.addLayer({
-      //   id: 'park-boundary',
-      //   type: 'fill',
-      //   source: 'national-park',
-      //   paint: {
-      //     'fill-color': '#888888',
-      //     'fill-opacity': 0.4,
-      //   },
-      //   filter: ['==', '$type', 'Polygon'],
-      // })
       map.current.addLayer({
         id: 'park-boundary-outline',
         type: 'line',
@@ -304,6 +308,12 @@ export default function IndexMaps() {
         Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
       </div> */}
       <div ref={mapContainer} className="map-container" />
+      <ModalBuy
+        open={open}
+        handleClose={handleClose}
+        go={() => goToPlot(selectedId)}
+        id={selectedId}
+      />
     </div>
   )
 }
