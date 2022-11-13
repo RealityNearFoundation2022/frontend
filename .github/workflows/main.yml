@@ -9,6 +9,7 @@ jobs:
   create-deployment-artifacts:
     name: Create deployment artifact
     runs-on: ubuntu-latest
+    environment: REACT_APP_MAPBOX_KEY
     steps:
       - uses: actions/checkout@v2
       - name: Create .env file
