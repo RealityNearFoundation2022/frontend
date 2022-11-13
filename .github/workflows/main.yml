@@ -14,10 +14,9 @@ jobs:
       - name: Create .env file
         uses: ozaytsev86/create-env-file@v1
         with:
-          ENV_PORT: ${{ secrets.PD_PORT }}
-          ENV_REACT_APP_MAPBOX_KEY: ${{ secrets.PD_MAPBOX_KEY }}
-          ENV_REACT_APP_API: ${{ secrets.PD_API }}
-
+          INPUT_ENV_PORT: ${{ secrets.PD_PORT }}
+          INPUT_ENV_REACT_APP_MAPBOX_KEY: ${{ secrets.PD_MAPBOX_KEY }}
+          INPUT_ENV_REACT_APP_API: ${{ secrets.PD_API }}
       - name: Create deployment artifact
         env:
           GITHUB_SHA: ${{ github.sha }}
