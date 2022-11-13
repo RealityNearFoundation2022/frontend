@@ -20,6 +20,9 @@ jobs:
       - name: Create deployment artifact
         env:
           GITHUB_SHA: ${{ github.sha }}
+          PORT: ${{ secrets.PD_PORT }}
+          REACT_APP_MAPBOX_KEY: ${{ secrets.PD_MAPBOX_KEY }}
+          REACT_APP_API: ${{ secrets.PD_API }}
         run: |
           cat .env
           npm i
