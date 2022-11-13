@@ -9,7 +9,6 @@ jobs:
   create-deployment-artifacts:
     name: Create deployment artifact
     runs-on: ubuntu-latest
-    needs: create_env_file_job
     steps:
       - uses: actions/checkout@v2
       - name: Create .env file
