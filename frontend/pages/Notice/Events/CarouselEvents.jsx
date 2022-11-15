@@ -65,7 +65,7 @@ export default function CarouselEvents() {
         <Link to={`/notices/events/${element._id}`}>
           <CardNotices
             element={element}
-            medias={element.media.map((obj) => `${api}${obj.path}`)}
+            medias={element?.media?.map((obj) => `${api}${obj.path}`)}
           />
         </Link>
       ))}

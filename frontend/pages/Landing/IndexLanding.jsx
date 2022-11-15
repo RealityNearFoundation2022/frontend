@@ -1,6 +1,8 @@
 /* eslint-disable camelcase */
 import React from 'react'
 // import getConfig from '../../assets/js/near/config'
+import '../../assets/css/components/events.css'
+
 import Moments from './Moments'
 import RealityToken from './RealityToken'
 import RealityExperience from './RealityExperience'

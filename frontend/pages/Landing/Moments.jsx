@@ -54,12 +54,14 @@ export default function Moments() {
         <div className="w-100 bg-primary h-70 d-flex align-items-center py-5 mt-2">
           <Slider {...settings} className="w-90 ps-5porcent">
             {events.map(({ title, media }) => (
-              <div className="">
-                <img
-                  src={`${api}${media[0].path}`}
-                  alt=""
-                  className="mx-2 w-95 events-img"
-                />
+              <div className="events-img">
+                {media && (
+                  <img
+                    src={`${api}${media[0]?.path}`}
+                    alt=""
+                    className="events-img mx-2 w-95 events-img"
+                  />
+                )}
                 <center>
                   <p className="fw-bold fs-5 mt-2 text-white">{title}</p>
                 </center>
