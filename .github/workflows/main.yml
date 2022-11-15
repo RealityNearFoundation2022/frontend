@@ -19,23 +19,13 @@ jobs:
   create-deployment-artifacts:
     name: Create deployment artifact
     runs-on: ubuntu-latest
-    environment: REACT_APP_MAPBOX_KEY
+    needs: create_env_file_job
     steps:
       - uses: actions/checkout@v2
-      - name: Create .env file
-        uses: ozaytsev86/create-env-file@v1
-        with:
-          INPUT_ENV_PORT: ${{ secrets.PD_PORT }}
-          INPUT_ENV_REACT_APP_MAPBOX_KEY: ${{ secrets.PD_MAPBOX_KEY }}
-          INPUT_ENV_REACT_APP_API: ${{ secrets.PD_API }}
       - name: Create deployment artifact
         env:
           GITHUB_SHA: ${{ github.sha }}
-          PORT: ${{ secrets.PD_PORT }}
-          REACT_APP_MAPBOX_KEY: ${{ secrets.PD_MAPBOX_KEY }}
-          REACT_APP_API: ${{ secrets.PD_API }}
         run: |
-          cat .env
           npm i
           npm run build:web
           tar -czf "${GITHUB_SHA}".tar.gz --exclude=*.git --exclude=node_modules dist
@@ -46,13 +36,9 @@ jobs:
           name: Build-FrontEnd
           path: ${{ github.sha }}.tar.gz
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
 
 >>>>>>> 9f54f4f38a4933548e94a0965e895eab5e6524de
-=======
-
->>>>>>> a3edf611b467a44085f31689f3f2da3313b92666
   prepare-release-on-servers:
     name: Prepare release
     runs-on: ubuntu-latest
