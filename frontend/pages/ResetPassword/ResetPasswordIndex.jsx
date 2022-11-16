@@ -12,6 +12,8 @@ export default function ResetPasswordIndex() {
   const [validButton, setValidButton] = useState(false)
   const [error, setError] = useState(null)
   const [errorNew, setErrorNew] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+
   const handleChangeNewPassword = (e) => {
     const { value } = e.target
     setNewPassword(value)
@@ -22,6 +24,7 @@ export default function ResetPasswordIndex() {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
+      setIsLoading(true)
       const body = {
         // eslint-disable-next-line camelcase
         token: '',
@@ -32,8 +35,16 @@ export default function ResetPasswordIndex() {
       navigate('/reset-password/completed')
     } catch {
       navigate('/500')
+    } finally {
+      setIsLoading(false)
+
     }
   }
+  
+  function handleClose() {
+    setIsLoading(false)
+  }
+
   const handleChangePassword = (e) => {
     const { value } = e.target
     setPassword(value)
@@ -54,6 +65,7 @@ export default function ResetPasswordIndex() {
 
   return (
     <div>
+      <LoadingModal open={isLoading} handleClose={handleClose} />
       <div className="mb-5 py-5 text-center w-100 reset-psw bg-primary bg-img-realExperience">
         <span className={`${theme.txt} text-light h1 `}>
           Restablecer Contraseña

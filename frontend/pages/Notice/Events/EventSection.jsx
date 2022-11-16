@@ -7,16 +7,27 @@ import imgFake from '../../../assets/img/random/cabin.png'
 import CarouselEvents from './CarouselEvents'
 import 'react-slideshow-image/dist/styles.css'
 import { getData } from '../../../api/methods'
+import LoadingModal from '../../../components/LoadingModal'
 
 export default function EventSection() {
   const { idEvents } = useParams()
   const [dataItem, setDataItem] = useState({})
   // const [imgsData, setImages] = useState([])
   const { theme } = useContext(ThemeContext)
+  const [isLoading, setIsLoading] = useState(false)
 
   const apiGet = async () => {
-    const data = await getData(`events/${idEvents}`)
-    setDataItem({ ...data })
+    try {
+      setIsLoading(true)
+      const data = await getData(`events/${idEvents}`)
+      setDataItem({ ...data })
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  function handleClose() {
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -25,6 +36,7 @@ export default function EventSection() {
 
   return (
     <div className={`${theme.bg}`}>
+      <LoadingModal open={isLoading} handleClose={handleClose} />
       <HeaderSections
         titleSection={dataItem.title}
         descriptionSection={dataItem.description}

@@ -1,8 +1,10 @@
 /* eslint-disable no-underscore-dangle */
+import { FinnTheHuman } from 'phosphor-react'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Slider from 'react-slick'
 import { getData } from '../../../api/methods'
+import LoadingModal from '../../../components/LoadingModal'
 import CardNotices from '../CardNotices'
 require('dotenv').config()
 const api = process.env.REACT_APP_API
@@ -46,12 +48,19 @@ export default function CarouselNovelty() {
     ],
   }
 
+  function handleClose() {
+    setIsLoading(false)
+  }
+
   const apiGet = async () => {
     try {
+      setIsLoading(true)
       const data = await getData('news')
       setCarousel([...data])
     } catch (error) {
       navigate('/500')
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -60,6 +69,7 @@ export default function CarouselNovelty() {
   }, [])
   return (
     <Slider {...settings2}>
+      <LoadingModal open={isLoading} handleClose={handleClose} />
       {carousel.map((element) => (
         <Link to={`/notices/novelties/${element._id}`}>
           <CardNotices element={element} medias={[`${api}${element.image}`]} />

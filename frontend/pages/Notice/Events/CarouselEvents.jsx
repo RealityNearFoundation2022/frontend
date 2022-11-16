@@ -5,12 +5,15 @@ import Slider from 'react-slick'
 import { getData } from '../../../api/methods'
 import CardNotices from '../CardNotices'
 import '../../../assets/css/components/events.css'
+import LoadingModal from '../../../components/LoadingModal'
 require('dotenv').config()
 const api = process.env.REACT_APP_API
 
 export default function CarouselEvents() {
   const [carousel, setCarousel] = useState([])
   const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
+
   const settings2 = {
     className: 'slider variable-width',
     dots: true,
@@ -47,12 +50,19 @@ export default function CarouselEvents() {
     ],
   }
 
+  function handleClose() {
+    setIsLoading(false)
+  }
+
   const apiGet = async () => {
     try {
+      setIsLoading(true)
       const data = await getData('events')
       setCarousel(data)
     } catch (error) {
       navigate('/500')
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -61,6 +71,8 @@ export default function CarouselEvents() {
   }, [])
   return (
     <Slider {...settings2}>
+      <LoadingModal open={isLoading} handleClose={handleClose} />
+
       {carousel.map((element) => (
         <Link to={`/notices/events/${element._id}`}>
           <CardNotices
