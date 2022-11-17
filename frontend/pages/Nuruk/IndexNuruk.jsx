@@ -27,7 +27,7 @@ export default function IndexCentreland() {
   const [open, setOpen] = useState(false)
   const [posX, setPosX] = useState(0)
   const [posY, setPosY] = useState(0)
-
+  const [imgMap, setImgMap] = useState([0])
   const getPosition = (e) => {
     const cursorX = e.pageX
     const cursorY = e.pageY
@@ -38,10 +38,11 @@ export default function IndexCentreland() {
     setRow(newPosX)
     setColumn(newPosY)
   }
-  const handleOpen = (posx, posy) => {
+  const handleOpen = (posx, posy, imMap) => {
     setPosX(posx)
     setPosY(posy)
     setOpen(true)
+    setImgMap(imMap)
   }
 
   useEffect(() => {
@@ -100,8 +101,10 @@ export default function IndexCentreland() {
     })
   })
 
-  function goToPlotNurk(position) {
-    navigate(`/nuruk/${position}`)
+  function goToPlotNurk(x, y) {
+    navigate(`/nuruk/${x}/${y}`, {
+      state: { imgMap },
+    })
   }
   const handleClose = () => {
     setOpen(false)
@@ -167,8 +170,10 @@ export default function IndexCentreland() {
       <ModalBuy
         open={open}
         handleClose={handleClose}
-        go={() => goToPlotNurk(`${posX}${posY}`)}
-        id={`${posX}${posY}`}
+        go={() => goToPlotNurk(posX, posY)}
+        idX={posX}
+        idY={posY}
+        img={imgMap}
       />
     </div>
   )

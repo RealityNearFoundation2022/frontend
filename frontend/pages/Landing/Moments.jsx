@@ -5,9 +5,11 @@ import Slider from 'react-slick'
 import ThemeContext from '../../utils/useContextTheme'
 import { getData } from '../../api/methods'
 import '../../assets/css/components/events.css'
+import LoadingModal from '../../components/LoadingModal'
 export default function Moments() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
+  const [isLoading, setIsLoading] = useState(false)
   const api = process.env.REACT_APP_API
 
   const [events, setEvents] = useState([])
@@ -36,9 +38,18 @@ export default function Moments() {
     apiGet()
   }, [])
 
+  function handleClose() {
+    setIsLoading(false)
+  }
+
   const apiGet = async () => {
-    const eventsData = await getData('events')
-    setEvents(eventsData)
+    try {
+      setIsLoading(true)
+      const eventsData = await getData('events')
+      setEvents(eventsData)
+    } finally {
+      setIsLoading(false)
+    }
   }
   return (
     <section
@@ -47,6 +58,7 @@ export default function Moments() {
       } near pt-5`}
       id="near"
     >
+      <LoadingModal open={isLoading} handleClose={handleClose} />
       <div className="w-100 h-100 mt-2">
         <p className="text-uppercase text-primary fs-7 px-3porcent font-source-sans-3 fw-bold">
           {t('Conoce los eventos del momento')}

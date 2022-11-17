@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getData } from '../../../api/methods'
+import LoadingModal from '../../../components/LoadingModal'
 import HeaderSections from '../../HeaderSections'
 import CarouselNovelty from './Carousel'
 require('dotenv').config()
@@ -11,11 +12,21 @@ export default function NoveltySection() {
   const { idNovelties } = useParams()
   const [dataItem, setDataItem] = useState({})
   const [articles, setArticles] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const apiGet = async () => {
-    const obj = await getData(`news/${idNovelties}`)
-    setArticles([...obj.articles])
-    setDataItem({ ...obj })
+    try {
+      setIsLoading(true)
+      const obj = await getData(`news/${idNovelties}`)
+      setArticles([...obj.articles])
+      setDataItem({ ...obj })
+    } finally {
+
+    }
+  }
+
+  function handleClose() {
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -24,6 +35,7 @@ export default function NoveltySection() {
 
   return (
     <div className="">
+      <LoadingModal open={isLoading} handleClose={handleClose} />
       <HeaderSections
         titleSection={dataItem.title}
         descriptionSection={dataItem.description}
