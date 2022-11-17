@@ -312,7 +312,8 @@ export default function IndexMaps() {
         open={open}
         handleClose={handleClose}
         go={() => goToPlot(selectedId)}
-        id={selectedId}
+        idX={selectedId}
+        idY={selectedId}
       />
     </div>
   )

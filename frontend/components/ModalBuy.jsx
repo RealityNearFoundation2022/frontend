@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Modal from '@mui/material/Modal'
 import Box from '@mui/material/Box'
 import WhiteIcon from '../assets/img/logo-white.svg'
+import TileMap from '../utils/tilemap'
+import '../assets/css/components/nuruk.css'
 
-// eslint-disable-next-line react/prop-types
-export default function ModalBuy({ open, handleClose, go, id }) {
+export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
   const style = {
     position: 'absolute',
     top: '50%',
@@ -18,9 +19,22 @@ export default function ModalBuy({ open, handleClose, go, id }) {
     px: 4,
     pb: 3,
   }
+  const getImg = () => {
+    if (open) {
+      const canvas = document.getElementById('modal-buy')
+      const ctx = canvas.getContext('2d')
+      const tileMap = new TileMap(15, idX, idY, null, img)
+      tileMap.clearCanvas(canvas, ctx)
+      tileMap.draw(canvas, ctx)
+    }
+  }
+  useEffect(() => {
+    getImg()
+  }, [open])
 
   return (
     <Modal
+      keepMounted
       open={open}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
@@ -37,16 +51,15 @@ export default function ModalBuy({ open, handleClose, go, id }) {
       >
         <div className="row">
           <div className="col col-md-3">
-            <img
-              src="https://via.placeholder.com/500"
-              className="rounded"
-              style={{ maxWidth: '100%' }}
-              alt=""
-            />
+            <canvas
+              id="modal-buy"
+              type="module"
+              className="img__modal"
+            ></canvas>
           </div>
           <div className="col col-md-5 p-2">
             <h2 className="h4" id="child-modal-title">
-              Realand {id}
+              Realand {idX} {idY}
             </h2>
             <p id="child-modal-description" className="h5 text-grey">
               <span className="pr-2">

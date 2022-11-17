@@ -1,12 +1,15 @@
 export default class TileMap {
-  constructor(tileSize, row, column, handleOpen) {
+  constructor(tileSize, row, column, handleOpen, isModal) {
     this.tileSize = tileSize
     this.row = row
     this.column = column
-    this.map = this.createMap()
+    this.isModal = !!isModal
+    this.map = isModal || this.createMap()
     this.drawed = false
     this.handleOpen = handleOpen
   }
+
+
   createMap() {
     const arrayMap = Array.apply(null, Array(100)).map((e) =>
       Array.apply(null, Array(100)).map(Number.prototype.valueOf, 0),
@@ -3588,37 +3591,48 @@ export default class TileMap {
     const selectedIdX = Math.ceil(x / this.tileSize)
     const nm = newMap[selectedIdY - 1][selectedIdX - 1];
     if(nm === 0 || nm === 6 || nm === 7){
-      return;
-
+      return
     }
     const newSelected = nm.toString().includes('s')
       ? nm.substring(0, nm.length - 2)
       : `${nm}-s`
+    
     newMap[selectedIdY-1][selectedIdX-1] = newSelected
     const posY = this.row*100 +selectedIdY ;
     const posX =this.column * 100 +selectedIdX;
     this.map = newMap
-    this.handleOpen(posX, posY)
-    this.#drawMap(ctx)
-    
-    
+    const imgMap = this.#getImgMap(selectedIdY-1, selectedIdX-1, newMap)
+    this.handleOpen(posX, posY, imgMap)
+    this.#drawMap(ctx) 
   }
- 
+  #getImgMap(posX, posY, newMap){
+    const sizeMiniMap = posX- 3 < 0 && posY- 3 <0 ? 5 : 3
+    const minX = posX- sizeMiniMap < 0 ? 0 : posX- sizeMiniMap
+    const maxX =  posX + sizeMiniMap + 1
+    const minY = posY- sizeMiniMap < 0 ? 0 : posY - sizeMiniMap
+    const maxY =  posY + sizeMiniMap + 1
+    const miniMap = newMap.slice(minX ,maxX ).map((map) => map.slice(minY , maxY));
+    console.log(miniMap)
+    return miniMap
+  }
   draw(canvas, ctx) {
     this.#setCanvasSize(canvas)
     this.#drawMap(ctx)
-    const getP = (e) => {
-      const rw = localStorage.getItem('row');
-      const cl = localStorage.getItem('col')
-      if(Number(rw) !== this.row || Number(cl) !== this.column){
-        canvas.removeEventListener('click', getP, true)
-      } else {
-        this.#getPosition(canvas, ctx, this.map, e)
+    if(!this.isModal){
+      const getP = (e) => {
+        const rw = localStorage.getItem('row');
+        const cl = localStorage.getItem('col')
+        if(Number(rw) !== this.row || Number(cl) !== this.column){
+          canvas.removeEventListener('click', getP, true)
+        } else {
+          this.#getPosition(canvas, ctx, this.map, e)
+        }
       }
+      canvas.addEventListener('click', getP, true)
+      localStorage.setItem('row',this.row)
+      localStorage.setItem('col',this.column)
+      this.drawed = true
     }
-    canvas.addEventListener('click', getP, true)
-    localStorage.setItem('row',this.row)
-    localStorage.setItem('col',this.column)
-    this.drawed = true
+    
   }
 }

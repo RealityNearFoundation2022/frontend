@@ -55,7 +55,7 @@ export const routes = [
     element: <Nuruk />,
   },
   {
-    path: '/nuruk/:position',
+    path: '/nuruk/:posX/:posY',
     element: <PlotNuruk />,
   },
   {
