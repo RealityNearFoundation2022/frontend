@@ -1,5 +1,6 @@
 require('dotenv').config()
 const api = process.env.REACT_APP_API
+
 // const api = 'http://45.77.115.23:8081'
 
 export const getData = async (endpoint) => {
