@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal, Box } from '@mui/material'
-export default LoadingModal = ({ open, handleClose }) => {
+export default function LoadingModal({ open, handleClose }) {
   const style = {
     position: 'absolute',
     top: '50%',
