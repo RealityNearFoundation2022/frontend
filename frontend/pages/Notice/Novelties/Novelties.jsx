@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 // import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 import { getData } from '../../../api/methods'
+import LoadingModal from '../../../components/LoadingModal'
 import HeaderSections from '../../HeaderSections'
 // import CardNotices from '../CardNotices'
 // import { dataNotices } from '../dataNotices'
@@ -13,6 +14,7 @@ const api = process.env.REACT_APP_API
 
 export default function Novelties() {
   const [carousel, setCarousel] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const navigate = useNavigate()
 
@@ -27,13 +29,19 @@ export default function Novelties() {
     cssEase: 'linear',
   }
 
+  function handleClose() {
+    setIsLoading(false)
+  }
+
   const apiGet = async () => {
     try {
+      setIsLoading(true)
       const data = await getData('news')
       setCarousel([...data])
     } catch (error) {
       navigate('/500')
     } finally {
+      setIsLoading(false)
       console.log('TO DO')
     }
   }
@@ -45,6 +53,7 @@ export default function Novelties() {
   // const carousel = [...dataNotices.novelties]
   return (
     <div className="mt-5">
+      <LoadingModal open={isLoading} handleClose={handleClose} />
       <HeaderSections
         titleSection="Novedades"
         descriptionSection="Conoce las nuevas actualizaciones en el mundo de Reality Near"

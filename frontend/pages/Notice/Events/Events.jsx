@@ -21,8 +21,13 @@ export default function Events() {
   }
 
   const apiGet = async () => {
-    const events = await getData('events')
-    setCarousel([...events])
+    try {
+      setIsLoading(true)
+      const eventsData = await getData('events')
+      setCarousel([...events])
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   useEffect(() => {

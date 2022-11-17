@@ -5,6 +5,7 @@ import Box from '@mui/material/Box'
 import ThemeContext from '../../utils/useContextTheme'
 import HeaderSections from '../HeaderSections'
 import FollowInfo from '../../components/FollowInfo'
+import LoadingModal from '../../components/LoadingModal'
 
 function Contact() {
   const [openCompleted, setOpenCompleted] = useState(false)
@@ -122,25 +123,7 @@ function Contact() {
         </div>
       </div>
       <FollowInfo isBackground />
-      <Modal
-        open={openSpinner}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box
-          sx={{
-            ...style,
-            borderRadius: '20px',
-            border: 0,
-            padding: 4,
-          }}
-        >
-          <div className="text-center">
-            <div className="spinner-border text-secondary" role="status"></div>
-          </div>
-        </Box>
-      </Modal>
+      <LoadingModal handleClose={handleClose} open={openSpinner}/>
       <Modal
         open={openCompleted}
         onClose={handleClose}
