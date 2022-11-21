@@ -90,7 +90,8 @@ function Marketplace() {
 
   const loadSaleItems = async () => {
     const nftTokens = await nft_tokens('0', 64)
-
+    debugger
+    console.log(nftTokens)
     const saleTokens = await get_sales_by_nft_contract_id(config.contractName)
 
     const sales = []

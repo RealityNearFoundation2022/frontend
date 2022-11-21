@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import ThemeContext from '../../utils/useContextTheme'
 import { postData } from '../../api/methods'
 import '../../assets/css/components/events.css'
+import LoadingModal from '../../components/LoadingModal'
 export default function ResetPasswordIndex() {
   const navigate = useNavigate()
 
@@ -37,10 +38,9 @@ export default function ResetPasswordIndex() {
       navigate('/500')
     } finally {
       setIsLoading(false)
-
     }
   }
-  
+
   function handleClose() {
     setIsLoading(false)
   }
