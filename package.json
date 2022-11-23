@@ -3,10 +3,16 @@
   "version": "1.0.0",
   "license": "ISC",
   "scripts": {
+    "lint": "eslint ./frontend",
+    "lint:fix": "eslint --fix --ext .js,.jsx ./frontend",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "build:web": "parcel build frontend/index.html --public-url ./",
     "start:web": "parcel frontend/index.html --open",
     "dev": "nodemon npm run start:web",
-    "test:integration:ts": "cd integration-tests/ts && npm run test"
+    "test:integration:ts": "cd integration-tests/ts && npm run test",
+    "prepush": "npm run lint",
+    "postinstall": "rm -rf .git/hooks/pre-push && node node_modules/husky/bin/install.js && rm -rf .git/hooks/pre-commit",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@babel/core": "~7.18.2",
@@ -17,22 +23,24 @@
     "ava": "^4.2.0",
     "buffer": "^6.0.3",
     "env-cmd": "~10.1.0",
-    "eslint": "^8.17.0",
+    "eslint": "^8.28.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "^26.5.3",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.30.0",
-    "eslint-plugin-react-hooks": "^4.5.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.3",
     "near-cli": "~3.3.0",
     "near-workspaces": "^2.0.0",
     "nodemon": "~2.0.16",
     "os-browserify": "^0.3.0",
     "parcel": "^2.6.0",
     "path-browserify": "^1.0.1",
-    "prettier": "^2.6.2",
+    "prettier": "^2.8.0",
     "process": "^0.11.10",
     "react-test-renderer": "~18.1.0",
     "ts-node": "^10.8.0",
@@ -67,11 +75,31 @@
     "slick-carousel": "^1.8.1",
     "tweenjs": "^1.0.2"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{html,css,less,ejs}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "resolutions": {
     "@babel/preset-env": "7.13.8"
   },
   "eslintConfig": {
-    "extends": "@imaginary-cloud/react"
+    "extends": "@imaginary-cloud/react",
+    "env": {
+      "browser": true,
+      "node": true
+    }
   },
   "prettier": "@imaginary-cloud/prettier-config",
   "browserslist": {

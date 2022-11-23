@@ -56,8 +56,8 @@ export default function EventSection() {
           <div className="slide-container w-100 h-100 rounded">
             <Fade>
               {/* imgsData.map((eachImg) => ( */}
-              {[1, 2].map(() => (
-                <div className="each-fade h-100 w-100">
+              {[1, 2].map((e) => (
+                <div className="each-fade h-100 w-100" key={e}>
                   <img
                     src={imgFake}
                     /* src={api+eachImg.path} */

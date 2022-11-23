@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react'
 import {
   login,
   nft_tokens_for_owner,
-  storage_minimum_balance,
-  storage_deposit,
   nft_approve,
   nft_mint,
 } from '../../assets/js/near/utils'
@@ -18,7 +16,7 @@ import getConfig from '../../assets/js/near/config'
 
 import * as nearAPI from 'near-api-js'
 
-import { Link, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const initialValues = {
   assetTitle: '',
@@ -46,8 +44,6 @@ function NftMe() {
   const { isVisible, isVisibleSale, toggleModal, toggleSaleModal } = useModal()
 
   const [nftResults, setNftResults] = useState([])
-
-  const [minimum, setMinimum] = useState('')
 
   useEffect(() => {
     if (!showLoader) {
@@ -104,19 +100,19 @@ function NftMe() {
     setShowLoader(true)
   }
 
-  const sendStorageDeposit = async () => {
-    getMinimumStorage()
+  // const sendStorageDeposit = async () => {
+  //   getMinimumStorage()
 
-    console.log(minimum)
+  //   console.log(minimum)
 
-    await storage_deposit(currentUser, minimum, config.GAS)
-  }
+  //   await storage_deposit(currentUser, minimum, config.GAS)
+  // }
 
-  const getMinimumStorage = async () => {
-    let minimum_balance = await storage_minimum_balance()
+  // const getMinimumStorage = async () => {
+  //   let minimum_balance = await storage_minimum_balance()
 
-    setMinimum(minimum_balance)
-  }
+  //   setMinimum(minimum_balance)
+  // }
 
   return (
     <div style={{ marginTop: 100 + 'px' }}>

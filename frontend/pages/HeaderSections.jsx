@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-
+import PropTypes from 'prop-types'
 export default function HeaderSections({
   titleSection,
   descriptionSection,
@@ -16,4 +15,10 @@ export default function HeaderSections({
       <p className="fw-bold text-white fs-5">{t(descriptionSection)} </p>
     </div>
   )
+}
+
+HeaderSections.propTypes = {
+  titleSection: PropTypes.string.isRequired,
+  descriptionSection: PropTypes.string.isRequired,
+  bgHeader: PropTypes.string.isRequired,
 }

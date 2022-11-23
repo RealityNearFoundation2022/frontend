@@ -10,7 +10,7 @@ export default function ResetPasswordIndex() {
   const { theme } = useContext(ThemeContext)
   const [password, setPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
-  const [validButton, setValidButton] = useState(false)
+  // const [validButton, setValidButton] = useState(false)
   const [error, setError] = useState(null)
   const [errorNew, setErrorNew] = useState(null)
   const [isLoading, setIsLoading] = useState(false)

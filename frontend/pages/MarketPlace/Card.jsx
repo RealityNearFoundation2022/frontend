@@ -4,13 +4,10 @@ import { Link } from 'react-router-dom'
 import ThemeContext from '../../utils/useContextTheme'
 import logo from '../../assets/img/random/logo1.png'
 
-export default function Card({ elementsCard, category }) {
+export default function Card({ elementsCard }) {
   const { theme } = useContext(ThemeContext)
   return (
     <Link to="#">
-      {/* <Link
-      to={`/marketplace/detail/${category.toLowerCase()}/${elementsCard.id}`}
-    > */}
       <div>
         <div className="h-imagenes">
           <img

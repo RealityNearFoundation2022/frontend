@@ -21,6 +21,7 @@ export default function NoveltySection() {
       setArticles([...obj.articles])
       setDataItem({ ...obj })
     } finally {
+      setIsLoading(false)
     }
   }
 
@@ -44,7 +45,7 @@ export default function NoveltySection() {
         <h3 className="w-100">{dataItem.title}</h3>
         {articles.map((elmnt, index) =>
           index % 2 === 0 ? (
-            <div className="w-100 d-flex">
+            <div className="w-100 d-flex" key={elmnt.image}>
               <div className="w-60">
                 <p>{elmnt.data}</p>
               </div>
@@ -57,7 +58,7 @@ export default function NoveltySection() {
               </div>
             </div>
           ) : (
-            <div className="w-100 d-flex flex-row-reverse">
+            <div className="w-100 d-flex flex-row-reverse" key={elmnt.image}>
               <div className="w-60">
                 <p>{elmnt.data}</p>
               </div>

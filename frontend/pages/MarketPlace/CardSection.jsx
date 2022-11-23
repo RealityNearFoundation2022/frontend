@@ -1,15 +1,14 @@
 /* eslint-disable react/prop-types */
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Slider from 'react-slick'
 import Card from './Card'
 import ThemeContext from '../../utils/useContextTheme'
 import { filtersMarketplace } from './Data_Categories/Categories'
 import logo from '../../assets/img/random/logo1.png'
-import { nft_tokens } from '../../assets/js/near/utils'
 
 export function CardSection() {
-  const { idCard, category } = useParams()
+  const { category } = useParams()
   const { theme } = useContext(ThemeContext)
 
   // const [filtersMarketplace, setData] = useState([])
@@ -122,8 +121,8 @@ export function CardSection() {
         <div className="w-100">
           <h1 className="text-primary">Artículos Similares</h1>
           <Slider {...settings}>
-            {dataCategory.itemCards.map((element) => (
-              <Card elementsCard={element} category={category} />
+            {dataCategory.itemCards.map((element, index) => (
+              <Card key={index} elementsCard={element} category={category} />
             ))}
           </Slider>
         </div>

@@ -108,7 +108,7 @@ export default function Section() {
             element.title.toLowerCase() !== 'patchas',
         )
         .map((item) => (
-          <div className="w-100">
+          <div className="w-100" key={item.title}>
             <div className="d-flex align-items-center pb-4" id="mpResponsive">
               <h1 className={`${theme.txt} m-1 text-primary pr-2`}>
                 {item.title}
@@ -120,7 +120,11 @@ export default function Section() {
             </div>
             <Slider {...settings}>
               {item.itemCards.map((element) => (
-                <Card elementsCard={element} category={item.title} />
+                <Card
+                  key={element}
+                  elementsCard={element}
+                  category={item.title}
+                />
               ))}
             </Slider>
           </div>

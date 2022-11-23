@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import Modal from '@mui/material/Modal'
 import Box from '@mui/material/Box'
+import PropTypes from 'prop-types'
 import WhiteIcon from '../assets/img/logo-white.svg'
 import TileMap from '../utils/tilemap'
 import '../assets/css/components/nuruk.css'
@@ -53,15 +54,13 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
       >
         <div className="row">
           <div className="col col-md-3">
-            <canvas
-              id="modal-buy"
-              type="module"
-              className="img__modal"
-            ></canvas>
+            <canvas id="modal-buy" type="module" className="img__modal" />
           </div>
           <div className="col col-md-5 p-2">
             <h2 className="h4" id="child-modal-title">
-              Realand {idX} {idY}
+              Realand
+              {idX}
+              {idY}
             </h2>
             <p id="child-modal-description" className="h5 text-grey">
               <span className="pr-2">
@@ -95,4 +94,16 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
       </Box>
     </Modal>
   )
+}
+ModalBuy.propTypes = {
+  open: PropTypes.string.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  go: PropTypes.func.isRequired,
+  idX: PropTypes.string.isRequired,
+  idY: PropTypes.string.isRequired,
+  img: PropTypes.array || PropTypes.bool,
+}
+
+ModalBuy.defaultProps = {
+  img: false,
 }

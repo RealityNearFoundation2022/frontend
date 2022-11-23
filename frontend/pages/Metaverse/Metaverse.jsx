@@ -100,7 +100,7 @@ function Metaverso() {
         <div className="w-100 d-lex align-items-center justify-content-center">
           <Slider {...settings} className="w-100 ">
             {itemsCard.map((element) => (
-              <div className="">
+              <div key={element.titleEvent}>
                 <img src={element.imgCarousel} alt="" className="mx-2 w-95" />
                 <center>
                   <p className="fw-bold fs-5 mt-2 text-white">

@@ -9,9 +9,8 @@ export default class TileMap {
     this.handleOpen = handleOpen
   }
 
-
   createMap() {
-    const arrayMap = Array.apply(null, Array(100)).map((e) =>
+    const arrayMap = Array.apply(null, Array(100)).map(() =>
       Array.apply(null, Array(100)).map(Number.prototype.valueOf, 0),
     )
     const index = `${this.row}${this.column}`
@@ -3565,7 +3564,7 @@ export default class TileMap {
     canvas.removeEventListener('click', this.getP)
   }
 
-  #drawMap(ctx) {00
+  #drawMap(ctx) {
     this.map.forEach((rowMap, rowIndex) => {
       rowMap.forEach((tile, columnIndex) => {
         this.#image(tile, (image) => {
@@ -3589,51 +3588,49 @@ export default class TileMap {
     let y = event.clientY - rect.top
     const selectedIdY = Math.ceil(y / this.tileSize)
     const selectedIdX = Math.ceil(x / this.tileSize)
-    const nm = newMap[selectedIdY - 1][selectedIdX - 1];
-    if(nm === 0 || nm === 6 || nm === 7){
+    const nm = newMap[selectedIdY - 1][selectedIdX - 1]
+    if (nm === 0 || nm === 6 || nm === 7) {
       return
     }
     const newSelected = nm.toString().includes('s')
       ? nm.substring(0, nm.length - 2)
       : `${nm}-s`
-    
-    newMap[selectedIdY-1][selectedIdX-1] = newSelected
-    const posY = this.row*100 +selectedIdY ;
-    const posX =this.column * 100 +selectedIdX;
+
+    newMap[selectedIdY - 1][selectedIdX - 1] = newSelected
+    const posY = this.row * 100 + selectedIdY
+    const posX = this.column * 100 + selectedIdX
     this.map = newMap
-    const imgMap = this.#getImgMap(selectedIdY-1, selectedIdX-1, newMap)
-c
+    const imgMap = this.#getImgMap(selectedIdY - 1, selectedIdX - 1, newMap)
     this.handleOpen(posX, posY, imgMap)
-    this.#drawMap(ctx) 
+    this.#drawMap(ctx)
   }
-  #getImgMap(posX, posY, newMap){
-    const sizeMiniMap = posX- 3 < 0 && posY- 3 <0 ? 5 : 3
-    const minX = posX- sizeMiniMap < 0 ? 0 : posX- sizeMiniMap
-    const maxX =  posX + sizeMiniMap + 1
-    const minY = posY- sizeMiniMap < 0 ? 0 : posY - sizeMiniMap
-    const maxY =  posY + sizeMiniMap + 1
-    const miniMap = newMap.slice(minX ,maxX ).map((map) => map.slice(minY , maxY));
+  #getImgMap(posX, posY, newMap) {
+    const sizeMiniMap = posX - 3 < 0 && posY - 3 < 0 ? 5 : 3
+    const minX = posX - sizeMiniMap < 0 ? 0 : posX - sizeMiniMap
+    const maxX = posX + sizeMiniMap + 1
+    const minY = posY - sizeMiniMap < 0 ? 0 : posY - sizeMiniMap
+    const maxY = posY + sizeMiniMap + 1
+    const miniMap = newMap.slice(minX, maxX).map((map) => map.slice(minY, maxY))
     console.log(miniMap)
     return miniMap
   }
   draw(canvas, ctx) {
     this.#setCanvasSize(canvas)
     this.#drawMap(ctx)
-    if(!this.isModal){
+    if (!this.isModal) {
       const getP = (e) => {
-        const rw = localStorage.getItem('row');
+        const rw = localStorage.getItem('row')
         const cl = localStorage.getItem('col')
-        if(Number(rw) !== this.row || Number(cl) !== this.column){
+        if (Number(rw) !== this.row || Number(cl) !== this.column) {
           canvas.removeEventListener('click', getP, true)
         } else {
           this.#getPosition(canvas, ctx, this.map, e)
         }
       }
       canvas.addEventListener('click', getP, true)
-      localStorage.setItem('row',this.row)
-      localStorage.setItem('col',this.column)
+      localStorage.setItem('row', this.row)
+      localStorage.setItem('col', this.column)
       this.drawed = true
     }
-    
   }
 }

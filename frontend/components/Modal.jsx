@@ -1,54 +1,8 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-// import * as React from 'react'
-// import { createPortal } from 'react-dom'
-// import { CloseIcon } from './Close'
-// import IconButton from '@mui/material/IconButton'
-
-// function Modal({
-//   isVisible,
-//   isVisibleSale,
-//   isVisibleBid,
-//   hideModal,
-//   children,
-// }) {
-//   return isVisible || isVisibleSale || isVisibleBid
-//     ? createPortal(
-//         <div className="modal-overlay">
-//           <div className="outform-wrapper">
-//             <div className="close-wrapper">
-//               {/* <button
-//                 type="button"
-//                 className="button"
-//                 aria-label="Close dialog"
-//                 onClick={hideModal}
-//               >
-//                 <CloseIcon />
-//               </button> */}
-//               <IconButton aria-label="delete" disabled color="primary">
-//                 <CloseIcon />
-//               </IconButton>
-//             </div>
-//             {children}
-//           </div>
-//         </div>,
-//         document.body,
-//       )
-//     : null
-// }
-
-// export default Modal
 import * as React from 'react'
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
-import LanguageIcon from '@mui/icons-material/Language'
-import { IconButton } from '@mui/material'
 import { useEffect } from 'react'
-
+import { PropTypes } from 'prop-types'
 const style = {
   position: 'absolute',
   top: '50%',
@@ -72,11 +26,7 @@ export default function BasicModal({
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => {
-    if (
-      setBox !== undefined &&
-      setValueWallet !== undefined &&
-      setRealities !== undefined
-    ) {
+    if (setBox && setValueWallet && setRealities) {
       setBox(0)
       setValueWallet('')
       setRealities('')
@@ -101,4 +51,13 @@ export default function BasicModal({
       </Modal>
     </div>
   )
+}
+
+BasicModal.propTypes = {
+  children: PropTypes.element.isRequired,
+  button: PropTypes.element.isRequired,
+  close: PropTypes.bool.isRequired,
+  setBox: PropTypes.func.isRequired,
+  setValueWallet: PropTypes.func.isRequired,
+  setRealities: PropTypes.func.isRequired,
 }

@@ -1,11 +1,9 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import logoFooter from '../assets/img/random/logoFooter.png'
 import ThemeContext from '../utils/useContextTheme'
 function Footer() {
   const { theme } = useContext(ThemeContext)
-
   return (
     <footer
       className={`${theme.bg} d-flex w-100 justify-content-between align-items-center h-40vh container-moments px-5porcent`}

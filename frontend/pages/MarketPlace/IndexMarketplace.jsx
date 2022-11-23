@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
-/* eslint-disable import/order */
 import React, { useContext, useEffect, useState } from 'react'
 import {
   login,
@@ -90,7 +89,6 @@ function Marketplace() {
 
   const loadSaleItems = async () => {
     const nftTokens = await nft_tokens('0', 64)
-    debugger
     console.log(nftTokens)
     const saleTokens = await get_sales_by_nft_contract_id(config.contractName)
 

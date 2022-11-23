@@ -20,5 +20,6 @@ export const indexInterestingLands = (prop) =>
           },
         },
       })
+      reject('error')
     }, 300)
   })

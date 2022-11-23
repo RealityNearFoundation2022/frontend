@@ -64,7 +64,7 @@ export default function Novelties() {
           <div className="w-90">
             <Slider {...settings1}>
               {carousel.map((element) => (
-                <div className="rounded position-relative">
+                <div className="rounded position-relative" key={element.title}>
                   <img
                     src={`${api}${element.image}`}
                     alt=""

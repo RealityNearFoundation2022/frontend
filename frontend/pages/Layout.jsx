@@ -1,12 +1,10 @@
 /* eslint-disable camelcase */
 import React, { useContext, useState } from 'react'
-/* eslint-disable import/no-extraneous-dependencies */
 import { Outlet, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import {
   login,
   logout,
-  nft_tokens,
   // nft_tokens_for_owner,
 } from '../assets/js/near/utils'
 import logo from '../assets/img/logo.png'
@@ -65,12 +63,12 @@ function Layout() {
         className={`navbar-brand w-10 d-flex justify-content-center ${theme.txt}`}
         to="/"
       >
-        <img src={logo} alt="" className="m-0" width="45" heigth="45" />
+        <img src={logo} alt="" className="m-0" width="45" />
       </Link>
       <div className="collapse navbar-collapse" id="navbarResponsive">
         <ul className="navbar-nav justify-content-between w-95">
           {links.map(({ label, link }) => (
-            <li className="nav-item">
+            <li className="nav-item" key={link}>
               <Link
                 className={`fw-light rounded nav-link${theme.txt}`}
                 to={link}
