@@ -1,6 +1,0 @@
-{
-    "extends": ["@imaginary-cloud/react"],
-    "rules": {
-        "no-console": 1
-      }
-}
