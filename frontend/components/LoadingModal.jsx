@@ -1,5 +1,6 @@
 import React from 'react'
 import { Modal, Box } from '@mui/material'
+import { PropTypes } from 'prop-types'
 export default function LoadingModal({ open, handleClose }) {
   const style = {
     position: 'absolute',
@@ -35,4 +36,8 @@ export default function LoadingModal({ open, handleClose }) {
       </Box>
     </Modal>
   )
+}
+LoadingModal.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
 }

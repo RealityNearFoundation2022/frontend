@@ -1,4 +1,3 @@
-/* eslint-disable import/no-named-as-default-member */
 import React, { useRef, useEffect, useState } from 'react'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'

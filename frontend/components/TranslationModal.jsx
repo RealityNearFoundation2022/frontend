@@ -56,7 +56,9 @@ export default function TranslationModal() {
             onChange={handleChangeLanguage}
           >
             {languages.map(({ name, key }) => (
-              <MenuItem value={key}>{name}</MenuItem>
+              <MenuItem key={key} value={key}>
+                {name}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>

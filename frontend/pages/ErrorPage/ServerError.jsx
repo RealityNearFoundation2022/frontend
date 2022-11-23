@@ -5,21 +5,25 @@ import { Link } from 'react-router-dom'
 
 export default function ServerError() {
   return (
-    <div className='container'>
+    <div className="container">
       <div className="row">
         <div className="col-12 col-md-7 d-none d-md-block">
-          <img src={serverError} className='w-100' />
+          <img src={serverError} className="w-100" />
         </div>
         <div className="col-12 col-md-5 d-flex align-items-center py-5">
-          <div className='text-center text-grey'>
+          <div className="text-center text-grey">
             <img src={warningTriangle} alt="" />
-            <h1 className='h3'>¡Ups! Ha ocurrido un error en nuestro servidor</h1>
-            <div className='mt-3'>
+            <h1 className="h3">
+              ¡Ups! Ha ocurrido un error en nuestro servidor
+            </h1>
+            <div className="mt-3">
               <p>Estamos trabajando para solucionarlo</p>
               <p>Intenta más tarde o regresa a Home</p>
             </div>
-            <Link to='/'>
-              <button className="_btn btn-primary btn-xl rounded mt-3">Home</button>
+            <Link to="/">
+              <button className="_btn btn-primary btn-xl rounded mt-3">
+                Home
+              </button>
             </Link>
           </div>
         </div>

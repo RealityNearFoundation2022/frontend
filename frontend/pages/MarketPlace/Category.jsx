@@ -27,7 +27,7 @@ export function Category({ dataCategory }) {
       <h1 className="mt-3 text-primary">{dataCategory.title}</h1>
       <div className="d-flex flex-sm-wrap gap-3">
         {currentData.map((item) => (
-          <div className="w-30">
+          <div className="w-30" key={item}>
             <Card elementsCard={item} category={dataCategory.title} />
           </div>
         ))}

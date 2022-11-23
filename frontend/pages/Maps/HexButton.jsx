@@ -64,5 +64,6 @@ HexButton.propTypes = {
   onClick: PropTypes.func,
   url: PropTypes.string,
   text: PropTypes.string,
+  children: PropTypes.element,
 }
 export default HexButton

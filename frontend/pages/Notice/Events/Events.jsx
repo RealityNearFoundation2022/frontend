@@ -4,12 +4,13 @@ import Slider from 'react-slick'
 import { getData } from '../../../api/methods'
 import HeaderSections from '../../HeaderSections'
 import CarouselEvents from './CarouselEvents'
-require('dotenv').config()
+import { config } from 'dotenv'
+
+config()
 const api = process.env.REACT_APP_API
 
 export default function Events() {
   const [carousel, setCarousel] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
   const settings1 = {
     dots: true,
     infinite: true,
@@ -23,11 +24,10 @@ export default function Events() {
 
   const apiGet = async () => {
     try {
-      setIsLoading(true)
       const eventsData = await getData('events')
       setCarousel([...eventsData])
-    } finally {
-      setIsLoading(false)
+    } catch {
+      console.error('error')
     }
   }
 

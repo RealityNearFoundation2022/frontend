@@ -67,7 +67,7 @@ export default function CarouselNovelty() {
     <Slider {...settings2}>
       <LoadingModal open={isLoading} handleClose={() => setIsLoading(false)} />
       {carousel.map((element) => (
-        <Link to={`/notices/novelties/${element._id}`}>
+        <Link to={`/notices/novelties/${element._id}`} key={element._id}>
           <CardNotices element={element} medias={[`${api}${element.image}`]} />
         </Link>
       ))}

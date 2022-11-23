@@ -66,7 +66,7 @@ export default function Moments() {
         <div className="w-100 bg-primary h-70 d-flex align-items-center py-5 mt-2">
           <Slider {...settings} className="w-90 ps-5porcent">
             {events.map(({ title, media }) => (
-              <div className="events-img">
+              <div className="events-img" key={title}>
                 {media && (
                   <img
                     src={`${api}${media[0]?.path}`}

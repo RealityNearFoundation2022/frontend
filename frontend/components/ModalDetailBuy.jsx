@@ -3,13 +3,14 @@ import { Modal, Box } from '@mui/material'
 import checkCircle from '../assets/img/icons/check_circle.png'
 import near from '../assets/img/icons/near.svg'
 import TileMap from '../utils/tilemap'
+import PropTypes from 'prop-types'
 
 export default function ModalDetailBuy({
   openNearWallet,
   setOpenNearWallet,
   img,
   posX,
-  posY
+  posY,
 }) {
   const [openAbstract, setOpenAbstract] = useState(false)
   const [openCompleted, setOpenCompleted] = useState(false)
@@ -148,4 +149,12 @@ export default function ModalDetailBuy({
       </Modal>
     </>
   )
+}
+
+ModalDetailBuy.propTypes = {
+  openNearWallet: PropTypes.func.isRequired,
+  setOpenNearWallet: PropTypes.func.isRequired,
+  img: PropTypes.array.isRequired,
+  posX: PropTypes.string.isRequired,
+  posY: PropTypes.string.isRequired,
 }

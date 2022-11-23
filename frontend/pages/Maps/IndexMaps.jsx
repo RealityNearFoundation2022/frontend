@@ -1,6 +1,5 @@
-/* eslint-disable no-underscore-dangle */
 import React, { useRef, useEffect, useState } from 'react'
-import mapboxgl from 'mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
+import mapboxgl from 'mapbox-gl'
 import turf from '@turf/square-grid'
 import { useNavigate } from 'react-router-dom'
 import { tokenMapBox } from '../../utils/mapboxUtils'

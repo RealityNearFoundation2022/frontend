@@ -1,24 +1,11 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable react/prop-types */
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { Fade } from 'react-slideshow-image'
 import ThemeContext from '../../utils/useContextTheme'
 import 'react-slideshow-image/dist/styles.css'
-// import { height } from '@mui/system'
-// import imgFake from '../../assets/img/random/cabin.png'
+import PropTypes from 'prop-types'
 
 export default function CardNotices({ element, medias }) {
   const { theme } = useContext(ThemeContext)
-  const [fadeImages, setFadeImg] = useState([...medias])
-
-  useEffect(() => {
-    console.log(medias)
-    /* setFadeImg([
-      ...element.media.map((el) => `http://45.77.115.23:8081${el.path}`),
-    ]) */
-  }, [])
-
   return (
     <div
       key={`novelties${element._id}`}
@@ -26,8 +13,8 @@ export default function CardNotices({ element, medias }) {
     >
       <div className="rounded">
         <Fade>
-          {fadeImages.map((eachImg) => (
-            <div className="each-fade h-100 w-100">
+          {medias.map((eachImg) => (
+            <div className="each-fade h-100 w-100" key={eachImg}>
               <img
                 src={eachImg}
                 className="bg-img-size-cover w-100 rounded"
@@ -49,4 +36,9 @@ export default function CardNotices({ element, medias }) {
       </div>
     </div>
   )
+}
+
+CardNotices.propTypes = {
+  element: PropTypes.object.isRequired,
+  medias: PropTypes.array.isRequired,
 }

@@ -74,8 +74,9 @@ export default function CarouselEvents() {
       <LoadingModal open={isLoading} handleClose={handleClose} />
 
       {carousel.map((element) => (
-        <Link to={`/notices/events/${element._id}`}>
+        <Link key={element._id} to={`/notices/events/${element._id}`}>
           <CardNotices
+            key={element._id}
             element={element}
             medias={element?.media?.map((obj) => `${api}${obj.path}`)}
           />

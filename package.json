@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "ISC",
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix",
+    "lint": "eslint ./frontend",
+    "lint:fix": "eslint --fix --ext .js,.jsx ./frontend",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "build:web": "parcel build frontend/index.html --public-url ./",
     "start:web": "parcel frontend/index.html --open",
@@ -95,7 +95,11 @@
     "@babel/preset-env": "7.13.8"
   },
   "eslintConfig": {
-    "extends": "@imaginary-cloud/react"
+    "extends": "@imaginary-cloud/react",
+    "env": {
+      "browser": true,
+      "node": true
+    }
   },
   "prettier": "@imaginary-cloud/prettier-config",
   "browserslist": {
