@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react'
-import Modal from '@mui/material/Modal'
-import Box from '@mui/material/Box'
-import WhiteIcon from '../assets/img/logo-white.svg'
-import TileMap from '../utils/tilemap'
-import '../assets/css/components/nuruk.css'
+import React, { useEffect } from 'react';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import PropTypes from 'prop-types';
+import WhiteIcon from '../assets/img/logo-white.svg';
+import TileMap from '../utils/tilemap';
+import '../assets/css/components/nuruk.css';
 
-export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
+export default function ModalBuy({
+  open, handleClose, go, idX, idY, img,
+}) {
   const style = {
     position: 'absolute',
     top: '50%',
@@ -18,19 +21,19 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
     pt: 2,
     px: 4,
     pb: 3,
-  }
+  };
   const getImg = () => {
     if (open) {
-      const canvas = document.getElementById('modal-buy')
-      const ctx = canvas.getContext('2d')
-      const tileMap = new TileMap(15, idX, idY, null, img)
-      tileMap.clearCanvas(canvas, ctx)
-      tileMap.draw(canvas, ctx)
+      const canvas = document.getElementById('modal-buy');
+      const ctx = canvas.getContext('2d');
+      const tileMap = new TileMap(15, idX, idY, null, img);
+      tileMap.clearCanvas(canvas, ctx);
+      tileMap.draw(canvas, ctx);
     }
-  }
+  };
   useEffect(() => {
-    getImg()
-  }, [open])
+    getImg();
+  }, [open]);
 
   return (
     <Modal
@@ -55,11 +58,13 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
               id="modal-buy"
               type="module"
               className="img__modal"
-            ></canvas>
+            />
           </div>
           <div className="col col-md-5 p-2">
             <h2 className="h4" id="child-modal-title">
-              Realand {idX} {idY}
+              Realand
+              {idX}
+              {idY}
             </h2>
             <p id="child-modal-description" className="h5 text-grey">
               <span className="pr-2">
@@ -92,5 +97,17 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
         </div>
       </Box>
     </Modal>
-  )
+  );
 }
+ModalBuy.propTypes = {
+  open: PropTypes.string.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  go: PropTypes.func.isRequired,
+  idX: PropTypes.string.isRequired,
+  idY: PropTypes.string.isRequired,
+  img: PropTypes.array || PropTypes.bool,
+};
+
+ModalBuy.defaultProps = {
+  img: false,
+};
