@@ -6,7 +6,9 @@
     "build:web": "parcel build frontend/index.html --public-url ./",
     "start:web": "parcel frontend/index.html --open",
     "dev": "nodemon npm run start:web",
-    "test:integration:ts": "cd integration-tests/ts && npm run test"
+    "test:integration:ts": "cd integration-tests/ts && npm run test",
+    "prepush": "npm run lint && npm run test",
+    "postinstall": "rm -rf .git/hooks/pre-push && node node_modules/husky/bin/install.js && rm -rf .git/hooks/pre-commit"
   },
   "devDependencies": {
     "@babel/core": "~7.18.2",
