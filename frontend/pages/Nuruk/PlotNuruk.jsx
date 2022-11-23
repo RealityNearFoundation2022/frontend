@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useLocation } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import TileMap from '../../utils/tilemap'
 import ModalDetailBuy from '../../components/ModalDetailBuy'
 import near from '../../assets/img/icons/near.svg'
+import LoadingModal from '../../components/LoadingModal'
 
 export default function PlotNuruk() {
   const { posX, posY } = useParams()
   const { state } = useLocation()
   const [openNearWallet, setOpenNearWallet] = useState(false)
   const [img, setImgMap] = useState([0])
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
 
   const getImg = () => {
+    if (!state) {
+      navigate(`/nuruk`)
+      setIsLoading(false)
+      return
+    }
     const canvas = document.getElementById('modal-buy')
     const ctx = canvas.getContext('2d')
     const { imgMap } = state
@@ -18,13 +26,16 @@ export default function PlotNuruk() {
     const tileMap = new TileMap(15, posX, posY, null, imgMap)
     tileMap.clearCanvas(canvas, ctx)
     tileMap.draw(canvas, ctx)
+    setIsLoading(false)
   }
   useEffect(() => {
+    setIsLoading(true)
     getImg()
   }, [posX, posY])
 
   return (
     <div className="container py-5">
+      <LoadingModal open={isLoading} handleClose={() => setIsLoading(false)} />
       <div className="row">
         <div className="col-12 col-md-6 px-5 mb-5">
           <h1 className="text-primary">

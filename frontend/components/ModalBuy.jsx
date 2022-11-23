@@ -23,12 +23,14 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
     if (open) {
       const canvas = document.getElementById('modal-buy')
       const ctx = canvas.getContext('2d')
+
       const tileMap = new TileMap(15, idX, idY, null, img)
       tileMap.clearCanvas(canvas, ctx)
       tileMap.draw(canvas, ctx)
     }
   }
   useEffect(() => {
+    console.log(open, handleClose, go, idX, idY, img)
     getImg()
   }, [open])
 

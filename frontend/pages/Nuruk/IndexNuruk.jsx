@@ -48,6 +48,7 @@ export default function IndexCentreland() {
   useEffect(() => {
     getCentreland(row, column)
   }, [column, row])
+
   useEffect(() => {
     window.addEventListener(
       'keydown',

@@ -21,7 +21,6 @@ export default function NoveltySection() {
       setArticles([...obj.articles])
       setDataItem({ ...obj })
     } finally {
-
     }
   }
 

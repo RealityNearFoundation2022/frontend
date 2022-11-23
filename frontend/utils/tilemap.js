@@ -3602,6 +3602,7 @@ export default class TileMap {
     const posX =this.column * 100 +selectedIdX;
     this.map = newMap
     const imgMap = this.#getImgMap(selectedIdY-1, selectedIdX-1, newMap)
+c
     this.handleOpen(posX, posY, imgMap)
     this.#drawMap(ctx) 
   }

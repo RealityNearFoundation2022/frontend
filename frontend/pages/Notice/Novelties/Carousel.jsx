@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { FinnTheHuman } from 'phosphor-react'
+
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Slider from 'react-slick'
@@ -12,6 +12,7 @@ const api = process.env.REACT_APP_API
 export default function CarouselNovelty() {
   const navigate = useNavigate()
   const [carousel, setCarousel] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
   const settings2 = {
     className: 'slider variable-width',
     dots: true,
