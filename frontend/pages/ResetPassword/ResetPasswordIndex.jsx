@@ -35,7 +35,7 @@ export default function ResetPasswordIndex() {
 
       navigate('/reset-password/completed')
     } catch {
-      navigate('/500')
+      navigate('/server-error')
     } finally {
       setIsLoading(false)
     }
