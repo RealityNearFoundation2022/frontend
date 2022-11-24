@@ -9,15 +9,15 @@ jobs:
   create-deployment-artifacts:
     name: Create deployment artifact
     runs-on: ubuntu-latest
-    environment: REACT_APP_MAPBOX_KEY
+    environment: QA_ENV_REACT_APP
     steps:
       - uses: actions/checkout@v2
       - name: Create .env file
         uses: ozaytsev86/create-env-file@v1
         with:
-          INPUT_ENV_PORT: ${{ secrets.PD_PORT }}
-          INPUT_ENV_REACT_APP_MAPBOX_KEY: ${{ secrets.PD_MAPBOX_KEY }}
-          INPUT_ENV_REACT_APP_API: ${{ secrets.PD_API }}
+          INPUT_ENV_PORT: ${{ secrets.QA_PORT }}
+          INPUT_ENV_REACT_APP_MAPBOX_KEY: ${{ secrets.QA_MAPBOX_KEY }}
+          INPUT_ENV_REACT_APP_API: ${{ secrets.QA_API }}
       - name: Create deployment artifact
         env:
           GITHUB_SHA: ${{ github.sha }}
