@@ -60,7 +60,7 @@ export default function CarouselEvents() {
       const data = await getData('events')
       setCarousel(data)
     } catch (error) {
-      navigate('/500')
+      navigate('/server-error')
     } finally {
       setIsLoading(false)
     }
