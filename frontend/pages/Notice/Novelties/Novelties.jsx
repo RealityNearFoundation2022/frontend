@@ -39,7 +39,7 @@ export default function Novelties() {
       const data = await getData('news')
       setCarousel([...data])
     } catch (error) {
-      navigate('/500')
+      navigate('/server-error')
     } finally {
       setIsLoading(false)
       console.log('TO DO')
