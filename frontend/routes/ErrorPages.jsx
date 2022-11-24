@@ -9,7 +9,7 @@ export const ErrorPagesRoutes = [
     element: <ServerError />,
   },
   {
-    path: '/page-not-found',
+    path: '*',
     element: <PageNotFound />,
   },
   {

@@ -87,7 +87,7 @@ export const routes = [
     element: <ResetPasswordCompleted />,
   },
   {
-    path: '/500',
+    path: '/server-error',
     element: <Error500 />,
   },
   ...ErrorPagesRoutes,
