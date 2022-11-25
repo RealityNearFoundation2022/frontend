@@ -12,17 +12,13 @@ jobs:
     environment: QA_ENV_REACT_APP
     steps:
       - uses: actions/checkout@v2
-      - name: Create .env file
-        uses: ozaytsev86/create-env-file@v1
-        with:
-          INPUT_ENV_PORT: ${{ secrets.QA_PORT }}
-          INPUT_ENV_REACT_APP_MAPBOX_KEY: ${{ secrets.QA_MAPBOX_KEY }}
-          INPUT_ENV_REACT_APP_API: ${{ secrets.QA_API }}
       - name: Create deployment artifact
         env:
           GITHUB_SHA: ${{ github.sha }}
+          PORT: ${{ secrets.QA_PORT }}
+          REACT_APP_MAPBOX_KEY: ${{ secrets.QA_MAPBOX_KEY }}
+          REACT_APP_API: ${{ secrets.QA_API }}
         run: |
-          cat .env
           npm i
           npm run build:web
           tar -czf "${GITHUB_SHA}".tar.gz --exclude=*.git --exclude=node_modules dist
