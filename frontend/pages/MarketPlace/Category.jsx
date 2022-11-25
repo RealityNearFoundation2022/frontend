@@ -32,8 +32,8 @@ export function Category({ dataCategory }) {
             <Card elementsCard={item} category={dataCategory.title} />
           </div>
         ))}
-        <div className={`${currentData.length === 0 ? '': 'd-none'}`}>
-          <NoData/>
+        <div className={`${currentData.length === 0 ? '' : 'd-none'}`}>
+          <NoData />
         </div>
       </div>
     </div>
