@@ -19,7 +19,6 @@ jobs:
           REACT_APP_MAPBOX_KEY: ${{ secrets.QA_MAPBOX_KEY }}
           REACT_APP_API: ${{ secrets.QA_API }}
         run: |
-          cat .env
           npm i
           npm run build:web
           tar -czf "${GITHUB_SHA}".tar.gz --exclude=*.git --exclude=node_modules dist
