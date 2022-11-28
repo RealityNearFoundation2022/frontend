@@ -97,7 +97,7 @@ export default function ResetPasswordIndex() {
           />
         </label>
         <p className="error-label">{errorNew}</p>
-        <button type="submit" className="btn-primary btn-lg rounded _btn">
+        <button type="submit" className="btn btn-primary btn _btn-lg rounded _btn _btn">
           Enviar
         </button>
       </form>

@@ -57,7 +57,7 @@ export default function PlotNuruk() {
             <button
               onClick={() => setOpenNearWallet(true)}
               type="button"
-              className="rounded btn-xl px-5 btn-primary _btn"
+              className="rounded btn _btn-xl px-5 btn btn-primary _btn _btn"
             >
               Adquirir
             </button>
