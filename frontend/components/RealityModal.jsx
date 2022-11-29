@@ -23,7 +23,7 @@ export default function RealityModal() {
       close={closeModal}
       button={
         <button
-          className="btn btn-primary btn-xl w-75"
+          className="btn _btn btn btn-primary btn _btn-xl w-75"
           id="submitButton"
           type="button"
         >
@@ -45,7 +45,7 @@ export default function RealityModal() {
         >
           <div>Inicia sesón para continuar con la transacción</div>
           <button
-            className="btn btn-primary btn-xl w-75"
+            className="btn _btn btn btn-primary btn _btn-xl w-75"
             id="submitButton2"
             type="button"
             onClick={() => {
@@ -74,7 +74,7 @@ export default function RealityModal() {
           />
           <p>{walletValue}</p>
           <button
-            className="btn btn-primary btn-xl w-75"
+            className="btn _btn btn btn-primary btn _btn-xl w-75"
             id="submitButton2"
             type="button"
             onClick={() => {
@@ -97,7 +97,7 @@ export default function RealityModal() {
           <div>¿Desea enviar los realities a una diferente Near Wallet?</div>
           <div className="d-flex w-60">
             <button
-              className="btn btn-primary btn-xl w-40 mx-3"
+              className="btn _btn btn btn-primary btn _btn-xl w-40 mx-3"
               id="submitButtonYes2"
               type="button"
               onClick={() => {
@@ -107,7 +107,7 @@ export default function RealityModal() {
               SI
             </button>
             <button
-              className="btn btn-primary btn-xl w-40 mx-3"
+              className="btn _btn btn btn-primary btn _btn-xl w-40 mx-3"
               id="submitButtonNo2"
               type="button"
               onClick={() => {
@@ -134,7 +134,7 @@ export default function RealityModal() {
             onChange={(e) => setValueWallet(e.target.value)}
           />
           <button
-            className="btn btn-primary btn-xl w-75"
+            className="btn _btn btn btn-primary btn _btn-xl w-75"
             id="submitButton2"
             type="button"
             onClick={() => {
@@ -167,7 +167,7 @@ export default function RealityModal() {
             {realities !== '' ? realities : 0}.00
           </p>
           <button
-            className="btn btn-primary btn-xl w-75"
+            className="btn _btn btn btn-primary btn _btn-xl w-75"
             id="submitButton3"
             type="button"
             onClick={() => {
@@ -205,7 +205,7 @@ export default function RealityModal() {
             {realities}.00
           </p>
           <button
-            className="btn btn-primary btn-xl w-75"
+            className="btn _btn btn btn-primary btn _btn-xl w-75"
             id="submitButton3"
             type="button"
             onClick={() => {
@@ -216,7 +216,7 @@ export default function RealityModal() {
             ACEPTAR
           </button>
           <button
-            className="btn btn-primary btn-xl w-75"
+            className="btn _btn btn btn-primary btn _btn-xl w-75"
             id="submitButton3"
             type="button"
             onClick={() => {

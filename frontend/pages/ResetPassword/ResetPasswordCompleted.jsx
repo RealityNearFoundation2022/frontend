@@ -14,7 +14,7 @@ export default function ResetPasswordCompleted() {
         <Link to="/">
           <button
             type="button"
-            className="btn-primary btn-lg _btn rounded-pill px-5 mt-4"
+            className="btn btn-primary btn _btn-lg _btn _btn rounded-pill px-5 mt-4"
           >
             Listo
           </button>
