@@ -34,6 +34,7 @@ export default function IndexCentreland() {
     const rect = element.getBoundingClientRect()
     const newPosX = Math.floor((cursorX - rect.left) / sizeBoxImg)
     const newPosY = Math.floor((cursorY - rect.top) / sizeBoxImg)
+    debugger
     setRow(newPosX)
     setColumn(newPosY)
   }

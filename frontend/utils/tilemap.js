@@ -14,6 +14,7 @@ export default class TileMap {
       Array.apply(null, Array(100)).map(Number.prototype.valueOf, 0),
     )
     const index = `${this.row}${this.column}`
+    debugger
     this.setCanvas[index](arrayMap)
     return arrayMap
   }
@@ -3597,6 +3598,8 @@ export default class TileMap {
       : `${nm}-s`
 
     newMap[selectedIdY - 1][selectedIdX - 1] = newSelected
+    console.log('y', this.row, selectedIdY)
+    console.log('x', this.column, selectedIdX)
     const posY = this.row * 100 + selectedIdY
     const posX = this.column * 100 + selectedIdX
     this.map = newMap
@@ -3611,7 +3614,6 @@ export default class TileMap {
     const minY = posY - sizeMiniMap < 0 ? 0 : posY - sizeMiniMap
     const maxY = posY + sizeMiniMap + 1
     const miniMap = newMap.slice(minX, maxX).map((map) => map.slice(minY, maxY))
-    console.log(miniMap)
     return miniMap
   }
   draw(canvas, ctx) {
