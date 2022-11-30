@@ -13,11 +13,17 @@
 }
 
 .btn:hover {
-  color: #33cc99;
-  border-color: #33cc99;
-  background-color: #fff;
+  color: #fff;
+  border-color: #656566;
+  background-color: #656566;
 }
 ._btn {
   box-shadow: none;
   border: none;
+}
+
+._btn:hover {
+  background-color: #656566;
+  border-color: #656566;
+  color: #fff;
 }

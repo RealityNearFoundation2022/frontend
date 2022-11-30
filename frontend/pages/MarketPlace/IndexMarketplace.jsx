@@ -165,8 +165,8 @@ function Marketplace() {
     //                           </div>
     //                         </div>
 
-    //                         <div className="form-btn-wrapper">
-    //                           <button type="button" className="form-btn">
+    //                         <div className="form-btn _btn-wrapper">
+    //                           <button type="button" className="form-btn _btn">
     //                             Enter Bid
     //                           </button>
     //                         </div>
@@ -223,7 +223,7 @@ function Marketplace() {
     //                     {currentUser !== nft.owner_id ? (
     //                       <button
     //                         type="button"
-    //                         className="form-btn"
+    //                         className="form-btn _btn"
     //                         onClick={toggleBidModal}
     //                       >
     //                         Bid

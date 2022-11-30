@@ -34,7 +34,6 @@ export default function IndexCentreland() {
     const rect = element.getBoundingClientRect()
     const newPosX = Math.floor((cursorX - rect.left) / sizeBoxImg)
     const newPosY = Math.floor((cursorY - rect.top) / sizeBoxImg)
-    debugger
     setRow(newPosX)
     setColumn(newPosY)
   }
@@ -128,7 +127,7 @@ export default function IndexCentreland() {
       </div>
       {left && (
         <button
-          className="ctrl-btn ctrl-btn-back"
+          className="ctrl-btn _btn ctrl-btn _btn-back"
           type="button"
           onClick={() => setRow((r) => r - 1)}
         >
@@ -137,7 +136,7 @@ export default function IndexCentreland() {
       )}
       {rigth && (
         <button
-          className="ctrl-btn ctrl-btn-next"
+          className="ctrl-btn _btn ctrl-btn _btn-next"
           type="button"
           onClick={() => setRow((r) => r + 1)}
         >
@@ -146,7 +145,7 @@ export default function IndexCentreland() {
       )}
       {top && (
         <button
-          className=" ctrl-btn ctrl-btn-top"
+          className=" ctrl-btn _btn ctrl-btn _btn-top"
           type="button"
           onClick={() => setColumn((r) => r - 1)}
         >
@@ -155,7 +154,7 @@ export default function IndexCentreland() {
       )}
       {bottom && (
         <button
-          className=" ctrl-btn ctrl-btn-bottom"
+          className=" ctrl-btn _btn ctrl-btn _btn-bottom"
           type="button"
           onClick={() => setColumn((r) => r + 1)}
         >

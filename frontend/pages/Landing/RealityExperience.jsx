@@ -23,7 +23,7 @@ export default function RealityExperience() {
             </center>
           </div>
           <button
-            className="rounded btn-xl btn-light realExperience"
+            className="rounded btn _btn-xl _btn _btn realExperience"
             id="submitButton"
             type="submit"
           >

@@ -21,7 +21,7 @@ export default function ServerError() {
               <p>Intenta más tarde o regresa a Home</p>
             </div>
             <Link to="/">
-              <button className="_btn btn-primary btn-xl rounded mt-3">
+              <button className="_btn _btn btn btn-primary btn _btn-xl rounded mt-3">
                 Home
               </button>
             </Link>
