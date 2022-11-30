@@ -16,5 +16,4 @@ window.nearInitPromise = initContract()
   .then(() => {
     root.render(<App />)
   })
-  // eslint-disable-next-line no-console
   .catch(console.error)

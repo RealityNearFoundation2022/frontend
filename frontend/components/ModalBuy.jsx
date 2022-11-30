@@ -31,7 +31,7 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
     }
   }
   useEffect(() => {
-    console.log(open, handleClose, go, idX, idY, img)
+    console.log('here', open, handleClose, go, idX, idY, img)
     getImg()
   }, [open])
 
