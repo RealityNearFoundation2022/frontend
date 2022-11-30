@@ -14,7 +14,6 @@ export default class TileMap {
       Array.apply(null, Array(100)).map(Number.prototype.valueOf, 0),
     )
     const index = `${this.row}${this.column}`
-    debugger
     this.setCanvas[index](arrayMap)
     return arrayMap
   }
