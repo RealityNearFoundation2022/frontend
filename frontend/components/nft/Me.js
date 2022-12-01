@@ -80,7 +80,7 @@ function NftMe() {
     }
   }
 
-  const approveNFTForSale/Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/code/electron-sandbox/workbench/workbench.html = async (token_id) => {
+  const approveNFTForSale = async (token_id) => {
     // sendStorageDeposit();
 
     let sale_conditions = {
