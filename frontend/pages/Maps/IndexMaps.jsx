@@ -3,6 +3,11 @@ import mapboxgl from 'mapbox-gl'
 import turf from '@turf/square-grid'
 import { useNavigate } from 'react-router-dom'
 import { tokenMapBox } from '../../utils/mapboxUtils'
+import {
+  styleClusters,
+  styleClustersCount,
+  styleUnclusterPoint,
+} from './StylesMap'
 import ModalBuy from '../../components/ModalBuy'
 
 mapboxgl.accessToken = tokenMapBox
@@ -12,9 +17,10 @@ export default function IndexMaps() {
   const [lng, setLng] = useState(-103.5917)
   const [lat, setLat] = useState(40.6699)
   const [zoom, setZoom] = useState(3)
-  const [showLand, setShowLand] = useState(true)
+  const [showLand, setShowLand] = useState(false)
   const [selected, setSelected] = useState([])
   const [open, setOpen] = useState(false)
+  const [isZoomIn, setIsZoomIn] = useState(true)
   const [selectedId, setSelectedId] = useState('')
   const navigate = useNavigate()
 
@@ -30,20 +36,61 @@ export default function IndexMaps() {
         noWrap: true,
       },
     })
-    prueba(map)
+    drawMap(map)
   })
 
   useEffect(() => {
     if (map.current) {
       const zm = map.current.getZoom()
       setZoom(zm)
-      map.current.on('zoom', () => {
-        if (showLand && zm > 10) {
-          setShowLand(false)
+      console.log(zm, zoom, zm * 100 - zoom * 100)
+      let newZoom = zm
+      const isZoomInN = zm * 100 - zoom * 100
+      if (isZoomInN !== 0) {
+        setIsZoomIn(isZoomInN > 0)
+      }
+      // console.log(zm, showLand)
+      console.log('isZoomIn', isZoomIn)
+      if (zm > 9 && zm < 18.5 && !isZoomIn) {
+        newZoom = 9
+      } else if (zm > 10 && isZoomIn) {
+        newZoom = 19
+        map.current.on('zoom', () => {
           const center = map.current.getCenter()
-          getSquare([center.lng, center.lat])
-        }
+          getSquare([center.lng, center.lat], zm)
+        })
+      }
+      map.current.easeTo({
+        zoom: newZoom,
       })
+
+      // map.current.on('zoom', () => {
+      //   if (showLand && newZoom >= 19) {
+      //     const center = map.current.getCenter()
+      //     getSquare([center.lng, center.lat], newZoom)
+      //     setShowLand(false)
+      //   }
+      // })
+      // const newZoom = zm > 10 && showLand ? 19 : zm
+      // console.log('zoom 1', newZoom, showLand)
+      // setZoom(newZoom)
+      // map.current.easeTo({
+      //   zoom: newZoom,
+      // })
+      // map.current.on('zoom', () => {
+      //   if (showLand && newZoom >= 19) {
+      //     console.log('uno')
+      //     const center = map.current.getCenter()
+      //     getSquare([center.lng, center.lat], zm)
+      //     setShowLand(false)
+      //   } else if (showLand && newZoom < 19 && newZoom > 10.5) {
+      //     console.log('dos')
+      //     // setShowLand(true)
+      //     map.current.easeTo({
+      //       zoom: 10,
+      //     })
+      //   }
+      // })
     }
   })
   const handleClose = () => {
@@ -131,91 +178,49 @@ export default function IndexMaps() {
       // setZoom(map.current.getZoom().toFixed(2))
     })
   })
-  const prueba = () => {
+  const drawMap = () => {
     map.current.on('load', () => {
-      map.current.addSource('earthquakes', {
+      map.current.addControl(new mapboxgl.NavigationControl())
+      map.current.addSource('patchas-bought', {
         type: 'geojson',
-        data: 'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson',
+        data: 'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson', //mock
         cluster: true,
         clusterMaxZoom: 14, // Max zoom to cluster points on
         clusterRadius: 50, // Radius of each cluster when clustering points (defaults to 50)
       })
+      // agrupados
       map.current.addLayer({
         id: 'clusters',
         type: 'circle',
-        source: 'earthquakes',
+        source: 'patchas-bought',
         filter: ['has', 'point_count'],
-        paint: {
-          // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
-          // with three steps to implement three types of circles:
-          //   * Blue, 20px circles when point count is less than 100
-          //   * Yellow, 30px circles when point count is between 100 and 750
-          //   * Pink, 40px circles when point count is greater than or equal to 750
-          'circle-color': [
-            'step',
-            ['get', 'point_count'],
-            '#51bbd6',
-            100,
-            '#f1f075',
-            750,
-            '#f28cb1',
-          ],
-          'circle-radius': [
-            'step',
-            ['get', 'point_count'],
-            20,
-            100,
-            30,
-            750,
-            40,
-          ],
-        },
+        paint: styleClusters,
       })
-
+      //letras de los agrupados
       map.current.addLayer({
         id: 'cluster-count',
         type: 'symbol',
-        source: 'earthquakes',
+        source: 'patchas-bought',
         filter: ['has', 'point_count'],
-        layout: {
-          'text-field': '{point_count_abbreviated}',
-          'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-          'text-size': 12,
-        },
+        layout: styleClustersCount,
       })
-
+      // circulos unitarios
       map.current.addLayer({
         id: 'unclustered-point',
         type: 'circle',
-        source: 'earthquakes',
+        source: 'patchas-bought',
         filter: ['!', ['has', 'point_count']],
-        paint: {
-          'circle-color': '#ffaa00',
-          'circle-radius': 4,
-          'circle-stroke-width': 1,
-          'circle-stroke-color': '#fff',
-        },
-      })
-
-      map.current.addLayer({
-        id: 'maine',
-        type: 'fill',
-        source: 'earthquakes', // reference the data source
-        layout: {},
-        paint: {
-          'fill-color': '#0080ff', // blue color fill
-          'fill-opacity': 0.5,
-        },
+        paint: styleUnclusterPoint,
       })
       // Add a black outline around the polygon.
       map.current.addLayer({
         id: 'outline',
         type: 'line',
-        source: 'earthquakes',
+        source: 'patchas-bought',
         layout: {},
         paint: {
-          'line-color': '#000',
-          'line-width': 3,
+          'line-color': '#00000',
+          'line-width': 5,
         },
       })
       //
@@ -226,9 +231,9 @@ export default function IndexMaps() {
         })
         const clusterId = features[0].properties.cluster_id
         map.current
-          .getSource('earthquakes')
+          .getSource('patchas-bought')
           .getClusterExpansionZoom(clusterId, (err, zm) => {
-            const newZoom = zm > 10 ? 19 : zm
+            const newZoom = zm > 10 ? 20 : zm
             setZoom(newZoom)
             if (err) return
             map.current.easeTo({
@@ -237,9 +242,6 @@ export default function IndexMaps() {
             })
             setLng(features[0].geometry.coordinates[0])
             setLat(features[0].geometry.coordinates[1])
-            if (showLand && newZoom > 10) {
-              getSquare(features[0].geometry.coordinates)
-            }
           })
       })
 
@@ -269,13 +271,10 @@ export default function IndexMaps() {
       })
     })
   }
-  const getSquare = (coord) => {
-    const bbox = [
-      coord[0] - 0.002,
-      coord[1] - 0.002,
-      coord[0] + 0.002,
-      coord[1] + 0.002,
-    ]
+  const getSquare = (coord, newZoom) => {
+    const x = Math.round(coord[0] * 100) / 100
+    const y = Math.round(coord[1] * 100) / 100
+    const bbox = [x - 0.006, y - 0.006, x + 0.006, y + 0.006]
     const cellSide = 0.01
     const options = { units: 'kilometers' }
     const squareGrid = turf(bbox, cellSide, options)
@@ -291,15 +290,17 @@ export default function IndexMaps() {
         source: 'national-park',
         layout: {},
         paint: {
-          'line-color': '#3d3c3c',
-          'line-width': 2,
+          'line-color': '#000000',
+          'line-width': 3,
         },
         filter: ['==', '$type', 'Polygon'],
       })
       source = map.current.getSource('national-park')
     }
     source.setData(squareGrid)
-    setShowLand(false)
+    // if (newZoom < 18) {
+    //   setShowLand(false)
+    // }
   }
   return (
     <div className="top">

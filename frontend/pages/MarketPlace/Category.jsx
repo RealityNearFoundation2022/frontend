@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react'
 import Card from './Card'
+import NoData from '../ErrorPage/NoData'
+
 export function Category({ dataCategory }) {
-  console.log(dataCategory)
   const currentItemsCategory = [...dataCategory.itemCards]
   const [currentData, setCurrentData] = useState(currentItemsCategory)
 
@@ -31,6 +32,9 @@ export function Category({ dataCategory }) {
             <Card elementsCard={item} category={dataCategory.title} />
           </div>
         ))}
+        <div className={`${currentData.length === 0 ? '' : 'd-none'}`}>
+          <NoData />
+        </div>
       </div>
     </div>
   )

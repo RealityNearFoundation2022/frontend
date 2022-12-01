@@ -9,11 +9,15 @@ jobs:
   create-deployment-artifacts:
     name: Create deployment artifact
     runs-on: ubuntu-latest
+    environment: QA_ENV_REACT_APP
     steps:
       - uses: actions/checkout@v2
       - name: Create deployment artifact
         env:
           GITHUB_SHA: ${{ github.sha }}
+          PORT: ${{ secrets.QA_PORT }}
+          REACT_APP_MAPBOX_KEY: ${{ secrets.QA_MAPBOX_KEY }}
+          REACT_APP_API: ${{ secrets.QA_API }}
         run: |
           npm i
           npm run build:web

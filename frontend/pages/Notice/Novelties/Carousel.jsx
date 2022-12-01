@@ -54,7 +54,7 @@ export default function CarouselNovelty() {
       const data = await getData('news')
       setCarousel([...data])
     } catch (error) {
-      navigate('/500')
+      navigate('/server-error')
     } finally {
       setIsLoading(false)
     }

@@ -18,11 +18,6 @@ export default function NoData() {
               <p>Es probable que no contemos con los datos que buscas.</p>
               <p>¡Intenta ajustar los filtros y buscar otra vez!.</p>
             </div>
-            <Link to="/">
-              <button className="_btn btn-primary btn-xl rounded mt-3">
-                Home
-              </button>
-            </Link>
           </div>
         </div>
       </div>

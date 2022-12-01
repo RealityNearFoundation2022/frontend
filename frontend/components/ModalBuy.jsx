@@ -31,7 +31,7 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
     }
   }
   useEffect(() => {
-    console.log(open, handleClose, go, idX, idY, img)
+    console.log('here', open, handleClose, go, idX, idY, img)
     getImg()
   }, [open])
 
@@ -83,7 +83,7 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
               <button
                 type="button"
                 onClick={go}
-                className="rounded btn-xl btn-primary"
+                className="rounded btn _btn-xl btn btn-primary"
                 style={{ shadow: 'none', border: 'none' }}
               >
                 Comprar
