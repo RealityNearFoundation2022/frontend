@@ -1,8 +1,6 @@
 import React from 'react'
 
 const Hero = () => {
-  console.log('aqui')
-
   return (
     <header className="masthead bg-primary text-white text-center">
       <div className="container d-flex align-items-center flex-column">
