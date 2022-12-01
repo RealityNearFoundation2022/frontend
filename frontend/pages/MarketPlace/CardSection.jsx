@@ -108,7 +108,7 @@ export function CardSection() {
           <h4 className={theme.txt}>Creador</h4>
           <p className={theme.txt}>{dataCard.author}</p>
           <center>
-            <button type="button" className="btn _btn btn btn-primary disabled w-40">
+            <button type="button" className="_btn btn btn-primary disabled w-40">
               Adquirir
             </button>
           </center>

@@ -114,7 +114,7 @@ function Contact() {
             </label>
             <button
               type="submit"
-              className="btn _btn btn btn-primary w-25"
+              className="_btn btn btn-primary w-25"
               onClick={handleSubmit}
             >
               Enviar
@@ -153,7 +153,7 @@ function Contact() {
             <div className="text-center mt-3">
               <button
                 type="button"
-                className="_btn _btn btn _btn-lg btn btn-primary rounded"
+                className="_btn btn btn-lg btn-primary rounded"
                 onClick={() => setOpenCompleted(false)}
               >
                 Ok

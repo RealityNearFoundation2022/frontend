@@ -23,7 +23,7 @@ export default function PageNotFound() {
               <p>Intenta volver a cargar la página o regresar al Home.</p>
             </div>
             <Link to="/">
-              <button className="_btn _btn btn btn-primary btn _btn-xl rounded mt-3">
+              <button className="_btn btn btn-primary btn-xl rounded mt-3">
                 Home
               </button>
             </Link>
