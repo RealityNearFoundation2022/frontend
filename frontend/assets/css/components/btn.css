@@ -2,14 +2,14 @@
   display: inline-block;
   background-color: #33cc99;
   border-radius: 30px;
-  color: #ffff !important;
+  color: #ffff;
   height: 50px;
   font-weight: 500;
-  width: 150px !important;
+  width: 150px;
   border: 2px solid transparent;
   line-height: 1.9;
   font-size: 13px;
-  cursor: pointer !important;
+  cursor: pointer;
 }
 
 .btn:hover {
