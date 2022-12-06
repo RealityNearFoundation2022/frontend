@@ -20,9 +20,11 @@ export default function Notices() {
         <div>
           <div className="d-flex align-items-center mt-5 mb-4">
             <h1 className={`${theme.txt} m-1 text-primary pr-2`}>Novedades</h1>
-            <Link to="/notices/novelties">
-              <span className="text-grey fw-bolder pt-4"> Ver más</span>
-              <CaretRight size={28} color="#33cc99" weight="bold" />
+            <Link to="/notices/novelties" className="mt-3">
+              <span className="text-grey fw-bolder pt-4 show-more">
+                Ver más
+              </span>
+              <CaretRight size={15} color="#33cc99" weight="bold" />
             </Link>
           </div>
           <CarouselNovelty />
@@ -30,9 +32,9 @@ export default function Notices() {
         <div>
           <div className="d-flex align-items-center mt-5 mb-4">
             <h1 className={`${theme.txt} m-1 text-primary pr-2`}>Eventos</h1>
-            <Link to="/notices/events">
+            <Link to="/notices/events" className="mt-3 show-more">
               <span className="text-grey fw-bolder"> Ver más</span>
-              <CaretRight size={28} color="#33cc99" weight="bold" />
+              <CaretRight size={15} color="#33cc99" weight="bold" />
             </Link>
           </div>
           <CarouselEvents />

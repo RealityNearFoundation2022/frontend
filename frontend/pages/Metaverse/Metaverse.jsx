@@ -71,12 +71,18 @@ function Metaverso() {
                 )}
               </p>
               <center className="pt-5">
-                <button
-                  type="button"
-                  className="_btn btn btn-primary btn-xl disabled w-50"
+                <a
+                  href="https://nuruk.realitynear.org"
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  {t('Dar un vistazo')}
-                </button>
+                  <button
+                    type="button"
+                    className="_btn btn btn-primary btn-xl w-75"
+                  >
+                    {t('Dar un vistazo')}
+                  </button>
+                </a>
               </center>
             </div>
             <div
@@ -95,7 +101,6 @@ function Metaverso() {
       {/* <!-- Section--> */}
       <section
         className={`${theme.bg} w-100  px-7-5porcent py-5 d-flex align-items-center justify-content-center`}
-        id=""
       >
         <div className="w-100 d-lex align-items-center justify-content-center">
           <Slider {...settings} className="w-100 ">

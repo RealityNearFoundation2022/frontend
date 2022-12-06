@@ -114,8 +114,13 @@ export default function Section() {
               <h1 className={`${theme.txt} m-1 text-primary pr-2`}>
                 {item?.title}
               </h1>
-              <Link to={`/marketplace/${item.title.toLowerCase()}`}>
-                <span className="text-grey fw-bolder"> Ver más</span>
+              <Link
+                to={`/marketplace/${item.title.toLowerCase()}`}
+                className="mt-3"
+              >
+                <span className="text-grey fw-bolder mt-3 show-more">
+                  Ver más
+                </span>
                 <CaretRight size={28} color="#33cc99" weight="bold" />
               </Link>
             </div>

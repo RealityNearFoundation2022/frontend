@@ -93,10 +93,10 @@ export function DashboardMarketPlace() {
         <Grid item xs={12}>
           <Header></Header>
         </Grid>
-        <Grid item xs={4} className="ps-7-5porcent">
+        <Grid item xs={2} className="ps-7-5porcent">
           <Filter />
         </Grid>
-        <Grid item xs={8} className="pe-7-5porcent">
+        <Grid item xs={10} className="pe-7-5porcent">
           <Routes>
             {categories.map((category) => (
               <>
