@@ -67,6 +67,7 @@ export default function Section() {
         { id: 6, title: 'Otros', itemCards: [] },
       ]
       setCategories(result)
+      console.log(result)
       console.log(data)
     }
     fetchList()
@@ -111,7 +112,7 @@ export default function Section() {
           <div className="w-100" key={item.title}>
             <div className="d-flex align-items-center pb-4" id="mpResponsive">
               <h1 className={`${theme.txt} m-1 text-primary pr-2`}>
-                {item.title}
+                {item?.title}
               </h1>
               <Link to={`/marketplace/${item.title.toLowerCase()}`}>
                 <span className="text-grey fw-bolder"> Ver más</span>
@@ -119,11 +120,11 @@ export default function Section() {
               </Link>
             </div>
             <Slider {...settings}>
-              {item.itemCards.map((element) => (
+              {item?.itemCards.map((element) => (
                 <Card
                   key={element}
                   elementsCard={element}
-                  category={item.title}
+                  category={item?.title}
                 />
               ))}
             </Slider>

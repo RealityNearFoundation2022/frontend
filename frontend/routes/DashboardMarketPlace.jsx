@@ -82,7 +82,9 @@ export function DashboardMarketPlace() {
   const { theme } = useContext(ThemeContext)
 
   const findCategory = (condition) => {
-    const finded = dataCategories.filter((item) => item.title === condition)[0]
+    const finded = dataCategories.filter(
+      (item) => item.title.toLowerCase() === condition.toLowerCase(),
+    )[0]
     return finded
   }
   return (
