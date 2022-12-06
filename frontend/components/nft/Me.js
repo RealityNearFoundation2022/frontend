@@ -72,8 +72,10 @@ function NftMe() {
     )
 
     if (fcr) {
+      // eslint-disable-next-line no-console
       console.log('nft created: ')
     } else {
+      // eslint-disable-next-line no-console
       console.log('nft not created')
     }
   }

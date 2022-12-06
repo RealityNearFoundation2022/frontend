@@ -73,7 +73,7 @@ function Metaverso() {
               <center className="pt-5">
                 <button
                   type="button"
-                  className="btn _btn btn btn-primary btn _btn-xl disabled w-50"
+                  className="_btn btn btn-primary btn-xl disabled w-50"
                 >
                   {t('Dar un vistazo')}
                 </button>

@@ -92,20 +92,32 @@ function About() {
             <div className="col-sm-6 col-md-4 col-lg-3 mb-5">
               <div className="w-100 px-5 position-relative">
                 <img src={ceo} alt="" className="w-100" />
-                <img
-                  src={linkedinIcon}
-                  alt=""
-                  className="position-absolute"
-                  style={{
-                    width: '50px',
-                    bottom: 0,
-                    right: 50,
-                  }}
-                />
+                <a
+                  href="https://www.linkedin.com/in/javier-bambaren-dabdoub"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    src={linkedinIcon}
+                    alt=""
+                    className="position-absolute"
+                    style={{
+                      width: '50px',
+                      bottom: 0,
+                      right: 50,
+                    }}
+                  />
+                </a>
               </div>
               <div className="mt-3">
                 <div className="text-dark fw-bolder text-center h4">
-                  Javier Bambaren
+                  <a
+                    href="https://www.linkedin.com/in/javier-bambaren-dabdoub"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Javier Bambaren
+                  </a>
                 </div>
                 <div className="text-primary fw-bolder text-center h4">CEO</div>
               </div>
@@ -127,20 +139,32 @@ function About() {
             <div className="col-sm-6 col-md-4 col-lg-3 mb-5">
               <div className="w-100 px-5 position-relative">
                 <img src={directorCreativo} alt="" className="w-100" />
-                <img
-                  src={linkedinIcon}
-                  alt=""
-                  className="position-absolute"
-                  style={{
-                    width: '50px',
-                    bottom: 0,
-                    right: 50,
-                  }}
-                />
+                <a
+                  href="https://www.linkedin.com/in/damian-gamarra"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    src={linkedinIcon}
+                    alt=""
+                    className="position-absolute"
+                    style={{
+                      width: '50px',
+                      bottom: 0,
+                      right: 50,
+                    }}
+                  />
+                </a>
               </div>
               <div className="mt-3">
                 <div className="text-dark fw-bolder text-center h4">
-                  Damián Gamarra
+                  <a
+                    href="https://www.linkedin.com/in/damian-gamarra"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Damián Gamarra
+                  </a>
                 </div>
                 <div className="text-primary fw-bolder text-center h4">CCO</div>
               </div>

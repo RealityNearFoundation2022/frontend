@@ -17,7 +17,6 @@ export default function IndexMaps() {
   const [lng, setLng] = useState(-103.5917)
   const [lat, setLat] = useState(40.6699)
   const [zoom, setZoom] = useState(3)
-  const [showLand, setShowLand] = useState(false)
   const [selected, setSelected] = useState([])
   const [open, setOpen] = useState(false)
   const [isZoomIn, setIsZoomIn] = useState(true)
@@ -43,14 +42,11 @@ export default function IndexMaps() {
     if (map.current) {
       const zm = map.current.getZoom()
       setZoom(zm)
-      console.log(zm, zoom, zm * 100 - zoom * 100)
       let newZoom = zm
       const isZoomInN = zm * 100 - zoom * 100
       if (isZoomInN !== 0) {
         setIsZoomIn(isZoomInN > 0)
       }
-      // console.log(zm, showLand)
-      console.log('isZoomIn', isZoomIn)
       if (zm > 9 && zm < 18.5 && !isZoomIn) {
         newZoom = 9
       } else if (zm > 10 && isZoomIn) {
@@ -63,34 +59,6 @@ export default function IndexMaps() {
       map.current.easeTo({
         zoom: newZoom,
       })
-
-      // map.current.on('zoom', () => {
-      //   if (showLand && newZoom >= 19) {
-      //     const center = map.current.getCenter()
-      //     getSquare([center.lng, center.lat], newZoom)
-      //     setShowLand(false)
-      //   }
-      // })
-      // const newZoom = zm > 10 && showLand ? 19 : zm
-      // console.log('zoom 1', newZoom, showLand)
-      // setZoom(newZoom)
-      // map.current.easeTo({
-      //   zoom: newZoom,
-      // })
-      // map.current.on('zoom', () => {
-      //   if (showLand && newZoom >= 19) {
-      //     console.log('uno')
-      //     const center = map.current.getCenter()
-      //     getSquare([center.lng, center.lat], zm)
-      //     setShowLand(false)
-      //   } else if (showLand && newZoom < 19 && newZoom > 10.5) {
-      //     console.log('dos')
-      //     // setShowLand(true)
-      //     map.current.easeTo({
-      //       zoom: 10,
-      //     })
-      //   }
-      // })
     }
   })
   const handleClose = () => {

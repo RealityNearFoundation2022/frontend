@@ -47,7 +47,10 @@ export default function EventSection() {
           <h2>{dataItem.title}</h2>
           <p>{dataItem.long_description}</p>
           <center>
-            <button type="button" className="w-40 btn _btn btn btn-primary disabled">
+            <button
+              type="button"
+              className="w-40 _btn btn btn-primary disabled"
+            >
               Ir
             </button>
           </center>
