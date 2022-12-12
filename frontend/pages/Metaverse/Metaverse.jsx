@@ -15,7 +15,8 @@ function Metaverso() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
   const itemsCard = [...momentsCarousel]
-
+  const linkGooglePlay =
+    'https://play.google.com/store/apps/details?id=org.realitynear.reality_near&hl=es '
   const settings = {
     className: 'center',
     infinite: true,
@@ -153,8 +154,10 @@ function Metaverso() {
                 )}
               </p>
               <div className="d-flex justify-content-between w-100">
-                <img src={appleStore} alt="" className="my-3 w-50" />
-                <img src={googlePlay} alt="" className="mt-0 w-50" />
+                <img src={appleStore} alt="" className=" w-50" />
+                <a href={linkGooglePlay} target="_blank" rel="noreferrer">
+                  <img src={googlePlay} alt="" />
+                </a>
               </div>
             </div>
           </div>

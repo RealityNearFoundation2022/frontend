@@ -22,12 +22,14 @@ export default function IndexMaps() {
   const [isZoomIn, setIsZoomIn] = useState(true)
   const [selectedId, setSelectedId] = useState('')
   const navigate = useNavigate()
+  const [coordX, setCoordX] = useState(0)
+  const [coordY, setCoordY] = useState(0)
 
   useEffect(() => {
     if (map.current) return // initialize map only once
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/satellite-streets-v11?optimize=true',
+      style: 'mapbox://styles/mapbox/outdoors-v12?optimize=true',
       center: [lng, lat],
       zoom,
       tileLayer: {
@@ -56,6 +58,10 @@ export default function IndexMaps() {
           getSquare([center.lng, center.lat], zm)
         })
       }
+      if (zoom < 1.8) {
+        newZoom = 1.8
+      }
+
       map.current.easeTo({
         zoom: newZoom,
       })
@@ -85,6 +91,8 @@ export default function IndexMaps() {
         if (isThere) {
           id = `grid${xInf}${xSup}${yInf}${yMax}`
         }
+        setCoordX((xInf + xSup) / 2)
+        setCoordY((yInf + yMax) / 2)
         return isThere
       })
       setSelectedId(id)
@@ -187,7 +195,7 @@ export default function IndexMaps() {
         source: 'patchas-bought',
         layout: {},
         paint: {
-          'line-color': '#00000',
+          'line-color': '#000000',
           'line-width': 5,
         },
       })
@@ -266,22 +274,20 @@ export default function IndexMaps() {
       source = map.current.getSource('national-park')
     }
     source.setData(squareGrid)
-    // if (newZoom < 18) {
-    //   setShowLand(false)
-    // }
   }
   return (
-    <div className="top">
-      {/* <div>
+    <div>
+      <div ref={mapContainer} className="map-container map-container-big" />
+      <div>
         Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-      </div> */}
-      <div ref={mapContainer} className="map-container" />
+      </div>
       <ModalBuy
         open={open}
         handleClose={handleClose}
         go={() => goToPlot(selectedId)}
-        idX={selectedId}
-        idY={selectedId}
+        idX={coordX}
+        idY={coordY}
+        img="map"
       />
     </div>
   )
