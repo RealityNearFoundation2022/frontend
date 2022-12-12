@@ -16,7 +16,11 @@ function Contact() {
 
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
-
+  const optionsCategory = [
+    'Consulta',
+    'Problemas con Nuruk',
+    'Problemas con mi wallet',
+  ]
   const style = {
     position: 'absolute',
     top: '50%',
@@ -77,13 +81,21 @@ function Contact() {
             id="contactResponsive"
           >
             <label className="w-60 me-15porcent">
-              <input
-                type="text"
-                className="form-control"
-                value={valueName}
+              <select
+                name="category"
+                id="category"
                 placeholder="Selecciona categoría"
-                onChange={handleChangeName}
-              />
+                className="form-control"
+              >
+                <option value="" selected disabled hidden>
+                  Selecciona categoría
+                </option>
+                {optionsCategory.map((option) => (
+                  <option value={option} key={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
             </label>
             <label className="w-75">
               <input
