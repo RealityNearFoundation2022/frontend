@@ -9,12 +9,14 @@ import Card from './Card'
 import ThemeContext from '../../utils/useContextTheme'
 // import { filtersMarketplace } from './Data_Categories/Categories'
 import { nft_tokens } from '../../assets/js/near/utils'
+import { useTranslation } from 'react-i18next'
 // import { Category } from './Category'
 
 export default function Section() {
   // const categories = [...filtersMarketplace]
   const { theme } = useContext(ThemeContext)
   const [categories, setCategories] = useState([])
+  const { t } = useTranslation()
 
   useEffect(() => {
     async function fetchList() {
@@ -59,7 +61,7 @@ export default function Section() {
         }
       })
       const result = [
-        { id: 1, title: 'Novedades', itemCards: resultNovelties },
+        { id: 1, title: t('Novedades'), itemCards: resultNovelties },
         { id: 2, title: 'Ofertas', itemCards: resultOferts },
         { id: 3, title: 'Realands', itemCards: [] },
         { id: 4, title: 'Patchas', itemCards: [] },

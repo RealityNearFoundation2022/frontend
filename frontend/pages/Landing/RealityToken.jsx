@@ -51,7 +51,7 @@ export default function RealityToken() {
                 id="submitButton"
                 type="submit"
               >
-                Adquirir realities
+                {t('ADQUIRIR REALITIES')}
               </button>
             </Link>
           </center>

@@ -23,7 +23,7 @@ export default function RealityModal() {
       close={closeModal}
       button={
         <button
-          className="_btn btn btn-primary btn-xl w-75"
+          className="_btn btn btn-primary btn-xl w-75 text-uppercase"
           id="submitButton"
           type="button"
         >
