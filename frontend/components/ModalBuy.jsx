@@ -1,12 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import Modal from '@mui/material/Modal'
 import Box from '@mui/material/Box'
 import PropTypes from 'prop-types'
 import WhiteIcon from '../assets/img/logo-white.svg'
 import TileMap from '../utils/tilemap'
 import '../assets/css/components/nuruk.css'
+import mapboxgl from 'mapbox-gl'
+import { tokenMapBox } from '../utils/mapboxUtils'
 
 export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
+  // const [ coordX, setCoordX] = useState(idX)
+  // const [ coordY, setCoordY] = useState(idY)
   const style = {
     position: 'absolute',
     top: '50%',
@@ -20,6 +24,10 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
     px: 4,
     pb: 3,
   }
+  const mapContainer = useRef(null)
+  const map = useRef(null)
+  mapboxgl.accessToken = tokenMapBox
+
   const getImg = () => {
     if (open) {
       const canvas = document.getElementById('modal-buy')
@@ -30,9 +38,24 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
       tileMap.draw(canvas, ctx)
     }
   }
+  const getMap = () => {
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: 'mapbox://styles/mapbox/outdoors-v12?optimize=true',
+      center: [idX, idY],
+      zoom: 20,
+      tileLayer: {
+        continuousWorld: false,
+        noWrap: true,
+      },
+    })
+  }
   useEffect(() => {
-    console.log('here', open, handleClose, go, idX, idY, img)
-    getImg()
+    if (img === 'map' && open) {
+      getMap()
+    } else {
+      getImg()
+    }
   }, [open])
 
   return (
@@ -54,7 +77,14 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
       >
         <div className="row">
           <div className="col col-md-3">
-            <canvas id="modal-buy" type="module" className="img__modal" />
+            {img === 'map' ? (
+              <div
+                ref={mapContainer}
+                className="map-container map-container-small"
+              />
+            ) : (
+              <canvas id="modal-buy" type="module" className="img__modal" />
+            )}
           </div>
           <div className="col col-md-5 p-2">
             <h2 className="h4" id="child-modal-title">
@@ -83,7 +113,7 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
               <button
                 type="button"
                 onClick={go}
-                className="rounded btn _btn-xl btn btn-primary"
+                className="rounded _btn-xl btn btn-primary"
                 style={{ shadow: 'none', border: 'none' }}
               >
                 Comprar

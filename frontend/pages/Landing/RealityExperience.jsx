@@ -2,9 +2,11 @@ import React, { useContext } from 'react'
 import logoRealityNear from '../../assets/img/random/LOGO REALITY NEAR.png'
 import ThemeContext from '../../utils/useContextTheme'
 import FollowInfo from '../../components/FollowInfo'
+import { useTranslation } from 'react-i18next'
 
 export default function RealityExperience() {
   const { theme } = useContext(ThemeContext)
+  const { t } = useTranslation()
   return (
     <section className={`${theme.bg} near`} id="near">
       <div className="bg-img-realExperience bg-img-size-cover h-50vh w-100">
@@ -15,7 +17,7 @@ export default function RealityExperience() {
           <div className="realExperience">
             <center>
               <h2 className="text-white text-uppercase text-secondary title mb-0">
-                Vive la experiencia
+                {t('Vive la experiencia')}
               </h2>
             </center>
             <center>
@@ -23,7 +25,7 @@ export default function RealityExperience() {
             </center>
           </div>
           <button
-            className="rounded btn _btn-xl _btn _btn realExperience"
+            className="rounded btn btn-xl _btn realExperience"
             id="submitButton"
             type="submit"
           >

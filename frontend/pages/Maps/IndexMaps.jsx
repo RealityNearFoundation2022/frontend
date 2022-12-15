@@ -17,18 +17,19 @@ export default function IndexMaps() {
   const [lng, setLng] = useState(-103.5917)
   const [lat, setLat] = useState(40.6699)
   const [zoom, setZoom] = useState(3)
-  const [showLand, setShowLand] = useState(false)
   const [selected, setSelected] = useState([])
   const [open, setOpen] = useState(false)
   const [isZoomIn, setIsZoomIn] = useState(true)
   const [selectedId, setSelectedId] = useState('')
   const navigate = useNavigate()
-
+  const [coordX, setCoordX] = useState(0)
+  const [coordY, setCoordY] = useState(0)
+  const zoomToChange = 15
   useEffect(() => {
     if (map.current) return // initialize map only once
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/satellite-streets-v11?optimize=true',
+      style: 'mapbox://styles/mapbox/outdoors-v12?optimize=true',
       center: [lng, lat],
       zoom,
       tileLayer: {
@@ -43,54 +44,29 @@ export default function IndexMaps() {
     if (map.current) {
       const zm = map.current.getZoom()
       setZoom(zm)
-      console.log(zm, zoom, zm * 100 - zoom * 100)
       let newZoom = zm
       const isZoomInN = zm * 100 - zoom * 100
       if (isZoomInN !== 0) {
         setIsZoomIn(isZoomInN > 0)
       }
-      // console.log(zm, showLand)
-      console.log('isZoomIn', isZoomIn)
       if (zm > 9 && zm < 18.5 && !isZoomIn) {
+        //achicar
         newZoom = 9
-      } else if (zm > 10 && isZoomIn) {
+      } else if (zm > zoomToChange && isZoomIn) {
+        //zoom
         newZoom = 19
         map.current.on('zoom', () => {
           const center = map.current.getCenter()
-          getSquare([center.lng, center.lat], zm)
+          getSquare([center.lng, center.lat])
         })
       }
+      if (zoom < 1.8) {
+        newZoom = 1.8
+      }
+
       map.current.easeTo({
         zoom: newZoom,
       })
-
-      // map.current.on('zoom', () => {
-      //   if (showLand && newZoom >= 19) {
-      //     const center = map.current.getCenter()
-      //     getSquare([center.lng, center.lat], newZoom)
-      //     setShowLand(false)
-      //   }
-      // })
-      // const newZoom = zm > 10 && showLand ? 19 : zm
-      // console.log('zoom 1', newZoom, showLand)
-      // setZoom(newZoom)
-      // map.current.easeTo({
-      //   zoom: newZoom,
-      // })
-      // map.current.on('zoom', () => {
-      //   if (showLand && newZoom >= 19) {
-      //     console.log('uno')
-      //     const center = map.current.getCenter()
-      //     getSquare([center.lng, center.lat], zm)
-      //     setShowLand(false)
-      //   } else if (showLand && newZoom < 19 && newZoom > 10.5) {
-      //     console.log('dos')
-      //     // setShowLand(true)
-      //     map.current.easeTo({
-      //       zoom: 10,
-      //     })
-      //   }
-      // })
     }
   })
   const handleClose = () => {
@@ -117,6 +93,8 @@ export default function IndexMaps() {
         if (isThere) {
           id = `grid${xInf}${xSup}${yInf}${yMax}`
         }
+        setCoordX((xInf + xSup) / 2)
+        setCoordY((yInf + yMax) / 2)
         return isThere
       })
       setSelectedId(id)
@@ -219,7 +197,7 @@ export default function IndexMaps() {
         source: 'patchas-bought',
         layout: {},
         paint: {
-          'line-color': '#00000',
+          'line-color': '#000000',
           'line-width': 5,
         },
       })
@@ -271,7 +249,7 @@ export default function IndexMaps() {
       })
     })
   }
-  const getSquare = (coord, newZoom) => {
+  const getSquare = (coord) => {
     const x = Math.round(coord[0] * 100) / 100
     const y = Math.round(coord[1] * 100) / 100
     const bbox = [x - 0.006, y - 0.006, x + 0.006, y + 0.006]
@@ -298,22 +276,20 @@ export default function IndexMaps() {
       source = map.current.getSource('national-park')
     }
     source.setData(squareGrid)
-    // if (newZoom < 18) {
-    //   setShowLand(false)
-    // }
   }
   return (
-    <div className="top">
-      {/* <div>
+    <div>
+      <div ref={mapContainer} className="map-container map-container-big" />
+      <div>
         Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-      </div> */}
-      <div ref={mapContainer} className="map-container" />
+      </div>
       <ModalBuy
         open={open}
         handleClose={handleClose}
         go={() => goToPlot(selectedId)}
-        idX={selectedId}
-        idY={selectedId}
+        idX={coordX}
+        idY={coordY}
+        img="map"
       />
     </div>
   )

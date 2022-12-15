@@ -64,7 +64,7 @@ export default function ModalDetailBuy({
                   handleClose()
                   setOpenAbstract(true)
                 }}
-                className="rounded btn _btn-lg px-5 btn btn-primary _btn _btn"
+                className="rounded btn-lg px-5 btn btn-primary _btn"
               >
                 Siguiente
               </button>
@@ -106,7 +106,7 @@ export default function ModalDetailBuy({
                   handleClose()
                   setOpenCompleted(true)
                 }}
-                className="rounded btn _btn-lg px-5 btn btn-primary _btn _btn"
+                className="rounded btn-lg px-5 btn btn-primary _btn"
               >
                 Confirmar
               </button>
@@ -139,7 +139,7 @@ export default function ModalDetailBuy({
               <button
                 type="button"
                 onClick={handleClose}
-                className="rounded btn _btn-lg px-5 btn btn-primary _btn _btn"
+                className="rounded btn btn-lg px-5 btn-primary _btn"
               >
                 Ok
               </button>

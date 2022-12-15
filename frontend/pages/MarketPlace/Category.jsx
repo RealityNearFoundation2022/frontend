@@ -4,7 +4,7 @@ import Card from './Card'
 import NoData from '../ErrorPage/NoData'
 
 export function Category({ dataCategory }) {
-  const currentItemsCategory = [...dataCategory.itemCards]
+  const currentItemsCategory = dataCategory ? [...dataCategory.itemCards] : []
   const [currentData, setCurrentData] = useState(currentItemsCategory)
 
   const searchData = (condition, value) =>
@@ -25,11 +25,11 @@ export function Category({ dataCategory }) {
         className="p-2 w-90 search"
         onKeyUp={searchCard}
       />
-      <h1 className="mt-3 text-primary">{dataCategory.title}</h1>
+      <h1 className="mt-3 text-primary">{dataCategory?.title}</h1>
       <div className="d-flex flex-sm-wrap gap-3">
         {currentData.map((item) => (
           <div className="w-30" key={item}>
-            <Card elementsCard={item} category={dataCategory.title} />
+            <Card elementsCard={item} category={dataCategory?.title} />
           </div>
         ))}
         <div className={`${currentData.length === 0 ? '' : 'd-none'}`}>

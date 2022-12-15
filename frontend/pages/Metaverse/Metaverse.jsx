@@ -15,7 +15,8 @@ function Metaverso() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
   const itemsCard = [...momentsCarousel]
-
+  const linkGooglePlay =
+    'https://play.google.com/store/apps/details?id=org.realitynear.reality_near&hl=es '
   const settings = {
     className: 'center',
     infinite: true,
@@ -71,12 +72,18 @@ function Metaverso() {
                 )}
               </p>
               <center className="pt-5">
-                <button
-                  type="button"
-                  className="btn _btn btn btn-primary btn _btn-xl disabled w-50"
+                <a
+                  href="https://nuruk.realitynear.org"
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  {t('Dar un vistazo')}
-                </button>
+                  <button
+                    type="button"
+                    className="_btn btn btn-primary btn-xl w-75"
+                  >
+                    {t('Dar un vistazo')}
+                  </button>
+                </a>
               </center>
             </div>
             <div
@@ -95,7 +102,6 @@ function Metaverso() {
       {/* <!-- Section--> */}
       <section
         className={`${theme.bg} w-100  px-7-5porcent py-5 d-flex align-items-center justify-content-center`}
-        id=""
       >
         <div className="w-100 d-lex align-items-center justify-content-center">
           <Slider {...settings} className="w-100 ">
@@ -148,8 +154,10 @@ function Metaverso() {
                 )}
               </p>
               <div className="d-flex justify-content-between w-100">
-                <img src={appleStore} alt="" className="my-3 w-50" />
-                <img src={googlePlay} alt="" className="mt-0 w-50" />
+                <img src={appleStore} alt="" className=" w-50" />
+                <a href={linkGooglePlay} target="_blank" rel="noreferrer">
+                  <img src={googlePlay} alt="" />
+                </a>
               </div>
             </div>
           </div>

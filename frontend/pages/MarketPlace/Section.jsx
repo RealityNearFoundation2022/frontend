@@ -9,12 +9,14 @@ import Card from './Card'
 import ThemeContext from '../../utils/useContextTheme'
 // import { filtersMarketplace } from './Data_Categories/Categories'
 import { nft_tokens } from '../../assets/js/near/utils'
+import { useTranslation } from 'react-i18next'
 // import { Category } from './Category'
 
 export default function Section() {
   // const categories = [...filtersMarketplace]
   const { theme } = useContext(ThemeContext)
   const [categories, setCategories] = useState([])
+  const { t } = useTranslation()
 
   useEffect(() => {
     async function fetchList() {
@@ -59,7 +61,7 @@ export default function Section() {
         }
       })
       const result = [
-        { id: 1, title: 'Novedades', itemCards: resultNovelties },
+        { id: 1, title: t('Novedades'), itemCards: resultNovelties },
         { id: 2, title: 'Ofertas', itemCards: resultOferts },
         { id: 3, title: 'Realands', itemCards: [] },
         { id: 4, title: 'Patchas', itemCards: [] },
@@ -67,6 +69,7 @@ export default function Section() {
         { id: 6, title: 'Otros', itemCards: [] },
       ]
       setCategories(result)
+      console.log(result)
       console.log(data)
     }
     fetchList()
@@ -111,19 +114,24 @@ export default function Section() {
           <div className="w-100" key={item.title}>
             <div className="d-flex align-items-center pb-4" id="mpResponsive">
               <h1 className={`${theme.txt} m-1 text-primary pr-2`}>
-                {item.title}
+                {item?.title}
               </h1>
-              <Link to={`/marketplace/${item.title.toLowerCase()}`}>
-                <span className="text-grey fw-bolder"> Ver más</span>
+              <Link
+                to={`/marketplace/${item.title.toLowerCase()}`}
+                className="mt-3"
+              >
+                <span className="text-grey fw-bolder mt-3 show-more">
+                  Ver más
+                </span>
                 <CaretRight size={28} color="#33cc99" weight="bold" />
               </Link>
             </div>
             <Slider {...settings}>
-              {item.itemCards.map((element) => (
+              {item?.itemCards.map((element) => (
                 <Card
                   key={element}
                   elementsCard={element}
-                  category={item.title}
+                  category={item?.title}
                 />
               ))}
             </Slider>

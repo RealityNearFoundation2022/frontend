@@ -14,7 +14,6 @@ export default class TileMap {
       Array.apply(null, Array(100)).map(Number.prototype.valueOf, 0),
     )
     const index = `${this.row}${this.column}`
-    console.log(index)
     this.setCanvas[index](arrayMap)
     return arrayMap
   }
@@ -1420,6 +1419,20 @@ export default class TileMap {
           item[4],
         )
       }
+      for (let [x, y] of [
+        [5, 40],
+        [26, 40],
+        [5, 65],
+        [26, 65],
+      ]) {
+        this.#addRegion(arrayMap, x, y, 7, 7, 3)
+      }
+      for (let [x, y] of [
+        [13, 41],
+        [13, 66],
+      ]) {
+        this.#addRegion(arrayMap, x, y, 12, 5, 3)
+      }
     },
     20: (arrayMap) => {
       for (let item of [
@@ -2140,9 +2153,9 @@ export default class TileMap {
 
       for (let item of [
         [1, 17, 5, 3],
-        [19, 53, 5, 8],
-        [55, 73, 4, 8],
-        [75, 79, 5, 8],
+        [19, 53, 5, 1],
+        [55, 73, 4, 1],
+        [75, 79, 5, 1],
       ]) {
         this.#createBox(arrayMap, item[0], item[1], 30, 70, item[2], 5, item[3])
         this.#createBox(arrayMap, item[0], item[1], 72, 77, item[2], 6, item[3])
