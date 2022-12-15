@@ -258,15 +258,17 @@ export async function get_number_of_tokens() {
          "owner_id": "$ID",
          "metadata": {
             "spec": "nft-1.0.0",
-            "name": "Wrapped Bitcoin",
-            "symbol": "WBTC5",
+            "name": "#1", #number land = #1
+            "symbol": "R1", #symbol = R1
             "icon": "data:image/svg+xml,%3C…",
             "reference": "https://example.com/wbtc.json",
             "reference_hash": "AK3YRHqKhCJNmKfV6SrutnlWW/icN5J8NUPtKsNXR1M="
-         }
+         },
+        "x": "1",
+        "y": "2"
     },
     "account_id": "guxal.testnet"
-      }
+  }
 
  * @param {*} args 
  * @param {*} account_id 
@@ -287,12 +289,14 @@ export async function get_required_deposit(args, account_id) {
       "owner_id": "guxal.testnet",
       "metadata": {
          "spec": "nft-1.0.0",
-         "name": "Wrapped Bitcoin",
-         "symbol": "WBTC5",
+         "name": "#1",
+         "symbol": "R1",
          "icon": "data:image/svg+xml,%3C…",
          "reference": "https://example.com/wbtc.json",
          "reference_hash": "AK3YRHqKhCJNmKfV6SrutnlWW/icN5J8NUPtKsNXR1M="
-      }
+      },
+      "x": "1",
+      "y": "2"
   }
 
   gas example: 300000000000000
