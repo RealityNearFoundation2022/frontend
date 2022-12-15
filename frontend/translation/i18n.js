@@ -11,5 +11,7 @@ i18n.use(initReactI18next).init({
     escapeValue: false,
   },
 })
+const language = localStorage.getItem('lang')
+i18n.changeLanguage(language)
 
 export default i18n

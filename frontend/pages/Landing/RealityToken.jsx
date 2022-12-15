@@ -47,11 +47,11 @@ export default function RealityToken() {
           <center className="w-100 mt-4">
             <Link to="/realities">
               <button
-                className="btn _btn btn btn-primary btn _btn-xl disabled w-50"
+                className="_btn btn btn-primary btn-xl w-75"
                 id="submitButton"
                 type="submit"
               >
-                Adquirir realities
+                {t('ADQUIRIR REALITIES')}
               </button>
             </Link>
           </center>

@@ -20,6 +20,7 @@ export default function TranslationModal() {
     const lng = event.target.value
     const newLanguage = languages.find(({ key }) => key === lng)
     setLanguage(newLanguage)
+    localStorage.setItem('lang', lng)
     i18n.changeLanguage(lng, (err) => err)
     setClose(true)
   }
