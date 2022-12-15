@@ -2,6 +2,7 @@
 import React, { useContext, useState } from 'react'
 import { Outlet, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import MenuIcon from '@mui/icons-material/Menu'
 import {
   login,
   logout,
@@ -81,7 +82,7 @@ function Layout() {
       </div>
       <button
         type="button"
-        className="btn-primary rounded"
+        className="btn-primary rounded p-2 w-10 mr-2"
         onClick={currentUser ? logout : login}
       >
         {currentUser ? 'Log out' : 'Log In'}
@@ -104,7 +105,7 @@ function Layout() {
         data-bs-toggle="collapse"
         data-bs-target="#navbarResponsive"
       >
-        <span className=""></span>
+        <MenuIcon />
       </button>
       <Outlet />
     </nav>

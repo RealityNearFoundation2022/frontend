@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-// import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 import { getData } from '../../../api/methods'
 import LoadingModal from '../../../components/LoadingModal'
 import HeaderSections from '../../HeaderSections'
-// import CardNotices from '../CardNotices'
-// import { dataNotices } from '../dataNotices'
+import { useTranslation } from 'react-i18next'
+
 import CarouselNovelty from './Carousel'
 require('dotenv').config()
 const api = process.env.REACT_APP_API
@@ -15,7 +14,7 @@ const api = process.env.REACT_APP_API
 export default function Novelties() {
   const [carousel, setCarousel] = useState([])
   const [isLoading, setIsLoading] = useState(false)
-
+  const { t } = useTranslation()
   const navigate = useNavigate()
 
   const settings1 = {

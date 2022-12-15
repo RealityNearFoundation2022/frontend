@@ -17,7 +17,7 @@ export default function RealityExperience() {
           <div className="realExperience">
             <center>
               <h2 className="text-white text-uppercase text-secondary title mb-0">
-                { t('Vive la experiencia') }
+                {t('Vive la experiencia')}
               </h2>
             </center>
             <center>
