@@ -3,6 +3,9 @@ import mapboxgl from 'mapbox-gl'
 import turf from '@turf/square-grid'
 import { useNavigate } from 'react-router-dom'
 import { tokenMapBox } from '../../utils/mapboxUtils'
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css'
+
 import {
   styleClusters,
   styleClustersCount,
@@ -29,7 +32,7 @@ export default function IndexMaps() {
     if (map.current) return // initialize map only once
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/outdoors-v12?optimize=true',
+      style: 'mapbox://styles/mapbox/streets-v12',
       center: [lng, lat],
       zoom,
       tileLayer: {
@@ -37,6 +40,7 @@ export default function IndexMaps() {
         noWrap: true,
       },
     })
+
     drawMap(map)
   })
 
@@ -49,24 +53,25 @@ export default function IndexMaps() {
       if (isZoomInN !== 0) {
         setIsZoomIn(isZoomInN > 0)
       }
-      if (zm > 9 && zm < 18.5 && !isZoomIn) {
-        //achicar
-        newZoom = 9
-      } else if (zm > zoomToChange && isZoomIn) {
-        //zoom
-        newZoom = 19
+      // if (zm > 9 && zm < 18.5 && !isZoomIn) {
+      //   //achicar
+      //   newZoom = 9
+      //   // map.current.easeTo({
+      //   //   zoom: newZoom,
+      //   // })
+      // } else
+      if (zm > zoomToChange && isZoomIn) {
+        //   //zoom
+        //   newZoom = 19
         map.current.on('zoom', () => {
           const center = map.current.getCenter()
           getSquare([center.lng, center.lat])
         })
+        // map.current.easeTo({
+        //   zoom: newZoom,
+        // })
       }
-      if (zoom < 1.8) {
-        newZoom = 1.8
-      }
-
-      map.current.easeTo({
-        zoom: newZoom,
-      })
+      console.log('hola', newZoom)
     }
   })
   const handleClose = () => {
@@ -159,6 +164,12 @@ export default function IndexMaps() {
   const drawMap = () => {
     map.current.on('load', () => {
       map.current.addControl(new mapboxgl.NavigationControl())
+      map.current.addControl(
+        new MapboxGeocoder({
+          accessToken: mapboxgl.accessToken,
+          mapboxgl: mapboxgl,
+        }),
+      )
       map.current.addSource('patchas-bought', {
         type: 'geojson',
         data: 'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson', //mock
