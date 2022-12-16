@@ -278,9 +278,7 @@ export async function get_required_deposit(args, account_id) {
     args: {
       args: args,
       account_id: account_id
-    },
-    gas,
-    amount,
+    }
   })
 }
 
