@@ -38,7 +38,7 @@ export default function FollowInfo({ isBackground }) {
       }`}
     >
       <h1 className={`d-flex justify-content-center m-0 h-50 align-items-center w-100 fs-7 ${theme.txt}`}>
-        {t('¡SÍGUENOS!')}
+        {t('SIGUENOS')}
       </h1>
       <div className="d-flex justify-content-center m-0 h-50 align-items-center w-100 py-5">
         {socialNetworks.map(({ link, icon }) => (

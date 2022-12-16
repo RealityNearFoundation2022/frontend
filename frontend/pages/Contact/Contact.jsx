@@ -81,18 +81,13 @@ function Contact() {
             id="contactResponsive"
           >
             <label className="w-60 me-15porcent">
-              <select
-                name="category"
-                id="category"
-                placeholder={t('Selecciona categoría')}
-                className="form-control"
-              >
+              <select name="category" id="category" className="form-control">
                 <option value="" selected disabled hidden>
-                  {t('Selecciona categoría')}
+                  {t('Selecciona Categoria')}
                 </option>
                 {optionsCategory.map((option) => (
                   <option value={option} key={option}>
-                    {option}
+                    {t(option)}
                   </option>
                 ))}
               </select>

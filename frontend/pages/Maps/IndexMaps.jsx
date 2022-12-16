@@ -24,7 +24,7 @@ export default function IndexMaps() {
   const navigate = useNavigate()
   const [coordX, setCoordX] = useState(0)
   const [coordY, setCoordY] = useState(0)
-
+  const zoomToChange = 15
   useEffect(() => {
     if (map.current) return // initialize map only once
     map.current = new mapboxgl.Map({
@@ -50,12 +50,14 @@ export default function IndexMaps() {
         setIsZoomIn(isZoomInN > 0)
       }
       if (zm > 9 && zm < 18.5 && !isZoomIn) {
+        //achicar
         newZoom = 9
-      } else if (zm > 10 && isZoomIn) {
+      } else if (zm > zoomToChange && isZoomIn) {
+        //zoom
         newZoom = 19
         map.current.on('zoom', () => {
           const center = map.current.getCenter()
-          getSquare([center.lng, center.lat], zm)
+          getSquare([center.lng, center.lat])
         })
       }
       if (zoom < 1.8) {
@@ -247,7 +249,7 @@ export default function IndexMaps() {
       })
     })
   }
-  const getSquare = (coord, newZoom) => {
+  const getSquare = (coord) => {
     const x = Math.round(coord[0] * 100) / 100
     const y = Math.round(coord[1] * 100) / 100
     const bbox = [x - 0.006, y - 0.006, x + 0.006, y + 0.006]

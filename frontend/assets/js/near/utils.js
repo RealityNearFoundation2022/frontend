@@ -58,6 +58,16 @@ export async function initContract() {
       changeMethods: ['storage_deposit', 'ft_transfer', 'ft_transfer_call'],
     },
   )
+
+
+  window.factorynft = await new Contract(
+    window.walletConnection.account(),
+    nearConfig.contractFactoryNFT,
+    {
+      viewMethods: ['get_token', 'get_tokens', 'get_number_of_tokens', 'get_required_deposit'],
+      changeMethods: ['create_token', 'storage_deposit'],
+    }
+  )
 }
 
 export function logout() {
@@ -216,4 +226,94 @@ export async function ft_transfer(receiver_id, amount) {
     },
     amount: '10000000',
   })
+}
+
+// FACTORY
+
+export async function get_tokens(
+  from_index = '0',
+  limit = 64) {
+  const tokens = await window.factorynft.get_tokens({
+    from_index, limit
+  })
+  return tokens;
+}
+
+
+export async function get_token(token_id){
+  const token = await window.factorynft.get_token({
+    token_id
+  })
+  return token;
+}
+
+export async function get_number_of_tokens() {
+  const number = await window.factorynft.get_number_of_tokens();
+  return number;
+}
+
+/**
+ * {
+ *  "args": {
+         "owner_id": "$ID",
+         "metadata": {
+            "spec": "nft-1.0.0",
+            "name": "#1", #number land = #1
+            "symbol": "R1", #symbol = R1
+            "icon": "data:image/svg+xml,%3C…",
+            "reference": "https://example.com/wbtc.json",
+            "reference_hash": "AK3YRHqKhCJNmKfV6SrutnlWW/icN5J8NUPtKsNXR1M="
+         },
+        "x": "1",
+        "y": "2"
+    },
+    "account_id": "guxal.testnet"
+  }
+
+ * @param {*} args 
+ * @param {*} account_id 
+ */
+export async function get_required_deposit(args, account_id) {
+  await window.factorynft.get_required_deposit({
+    args: {
+      args: args,
+      account_id: account_id
+    }
+  })
+}
+
+/**
+ * "args": {
+      "owner_id": "guxal.testnet",
+      "metadata": {
+         "spec": "nft-1.0.0",
+         "name": "#1",
+         "symbol": "R1",
+         "icon": "data:image/svg+xml,%3C…",
+         "reference": "https://example.com/wbtc.json",
+         "reference_hash": "AK3YRHqKhCJNmKfV6SrutnlWW/icN5J8NUPtKsNXR1M="
+      },
+      "x": "1",
+      "y": "2"
+  }
+
+  gas example: 300000000000000
+ */
+export async function create_token(args) {
+  await window.factorynft.create_token({
+    args: {
+      args: args
+    },
+    gas,
+    amount,
+  })
+}
+
+
+export async function storage_deposit() {await window.ftcontract.storage_deposit({
+  args: {},
+  gas,
+  amount: minimum || '10000000000000000000000',
+})
+
 }

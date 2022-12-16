@@ -56,7 +56,7 @@ function About() {
       </section>
       <section className="w-100 bg-img-realExperience bg-img-size-cover h-40vh mt-4"></section>
       {/* <!--  Section--> */}
-      <section className={`${theme.bg} w-100 px-7-5porcent`} id="">
+      <section className={`${theme.bg} ${theme.txt} w-100 px-7-5porcent`} id="">
         <div className="w-100">
           {/* <!--  Section Heading--> */}
           <div className="row position-relative">
@@ -110,6 +110,8 @@ function About() {
                 </a>
               </div>
               <div className="mt-3">
+                <div className="fw-bolder text-center h4">
+                  Javier Bambaren
                 <div className="text-dark fw-bolder text-center h4">
                   <a
                     href="https://www.linkedin.com/in/javier-bambaren-dabdoub"
@@ -157,6 +159,8 @@ function About() {
                 </a>
               </div>
               <div className="mt-3">
+                <div className="fw-bolder text-center h4">
+                  Damián Gamarra
                 <div className="text-dark fw-bolder text-center h4">
                   <a
                     href="https://www.linkedin.com/in/damian-gamarra"
