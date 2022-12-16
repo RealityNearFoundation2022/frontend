@@ -1,8 +1,10 @@
 import React, { useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import logoFooter from '../assets/img/random/logoFooter.png'
 import ThemeContext from '../utils/useContextTheme'
 function Footer() {
+  const { t } = useTranslation()
   const { theme } = useContext(ThemeContext)
   return (
     <footer
@@ -30,11 +32,11 @@ function Footer() {
       </div>
       <div className="">
         <ul>
-          <li className={theme.txt}>Código de ética</li>
-          <li className={theme.txt}>Políticas de Privacidad</li>
-          <li className={theme.txt}>Políticas de Cookies</li>
+          <li className={theme.txt}>{t('Código de ética')}</li>
+          <li className={theme.txt}>{t('Políticas de Privacidad')}</li>
+          <li className={theme.txt}>{t('Políticas de Cookies')}</li>
           <Link to="/terminos-condiciones">
-            <li className={theme.txt}>Términos y Condiciones</li>
+            <li className={theme.txt}>{t('Términos y Condiciones')}</li>
           </Link>
         </ul>
       </div>

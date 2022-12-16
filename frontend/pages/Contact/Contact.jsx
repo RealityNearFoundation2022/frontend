@@ -84,11 +84,11 @@ function Contact() {
               <select
                 name="category"
                 id="category"
-                placeholder="Selecciona categoría"
+                placeholder={t('Selecciona categoría')}
                 className="form-control"
               >
                 <option value="" selected disabled hidden>
-                  Selecciona categoría
+                  {t('Selecciona categoría')}
                 </option>
                 {optionsCategory.map((option) => (
                   <option value={option} key={option}>
@@ -102,7 +102,7 @@ function Contact() {
                 type="text"
                 className="form-control"
                 value={valueName}
-                placeholder="Nombre"
+                placeholder={t('Nombre')}
                 onChange={handleChangeName}
               />
             </label>
@@ -110,7 +110,7 @@ function Contact() {
               <input
                 type="email"
                 className="form-control"
-                placeholder="Correo"
+                placeholder={t('Correo')}
                 value={valueEmail}
                 onChange={handleChangeEmail}
               />
@@ -119,7 +119,7 @@ function Contact() {
               <textarea
                 type="text"
                 className="form-control h-10vh"
-                placeholder="Mensaje"
+                placeholder={t('Mensaje')}
                 value={valueMensaje}
                 onChange={handleChangeMensaje}
               />
@@ -129,7 +129,7 @@ function Contact() {
               className="_btn btn btn-primary w-25"
               onClick={handleSubmit}
             >
-              Enviar
+              {t('Enviar')}
             </button>
           </div>
         </div>
@@ -152,15 +152,15 @@ function Contact() {
           }}
         >
           <div>
-            <div className="h3 text-center mb-4">¡MENSAJE ENVIADO!</div>
+            <div className="h3 text-center mb-4">{t('¡MENSAJE ENVIADO!')}</div>
             <div className="text-center">
-              Tu mensaje ha sido enviado correctamente.
+              {t('Tu mensaje ha sido enviado correctamente.')}
             </div>
             <textarea disabled cols="30" rows="3" className="form-control mx-0">
               {valueMensaje}
             </textarea>
             <div className="mt-3 text-center">
-              Nuestro equipo enviará la respuesta a tu correo pronto.
+              {t('Nuestro equipo enviará la respuesta a tu correo pronto.')}
             </div>
             <div className="text-center mt-3">
               <button
