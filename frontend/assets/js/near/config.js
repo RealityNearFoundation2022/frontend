@@ -2,7 +2,8 @@ const CONTRACT_NAME = process.env.CONTRACT_NAME || 'nft3.guxal.testnet'
 const MARKET_CONTRACT = process.env.MARKET_CONTRACT || 'mkp.guxal.testnet'
 const TOKEN_CONTRACT = process.env.TOKEN_CONTRACT || 'token.guxal.testnet'
 
-const FACTORY_CONTRACT = process.env.FACTORY_CONTRACT || 'factory-reelands.guxal.testnet'
+const FACTORY_CONTRACT =
+  process.env.FACTORY_CONTRACT || 'factory-reelands.guxal.testnet'
 
 function getConfig(env) {
   switch (env) {
