@@ -5,8 +5,8 @@ import githubIcon from '../assets/img/social-network/githubIcon.png'
 import discordIcon from '../assets/img/social-network/discordIcon.png'
 import fbIcon from '../assets/img/social-network/facebook.png'
 import PropTypes from 'prop-types'
-import { useTranslation } from 'react-i18next'
 import ThemeContext from '../utils/useContextTheme'
+import { useTranslation } from 'react-i18next'
 
 export default function FollowInfo({ isBackground }) {
   const { theme } = useContext(ThemeContext)

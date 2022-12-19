@@ -59,14 +59,18 @@ export async function initContract() {
     },
   )
 
-
   window.factorynft = await new Contract(
     window.walletConnection.account(),
     nearConfig.contractFactoryNFT,
     {
-      viewMethods: ['get_token', 'get_tokens', 'get_number_of_tokens', 'get_required_deposit'],
+      viewMethods: [
+        'get_token',
+        'get_tokens',
+        'get_number_of_tokens',
+        'get_required_deposit',
+      ],
       changeMethods: ['create_token', 'storage_deposit'],
-    }
+    },
   )
 }
 
@@ -230,26 +234,24 @@ export async function ft_transfer(receiver_id, amount) {
 
 // FACTORY
 
-export async function get_tokens(
-  from_index = '0',
-  limit = 64) {
+export async function get_tokens(from_index = '0', limit = 64) {
   const tokens = await window.factorynft.get_tokens({
-    from_index, limit
+    from_index,
+    limit,
   })
-  return tokens;
+  return tokens
 }
 
-
-export async function get_token(token_id){
+export async function get_token(token_id) {
   const token = await window.factorynft.get_token({
-    token_id
+    token_id,
   })
-  return token;
+  return token
 }
 
 export async function get_number_of_tokens() {
-  const number = await window.factorynft.get_number_of_tokens();
-  return number;
+  const number = await window.factorynft.get_number_of_tokens()
+  return number
 }
 
 /**
@@ -258,15 +260,17 @@ export async function get_number_of_tokens() {
          "owner_id": "$ID",
          "metadata": {
             "spec": "nft-1.0.0",
-            "name": "Wrapped Bitcoin",
-            "symbol": "WBTC5",
+            "name": "#1", #number land = #1
+            "symbol": "R1", #symbol = R1
             "icon": "data:image/svg+xml,%3C…",
             "reference": "https://example.com/wbtc.json",
             "reference_hash": "AK3YRHqKhCJNmKfV6SrutnlWW/icN5J8NUPtKsNXR1M="
-         }
+         },
+        "x": "1",
+        "y": "2"
     },
     "account_id": "guxal.testnet"
-      }
+  }
 
  * @param {*} args 
  * @param {*} account_id 
@@ -275,10 +279,8 @@ export async function get_required_deposit(args, account_id) {
   await window.factorynft.get_required_deposit({
     args: {
       args: args,
-      account_id: account_id
+      account_id: account_id,
     },
-    gas,
-    amount,
   })
 }
 
@@ -287,12 +289,14 @@ export async function get_required_deposit(args, account_id) {
       "owner_id": "guxal.testnet",
       "metadata": {
          "spec": "nft-1.0.0",
-         "name": "Wrapped Bitcoin",
-         "symbol": "WBTC5",
+         "name": "#1",
+         "symbol": "R1",
          "icon": "data:image/svg+xml,%3C…",
          "reference": "https://example.com/wbtc.json",
          "reference_hash": "AK3YRHqKhCJNmKfV6SrutnlWW/icN5J8NUPtKsNXR1M="
-      }
+      },
+      "x": "1",
+      "y": "2"
   }
 
   gas example: 300000000000000
@@ -306,7 +310,6 @@ export async function get_required_deposit(args, account_id) {
 //     amount,
 //   })
 // }
-
 
 // export async function storage_deposit() {await window.ftcontract.storage_deposit({
 //   args: {},
