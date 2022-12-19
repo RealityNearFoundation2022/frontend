@@ -3,15 +3,19 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import ThemeContext from '../../utils/useContextTheme'
+import { useTranslation } from 'react-i18next'
 
 export default function Filter() {
   const { theme } = useContext(ThemeContext)
+  const { t } = useTranslation()
+  // TO DO:
+  // Agregar traducciones
   return (
     <div className="w-100 mt-5">
       <ul className="d-flex flex-column gap-2 align-item-start">
         <li>
           <Link to="/marketplace" className={`fw-normal nav-link${theme.txt}`}>
-            Todos
+            {t('Todos')}
           </Link>
         </li>
         <li>

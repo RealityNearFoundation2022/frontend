@@ -101,6 +101,8 @@ export default function Section() {
       )
     },
   }
+  // TO DO:
+  // Agregar traducciones
   return (
     <div className="">
       <Typography mt={2} />
@@ -121,7 +123,7 @@ export default function Section() {
                 className="mt-3"
               >
                 <span className="text-grey fw-bolder mt-3 show-more">
-                  Ver más
+                  {t('Ver más')}
                 </span>
                 <CaretRight size={28} color="#33cc99" weight="bold" />
               </Link>
