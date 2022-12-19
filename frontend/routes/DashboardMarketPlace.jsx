@@ -88,7 +88,7 @@ export function DashboardMarketPlace() {
     return finded
   }
   return (
-    <div className={`${theme.bg} mt-5 w-100`}>
+    <div className={`${theme.bg} w-100`}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Header></Header>

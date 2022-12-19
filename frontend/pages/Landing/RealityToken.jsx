@@ -10,7 +10,7 @@ export default function RealityToken() {
   const { t } = useTranslation()
 
   return (
-    <section className={`${theme.bg} py-5 text-white mb-0 w-100 my-2`} id="">
+    <section className={`${theme.bg} py-5 text-white mb-0 w-100`} id="">
       <div
         className={`${theme.txt} d-flex w-100 align-items-center px-7-5porcent`}
       >

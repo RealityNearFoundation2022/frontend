@@ -126,7 +126,7 @@ export default function IndexMaps() {
           type: 'fill',
           source: `grid${id}`,
           paint: {
-            'fill-color': '#2e0aff',
+            'fill-color': '#33cc99',
             'fill-opacity': 0.2,
           },
           filter: ['==', '$type', 'Polygon'],
