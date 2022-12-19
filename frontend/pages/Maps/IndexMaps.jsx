@@ -27,7 +27,7 @@ export default function IndexMaps() {
   const navigate = useNavigate()
   const [coordX, setCoordX] = useState(0)
   const [coordY, setCoordY] = useState(0)
-  const zoomToChange = 15
+  const zoomToChange = 16
   useEffect(() => {
     if (map.current) return // initialize map only once
     map.current = new mapboxgl.Map({
@@ -65,13 +65,39 @@ export default function IndexMaps() {
         //   newZoom = 19
         map.current.on('zoom', () => {
           const center = map.current.getCenter()
-          getSquare([center.lng, center.lat])
+          console.log(center.lng.toFixed(4), lng, center.lat.toFixed(4), lat)
+          if (center.lng.toFixed(4) !== lng && center.lat.toFixed(4) !== lat)
+            getSquare([center.lng, center.lat])
         })
         // map.current.easeTo({
         //   zoom: newZoom,
         // })
       }
-      console.log('hola', newZoom)
+      console.log(zm < 17.5 && !isZoomIn)
+      if (zm < 17 && !isZoomIn) {
+        const squareGrid = { type: 'FeatureCollection', features: [] }
+        console.log(squareGrid)
+        let source = map.current.getSource('national-park')
+        if (!source) {
+          map.current.addSource('national-park', {
+            type: 'geojson',
+            data: squareGrid, // Radius of each cluster when clustering points (defaults to 50)
+          })
+          map.current.addLayer({
+            id: 'park-boundary-outline',
+            type: 'line',
+            source: 'national-park',
+            layout: {},
+            paint: {
+              'line-color': '#000000',
+              'line-width': 3,
+            },
+            filter: ['==', '$type', 'Polygon'],
+          })
+          source = map.current.getSource('national-park')
+        }
+        source.setData(squareGrid)
+      }
     }
   })
   const handleClose = () => {
@@ -163,7 +189,7 @@ export default function IndexMaps() {
   })
   const drawMap = () => {
     map.current.on('load', () => {
-      map.current.addControl(new mapboxgl.NavigationControl())
+      // map.current.addControl(new mapboxgl.NavigationControl())
       map.current.addControl(
         new MapboxGeocoder({
           accessToken: mapboxgl.accessToken,
@@ -263,10 +289,11 @@ export default function IndexMaps() {
   const getSquare = (coord) => {
     const x = Math.round(coord[0] * 100) / 100
     const y = Math.round(coord[1] * 100) / 100
-    const bbox = [x - 0.006, y - 0.006, x + 0.006, y + 0.006]
+    const bbox = [x - 0.01, y - 0.01, x + 0.01, y + 0.01]
     const cellSide = 0.01
     const options = { units: 'kilometers' }
     const squareGrid = turf(bbox, cellSide, options)
+    console.log(squareGrid)
     let source = map.current.getSource('national-park')
     if (!source) {
       map.current.addSource('national-park', {
