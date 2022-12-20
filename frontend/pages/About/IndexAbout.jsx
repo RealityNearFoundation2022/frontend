@@ -110,12 +110,12 @@ function About() {
                 </a>
               </div>
               <div className="mt-3">
-                <div className="fw-bolder text-center h4">Javier Bambaren</div>
                 <div className="text-dark fw-bolder text-center h4">
                   <a
                     href="https://www.linkedin.com/in/javier-bambaren-dabdoub"
                     target="_blank"
                     rel="noreferrer"
+                    className="fw-bolder text-center h4"
                   >
                     Javier Bambaren
                   </a>
@@ -158,12 +158,12 @@ function About() {
                 </a>
               </div>
               <div className="mt-3">
-                <div className="fw-bolder text-center h4">Damián Gamarra</div>
                 <div className="text-dark fw-bolder text-center h4">
                   <a
                     href="https://www.linkedin.com/in/damian-gamarra"
                     target="_blank"
                     rel="noreferrer"
+                    className="fw-bolder text-center h4"
                   >
                     Damián Gamarra
                   </a>

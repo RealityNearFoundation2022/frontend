@@ -2,7 +2,7 @@ import { useState, useMemo, useCallback } from 'react'
 import { themes } from '../utils/useContextTheme'
 
 export const useTheme = () => {
-  const [theme, setTheme] = useState({ ...themes.light })
+  const [theme, setTheme] = useState({ ...themes.dark })
 
   const handleChangeTheme = useCallback(() => {
     const { bg } = theme
