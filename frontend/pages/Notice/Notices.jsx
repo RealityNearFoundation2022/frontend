@@ -1,14 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useContext, useTransition } from 'react'
 import { Link } from 'react-router-dom'
 import { CaretRight } from 'phosphor-react'
 import ThemeContext from '../../utils/useContextTheme'
 import HeaderSections from '../HeaderSections'
 import CarouselNovelty from './Novelties/Carousel'
 import CarouselEvents from './Events/CarouselEvents'
+import { useTranslation } from 'react-i18next'
 
 export default function Notices() {
   const { theme } = useContext(ThemeContext)
-
+  const { t } = useTranslation()
   return (
     <div className={`${theme.bg}`}>
       <HeaderSections
@@ -22,7 +23,7 @@ export default function Notices() {
             <h1 className={`${theme.txt} m-1 text-primary pr-2`}>Novedades</h1>
             <Link to="/notices/novelties" className="mt-3">
               <span className="text-grey fw-bolder pt-4 show-more">
-                Ver más
+                {t('Ver más')}
               </span>
               <CaretRight size={15} color="#33cc99" weight="bold" />
             </Link>

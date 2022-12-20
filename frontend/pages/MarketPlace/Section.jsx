@@ -61,7 +61,7 @@ export default function Section() {
         }
       })
       const result = [
-        { id: 1, title: t('Novedades'), itemCards: resultNovelties },
+        { id: 1, title: 'Novedades' , itemCards: resultNovelties },
         { id: 2, title: 'Ofertas', itemCards: resultOferts },
         { id: 3, title: 'Realands', itemCards: [] },
         { id: 4, title: 'Patchas', itemCards: [] },
@@ -116,7 +116,7 @@ export default function Section() {
           <div className="w-100" key={item.title}>
             <div className="d-flex align-items-center pb-4" id="mpResponsive">
               <h1 className={`${theme.txt} m-1 text-primary pr-2`}>
-                {item?.title}
+                {t(item?.title)}
               </h1>
               <Link
                 to={`/marketplace/${item.title.toLowerCase()}`}
