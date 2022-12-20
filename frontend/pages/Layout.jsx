@@ -3,6 +3,8 @@ import React, { useContext, useState } from 'react'
 import { Outlet, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import MenuIcon from '@mui/icons-material/Menu'
+import Typography from '@mui/material/Typography'
+
 import {
   login,
   logout,
@@ -95,6 +97,9 @@ function Layout() {
         className="bg-transparent border-0 w-10"
       >
         <img src={buttonTheme} alt="" width="w-100" />
+        <Typography style={{ color: '#33cc99', fontSize: '13px' }}>
+          {t('TEMA')}
+        </Typography>
       </button>
       <button
         className="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded w-10"

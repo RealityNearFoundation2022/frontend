@@ -6,6 +6,28 @@ import ThemeContext from '../utils/useContextTheme'
 function Footer() {
   const { t } = useTranslation()
   const { theme } = useContext(ThemeContext)
+  const footerArray = [
+    {
+      to: '/',
+      title: 'Inicio',
+    },
+    {
+      to: '/marketplace',
+      title: 'Marketplace',
+    },
+    {
+      to: '/about',
+      title: 'Nosotros',
+    },
+    {
+      to: '/metaverse',
+      title: 'Metaverso',
+    },
+    {
+      to: '/contact',
+      title: 'Contacto',
+    },
+  ]
   return (
     <footer
       className={`${theme.bg} d-flex w-100 justify-content-between align-items-center h-40vh container-moments px-5porcent`}
@@ -16,17 +38,11 @@ function Footer() {
         </div>
         <div className="">
           <ul>
-            <Link to="/">
-              <li className={theme.txt}>Home</li>
-            </Link>
-            <li className={theme.txt}>MarketPlace</li>
-            <li className={theme.txt}>Maps</li>
-            <Link to="/metaverso">
-              <li className={theme.txt}>Metaverse</li>
-            </Link>
-            <Link to="/about">
-              <li className={theme.txt}>Nosotros</li>
-            </Link>
+            {footerArray.map(({ to, title }) => (
+              <Link to={to} key={to}>
+                <li className={theme.txt}>{t(title)}</li>
+              </Link>
+            ))}
           </ul>
         </div>
       </div>
