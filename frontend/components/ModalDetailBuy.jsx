@@ -57,6 +57,8 @@ export default function ModalDetailBuy({
     }
     const gas = 300000000000000
     const amount = await get_required_deposit(args, currentUser)
+    args.metadata.reference = null
+    args.metadata.reference_hash = null
     const data = await create_token(args, gas, amount)
     console.log('data', data)
     handleClose()
