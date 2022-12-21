@@ -6,66 +6,12 @@ import Card from './Card'
 import ThemeContext from '../../utils/useContextTheme'
 import { filtersMarketplace } from './Data_Categories/Categories'
 import logo from '../../assets/img/random/logo1.png'
+import { useTranslation } from 'react-i18next'
 
 export function CardSection() {
   const { category } = useParams()
   const { theme } = useContext(ThemeContext)
-
-  // const [filtersMarketplace, setData] = useState([])
-
-  // useEffect(() => {
-  //   async function fetchList() {
-  //     const listMenu = await nft_tokens('0', 20)
-  //     const data = listMenu.map((e) => ({
-  //       ...e.metadata,
-  //       author: e.owner_id,
-  //       id: e.token_id,
-  //     }))
-  //     const resultNovelties = []
-  //     const resultOferts = []
-  //     const resultNfts = []
-  //     data.forEach((element, index) => {
-  //       if (index <= 4) {
-  //         resultNovelties.push({
-  //           id: element.id,
-  //           author: element.author,
-  //           img: element.media,
-  //           titleItem: element.title,
-  //           description: element.description,
-  //           price: 143000,
-  //         })
-  //       } else if (index <= 9) {
-  //         resultOferts.push({
-  //           id: element.id,
-  //           author: element.author,
-  //           img: element.media,
-  //           titleItem: element.title,
-  //           description: element.description,
-  //           price: 143000,
-  //         })
-  //       } else {
-  //         resultNfts.push({
-  //           id: element.id,
-  //           author: element.author,
-  //           img: element.media,
-  //           titleItem: element.title,
-  //           description: element.description,
-  //           price: 143000,
-  //         })
-  //       }
-  //     })
-  //     const result = [
-  //       { id: 1, title: 'Novedades', itemCards: resultNovelties },
-  //       { id: 2, title: 'Ofertas', itemCards: resultOferts },
-  //       { id: 3, title: 'Realands', itemCards: [] },
-  //       { id: 4, title: 'Patchas', itemCards: [] },
-  //       { id: 5, title: 'NFTs', itemCards: resultNfts },
-  //       { id: 6, title: 'Otros', itemCards: [] },
-  //     ]
-  //     console.log(result)
-  //   }
-  //   fetchList()
-  // }, [])
+  const { t } = useTranslation()
 
   const dataCategory = filtersMarketplace?.find(
     (item) => item.title.toLowerCase() === 'novedades',
@@ -112,7 +58,7 @@ export function CardSection() {
               type="button"
               className="_btn btn btn-primary disabled w-40"
             >
-              Adquirir
+              {t('Adquirir')}
             </button>
           </center>
         </div>

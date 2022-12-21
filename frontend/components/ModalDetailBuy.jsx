@@ -4,6 +4,9 @@ import checkCircle from '../assets/img/icons/check_circle.png'
 import near from '../assets/img/icons/near.svg'
 import TileMap from '../utils/tilemap'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
+import { get_required_deposit, create_token } from '../assets/js/near/utils'
+import LoadingModal from '../components/LoadingModal'
 
 export default function ModalDetailBuy({
   openNearWallet,
@@ -12,10 +15,12 @@ export default function ModalDetailBuy({
   posX,
   posY,
 }) {
-  const [openAbstract, setOpenAbstract] = useState(false)
+  const { t } = useTranslation()
   const [openCompleted, setOpenCompleted] = useState(false)
+  const [openSpinner, setOpenSpinner] = useState(false)
+
   const getImg = () => {
-    if (openAbstract) {
+    if (openNearWallet) {
       const canvas = document.getElementById('modal-buy-detail')
       const ctx = canvas.getContext('2d')
       const tileMap = new TileMap(15, Number(posX), Number(posY), null, img)
@@ -25,14 +30,44 @@ export default function ModalDetailBuy({
   }
   useEffect(() => {
     getImg()
-  }, [openAbstract])
+  }, [openNearWallet])
 
   const handleClose = () => {
     setOpenNearWallet(false)
-    setOpenAbstract(false)
+    setOpenSpinner(false)
+
     setOpenCompleted(false)
   }
-
+  const buyNuruk = async () => {
+    setOpenSpinner(true)
+    const currentUser = window.accountId
+    const args = {
+      // account_id
+      owner_id: currentUser,
+      metadata: {
+        spec: 'nft-1.0.0',
+        name: `#${posX}${posY}`,
+        symbol: `#R${posX}${posY}`,
+        icon: 'data:image/svg+xml,%3C…',
+        reference: '',
+        reference_hash: '',
+      },
+      x: posX,
+      y: posY,
+    }
+    console.log('args', args)
+    console.log('account_id', currentUser)
+    debugger
+    const gas = 300000000000000
+    const amount = await get_required_deposit(args, currentUser)
+    debugger
+    console.log('amount', amount)
+    const data = await create_token(args, gas, amount)
+    console.log('data', data)
+    debugger
+    handleClose()
+    setOpenCompleted(true)
+  }
   const style = {
     position: 'absolute',
     top: '50%',
@@ -50,29 +85,9 @@ export default function ModalDetailBuy({
 
   return (
     <>
-      <Modal open={openNearWallet} onClose={handleClose}>
-        <Box sx={style}>
-          <div className="text-center">
-            <div className="h3">Ingresa Near Wallet</div>
-            <div className="my-4">
-              <input type="text" className="form-control m-0 text-center" />
-            </div>
-            <div>
-              <button
-                type="button"
-                onClick={() => {
-                  handleClose()
-                  setOpenAbstract(true)
-                }}
-                className="rounded btn-lg px-5 btn btn-primary _btn"
-              >
-                Siguiente
-              </button>
-            </div>
-          </div>
-        </Box>
-      </Modal>
-      <Modal open={openAbstract} onClose={handleClose} keepMounted>
+      <LoadingModal handleClose={handleClose} open={openSpinner} />
+
+      <Modal open={openNearWallet} onClose={handleClose} keepMounted>
         <Box
           sx={{
             ...style,
@@ -102,22 +117,18 @@ export default function ModalDetailBuy({
             </div>
             <div className="col-12 text-center">
               <button
-                onClick={function () {
-                  handleClose()
-                  setOpenCompleted(true)
-                }}
+                onClick={buyNuruk}
                 className="rounded btn-lg px-5 btn btn-primary _btn"
               >
-                Confirmar
+                {t('Confirmar')}
               </button>
               <div
                 onClick={function () {
                   handleClose()
-                  setOpenNearWallet(true)
                 }}
                 className="mt-3 text-gray"
               >
-                Volver
+                {t('Volver')}
               </div>
             </div>
           </div>

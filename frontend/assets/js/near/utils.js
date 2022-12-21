@@ -257,30 +257,28 @@ export async function get_number_of_tokens() {
 /**
  * {
  *  "args": {
-         "owner_id": "$ID",
-         "metadata": {
-            "spec": "nft-1.0.0",
-            "name": "#1", #number land = #1
-            "symbol": "R1", #symbol = R1
+         "owner_id": "$ID", // account_id
+         "metadata": { 
+            "spec": "nft-1.0.0", seteado
+            "name": "#1", #number land = #1 "#xy" 
+            "symbol": "R1", #symbol = R1 
             "icon": "data:image/svg+xml,%3C…",
-            "reference": "https://example.com/wbtc.json",
-            "reference_hash": "AK3YRHqKhCJNmKfV6SrutnlWW/icN5J8NUPtKsNXR1M="
+            "reference": "https://example.com/wbtc.json", vacio
+            "reference_hash": "AK3YRHqKhCJNmKfV6SrutnlWW/icN5J8NUPtKsNXR1M=" vacio
          },
         "x": "1",
         "y": "2"
     },
-    "account_id": "guxal.testnet"
+    "account_id": "guxal.testnet" // el id de la persona logueada
   }
 
  * @param {*} args 
  * @param {*} account_id 
  */
-export async function get_required_deposit(args, account_id) {
-  await window.factorynft.get_required_deposit({
-    args: {
-      args: args,
-      account_id: account_id,
-    },
+export function get_required_deposit(args, account_id) {
+  return window.factorynft.get_required_deposit({
+    args,
+    account_id,
   })
 }
 
@@ -301,20 +299,30 @@ export async function get_required_deposit(args, account_id) {
 
   gas example: 300000000000000
  */
-// export async function create_token(args) {
-//   await window.factorynft.create_token({
-//     args: {
-//       args: args
-//     },
-//     gas,
-//     amount,
-//   })
-// }
 
-// export async function storage_deposit() {await window.ftcontract.storage_deposit({
-//   args: {},
-//   gas,
-//   amount: minimum || '10000000000000000000000',
-// })
+// amount
+export function create_token(args, gas, amount) {
+  console.log({
+    args: {
+      args,
+    },
+    gas,
+    amount,
+  })
+  debugger
+  return window.factorynft.create_token({
+    args: {
+      args,
+    },
+    gas,
+    amount,
+  })
+}
 
-// }
+export async function ft_storage_deposit(gas, minimum) {
+  await window.ftcontract.storage_deposit({
+    args: {},
+    gas,
+    amount: minimum || '10000000000000000000000',
+  })
+}
