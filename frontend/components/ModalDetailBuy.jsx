@@ -55,16 +55,10 @@ export default function ModalDetailBuy({
       x: posX,
       y: posY,
     }
-    console.log('args', args)
-    console.log('account_id', currentUser)
-    debugger
     const gas = 300000000000000
     const amount = await get_required_deposit(args, currentUser)
-    debugger
-    console.log('amount', amount)
     const data = await create_token(args, gas, amount)
     console.log('data', data)
-    debugger
     handleClose()
     setOpenCompleted(true)
   }

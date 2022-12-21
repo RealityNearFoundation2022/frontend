@@ -309,7 +309,6 @@ export function create_token(args, gas, amount) {
     gas,
     amount,
   })
-  debugger
   return window.factorynft.create_token({
     args: {
       args,
