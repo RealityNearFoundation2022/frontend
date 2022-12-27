@@ -41,7 +41,6 @@ export default function Novelties() {
       navigate('/server-error')
     } finally {
       setIsLoading(false)
-      console.log('TO DO')
     }
   }
 
@@ -82,7 +81,9 @@ export default function Novelties() {
         </div>
         <div>
           <div className="d-flex align-items-center mt-5 mb-4">
-            <h1 className="m-1 text-primary pr-2">Novedades Relacionadas</h1>
+            <h1 className="m-1 text-primary pr-2">
+              {t('Novedades Relacionadas')}
+            </h1>
           </div>
           <CarouselNovelty />
         </div>

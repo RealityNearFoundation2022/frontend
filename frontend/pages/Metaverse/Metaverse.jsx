@@ -15,8 +15,17 @@ function Metaverso() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
   const itemsCard = [...momentsCarousel]
-  const linkGooglePlay =
-    'https://play.google.com/store/apps/details?id=org.realitynear.reality_near&hl=es '
+  const links = [
+    {
+      link: 'https://play.google.com/store/apps/details?id=org.realitynear.reality_near&hl=es',
+      img: googlePlay,
+    },
+    {
+      link: 'https://apps.apple.com/pe/app/reality-near/id1645021476?l=en',
+      img: appleStore,
+    },
+  ]
+
   const settings = {
     className: 'center',
     infinite: true,
@@ -153,11 +162,18 @@ function Metaverso() {
                   'En la misma aplicación contarás con una wallet, donde administrarás tus Realities y NFTs, así como tus transacciones pasadas. También podrás añadir amigos fácilmente; enviarles y recibir mensajes; y, además, ver si están conectados o cerca tuyo.',
                 )}
               </p>
-              <div className="d-flex justify-content-between w-100">
-                <img src={appleStore} alt="" className=" w-50" />
-                <a href={linkGooglePlay} target="_blank" rel="noreferrer">
-                  <img src={googlePlay} alt="" />
-                </a>
+              <div className="d-flex justify-content-around w-100 pt-3">
+                {links.map(({ link, img }) => (
+                  <a
+                    key={link}
+                    href={link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="link_url"
+                  >
+                    <img src={img} alt="" className="w-100 h-100" />
+                  </a>
+                ))}
               </div>
             </div>
           </div>

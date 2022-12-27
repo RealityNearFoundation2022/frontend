@@ -17,7 +17,7 @@ function About() {
         descriptionSection="Conoce más de la Fundación Reality Near"
         bgHeader="bg-header-about"
       />
-      <section className={`${theme.bg} text-white mb-0`} id="about">
+      <section className={`${theme.bg} text-white pb-3`} id="about">
         <div className="w-100 px-7-5porcent pt-5">
           {/* <!--  Section Content--> */}
           <div className="d-flex">
@@ -54,7 +54,7 @@ function About() {
           </div>
         </div>
       </section>
-      <section className="w-100 bg-img-realExperience bg-img-size-cover h-40vh mt-4"></section>
+      <section className="w-100 bg-img-realExperience bg-img-size-cover h-40vh"></section>
       {/* <!--  Section--> */}
       <section className={`${theme.bg} ${theme.txt} w-100 px-7-5porcent`} id="">
         <div className="w-100">

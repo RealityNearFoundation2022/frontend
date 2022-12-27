@@ -18,7 +18,7 @@ export default function CardNotices({ element, medias }) {
               <img
                 src={eachImg}
                 className="bg-img-size-cover w-100 rounded"
-                style={{ height: '200px' }}
+                style={{ height: '250px' }}
               />
             </div>
           ))}

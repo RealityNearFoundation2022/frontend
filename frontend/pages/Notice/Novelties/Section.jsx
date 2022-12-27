@@ -7,12 +7,14 @@ import HeaderSections from '../../HeaderSections'
 import CarouselNovelty from './Carousel'
 require('dotenv').config()
 const api = process.env.REACT_APP_API
+import { useTranslation } from 'react-i18next'
 
 export default function NoveltySection() {
   const { idNovelties } = useParams()
   const [dataItem, setDataItem] = useState({})
   const [articles, setArticles] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+  const { t } = useTranslation()
 
   const apiGet = async () => {
     try {
@@ -42,40 +44,30 @@ export default function NoveltySection() {
         bgHeader="bg-header-novelty"
       />
       <div className="m-5 p-5 w-90 d-flex flex-wrap">
-        <h3 className="w-100">{dataItem.title}</h3>
-        {articles.map((elmnt, index) =>
-          index % 2 === 0 ? (
-            <div className="w-100 d-flex" key={elmnt.image}>
-              <div className="w-60">
-                <p>{elmnt.data}</p>
-              </div>
-              <div className="w-40">
-                <img
-                  src={`${api}${elmnt.image}`}
-                  alt=""
-                  className="w-100 rounded"
-                />
-              </div>
+        <h2 className="w-100 text-center">{t(dataItem.title)}</h2>
+        {articles.map(({ data, image }, index) => (
+          <div
+            className={`w-100 d-flex ${
+              !(index % 2) || 'flex-row-reverse'
+            } justify-content-center`}
+            key={image}
+          >
+            <div className="m-3 w-50 d-flex align-items-center ">
+              <p>{data}</p>
             </div>
-          ) : (
-            <div className="w-100 d-flex flex-row-reverse" key={elmnt.image}>
-              <div className="w-60">
-                <p>{elmnt.data}</p>
-              </div>
-              <div className="w-40">
-                <img
-                  src={`${api}${elmnt.image}`}
-                  alt=""
-                  className="w-100 rounded"
-                />
-              </div>
+            <div className="w-40 m-3 d-flex justify-content-center">
+              <img
+                src={`${api}${image}`}
+                alt=""
+                className="img-notice rounded"
+              />
             </div>
-          ),
-        )}
+          </div>
+        ))}
       </div>
       <div className="my-3 mx-2 px-5">
         <div className="d-flex align-items-center mt-5 mb-4">
-          <h1 className="m-1 text-primary pr-2">Artículos Similares</h1>
+          <h1 className="m-1 text-primary pr-2">{t('Artículos Similares')}</h1>
         </div>
         <CarouselNovelty />
       </div>

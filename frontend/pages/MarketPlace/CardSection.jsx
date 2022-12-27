@@ -16,11 +16,9 @@ export function CardSection() {
   const dataCategory = filtersMarketplace?.find(
     (item) => item.title.toLowerCase() === 'novedades',
   )
-  console.log(dataCategory?.itemCards)
   const dataCard = dataCategory?.itemCards?.find(
     ({ id }) => id === Number('11'),
   )
-  console.log(dataCard)
   const settings = {
     className: 'center',
     infinite: true,
@@ -33,9 +31,7 @@ export function CardSection() {
       )
     },
   }
-  useEffect(() => {
-    console.log(category)
-  }, [category])
+
   return (
     <section className={`${theme.bg} p-5 m-5`}>
       <div className="d-flex justify-content-between align-items-center w-100 h-75vh">

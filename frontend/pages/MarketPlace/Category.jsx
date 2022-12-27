@@ -2,10 +2,12 @@
 import React, { useState } from 'react'
 import Card from './Card'
 import NoData from '../ErrorPage/NoData'
+import { useTranslation } from 'react-i18next'
 
 export function Category({ dataCategory }) {
   const currentItemsCategory = dataCategory ? [...dataCategory.itemCards] : []
   const [currentData, setCurrentData] = useState(currentItemsCategory)
+  const { t } = useTranslation()
 
   const searchData = (condition, value) =>
     currentItemsCategory.filter((item) =>
@@ -13,7 +15,6 @@ export function Category({ dataCategory }) {
     )
   // Buscador de  cards
   const searchCard = (e) => {
-    console.log(e.target.value)
     setCurrentData(searchData('titleItem', e.target.value))
   } // falta averiguar el search, el value se queda del final o....useEffect?
   return (
@@ -25,17 +26,18 @@ export function Category({ dataCategory }) {
         className="p-2 w-90 search"
         onKeyUp={searchCard}
       />
-      <h1 className="mt-3 text-primary">{dataCategory?.title}</h1>
-      <div className="d-flex flex-sm-wrap gap-3">
-        {currentData.map((item) => (
-          <div className="w-30" key={item}>
-            <Card elementsCard={item} category={dataCategory?.title} />
-          </div>
-        ))}
-        <div className={`${currentData.length === 0 ? '' : 'd-none'}`}>
-          <NoData />
+      <h1 className="mt-3 text-primary"> {t(dataCategory?.title)}</h1>
+      {currentData.length ? (
+        <div className="d-flex flex-sm-wrap gap-3">
+          {currentData.map((item) => (
+            <div className="w-30" key={item}>
+              <Card elementsCard={item} category={dataCategory?.title} />
+            </div>
+          ))}
         </div>
-      </div>
+      ) : (
+        <NoData />
+      )}
     </div>
   )
 }
