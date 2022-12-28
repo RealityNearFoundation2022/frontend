@@ -5,6 +5,7 @@ import Slider from 'react-slick'
 import { getData } from '../../../api/methods'
 import LoadingModal from '../../../components/LoadingModal'
 import CardNotices from '../CardNotices'
+
 require('dotenv').config()
 const api = process.env.REACT_APP_API
 
@@ -19,8 +20,8 @@ export default function CarouselNovelty() {
     infinite: false,
     speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 3,
-    initialSlide: 0,
+    slidesToScroll: 1,
+    initialSlide: 1,
     responsive: [
       {
         breakpoint: 1024,
@@ -65,7 +66,7 @@ export default function CarouselNovelty() {
     apiGet()
   }, [])
   return (
-    <Slider {...settings2}>
+    <Slider {...settings2} className="py-3">
       <LoadingModal open={isLoading} handleClose={() => setIsLoading(false)} />
       {carousel.map((element) => (
         <Link to={`/notices/novelties/${element._id}`} key={element._id}>

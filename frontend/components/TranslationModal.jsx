@@ -28,7 +28,14 @@ export default function TranslationModal() {
     <Modal
       close={closeModal}
       button={
-        <IconButton className="d-flex flex-column w-100">
+        <IconButton
+          className="d-flex flex-column w-100"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarResponsive"
+        >
           <LanguageIcon style={{ color: '#33cc99', fontSize: '30px' }} />
 
           <Typography style={{ color: '#33cc99', fontSize: '15px' }}>

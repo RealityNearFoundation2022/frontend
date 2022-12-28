@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Slider from 'react-slick'
 import { getData } from '../../../api/methods'
 import LoadingModal from '../../../components/LoadingModal'
 import HeaderSections from '../../HeaderSections'
 import { useTranslation } from 'react-i18next'
-
+import ThemeContext from '../../../utils/useContextTheme'
 import CarouselNovelty from './Carousel'
+
 require('dotenv').config()
 const api = process.env.REACT_APP_API
 // import imgFake from '../../../assets/img/random/cabin.png'
@@ -16,6 +17,7 @@ export default function Novelties() {
   const [isLoading, setIsLoading] = useState(false)
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const { theme } = useContext(ThemeContext)
 
   const settings1 = {
     dots: true,
@@ -50,7 +52,7 @@ export default function Novelties() {
 
   // const carousel = [...dataNotices.novelties]
   return (
-    <div className="mt-5">
+    <div className={`${theme.bg}`}>
       <LoadingModal open={isLoading} handleClose={handleClose} />
       <HeaderSections
         titleSection="Novedades"
@@ -70,9 +72,14 @@ export default function Novelties() {
                     width="300"
                     height="450"
                   />
-                  <div className="position-absolute bottom-0 p-4">
-                    <h1 className="m-0">{element.title}</h1>
-                    <p className="m-0">{element.description}</p>
+                  <div className="position-absolute bottom-0 w-100">
+                    <div
+                      className={`${theme.txt} ${theme.bgCard} mt-0 w-100 p-4`}
+                      style={{ opacity: 0.7 }}
+                    >
+                      <h1 className="m-0">{element.title}</h1>
+                      <p className="m-0">{element.description}</p>
+                    </div>
                   </div>
                 </div>
               ))}

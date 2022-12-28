@@ -24,7 +24,7 @@ export default function Notices() {
               {t('Novedades')}
             </h1>
             <Link to="/notices/novelties" className="mt-3">
-              <span className="text-grey fw-bolder pt-4 show-more">
+              <span className={`${theme.txt} fw-bolder pt-4 show-more`}>
                 {t('Ver más')}
               </span>
               <CaretRight size={15} color="#33cc99" weight="bold" />
@@ -38,7 +38,9 @@ export default function Notices() {
               {t('Eventos')}
             </h1>
             <Link to="/notices/events" className="mt-3 show-more">
-              <span className="text-grey fw-bolder"> {t('Ver más')}</span>
+              <span className={`${theme.txt} fw-bolder pt-4 show-more`}>
+                {t('Ver más')}
+              </span>
               <CaretRight size={15} color="#33cc99" weight="bold" />
             </Link>
           </div>

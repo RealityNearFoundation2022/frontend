@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import Slider from 'react-slick'
 import Card from './Card'

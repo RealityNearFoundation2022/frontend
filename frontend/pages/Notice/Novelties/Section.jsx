@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-syntax */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { getData } from '../../../api/methods'
 import LoadingModal from '../../../components/LoadingModal'
@@ -8,6 +8,7 @@ import CarouselNovelty from './Carousel'
 require('dotenv').config()
 const api = process.env.REACT_APP_API
 import { useTranslation } from 'react-i18next'
+import ThemeContext from '../../../utils/useContextTheme'
 
 export default function NoveltySection() {
   const { idNovelties } = useParams()
@@ -15,6 +16,7 @@ export default function NoveltySection() {
   const [articles, setArticles] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const { t } = useTranslation()
+  const { theme } = useContext(ThemeContext)
 
   const apiGet = async () => {
     try {
@@ -36,14 +38,14 @@ export default function NoveltySection() {
   }, [])
 
   return (
-    <div className="">
+    <div className={`${theme.bg}`}>
       <LoadingModal open={isLoading} handleClose={handleClose} />
       <HeaderSections
         titleSection={dataItem.title}
         descriptionSection={dataItem.description}
         bgHeader="bg-header-novelty"
       />
-      <div className="m-5 p-5 w-90 d-flex flex-wrap">
+      <div className={`m-5 p-5 w-90 d-flex flex-wrap ${theme.txt}`}>
         <h2 className="w-100 text-center">{t(dataItem.title)}</h2>
         {articles.map(({ data, image }, index) => (
           <div
@@ -65,7 +67,7 @@ export default function NoveltySection() {
           </div>
         ))}
       </div>
-      <div className="my-3 mx-2 px-5">
+      <div className={`${theme.bg} px-5 py-3`}>
         <div className="d-flex align-items-center mt-5 mb-4">
           <h1 className="m-1 text-primary pr-2">{t('Artículos Similares')}</h1>
         </div>

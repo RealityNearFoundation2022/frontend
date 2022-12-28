@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import logoFooter from '../assets/img/random/logoFooter.png'
+import logoFooterWhite from '../assets/img/random/logoFooterWhite.png'
+
 import ThemeContext from '../utils/useContextTheme'
 function Footer() {
   const { t } = useTranslation()
@@ -20,7 +22,7 @@ function Footer() {
       title: 'Nosotros',
     },
     {
-      to: '/metaverse',
+      to: '/metaverso',
       title: 'Metaverso',
     },
     {
@@ -34,7 +36,11 @@ function Footer() {
     >
       <div className="d-flex algign-items-center justify-content-center">
         <div className="px-5porcent">
-          <img src={logoFooter} alt="" className="footerHidden" />
+          <img
+            src={theme.bg === 'bg-dark' ? logoFooterWhite : logoFooter}
+            alt=""
+            className="footerHidden img-footer"
+          />
         </div>
         <div className="">
           <ul>

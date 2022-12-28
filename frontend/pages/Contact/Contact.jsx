@@ -13,7 +13,7 @@ function Contact() {
   const [valueName, setValueName] = useState('')
   const [valueEmail, setValueEmail] = useState('')
   const [valueMensaje, setValueMensaje] = useState('')
-
+  const [valueCategory, setValueCategory] = useState('')
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
   const optionsCategory = [
@@ -48,8 +48,15 @@ function Contact() {
     setOpenCompleted(false)
     setOpenSpinner(false)
   }
+  const clearData = () => {
+    setValueCategory('')
+    setValueEmail('')
+    setValueMensaje('')
+    setValueName('')
+  }
 
   const handleSubmit = () => {
+    clearData()
     setOpenSpinner(true)
     setTimeout(() => {
       handleClose()
@@ -57,6 +64,10 @@ function Contact() {
     }, 3000)
     // event.preventDefault()
   }
+  const handleChange = (event) => {
+    setValueCategory(event.target.value)
+  }
+
   return (
     <section className={`${theme.bg} near w-100`} id="near">
       <div className="w-100">
@@ -81,9 +92,14 @@ function Contact() {
             id="contactResponsive"
           >
             <label className="w-60 me-15porcent">
-              <select name="category" id="category" className="form-control">
-                <option value="" selected disabled hidden>
-                  {t('Selecciona Categoria')}
+              <select
+                name="category"
+                id="category"
+                className="form-control"
+                onChange={handleChange}
+              >
+                <option value={valueCategory} selected disabled hidden>
+                  {t('Selecciona categoria')}
                 </option>
                 {optionsCategory.map((option) => (
                   <option value={option} key={option}>

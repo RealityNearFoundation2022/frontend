@@ -6,18 +6,18 @@ import imagen4 from '../../assets/img/landingPage/momentsCarousel/MaskGroup4.png
 export const momentsCarousel = [
   {
     imgCarousel: imagen1,
-    titleEvent: 'Nombre del Evento 1',
+    titleEvent: '',
   },
   {
     imgCarousel: imagen2,
-    titleEvent: 'Nombre del Evento 2',
+    titleEvent: '',
   },
   {
     imgCarousel: imagen3,
-    titleEvent: 'Nombre del Evento 3',
+    titleEvent: '',
   },
   {
     imgCarousel: imagen4,
-    titleEvent: 'Nombre del Evento 4',
+    titleEvent: '',
   },
 ]
