@@ -20,8 +20,9 @@ export default function Section() {
   const [error, setError] = useState(false)
   const { t } = useTranslation()
   async function fetchList() {
-    /* Trae la data de Firebase en un array de objetos */
+    console.log('1')
     const listMenu = await nft_tokens('0', 20)
+    console.log('2')
     const data = listMenu.map((e) => ({
       ...e.metadata,
       author: e.owner_id,
@@ -85,6 +86,7 @@ export default function Section() {
     try {
       fetchList()
     } catch {
+      console.log('error')
       setError(true)
     }
   }, [])
