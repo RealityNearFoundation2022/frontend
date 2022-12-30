@@ -56,36 +56,6 @@ export default function RealityModal() {
           </button>
         </Box>
       )}
-      {currentBox === 0 && (
-        <Box
-          className="rounded"
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <div>Ingresa tu near Wallet</div>
-          <input
-            type="text"
-            placeholder="Ingresa tu Near Walet"
-            value={walletValue}
-            onChange={(e) => setValueWallet(e.target.value)}
-          />
-          <p>{walletValue}</p>
-          <button
-            className="_btn btn btn-primary btn-xl w-75"
-            id="submitButton2"
-            type="button"
-            onClick={() => {
-              console.log(walletValue)
-              setBox(1)
-            }}
-          >
-            ACEPTAR
-          </button>
-        </Box>
-      )}
       {currentBox === 1 && (
         <Box
           sx={{

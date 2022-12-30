@@ -9,12 +9,9 @@ import ThemeContext from '../../utils/useContextTheme'
 
 export default function CardNotices({ element, medias }) {
   const { theme } = useContext(ThemeContext)
-
+  console.log(medias)
   return (
-    <Card
-      sx={{ maxWidth: 400, height: 300 }}
-      className={`${theme.bgCard} card rounded`}
-    >
+    <Card className={`${theme.bgCard} card rounded`}>
       <CardActionArea>
         <CardMedia component="img" height="180" image={medias[0]} />
         <CardContent>

@@ -38,7 +38,7 @@ export default function TranslationModal() {
         >
           <LanguageIcon style={{ color: '#33cc99', fontSize: '30px' }} />
 
-          <Typography style={{ color: '#33cc99', fontSize: '15px' }}>
+          <Typography style={{ color: '#33cc99', fontSize: '13px' }}>
             {language.name}
           </Typography>
         </IconButton>

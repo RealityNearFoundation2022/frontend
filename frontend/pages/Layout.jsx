@@ -136,7 +136,7 @@ function Layout() {
         </button>
       </div>
       <button
-        className={`navbar-toggler text-uppercase text-center font-weight-bold w-10 ${theme.txt}`}
+        className={`navbar-toggler text-center-toogle text-uppercase text-center font-weight-bold w-10 ${theme.txt}`}
         type="button"
         aria-controls="navbarResponsive"
         aria-expanded="false"

@@ -60,7 +60,6 @@ export default function Events() {
                     height="450"
                   />
                   <div className="position-absolute bottom-0 w-100">
-                    
                     <div
                       className={`${theme.txt} ${theme.bgCard} mt-0 w-100 p-4`}
                       style={{ opacity: 0.7 }}
