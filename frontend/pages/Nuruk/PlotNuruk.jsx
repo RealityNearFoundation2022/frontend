@@ -46,7 +46,7 @@ export default function PlotNuruk() {
             <span className="pr-2">
               <img src={near} style={{ width: 60 }} alt="" />
             </span>
-            1400.0000
+            140000000.0000
           </p>
           <hr />
           <div className="text-grey">

@@ -62,6 +62,14 @@ export default function Filter() {
             {t('Otros')}
           </Link>
         </li>
+        <li>
+          <Link
+            to="/marketplace/misrealands"
+            className={`fw-normal nav-link${theme.txt}`}
+          >
+            {t('MisRealands')}
+          </Link>
+        </li>
       </ul>
     </div>
   )

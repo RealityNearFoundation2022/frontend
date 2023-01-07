@@ -1,8 +1,12 @@
 /* eslint-disable camelcase */
-import { connect, Contract, keyStores, WalletConnection } from 'near-api-js'
+import { connect, Contract, keyStores, WalletConnection, providers } from 'near-api-js'
 import getConfig from './config'
 
-const nearConfig = getConfig(process.env.NODE_ENV || 'development')
+export const nearConfig = getConfig(process.env.NODE_ENV || 'development')
+
+
+const THIRTY_TGAS = '30000000000000';
+const NO_DEPOSIT = '0';
 
 // ContractName -> NFT Contract
 // ContractMarket -> Marketplace Contract
@@ -301,17 +305,20 @@ export function get_required_deposit(args, account_id) {
  */
 
 // amount
-export function create_token(args, gas, amount) {
-  console.log({
-    args: {
-      args,
-    },
-    gas,
-    amount,
-  })
+export function create_token(args, token_metadata, gas, amount) {
+  // console.log({
+  //   args: {
+  //     args:args,
+  //     token_metadata: args.token_metadata,
+  //   },
+  //   gas,
+  //   amount,
+  // })
   return window.factorynft.create_token({
+    callbackUrl: 'http://localhost:1235/callback',
     args: {
       args,
+      token_metadata
     },
     gas,
     amount,
@@ -325,3 +332,83 @@ export async function ft_storage_deposit(gas, minimum) {
     amount: minimum || '10000000000000000000000',
   })
 }
+
+
+// 
+
+export async function getTransactionResult(txhash) {
+  const network = window.walletConnection._near.config.nodeUrl;
+
+  try {
+    const provider = new providers.JsonRpcProvider({ url: network });
+  // Retrieve transaction result from the network
+    const transaction = await provider.txStatus(txhash, 'unnused');
+    return providers.getTransactionLastResult(transaction);
+  } catch (exc) {
+    return exc;
+  }
+}
+
+
+  // Make a read-only call to retrieve information from the network
+  export async function viewMethod({ contractId, method, args = {} }) {
+    const network = window.walletConnection._near.config.nodeUrl;
+    const provider = new providers.JsonRpcProvider({ url: network });
+
+    let res = await provider.query({
+      request_type: 'call_function',
+      account_id: contractId,
+      method_name: method,
+      args_base64: Buffer.from(JSON.stringify(args)).toString('base64'),
+      finality: 'optimistic',
+    });
+    return JSON.parse(Buffer.from(res.result).toString());
+  }
+
+   // Call a method that changes the contract's state
+   export async function callMethod({ contractId, method, args = {}, gas = THIRTY_TGAS, deposit = NO_DEPOSIT }) {
+    // Sign a transaction with the "FunctionCall" action
+    const near = await connect({
+      deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() },
+      ...nearConfig,
+    })
+
+    const account = await near.account(window.walletConnection.account());
+
+    const outcome = await account.signAndSendTransaction({
+      signerId: window.walletConnection.account(),
+      receiverId: contractId,
+      actions: [
+        {
+          type: 'FunctionCall',
+          params: {
+            methodName: method,
+            args: Buffer.from(JSON.stringify(args)),
+            gas,
+            deposit,
+          },
+        },
+      ],
+    })
+    console.log(outcome);
+  }
+
+
+  export async function nft_approve_all({ contractId, args = {}, amount = NO_DEPOSIT }){
+    const contract = await new Contract(
+      window.walletConnection.account(),
+      contractId,
+      {
+        // Change methods can modify the state. But you don't receive the returned value when called.
+        changeMethods: [
+          'nft_approve',
+        ],
+      },
+    )
+
+    contract.nft_approve({
+      args: args,
+      amount,
+    })
+
+  }

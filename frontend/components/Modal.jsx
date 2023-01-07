@@ -57,7 +57,7 @@ BasicModal.propTypes = {
   children: PropTypes.element.isRequired,
   button: PropTypes.element.isRequired,
   close: PropTypes.bool.isRequired,
-  setBox: PropTypes.func.isRequired,
-  setValueWallet: PropTypes.func.isRequired,
-  setRealities: PropTypes.func.isRequired,
+  setBox: PropTypes.func,
+  setValueWallet: PropTypes.func,
+  setRealities: PropTypes.func,
 }

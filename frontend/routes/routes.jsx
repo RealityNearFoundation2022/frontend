@@ -20,6 +20,7 @@ import ResetPasswordCompleted from '../pages/ResetPassword/ResetPasswordComplete
 import Error500 from '../pages/ErrorPage/Error500'
 import PlotNuruk from '../pages/Nuruk/PlotNuruk'
 import { ErrorPagesRoutes } from './ErrorPages'
+import CallbackNuruk from '../pages/Nuruk/CallbackNuruk'
 
 export const routes = [
   {
@@ -57,6 +58,10 @@ export const routes = [
   {
     path: '/nuruk/:posX/:posY',
     element: <PlotNuruk />,
+  },
+  {
+    path: '/callback',
+    element: <CallbackNuruk />,
   },
   {
     path: '/metaverso',
