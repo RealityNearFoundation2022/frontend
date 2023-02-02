@@ -1,19 +1,19 @@
-import React from 'react'
-import NoData from '../pages/ErrorPage/NoData'
-import PageNotFound from '../pages/ErrorPage/PageNotFound'
-import ServerError from '../pages/ErrorPage/ServerError'
+import React from "react";
+import NoData from "../pages/ErrorPage/NoData";
+import PageNotFound from "../pages/ErrorPage/PageNotFound";
+import ServerError from "../pages/ErrorPage/ServerError";
 
 export const ErrorPagesRoutes = [
   {
-    path: '/server-error',
+    path: "/server-error",
     element: <ServerError />,
   },
   {
-    path: '*',
+    path: "*",
     element: <PageNotFound />,
   },
   {
-    path: '/no-data',
+    path: "/no-data",
     element: <NoData />,
   },
-]
+];

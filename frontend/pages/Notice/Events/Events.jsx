@@ -1,16 +1,16 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect, useState } from 'react'
-import Slider from 'react-slick'
-import { getData } from '../../../api/methods'
-import HeaderSections from '../../HeaderSections'
-import CarouselEvents from './CarouselEvents'
-import { config } from 'dotenv'
+import React, { useEffect, useState } from "react";
+import Slider from "react-slick";
+import { getData } from "../../../api/methods";
+import HeaderSections from "../../HeaderSections";
+import CarouselEvents from "./CarouselEvents";
+import { config } from "dotenv";
 
-config()
-const api = process.env.REACT_APP_API
+config();
+const api = process.env.REACT_APP_API;
 
 export default function Events() {
-  const [carousel, setCarousel] = useState([])
+  const [carousel, setCarousel] = useState([]);
   const settings1 = {
     dots: true,
     infinite: true,
@@ -19,21 +19,21 @@ export default function Events() {
     autoplay: true,
     speed: 1000,
     autoplaySpeed: 4000,
-    cssEase: 'linear',
-  }
+    cssEase: "linear",
+  };
 
   const apiGet = async () => {
     try {
-      const eventsData = await getData('events')
-      setCarousel([...eventsData])
+      const eventsData = await getData("events");
+      setCarousel([...eventsData]);
     } catch {
-      console.error('error')
+      console.error("error");
     }
-  }
+  };
 
   useEffect(() => {
-    apiGet()
-  }, [])
+    apiGet();
+  }, []);
   return (
     <div className="">
       <HeaderSections
@@ -71,5 +71,5 @@ export default function Events() {
         </div>
       </div>
     </div>
-  )
+  );
 }

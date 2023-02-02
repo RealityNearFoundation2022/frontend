@@ -8,6 +8,7 @@
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "build:web": "parcel build frontend/index.html --public-url ./",
     "start:web": "parcel frontend/index.html --open",
+    "watch:web": "parcel watch frontend/index.html",
     "dev": "nodemon npm run start:web",
     "test:integration:ts": "cd integration-tests/ts && npm run test",
     "prepush": "npm run lint",

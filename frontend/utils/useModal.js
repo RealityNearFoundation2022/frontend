@@ -1,18 +1,18 @@
-import { useState } from 'react'
+import { useState } from "react";
 
 const useModal = () => {
-  const [isVisible, setIsVisible] = useState(false)
-  const [isVisibleSale, setIsVisibleSale] = useState(false)
-  const [isVisibleBid, setIsVisibleBid] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
+  const [isVisibleSale, setIsVisibleSale] = useState(false);
+  const [isVisibleBid, setIsVisibleBid] = useState(false);
   function toggleModal() {
-    alert('toggle')
-    setIsVisible(!isVisible)
+    alert("toggle");
+    setIsVisible(!isVisible);
   }
   function toggleSaleModal() {
-    setIsVisibleSale(!isVisibleSale)
+    setIsVisibleSale(!isVisibleSale);
   }
   function toggleBidModal() {
-    setIsVisibleBid(!isVisibleBid)
+    setIsVisibleBid(!isVisibleBid);
   }
   return {
     isVisible,
@@ -21,7 +21,7 @@ const useModal = () => {
     toggleSaleModal,
     isVisibleBid,
     toggleBidModal,
-  }
-}
+  };
+};
 
-export default useModal
+export default useModal;

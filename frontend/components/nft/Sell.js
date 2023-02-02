@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const NftSell = () => {
   return (
-    <div style={{ marginTop: 200 + 'px' }}>
+    <div style={{ marginTop: 200 + "px" }}>
       <p>NFT Sell</p>
 
-      <Link to={'/marketplace/me'}>Own NFT</Link>
+      <Link to={"/marketplace/me"}>Own NFT</Link>
 
       <svg
         viewBox="0 0 24 24"
@@ -24,7 +24,7 @@ const NftSell = () => {
         <path d="M6 6l12 12" />
       </svg>
     </div>
-  )
-}
+  );
+};
 
-export default NftSell
+export default NftSell;

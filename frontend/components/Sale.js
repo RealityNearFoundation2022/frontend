@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 function Sale() {
   // const approveNFTForSale = async (token_id) => {
@@ -18,7 +18,7 @@ function Sale() {
   //     attachedDeposit: parseNearAmount('0.01'),
   //   })
   // }
-  return <div>Sale</div>
+  return <div>Sale</div>;
 }
 
-export default Sale
+export default Sale;

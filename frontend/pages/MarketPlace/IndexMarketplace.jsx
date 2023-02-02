@@ -34,86 +34,113 @@ import Filter from './Filter'
 import Section from './Section'
 import ThemeContext from '../../utils/useContextTheme'
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}))
+import { nft_tokens, get_tokens, viewMethod, nearConfig, get_sales_by_nft_contract_id, get_number_of_tokens } from '../../assets/js/near/utils'
+
+// const Item = styled(Paper)(({ theme }) => ({
+//   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+//   ...theme.typography.body2,
+//   padding: theme.spacing(1),
+//   textAlign: 'center',
+//   color: theme.palette.text.secondary,
+// }))
 
 // import Home from "../pages/Home";
 
-const initialValues = {
-  assetTitle: '',
-  assetDescription: '',
-  assetUrl: '',
-  assetPrice: '',
-  assetBid: '',
-}
+// const initialValues = {
+//   assetTitle: '',
+//   assetDescription: '',
+//   assetUrl: '',
+//   assetPrice: '',
+//   assetBid: '',
+// }
 
 // const walletConnection = window.walletConnection
 
-function Marketplace() {
+function Marketplace({symbols}) {
   const {
     utils: {
       format: { parseNearAmount },
     },
   } = nearAPI
 
-  const [showLoader, setShowLoader] = useState(false)
+  // const [showLoader, setShowLoader] = useState(false)
 
-  const [values, setValues] = useState(initialValues)
+  // const [values, setValues] = useState(initialValues)
 
   const config = getConfig(process.env.NODE_ENV || 'development')
 
-  const currentUser = window.accountId || ''
+  // const currentUser = window.accountId || ''
 
-  const { isVisibleBid, toggleBidModal } = useModal()
+  // const { isVisibleBid, toggleBidModal } = useModal()
 
-  const [nftMarketResults, setNftMarketResults] = useState([])
+  // const [nftMarketResults, setNftMarketResults] = useState([])
 
-  const { theme } = useContext(ThemeContext)
+  // const { theme } = useContext(ThemeContext)
+
+  async function getSaleTokensAll(symbols) {
+    const salesMKP = [];
+  
+    const promises = symbols.map(async (e, i) => {
+      let contractId = `${e.symbol.toLowerCase()}.${nearConfig.contractFactoryNFT}`;
+  
+      try {
+        let d = await get_sales_by_nft_contract_id(contractId);
+        salesMKP.push(d[0]);
+      } catch (error) {
+        console.error(error);
+      }
+    });
+  
+    await Promise.all(promises);
+    return salesMKP;
+  }
 
   useEffect(() => {
-    loadSaleItems()
+    console.log('symbols')
+    console.log(symbols)
+    if (symbols != null){
+      // loadSaleItems()
+      getSaleTokensAll(symbols)
+    }
   }, [])
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setValues({
-      ...values,
-      [name]: value,
-    })
-  }
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target
+  //   setValues({
+  //     ...values,
+  //     [name]: value,
+  //   })
+  // }
 
-  const loadSaleItems = async () => {
-    const nftTokens = await nft_tokens('0', 64)
-    console.log(nftTokens)
-    const saleTokens = await get_sales_by_nft_contract_id(config.contractName)
+  // const loadSaleItems = async () => {
+  //   const nftTokens = await nft_tokens('0', 64)
+  //   
+  //   console.log(nftTokens)
+// 
+  //   const saleTokens = await get_sales_by_nft_contract_id(config.contractName)
+// 
+  //   const sales = []
+// 
+  //   nftTokens.forEach((nftToken, i) => {
+  //     const { token_id } = nftToken
+  //     const saleToken = saleTokens.find(({ token_id: t }) => t === token_id)
+  //     if (saleToken) {
+  //       sales[i] = Object.assign(nftToken, saleToken)
+  //     }
+  //   })
+// 
+  //   setNftMarketResults(sales)
+  //   setShowLoader(true)
+  // }
 
-    const sales = []
-
-    nftTokens.forEach((nftToken, i) => {
-      const { token_id } = nftToken
-      const saleToken = saleTokens.find(({ token_id: t }) => t === token_id)
-      if (saleToken) {
-        sales[i] = Object.assign(nftToken, saleToken)
-      }
-    })
-
-    setNftMarketResults(sales)
-    setShowLoader(true)
-  }
-
-  const OfferPrice = async (token_id) => {
-    await offer(
-      config.contractName,
-      token_id,
-      parseNearAmount(values.assetBid),
-      config.GAS,
-    )
-  }
+  // const OfferPrice = async (token_id) => {
+  //   await offer(
+  //     config.contractName,
+  //     token_id,
+  //     parseNearAmount(values.assetBid),
+  //     config.GAS,
+  //   )
+  // }
 
   return (
     <div className="mt-5">

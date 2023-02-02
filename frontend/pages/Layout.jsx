@@ -1,65 +1,65 @@
 /* eslint-disable camelcase */
-import React, { useContext, useState } from 'react'
-import { Outlet, Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
-import MenuIcon from '@mui/icons-material/Menu'
-import Typography from '@mui/material/Typography'
+import React, { useContext, useState } from "react";
+import { Outlet, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import MenuIcon from "@mui/icons-material/Menu";
+import Typography from "@mui/material/Typography";
 
 import {
   login,
   logout,
   // nft_tokens_for_owner,
-} from '../assets/js/near/utils'
-import logo from '../assets/img/logo.png'
-import buttonTheme from '../assets/img/random/botonTema.png'
-import ThemeContext from '../utils/useContextTheme'
-import TranslationModal from '../components/TranslationModal'
+} from "../assets/js/near/utils";
+import logo from "../assets/img/logo.png";
+import buttonTheme from "../assets/img/random/botonTema.png";
+import ThemeContext from "../utils/useContextTheme";
+import TranslationModal from "../components/TranslationModal";
 
 function Layout() {
-  const { t } = useTranslation()
-  const [navHidden, setNavHidden] = useState(false)
-  const { theme, handleChangeTheme } = useContext(ThemeContext)
+  const { t } = useTranslation();
+  const [navHidden, setNavHidden] = useState(false);
+  const { theme, handleChangeTheme } = useContext(ThemeContext);
 
-  const currentUser = window.accountId || ''
+  const currentUser = window.accountId || "";
   const links = [
     {
-      label: 'Marketplace',
-      link: '/marketplace',
+      label: "Marketplace",
+      link: "/marketplace",
     },
     {
-      label: 'Nosotros',
-      link: '/about',
+      label: "Nosotros",
+      link: "/about",
     },
     {
-      label: 'Noticias',
-      link: '/notices',
+      label: "Noticias",
+      link: "/notices",
     },
     {
-      label: 'Metaverso',
-      link: '/metaverso',
+      label: "Metaverso",
+      link: "/metaverso",
     },
     {
-      label: 'Realities',
-      link: '/realities',
+      label: "Realities",
+      link: "/realities",
     },
     {
-      label: 'Contacto',
-      link: '/contact',
+      label: "Contacto",
+      link: "/contact",
     },
-  ]
+  ];
 
   const changeVisibilityNav = () => {
-    const isNavHidden = window.scrollY >= 600
-    setNavHidden(isNavHidden)
-  }
+    const isNavHidden = window.scrollY >= 600;
+    setNavHidden(isNavHidden);
+  };
 
-  window.addEventListener('scroll', changeVisibilityNav)
+  window.addEventListener("scroll", changeVisibilityNav);
 
   return (
     <nav
       className={`justify-content-evenly navbar d-flex navbar-expand-lg align-items-center w-100 ${
         theme.bg
-      } ${navHidden && 'visual-hidden'} fixed-top`}
+      } ${navHidden && "visual-hidden"} fixed-top`}
       id="mainNav"
     >
       <Link
@@ -87,7 +87,7 @@ function Layout() {
         className="btn-primary rounded p-2 w-10 mr-2"
         onClick={currentUser ? logout : login}
       >
-        {currentUser ? 'Log out' : 'Log In'}
+        {currentUser ? "Log out" : "Log In"}
       </button>
       <TranslationModal />
       <button
@@ -97,8 +97,8 @@ function Layout() {
         className="bg-transparent border-0 w-10"
       >
         <img src={buttonTheme} alt="" width="w-100" />
-        <Typography style={{ color: '#33cc99', fontSize: '13px' }}>
-          {t('TEMA')}
+        <Typography style={{ color: "#33cc99", fontSize: "13px" }}>
+          {t("TEMA")}
         </Typography>
       </button>
       <button
@@ -114,7 +114,7 @@ function Layout() {
       </button>
       <Outlet />
     </nav>
-  )
+  );
 }
 
-export default Layout
+export default Layout;

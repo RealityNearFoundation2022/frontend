@@ -1,5 +1,5 @@
-import React from 'react'
-import HeaderSections from './HeaderSections'
+import React from "react";
+import HeaderSections from "./HeaderSections";
 
 export default function Conditions() {
   return (
@@ -37,5 +37,5 @@ export default function Conditions() {
         voluptatum!
       </section>
     </div>
-  )
+  );
 }

@@ -1,19 +1,19 @@
-import React from 'react'
-import { Modal, Box } from '@mui/material'
-import { PropTypes } from 'prop-types'
+import React from "react";
+import { Modal, Box } from "@mui/material";
+import { PropTypes } from "prop-types";
 export default function LoadingModal({ open, handleClose }) {
   const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    bgcolor: "background.paper",
+    border: "2px solid #000",
     boxShadow: 24,
     pt: 2,
     px: 4,
     pb: 3,
-  }
+  };
 
   return (
     <Modal
@@ -25,7 +25,7 @@ export default function LoadingModal({ open, handleClose }) {
       <Box
         sx={{
           ...style,
-          borderRadius: '20px',
+          borderRadius: "20px",
           border: 0,
           padding: 4,
         }}
@@ -35,9 +35,9 @@ export default function LoadingModal({ open, handleClose }) {
         </div>
       </Box>
     </Modal>
-  )
+  );
 }
 LoadingModal.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
-}
+};

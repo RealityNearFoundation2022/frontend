@@ -19,7 +19,7 @@ export const indexInterestingLands = (prop) =>
             },
           },
         },
-      })
-      reject('error')
-    }, 300)
-  })
+      });
+      reject("error");
+    }, 300);
+  });

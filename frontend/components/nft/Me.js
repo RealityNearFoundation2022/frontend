@@ -1,66 +1,66 @@
 /* eslint-disable camelcase */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import {
   login,
   nft_tokens_for_owner,
   nft_approve,
   nft_mint,
-} from '../../assets/js/near/utils'
+} from "../../assets/js/near/utils";
 
-import useModal from '../../utils/useModal'
-import Modal from '../../components/Modal'
+import useModal from "../../utils/useModal";
+import Modal from "../../components/Modal";
 
-import '../../assets/css/app.css'
+import "../../assets/css/app.css";
 
-import getConfig from '../../assets/js/near/config'
+import getConfig from "../../assets/js/near/config";
 
-import * as nearAPI from 'near-api-js'
+import * as nearAPI from "near-api-js";
 
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const initialValues = {
-  assetTitle: '',
-  assetDescription: '',
-  assetUrl: '',
-  assetPrice: '',
-  assetBid: '',
-}
+  assetTitle: "",
+  assetDescription: "",
+  assetUrl: "",
+  assetPrice: "",
+  assetBid: "",
+};
 
 function NftMe() {
   const {
     utils: {
       format: { parseNearAmount },
     },
-  } = nearAPI
+  } = nearAPI;
 
-  const [showLoader, setShowLoader] = useState(false)
+  const [showLoader, setShowLoader] = useState(false);
 
-  const [values, setValues] = useState(initialValues)
+  const [values, setValues] = useState(initialValues);
 
-  const config = getConfig(process.env.NODE_ENV || 'development')
+  const config = getConfig(process.env.NODE_ENV || "development");
 
-  const currentUser = window.accountId || ''
+  const currentUser = window.accountId || "";
 
-  const { isVisible, isVisibleSale, toggleModal, toggleSaleModal } = useModal()
+  const { isVisible, isVisibleSale, toggleModal, toggleSaleModal } = useModal();
 
-  const [nftResults, setNftResults] = useState([])
+  const [nftResults, setNftResults] = useState([]);
 
   useEffect(() => {
     if (!showLoader) {
-      if (currentUser != '') displayAllNFT()
+      if (currentUser != "") displayAllNFT();
     }
-  }, [showLoader])
+  }, [showLoader]);
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setValues({
       ...values,
       [name]: value,
-    })
-  }
+    });
+  };
 
   const mintAssetToNft = async () => {
-    toggleModal()
+    toggleModal();
 
     let fcr = await nft_mint(
       `${values.assetTitle}`,
@@ -68,39 +68,39 @@ function NftMe() {
       `${values.assetUrl}`,
       config.GAS,
       currentUser,
-      parseNearAmount('1'),
-    )
+      parseNearAmount("1")
+    );
 
     if (fcr) {
       // eslint-disable-next-line no-console
-      console.log('nft created: ')
+      console.log("nft created: ");
     } else {
       // eslint-disable-next-line no-console
-      console.log('nft not created')
+      console.log("nft not created");
     }
-  }
+  };
 
   const approveNFTForSale = async (token_id) => {
     // sendStorageDeposit();
 
     let sale_conditions = {
       sale_conditions: values.assetPrice,
-    }
+    };
 
     await nft_approve(
       token_id,
       config.contractMarketplace,
       sale_conditions,
-      parseNearAmount('0.01'),
-    )
-  }
+      parseNearAmount("0.01")
+    );
+  };
 
   const displayAllNFT = async () => {
-    let userNFTs = await nft_tokens_for_owner(currentUser, '0', 64)
+    let userNFTs = await nft_tokens_for_owner(currentUser, "0", 64);
 
-    setNftResults(userNFTs)
-    setShowLoader(true)
-  }
+    setNftResults(userNFTs);
+    setShowLoader(true);
+  };
 
   // const sendStorageDeposit = async () => {
   //   getMinimumStorage()
@@ -117,15 +117,15 @@ function NftMe() {
   // }
 
   return (
-    <div style={{ marginTop: 100 + 'px' }}>
-      <header className="" style={{ marginTop: 100 + 'px' }}>
+    <div style={{ marginTop: 100 + "px" }}>
+      <header className="" style={{ marginTop: 100 + "px" }}>
         <div className="menu">
           <div className="navbar-left">
             <h3>Your NFT</h3>
           </div>
 
           <div className="navbar-right">
-            <Link to={'/marketplace'}>Go Back Marketplace</Link>
+            <Link to={"/marketplace"}>Go Back Marketplace</Link>
           </div>
 
           {currentUser ? (
@@ -168,8 +168,8 @@ function NftMe() {
                     <div className="form-wrapper">
                       <form
                         onSubmit={(e) => {
-                          e.preventDefault()
-                          approveNFTForSale(nft.metadata.title)
+                          e.preventDefault();
+                          approveNFTForSale(nft.metadata.title);
                         }}
                       >
                         <div className="form-in-wrapper">
@@ -247,7 +247,7 @@ function NftMe() {
                 </article>
               </div>
             ))
-          : 'NFTs not found'}
+          : "NFTs not found"}
       </div>
 
       <Modal isVisible={isVisible} hideModal={toggleModal}>
@@ -255,8 +255,8 @@ function NftMe() {
           <div className="form-wrapper">
             <form
               onSubmit={(e) => {
-                e.preventDefault()
-                mintAssetToNft()
+                e.preventDefault();
+                mintAssetToNft();
               }}
             >
               <div className="form-in-wrapper">
@@ -314,7 +314,7 @@ function NftMe() {
         </div>
       </Modal>
     </div>
-  )
+  );
 }
 
-export default NftMe
+export default NftMe;

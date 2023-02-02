@@ -1,33 +1,33 @@
-import React, { useContext } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
-import logoFooter from '../assets/img/random/logoFooter.png'
-import ThemeContext from '../utils/useContextTheme'
+import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import logoFooter from "../assets/img/random/logoFooter.png";
+import ThemeContext from "../utils/useContextTheme";
 function Footer() {
-  const { t } = useTranslation()
-  const { theme } = useContext(ThemeContext)
+  const { t } = useTranslation();
+  const { theme } = useContext(ThemeContext);
   const footerArray = [
     {
-      to: '/',
-      title: 'Inicio',
+      to: "/",
+      title: "Inicio",
     },
     {
-      to: '/marketplace',
-      title: 'Marketplace',
+      to: "/marketplace",
+      title: "Marketplace",
     },
     {
-      to: '/about',
-      title: 'Nosotros',
+      to: "/about",
+      title: "Nosotros",
     },
     {
-      to: '/metaverse',
-      title: 'Metaverso',
+      to: "/metaverse",
+      title: "Metaverso",
     },
     {
-      to: '/contact',
-      title: 'Contacto',
+      to: "/contact",
+      title: "Contacto",
     },
-  ]
+  ];
   return (
     <footer
       className={`${theme.bg} d-flex w-100 justify-content-between align-items-center h-40vh container-moments px-5porcent`}
@@ -48,16 +48,16 @@ function Footer() {
       </div>
       <div className="">
         <ul>
-          <li className={theme.txt}>{t('Código de ética')}</li>
-          <li className={theme.txt}>{t('Políticas de Privacidad')}</li>
-          <li className={theme.txt}>{t('Políticas de Cookies')}</li>
+          <li className={theme.txt}>{t("Código de ética")}</li>
+          <li className={theme.txt}>{t("Políticas de Privacidad")}</li>
+          <li className={theme.txt}>{t("Políticas de Cookies")}</li>
           <Link to="/terminos-condiciones">
-            <li className={theme.txt}>{t('Términos y Condiciones')}</li>
+            <li className={theme.txt}>{t("Términos y Condiciones")}</li>
           </Link>
         </ul>
       </div>
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;
