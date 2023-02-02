@@ -3,7 +3,7 @@ import { get_required_deposit } from "../assets/js/near/utils";
 
 const {
   utils: {
-    format: { parseNearAmount, formatNearAmount },
+    format: { formatNearAmount },
   },
 } = nearAPI;
 
@@ -31,7 +31,7 @@ export const getPriceRealand = async (args, currentUser) => {
 };
 
 export const buildRealandTokenMetadata = (id) => {
-  data = [
+  let data = [
     {
       description: "Districto tecnologico",
       media:
