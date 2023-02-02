@@ -4,14 +4,19 @@ import TileMap from '../../utils/tilemap'
 import ModalDetailBuy from '../../components/ModalDetailBuy'
 import near from '../../assets/img/icons/near.svg'
 import LoadingModal from '../../components/LoadingModal'
+import { buildRealandMetadata, buildRealandTokenMetadata, getPriceRealand } from '../../utils/walletUtils'
 
 export default function PlotNuruk() {
   const { posX, posY } = useParams()
   const { state } = useLocation()
+  const [ price, setPrice ] = useState(0)
+  const [ description, setDescription ] = useState(null)
   const [openNearWallet, setOpenNearWallet] = useState(false)
   const [img, setImgMap] = useState([0])
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
+
+  const currentUser = window.accountId || ""
 
   const getImg = () => {
     if (!state) {
@@ -31,6 +36,17 @@ export default function PlotNuruk() {
   useEffect(() => {
     setIsLoading(true)
     getImg()
+
+    const args = buildRealandMetadata(currentUser, posX, posY)
+    const token_metadata = buildRealandTokenMetadata(0)
+
+    setDescription(token_metadata.description)
+    console.log(args);
+    getPriceRealand(args, currentUser)
+    .then((result)=>{
+      setPrice(result)
+    })
+
   }, [posX, posY])
 
   return (
@@ -46,12 +62,12 @@ export default function PlotNuruk() {
             <span className="pr-2">
               <img src={near} style={{ width: 60 }} alt="" />
             </span>
-            140000000.0000
+            {price}
           </p>
           <hr />
           <div className="text-grey">
             <h3 className="h5">Descripción</h3>
-            <p>Descripción del producto que se esta presentando.</p>
+            <p>{description}</p>
           </div>
           <div className="text-center mt-5">
             <button
@@ -77,6 +93,8 @@ export default function PlotNuruk() {
         img={img}
         posX={posX}
         posY={posY}
+        description={description}
+        price={price}
       />
     </div>
   )

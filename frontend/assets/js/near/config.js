@@ -3,7 +3,7 @@ const MARKET_CONTRACT = process.env.MARKET_CONTRACT || 'mkp.guxal.testnet'
 const TOKEN_CONTRACT = process.env.TOKEN_CONTRACT || 'token.guxal.testnet'
 
 const FACTORY_CONTRACT =
-  process.env.FACTORY_CONTRACT || 'factory-reelands.guxal.testnet'
+  process.env.FACTORY_CONTRACT || 'factory-reelands2.guxal.testnet'
 
 function getConfig(env) {
   switch (env) {

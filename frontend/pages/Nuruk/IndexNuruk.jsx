@@ -27,6 +27,7 @@ export default function IndexCentreland() {
   const [posX, setPosX] = useState(0)
   const [posY, setPosY] = useState(0)
   const [imgMap, setImgMap] = useState([0])
+
   const getPosition = (e) => {
     const cursorX = e.pageX
     const cursorY = e.pageY
@@ -39,6 +40,7 @@ export default function IndexCentreland() {
     setRow(newPosX)
     setColumn(newPosY)
   }
+
   const handleOpen = (posx, posy, imMap) => {
     setPosX(posx)
     setPosY(posy)
@@ -84,7 +86,9 @@ export default function IndexCentreland() {
   }, [])
 
   const maxColumnsRows = 4
+
   useEffect(() => {
+
     slide.current.addEventListener('scroll', (event) => {
       const {
         scrollHeight,
@@ -101,32 +105,44 @@ export default function IndexCentreland() {
       setLeft(scrollLeft === 0 && row > 0)
       setRigth(scrollWidth - scrollLeft === clientWidth && row < maxColumnsRows)
     })
-  })
+  
+    }
+
+  )
 
   function goToPlotNurk(x, y) {
     navigate(`/nuruk/${x}/${y}`, {
       state: { imgMap },
     })
   }
+
   const handleClose = () => {
     setOpen(false)
   }
+
   const getCentreland = (_row, _column) => {
     const canvas = document.getElementById(`centreland${_row}-${_column}`)
     const ctx = canvas.getContext('2d')
+
     const tileMap = new TileMap(tileSize, _row, _column, handleOpen)
+    
     tileMap.clearCanvas(canvas, ctx)
     tileMap.draw(canvas, ctx)
   }
+
   return (
     <div className="justify-content-xxl-center">
+
       <div className="slide" ref={slide}>
+
         <canvas
           id={`centreland${row}-${column}`}
           type="module"
           className="centreland"
         ></canvas>
+
       </div>
+
       {left && (
         <button
           className="ctrl-btn ctrl-btn-back _btn ctrl-btn btn-back"
@@ -163,12 +179,14 @@ export default function IndexCentreland() {
           <KeyboardArrowDownIcon />
         </button>
       )}
+
       <div>
         <button type="button" className="little-map" onClick={getPosition}>
           <img className="img-mockup" src={MockUp} alt="..." />
         </button>
         <div className={`boxImg boxImg-${row}${column}`}></div>
       </div>
+
       <ModalBuy
         open={open}
         handleClose={handleClose}

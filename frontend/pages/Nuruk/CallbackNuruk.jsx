@@ -30,14 +30,18 @@ export default function CallbackNuruk() {
     const txhash = urlParams.get("transactionHashes")
 
     getTransactionResult(txhash).then((result)=>{
-      if ('metadata' in result) {
-        setShowElement(true);
+      console.log('result')
+      console.log(result)
+      if (result != '') {
+        if ('metadata' in result){
+          setShowElement(true);
+        }
       } else {
         setShowElement(false);
       }
       
       setResponse(result)
-      console.log(result)
+     
       console.log(txhash)
       setIsLoading(false)
     });

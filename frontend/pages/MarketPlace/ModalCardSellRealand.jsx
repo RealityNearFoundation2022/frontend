@@ -20,7 +20,7 @@ const initialValues = {
   assetBid: "",
 };
 
-export default function ModalCardSellRealand({ elementCard }) {
+export default function ModalCardSellRealand({ elementCard, textButton }) {
   const {
     utils: {
       format: { parseNearAmount },
@@ -79,7 +79,7 @@ export default function ModalCardSellRealand({ elementCard }) {
 
   return (
     <div>
-      <button onClick={() => setOpen(true)}>Open Modal</button>
+      <button onClick={() => setOpen(true)}>{textButton}</button>
       <Modal open={open} onClose={() => setOpen(false)}>
         <div
           style={{

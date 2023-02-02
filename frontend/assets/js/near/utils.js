@@ -68,6 +68,7 @@ export async function initContract() {
     nearConfig.contractFactoryNFT,
     {
       viewMethods: [
+        'get_by_position',
         'get_token',
         'get_tokens',
         'get_number_of_tokens',
@@ -333,6 +334,10 @@ export async function ft_storage_deposit(gas, minimum) {
   })
 }
 
+
+export async function get_by_position(position){
+  return await window.factorynft.get_by_position({position})
+}
 
 // 
 

@@ -225,7 +225,7 @@ export function DashboardMarketPlace() {
       console.log('arraynft')
       console.log(arrayNFT);
 
-      const nfts = mapNFTs(arrayNFT);
+      const nfts = mapNFTs(arrayNFT.filter((e) => e !== undefined));
       console.log('nft')
       console.log(nfts);
 
@@ -235,11 +235,21 @@ export function DashboardMarketPlace() {
 
       const marketplace = nfts.filter(e => symbolsSale.includes(e.id))
       console.log('marketplace')
+
+      const marketplacer = marketplace.map( j => {
+        console.log(j)
+        let sale = sales.find(e => e.token_id === j.id);
+        console.log(sale)
+        j.price = sale.sale_conditions;
+        return j;
+      })
+
       console.log(marketplace)
+      console.log(marketplacer)
 
       setCategory("MisRealands", nftsFilter);
 
-      setCategory("Marketplace", marketplace);
+      setCategory("Marketplace", marketplacer);
 
       setCategories(categories);
     }

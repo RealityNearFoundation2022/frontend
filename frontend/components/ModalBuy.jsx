@@ -7,10 +7,17 @@ import TileMap from '../utils/tilemap'
 import '../assets/css/components/nuruk.css'
 import mapboxgl from 'mapbox-gl'
 import { tokenMapBox } from '../utils/mapboxUtils'
+import { buildRealandMetadata, getPriceRealand } from '../utils/walletUtils'
+import { get_by_position } from '../assets/js/near/utils'
 
 export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
   // const [ coordX, setCoordX] = useState(idX)
   // const [ coordY, setCoordY] = useState(idY)
+  const [price, setPrice] = useState(0)
+  const [sale, setSale] = useState(false)
+
+  const currentUser = window.accountId || ''
+
   const style = {
     position: 'absolute',
     top: '50%',
@@ -38,6 +45,7 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
       tileMap.draw(canvas, ctx)
     }
   }
+
   const getMap = () => {
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
@@ -50,12 +58,37 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
       },
     })
   }
+
   useEffect(() => {
     if (img === 'map' && open) {
       getMap()
     } else {
       getImg()
     }
+
+    if (open){
+
+      get_by_position(`${idX}-${idY}`).then((result)=>{
+        console.log(result)
+        if (result != null)
+        {
+          setSale(true)
+          setPrice(0)
+        } else {
+          setSale(false)
+          const args = buildRealandMetadata(currentUser, idX, idY)
+          console.log(args);
+          getPriceRealand(args, currentUser)
+          .then((result)=>{
+            console.log(result)
+            setPrice(result)
+          })
+        }
+      })
+
+
+    }
+
   }, [open])
 
   return (
@@ -92,6 +125,8 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
               {idX}
               {idY}
             </h2>
+
+            { price != 0 &&
             <p id="child-modal-description" className="h5 text-grey">
               <span className="pr-2">
                 <img
@@ -101,15 +136,17 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
                   alt=""
                 />
               </span>
-              10000.000000
+              {price}
             </p>
-            <p className="h5 font-weight-bold text-grey">Disponible</p>
+            }
+            <p className="h5 font-weight-bold text-grey">{ !sale ?( <span>Disponible</span> ):( <span>No Disponible </span>)}  </p>
           </div>
           <div
             style={{ minHeight: 150 }}
             className="col col-md-4 d-flex align-items-center justify-content-center"
           >
             <div>
+              {!sale &&
               <button
                 type="button"
                 onClick={go}
@@ -118,6 +155,7 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
               >
                 Comprar
               </button>
+              }
             </div>
           </div>
         </div>
@@ -125,6 +163,7 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
     </Modal>
   )
 }
+
 ModalBuy.propTypes = {
   open: PropTypes.string.isRequired,
   handleClose: PropTypes.func.isRequired,
