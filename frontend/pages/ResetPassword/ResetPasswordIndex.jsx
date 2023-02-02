@@ -1,67 +1,67 @@
-import React, { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import ThemeContext from '../../utils/useContextTheme'
-import { postData } from '../../api/methods'
-import '../../assets/css/components/events.css'
-import LoadingModal from '../../components/LoadingModal'
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ThemeContext from "../../utils/useContextTheme";
+import { postData } from "../../api/methods";
+import "../../assets/css/components/events.css";
+import LoadingModal from "../../components/LoadingModal";
 export default function ResetPasswordIndex() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const { theme } = useContext(ThemeContext)
-  const [password, setPassword] = useState('')
-  const [newPassword, setNewPassword] = useState('')
+  const { theme } = useContext(ThemeContext);
+  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   // const [validButton, setValidButton] = useState(false)
-  const [error, setError] = useState(null)
-  const [errorNew, setErrorNew] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null);
+  const [errorNew, setErrorNew] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChangeNewPassword = (e) => {
-    const { value } = e.target
-    setNewPassword(value)
-    const isValid = password === value
-    setErrorNew(isValid ? null : 'Las contraseñas deben coincidir')
-  }
+    const { value } = e.target;
+    setNewPassword(value);
+    const isValid = password === value;
+    setErrorNew(isValid ? null : "Las contraseñas deben coincidir");
+  };
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       const body = {
         // eslint-disable-next-line camelcase
-        token: '',
+        token: "",
         new_password: password,
-      }
-      await postData('reset-password', body)
+      };
+      await postData("reset-password", body);
 
-      navigate('/reset-password/completed')
+      navigate("/reset-password/completed");
     } catch {
-      navigate('/server-error')
+      navigate("/server-error");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   function handleClose() {
-    setIsLoading(false)
+    setIsLoading(false);
   }
 
   const handleChangePassword = (e) => {
-    const { value } = e.target
-    setPassword(value)
+    const { value } = e.target;
+    setPassword(value);
     if (!/^(?=.*?[A-Z])/.test(value)) {
-      setError('Debe incluir al menos una mayúscula')
+      setError("Debe incluir al menos una mayúscula");
     } else if (!/^(?=.*?[a-z])/.test(value)) {
-      setError('Debe incluir al menos una minúscula')
+      setError("Debe incluir al menos una minúscula");
     } else if (!/^(?=.*?[0-9])/.test(value)) {
-      setError('Debe incluir al menos un número')
+      setError("Debe incluir al menos un número");
     } else if (!/^(?=.*?[#?!@$%^&*-])/.test(value)) {
-      setError('Debe incluir al menos un carácter especial')
+      setError("Debe incluir al menos un carácter especial");
     } else if (value.length < 8) {
-      setError('La contraseña debe tener por lo menos 8 carácteres')
+      setError("La contraseña debe tener por lo menos 8 carácteres");
     } else {
-      setError(null)
+      setError(null);
     }
-  }
+  };
 
   return (
     <div>
@@ -90,7 +90,7 @@ export default function ResetPasswordIndex() {
           <input
             type="text"
             className="form-control"
-            value={error ? '' : newPassword}
+            value={error ? "" : newPassword}
             placeholder="Repita su nueva contraseña"
             onChange={handleChangeNewPassword}
             disabled={error}
@@ -102,5 +102,5 @@ export default function ResetPasswordIndex() {
         </button>
       </form>
     </div>
-  )
+  );
 }

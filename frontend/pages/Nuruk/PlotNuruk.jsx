@@ -1,53 +1,55 @@
-import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate, useLocation } from 'react-router-dom'
-import TileMap from '../../utils/tilemap'
-import ModalDetailBuy from '../../components/ModalDetailBuy'
-import near from '../../assets/img/icons/near.svg'
-import LoadingModal from '../../components/LoadingModal'
-import { buildRealandMetadata, buildRealandTokenMetadata, getPriceRealand } from '../../utils/walletUtils'
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import TileMap from "../../utils/tilemap";
+import ModalDetailBuy from "../../components/ModalDetailBuy";
+import near from "../../assets/img/icons/near.svg";
+import LoadingModal from "../../components/LoadingModal";
+import {
+  buildRealandMetadata,
+  buildRealandTokenMetadata,
+  getPriceRealand,
+} from "../../utils/walletUtils";
 
 export default function PlotNuruk() {
-  const { posX, posY } = useParams()
-  const { state } = useLocation()
-  const [ price, setPrice ] = useState(0)
-  const [ description, setDescription ] = useState(null)
-  const [openNearWallet, setOpenNearWallet] = useState(false)
-  const [img, setImgMap] = useState([0])
-  const [isLoading, setIsLoading] = useState(false)
-  const navigate = useNavigate()
+  const { posX, posY } = useParams();
+  const { state } = useLocation();
+  const [price, setPrice] = useState(0);
+  const [description, setDescription] = useState(null);
+  const [openNearWallet, setOpenNearWallet] = useState(false);
+  const [img, setImgMap] = useState([0]);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const currentUser = window.accountId || ""
+  const currentUser = window.accountId || "";
 
   const getImg = () => {
     if (!state) {
-      navigate(`/nuruk`)
-      setIsLoading(false)
-      return
+      navigate(`/nuruk`);
+      setIsLoading(false);
+      return;
     }
-    const canvas = document.getElementById('modal-buy')
-    const ctx = canvas.getContext('2d')
-    const { imgMap } = state
-    setImgMap(imgMap)
-    const tileMap = new TileMap(15, posX, posY, null, imgMap)
-    tileMap.clearCanvas(canvas, ctx)
-    tileMap.draw(canvas, ctx)
-    setIsLoading(false)
-  }
+    const canvas = document.getElementById("modal-buy");
+    const ctx = canvas.getContext("2d");
+    const { imgMap } = state;
+    setImgMap(imgMap);
+    const tileMap = new TileMap(15, posX, posY, null, imgMap);
+    tileMap.clearCanvas(canvas, ctx);
+    tileMap.draw(canvas, ctx);
+    setIsLoading(false);
+  };
   useEffect(() => {
-    setIsLoading(true)
-    getImg()
+    setIsLoading(true);
+    getImg();
 
-    const args = buildRealandMetadata(currentUser, posX, posY)
-    const token_metadata = buildRealandTokenMetadata(0)
+    const args = buildRealandMetadata(currentUser, posX, posY);
+    const token_metadata = buildRealandTokenMetadata(0);
 
-    setDescription(token_metadata.description)
+    setDescription(token_metadata.description);
     console.log(args);
-    getPriceRealand(args, currentUser)
-    .then((result)=>{
-      setPrice(result)
-    })
-
-  }, [posX, posY])
+    getPriceRealand(args, currentUser).then((result) => {
+      setPrice(result);
+    });
+  }, [posX, posY]);
 
   return (
     <div className="container py-5">
@@ -97,5 +99,5 @@ export default function PlotNuruk() {
         price={price}
       />
     </div>
-  )
+  );
 }

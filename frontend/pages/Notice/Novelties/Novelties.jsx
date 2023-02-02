@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Slider from 'react-slick'
-import { getData } from '../../../api/methods'
-import LoadingModal from '../../../components/LoadingModal'
-import HeaderSections from '../../HeaderSections'
-import { useTranslation } from 'react-i18next'
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Slider from "react-slick";
+import { getData } from "../../../api/methods";
+import LoadingModal from "../../../components/LoadingModal";
+import HeaderSections from "../../HeaderSections";
+import { useTranslation } from "react-i18next";
 
-import CarouselNovelty from './Carousel'
-require('dotenv').config()
-const api = process.env.REACT_APP_API
+import CarouselNovelty from "./Carousel";
+require("dotenv").config();
+const api = process.env.REACT_APP_API;
 // import imgFake from '../../../assets/img/random/cabin.png'
 
 export default function Novelties() {
-  const [carousel, setCarousel] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const { t } = useTranslation()
-  const navigate = useNavigate()
+  const [carousel, setCarousel] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const settings1 = {
     dots: true,
@@ -25,28 +25,28 @@ export default function Novelties() {
     autoplay: true,
     speed: 1000,
     autoplaySpeed: 4000,
-    cssEase: 'linear',
-  }
+    cssEase: "linear",
+  };
 
   function handleClose() {
-    setIsLoading(false)
+    setIsLoading(false);
   }
 
   const apiGet = async () => {
     try {
-      setIsLoading(true)
-      const data = await getData('news')
-      setCarousel([...data])
+      setIsLoading(true);
+      const data = await getData("news");
+      setCarousel([...data]);
     } catch (error) {
-      navigate('/server-error')
+      navigate("/server-error");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    apiGet()
-  }, [])
+    apiGet();
+  }, []);
 
   // const carousel = [...dataNotices.novelties]
   return (
@@ -82,12 +82,12 @@ export default function Novelties() {
         <div>
           <div className="d-flex align-items-center mt-5 mb-4">
             <h1 className="m-1 text-primary pr-2">
-              {t('Novedades Relacionadas')}
+              {t("Novedades Relacionadas")}
             </h1>
           </div>
           <CarouselNovelty />
         </div>
       </div>
     </div>
-  )
+  );
 }

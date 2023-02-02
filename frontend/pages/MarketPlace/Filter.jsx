@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 // import { CaretDown } from 'phosphor-react'
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
-import ThemeContext from '../../utils/useContextTheme'
-import { useTranslation } from 'react-i18next'
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import ThemeContext from "../../utils/useContextTheme";
+import { useTranslation } from "react-i18next";
 
-export default function Filter({data}) {
-  const { theme } = useContext(ThemeContext)
-  const { t } = useTranslation()
+export default function Filter({ data }) {
+  const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
 
   return (
     <div className="w-100 mt-5">
@@ -15,10 +15,7 @@ export default function Filter({data}) {
         {data.map((d) => (
           <>
             <li>
-              <Link
-                to={d.url}
-                className={`fw-normal nav-link${theme.txt}`}
-              >
+              <Link to={d.url} className={`fw-normal nav-link${theme.txt}`}>
                 {t(d.name)}
               </Link>
             </li>
@@ -85,5 +82,5 @@ export default function Filter({data}) {
         </li>*/}
       </ul>
     </div>
-  )
+  );
 }

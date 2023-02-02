@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import React, { useContext, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import {
-// nft_tokens,
+  // nft_tokens,
   get_tokens,
   viewMethod,
   nearConfig,
@@ -133,18 +133,15 @@ export function DashboardMarketPlace() {
         nearConfig.contractFactoryNFT
       }`;
 
-    
       let d = await get_sales_by_nft_contract_id(contractId);
-      console.log(d)
-      if (d !== [null])
-      {
+      console.log(d);
+      if (d !== [null]) {
         salesMKP.push(d[0]);
       }
- 
     });
-    
+
     await Promise.all(promises);
-    return salesMKP.filter(e => e !== undefined);
+    return salesMKP.filter((e) => e !== undefined);
   }
 
   /**
@@ -213,39 +210,39 @@ export function DashboardMarketPlace() {
       // setSymbols(symbols);
 
       const sales = await getSaleTokensAll(symbols);
-      console.log('sales')
+      console.log("sales");
       console.log(sales);
 
-      const symbolsSale = sales.map((e) => (e.token_id))
+      const symbolsSale = sales.map((e) => e.token_id);
 
-      console.log('symbols sale')
-      console.log(symbolsSale)
+      console.log("symbols sale");
+      console.log(symbolsSale);
 
       const arrayNFT = await getNFTTokens(symbols);
-      console.log('arraynft')
+      console.log("arraynft");
       console.log(arrayNFT);
 
       const nfts = mapNFTs(arrayNFT.filter((e) => e !== undefined));
-      console.log('nft')
+      console.log("nft");
       console.log(nfts);
 
       const nftsFilter = nfts.filter((item) => item.author == currentUser);
-      console.log('nft filter')
+      console.log("nft filter");
       console.log(nftsFilter);
 
-      const marketplace = nfts.filter(e => symbolsSale.includes(e.id))
-      console.log('marketplace')
+      const marketplace = nfts.filter((e) => symbolsSale.includes(e.id));
+      console.log("marketplace");
 
-      const marketplacer = marketplace.map( j => {
-        console.log(j)
-        let sale = sales.find(e => e.token_id === j.id);
-        console.log(sale)
+      const marketplacer = marketplace.map((j) => {
+        console.log(j);
+        let sale = sales.find((e) => e.token_id === j.id);
+        console.log(sale);
         j.price = sale.sale_conditions;
         return j;
-      })
+      });
 
-      console.log(marketplace)
-      console.log(marketplacer)
+      console.log(marketplace);
+      console.log(marketplacer);
 
       setCategory("MisRealands", nftsFilter);
 

@@ -1,15 +1,15 @@
-import React, { useContext } from 'react'
-import { useTranslation } from 'react-i18next'
-import about from '../../assets/img/about/about.png'
-import ceo from '../../assets/img/about/ceo.png'
-import directorCreativo from '../../assets/img/about/directorCreativo.png'
-import ThemeContext from '../../utils/useContextTheme'
-import HeaderSections from '../HeaderSections'
-import linkedinIcon from '../../assets/img/about/linkedinIcon.png'
+import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
+import about from "../../assets/img/about/about.png";
+import ceo from "../../assets/img/about/ceo.png";
+import directorCreativo from "../../assets/img/about/directorCreativo.png";
+import ThemeContext from "../../utils/useContextTheme";
+import HeaderSections from "../HeaderSections";
+import linkedinIcon from "../../assets/img/about/linkedinIcon.png";
 
 function About() {
-  const { theme } = useContext(ThemeContext)
-  const { t } = useTranslation()
+  const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
   return (
     <div className="">
       <HeaderSections
@@ -22,26 +22,26 @@ function About() {
           {/* <!--  Section Content--> */}
           <div className="d-flex">
             <div className="d-flex flex-column gap-2 w-50" id="aboutTxt">
-              <h2 className="text-primary">{t('¿QUÉ ES REALITY NEAR?')}</h2>
+              <h2 className="text-primary">{t("¿QUÉ ES REALITY NEAR?")}</h2>
               <p className={`${theme.txt}`}>
                 {t(
-                  'Reality Near es un multimetaverso que combina tecnología y realidad, de tal forma que los usuarios puedan desarrollarse en un nuevo ambiente completamente inmersivo y digital que, además, genera valor en su experiencia.',
+                  "Reality Near es un multimetaverso que combina tecnología y realidad, de tal forma que los usuarios puedan desarrollarse en un nuevo ambiente completamente inmersivo y digital que, además, genera valor en su experiencia."
                 )}
               </p>
-              <h2 className="text-primary">{t('¿CUÁL ES EL PROBLEMA?')}</h2>
+              <h2 className="text-primary">{t("¿CUÁL ES EL PROBLEMA?")}</h2>
               <p className={`${theme.txt}`}>
                 {t(
-                  'Cada día que pasa, más son las limitaciones socioecónomicas y educativas a nivel global. Muchas personas emplean la mayoría de sus recursos en conseguir oportunidades de desarrollo, las cuales no siempre garantizan que salgan adelante.',
+                  "Cada día que pasa, más son las limitaciones socioecónomicas y educativas a nivel global. Muchas personas emplean la mayoría de sus recursos en conseguir oportunidades de desarrollo, las cuales no siempre garantizan que salgan adelante."
                 )}
               </p>
-              <h2 className="text-primary">{t('UN MUNDO DE OPORTUNIDADES')}</h2>
+              <h2 className="text-primary">{t("UN MUNDO DE OPORTUNIDADES")}</h2>
               <p className={`${theme.txt}`}>
                 {t(
-                  'En Reality Near buscamos generar oportunidades para el desarrollo de los usuarios en ámbitos socioeconómicos y educativos, dentro de un ambiente descentralizado que garantiza las mismas oportunidades de crecimiento para todos. A través de la fusión de la tecnología con la realidad, se busca crear un nuevo mundo con posibilidades infinitas. Aquí podrás crecer, aprender, desarrollarte, y lo más importante: crear todo lo que puedas imaginar.',
+                  "En Reality Near buscamos generar oportunidades para el desarrollo de los usuarios en ámbitos socioeconómicos y educativos, dentro de un ambiente descentralizado que garantiza las mismas oportunidades de crecimiento para todos. A través de la fusión de la tecnología con la realidad, se busca crear un nuevo mundo con posibilidades infinitas. Aquí podrás crecer, aprender, desarrollarte, y lo más importante: crear todo lo que puedas imaginar."
                 )}
                 <br />
                 {t(
-                  'Este puede ser tu nuevo comienzo, solo debes dejar que tu creatividad defina el camino.',
+                  "Este puede ser tu nuevo comienzo, solo debes dejar que tu creatividad defina el camino."
                 )}
               </p>
             </div>
@@ -62,28 +62,28 @@ function About() {
           <div className="row position-relative">
             <div className="col-12">
               <h2 className="text-primary text-center my-5">
-                {t('Fundadores')}
+                {t("Fundadores")}
               </h2>
             </div>
             <div
               style={{
-                top: '40px',
-                position: 'absolute',
-                width: '477px',
-                height: '477px',
-                left: '-440px',
-                background: '#33CC99',
+                top: "40px",
+                position: "absolute",
+                width: "477px",
+                height: "477px",
+                left: "-440px",
+                background: "#33CC99",
               }}
               className="rounded-pill d-lg-block d-none mt-5"
             ></div>
             <div
               style={{
-                top: '40px',
-                position: 'absolute',
-                width: '477px',
-                height: '477px',
-                right: '-440px',
-                background: '#33CC99',
+                top: "40px",
+                position: "absolute",
+                width: "477px",
+                height: "477px",
+                right: "-440px",
+                background: "#33CC99",
               }}
               className="rounded-pill d-lg-block d-none mt-5"
             ></div>
@@ -102,7 +102,7 @@ function About() {
                     alt=""
                     className="position-absolute"
                     style={{
-                      width: '50px',
+                      width: "50px",
                       bottom: 0,
                       right: 50,
                     }}
@@ -150,7 +150,7 @@ function About() {
                     alt=""
                     className="position-absolute"
                     style={{
-                      width: '50px',
+                      width: "50px",
                       bottom: 0,
                       right: 50,
                     }}
@@ -189,7 +189,7 @@ function About() {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
-export default About
+export default About;

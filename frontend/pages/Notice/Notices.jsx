@@ -1,15 +1,15 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
-import { CaretRight } from 'phosphor-react'
-import ThemeContext from '../../utils/useContextTheme'
-import HeaderSections from '../HeaderSections'
-import CarouselNovelty from './Novelties/Carousel'
-import CarouselEvents from './Events/CarouselEvents'
-import { useTranslation } from 'react-i18next'
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { CaretRight } from "phosphor-react";
+import ThemeContext from "../../utils/useContextTheme";
+import HeaderSections from "../HeaderSections";
+import CarouselNovelty from "./Novelties/Carousel";
+import CarouselEvents from "./Events/CarouselEvents";
+import { useTranslation } from "react-i18next";
 
 export default function Notices() {
-  const { theme } = useContext(ThemeContext)
-  const { t } = useTranslation()
+  const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
   return (
     <div className={`${theme.bg}`}>
       <HeaderSections
@@ -21,11 +21,11 @@ export default function Notices() {
         <div>
           <div className="d-flex align-items-center mt-5 mb-4">
             <h1 className={`${theme.txt} m-1 text-primary pr-2`}>
-              {t('Novedades')}
+              {t("Novedades")}
             </h1>
             <Link to="/notices/novelties" className="mt-3">
               <span className="text-grey fw-bolder pt-4 show-more">
-                {t('Ver más')}
+                {t("Ver más")}
               </span>
               <CaretRight size={15} color="#33cc99" weight="bold" />
             </Link>
@@ -35,10 +35,10 @@ export default function Notices() {
         <div>
           <div className="d-flex align-items-center mt-5 mb-4">
             <h1 className={`${theme.txt} m-1 text-primary pr-2`}>
-              {t('Eventos')}
+              {t("Eventos")}
             </h1>
             <Link to="/notices/events" className="mt-3 show-more">
-              <span className="text-grey fw-bolder"> {t('Ver más')}</span>
+              <span className="text-grey fw-bolder"> {t("Ver más")}</span>
               <CaretRight size={15} color="#33cc99" weight="bold" />
             </Link>
           </div>
@@ -46,5 +46,5 @@ export default function Notices() {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,32 +1,31 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react'
-import Card from './Card'
-import NoData from '../ErrorPage/NoData'
-import { useTranslation } from 'react-i18next'
+import React, { useState, useEffect } from "react";
+import Card from "./Card";
+import NoData from "../ErrorPage/NoData";
+import { useTranslation } from "react-i18next";
 
 export function Category({ dataCategory }) {
- //  const currentItemsCategory = dataCategory ? [...dataCategory.itemCards] : []
-  const [currentData, setCurrentData] = useState(null)
-  const { t } = useTranslation()
+  //  const currentItemsCategory = dataCategory ? [...dataCategory.itemCards] : []
+  const [currentData, setCurrentData] = useState(null);
+  const { t } = useTranslation();
 
   const searchData = (condition, value) =>
     currentData.filter((item) =>
-      item[condition].toLowerCase().includes(value.toLowerCase()),
-    )
+      item[condition].toLowerCase().includes(value.toLowerCase())
+    );
   // Buscador de  cards
   const searchCard = (e) => {
-    setCurrentData(searchData('titleItem', e.target.value))
-  } // falta averiguar el search, el value se queda del final o....useEffect?
+    setCurrentData(searchData("titleItem", e.target.value));
+  }; // falta averiguar el search, el value se queda del final o....useEffect?
 
   useEffect(() => {
     //console.log('datacategory')
     //console.log(dataCategory);
-    setCurrentData(dataCategory)
-  })
+    setCurrentData(dataCategory);
+  });
 
   return (
     <div className="w-100 mt-5">
-
       <input
         type="search"
         id="searchCard"
@@ -48,5 +47,5 @@ export function Category({ dataCategory }) {
         <NoData />
       )}
     </div>
-  )
+  );
 }

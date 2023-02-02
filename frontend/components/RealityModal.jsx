@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import Box from '@mui/material/Box'
-import { useTranslation } from 'react-i18next'
-import Modal from './Modal'
-import nearImport from '../assets/img/random/nearImport.png'
-import realitiesLogo from '../assets/img/random/logo1.png'
+import React, { useState, useEffect } from "react";
+import Box from "@mui/material/Box";
+import { useTranslation } from "react-i18next";
+import Modal from "./Modal";
+import nearImport from "../assets/img/random/nearImport.png";
+import realitiesLogo from "../assets/img/random/logo1.png";
 
 export default function RealityModal() {
-  const [walletValue, setValueWallet] = useState('')
-  const [realities, setRealities] = useState('')
-  const [closeModal, setClose] = useState(false)
+  const [walletValue, setValueWallet] = useState("");
+  const [realities, setRealities] = useState("");
+  const [closeModal, setClose] = useState(false);
   // const { theme } = useContext(ThemeContext)
-  const { t } = useTranslation()
-  const currentUser = window.accountId || ''
-  const [currentBox, setBox] = useState(currentUser ? 3 : -1)
+  const { t } = useTranslation();
+  const currentUser = window.accountId || "";
+  const [currentBox, setBox] = useState(currentUser ? 3 : -1);
 
   useEffect(() => {
-    console.log(walletValue.length)
-  }, [walletValue])
+    console.log(walletValue.length);
+  }, [walletValue]);
 
   return (
     <Modal
@@ -27,7 +27,7 @@ export default function RealityModal() {
           id="submitButton"
           type="button"
         >
-          {t('ADQUIRIR REALITIES')}
+          {t("ADQUIRIR REALITIES")}
         </button>
       }
       setBox={setBox}
@@ -38,9 +38,9 @@ export default function RealityModal() {
         <Box
           className="rounded"
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <div>Inicia sesón para continuar con la transacción</div>
@@ -49,7 +49,7 @@ export default function RealityModal() {
             id="submitButton2"
             type="button"
             onClick={() => {
-              setClose(true)
+              setClose(true);
             }}
           >
             OK
@@ -60,9 +60,9 @@ export default function RealityModal() {
         <Box
           className="rounded"
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <div>Ingresa tu near Wallet</div>
@@ -78,8 +78,8 @@ export default function RealityModal() {
             id="submitButton2"
             type="button"
             onClick={() => {
-              console.log(walletValue)
-              setBox(1)
+              console.log(walletValue);
+              setBox(1);
             }}
           >
             ACEPTAR
@@ -89,9 +89,9 @@ export default function RealityModal() {
       {currentBox === 1 && (
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <div>¿Desea enviar los realities a una diferente Near Wallet?</div>
@@ -101,7 +101,7 @@ export default function RealityModal() {
               id="submitButtonYes2"
               type="button"
               onClick={() => {
-                setBox(2)
+                setBox(2);
               }}
             >
               SI
@@ -111,7 +111,7 @@ export default function RealityModal() {
               id="submitButtonNo2"
               type="button"
               onClick={() => {
-                setBox(3)
+                setBox(3);
               }}
             >
               NO
@@ -122,9 +122,9 @@ export default function RealityModal() {
       {currentBox === 2 && (
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <div>A ver ahora no correcto</div>
@@ -138,7 +138,7 @@ export default function RealityModal() {
             id="submitButton2"
             type="button"
             onClick={() => {
-              setBox(3)
+              setBox(3);
             }}
           >
             ACEPTAR
@@ -148,9 +148,9 @@ export default function RealityModal() {
       {currentBox === 3 && (
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <div>¿Cuantos Realities desea?</div>
@@ -164,17 +164,17 @@ export default function RealityModal() {
             <span>
               <img src={nearImport} alt="" />
             </span>
-            {realities !== '' ? realities : 0}.00
+            {realities !== "" ? realities : 0}.00
           </p>
           <button
             className="_btn btn btn-primary btn-xl w-75"
             id="submitButton3"
             type="button"
             onClick={() => {
-              if (realities !== '') {
-                setBox(4)
+              if (realities !== "") {
+                setBox(4);
               } else {
-                setBox(3)
+                setBox(3);
               }
             }}
           >
@@ -185,9 +185,9 @@ export default function RealityModal() {
       {currentBox === 4 && (
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <div>Resumen de la transacción</div>
@@ -209,8 +209,8 @@ export default function RealityModal() {
             id="submitButton3"
             type="button"
             onClick={() => {
-              setRealities('')
-              setClose(true)
+              setRealities("");
+              setClose(true);
             }}
           >
             ACEPTAR
@@ -220,8 +220,8 @@ export default function RealityModal() {
             id="submitButton3"
             type="button"
             onClick={() => {
-              setRealities('')
-              setBox(3)
+              setRealities("");
+              setBox(3);
             }}
           >
             VOLVER
@@ -229,5 +229,5 @@ export default function RealityModal() {
         </Box>
       )}
     </Modal>
-  )
+  );
 }

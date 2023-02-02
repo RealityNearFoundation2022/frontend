@@ -1,16 +1,16 @@
 /* eslint-disable camelcase */
-import React from 'react'
+import React from "react";
 // import getConfig from '../../assets/js/near/config'
-import '../../assets/css/components/events.css'
+import "../../assets/css/components/events.css";
 
-import Moments from './Moments'
-import RealityToken from './RealityToken'
-import RealityExperience from './RealityExperience'
-import realityNear from '../../assets/img/random/LOGO REALITY NEAR.png'
-import { useTranslation } from 'react-i18next'
+import Moments from "./Moments";
+import RealityToken from "./RealityToken";
+import RealityExperience from "./RealityExperience";
+import realityNear from "../../assets/img/random/LOGO REALITY NEAR.png";
+import { useTranslation } from "react-i18next";
 
 function Home() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   // // use React Hooks to store greeting in component state
   // const [greeting, setGreeting] = React.useState()
 
@@ -40,7 +40,7 @@ function Home() {
       <header className="bg-image bg-img-size-cover text-white text-center page-section">
         <div className="container d-flex align-items-center flex-column h-100 justify-content-center">
           <h1 className="masthead-heading text-uppercase mb-0">
-            {t('Bienvenido a')}
+            {t("Bienvenido a")}
           </h1>
           <img src={realityNear} alt="realityNear" width="50%" />
         </div>
@@ -49,7 +49,7 @@ function Home() {
       <RealityToken />
       <RealityExperience />
     </main>
-  )
+  );
 }
 
 // this component gets rendered by App after the form is submitted
@@ -82,4 +82,4 @@ function Home() {
 //   )
 // }
 
-export default Home
+export default Home;

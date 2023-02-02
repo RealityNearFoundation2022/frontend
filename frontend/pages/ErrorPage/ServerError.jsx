@@ -1,7 +1,7 @@
-import React from 'react'
-import serverError from '../../assets/img/error-page/server-error.png'
-import warningTriangle from '../../assets/img/error-page/warning-triangle.svg'
-import { Link } from 'react-router-dom'
+import React from "react";
+import serverError from "../../assets/img/error-page/server-error.png";
+import warningTriangle from "../../assets/img/error-page/warning-triangle.svg";
+import { Link } from "react-router-dom";
 
 export default function ServerError() {
   return (
@@ -29,5 +29,5 @@ export default function ServerError() {
         </div>
       </div>
     </div>
-  )
+  );
 }

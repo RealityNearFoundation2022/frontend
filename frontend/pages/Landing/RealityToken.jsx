@@ -1,13 +1,13 @@
 /* eslint-disable global-require */
-import React, { useContext } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
-import logos from '../../assets/img/random/icons.png'
-import ThemeContext from '../../utils/useContextTheme'
+import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import logos from "../../assets/img/random/icons.png";
+import ThemeContext from "../../utils/useContextTheme";
 
 export default function RealityToken() {
-  const { theme } = useContext(ThemeContext)
-  const { t } = useTranslation()
+  const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
 
   return (
     <section className={`${theme.bg} py-5 text-white mb-0 w-100`} id="">
@@ -26,22 +26,22 @@ export default function RealityToken() {
         <div className="w-60" id="realityTokenTxt">
           <p className={`${theme.txt} w-100`}>
             {t(
-              'Reality Near te permite desarrollarte y hacer negocios, tales como adquirir y vender bienes a través de todas nuestras plataformas: App Reality Near,  Marketplace en el sitio web y en Nuruk.',
+              "Reality Near te permite desarrollarte y hacer negocios, tales como adquirir y vender bienes a través de todas nuestras plataformas: App Reality Near,  Marketplace en el sitio web y en Nuruk."
             )}
           </p>
           <p className={`${theme.txt} w-100`}>
             {t(
-              'Para que las transacciones sean posibles, creamos tokens llamados “REALITIES”, los cuales se utilizan como moneda en nuestro metaverso. Con los realities podrás comprar y vender parcelas, así como también NFTs  o cualquier artículo a la venta. Además, podrás intercambiar bienes con los demás usuarios mediante transacciones P2P.',
+              "Para que las transacciones sean posibles, creamos tokens llamados “REALITIES”, los cuales se utilizan como moneda en nuestro metaverso. Con los realities podrás comprar y vender parcelas, así como también NFTs  o cualquier artículo a la venta. Además, podrás intercambiar bienes con los demás usuarios mediante transacciones P2P."
             )}
           </p>
           <p className={`${theme.txt} w-100`}>
             {t(
-              'Con tu Near wallet, podrás administrar tus Realities, al igual que llevar registro de tus transacciones, y también podrás ver el tipo de cambio al dolar. Si no tienes una, haz clic aquí para crearla.',
+              "Con tu Near wallet, podrás administrar tus Realities, al igual que llevar registro de tus transacciones, y también podrás ver el tipo de cambio al dolar. Si no tienes una, haz clic aquí para crearla."
             )}
           </p>
           <p className={`${theme.txt} w-100`}>
             {t(
-              'El Reality es transaccional con todas las Near Wallet, asi que no tendrás ningun inconveniente en transferirle a amigos. Podrás cambiar Nears a  Realities en nuestro sitio web.',
+              "El Reality es transaccional con todas las Near Wallet, asi que no tendrás ningun inconveniente en transferirle a amigos. Podrás cambiar Nears a  Realities en nuestro sitio web."
             )}
           </p>
           <center className="w-100 mt-4">
@@ -51,7 +51,7 @@ export default function RealityToken() {
                 id="submitButton"
                 type="submit"
               >
-                {t('ADQUIRIR REALITIES')}
+                {t("ADQUIRIR REALITIES")}
               </button>
             </Link>
           </center>
@@ -61,5 +61,5 @@ export default function RealityToken() {
         </div>
       </div>
     </section>
-  )
+  );
 }

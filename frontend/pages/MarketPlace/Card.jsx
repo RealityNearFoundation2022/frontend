@@ -1,26 +1,30 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useContext } from 'react'
-import { Link } from 'react-router-dom'
-import ThemeContext from '../../utils/useContextTheme'
-import logo from '../../assets/img/random/logo1.png'
-import ModalCardSellRealand from './ModalCardSellRealand'
-import ModalCardBuyRealand from './ModalCardBuyRealand'
-
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import ThemeContext from "../../utils/useContextTheme";
+import logo from "../../assets/img/random/logo1.png";
+import ModalCardSellRealand from "./ModalCardSellRealand";
+import ModalCardBuyRealand from "./ModalCardBuyRealand";
 
 export default function Card({ elementsCard, category }) {
-  const { theme } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext);
 
   const currentUser = window.accountId || "";
 
   return (
     <>
-    { category == 'MisRealands' && elementsCard.price == null &&
-      <ModalCardSellRealand elementCard={elementsCard} textButton="Vender"></ModalCardSellRealand>
-    }
-    {
-      currentUser !== elementsCard.author && category == 'Marketplace' &&
-      <ModalCardBuyRealand elementCard={elementsCard} textButton="Comprar"></ModalCardBuyRealand>
-    }
+      {category == "MisRealands" && elementsCard.price == null && (
+        <ModalCardSellRealand
+          elementCard={elementsCard}
+          textButton="Vender"
+        ></ModalCardSellRealand>
+      )}
+      {currentUser !== elementsCard.author && category == "Marketplace" && (
+        <ModalCardBuyRealand
+          elementCard={elementsCard}
+          textButton="Comprar"
+        ></ModalCardBuyRealand>
+      )}
       <Link to="#">
         <div>
           <div className="h-imagenes">
@@ -34,14 +38,14 @@ export default function Card({ elementsCard, category }) {
           <h4 className={`fw-light text-grey fs-min ${theme.txt}`}>
             {elementsCard.author}
           </h4>
-        { category == 'Marketplace' &&
-          <div className="d-flex">
-            <img src={logo} alt="" width="25" height="25" />
-            <p className={theme.txt}>{elementsCard.price}</p>
-          </div>
-        }
+          {category == "Marketplace" && (
+            <div className="d-flex">
+              <img src={logo} alt="" width="25" height="25" />
+              <p className={theme.txt}>{elementsCard.price}</p>
+            </div>
+          )}
         </div>
       </Link>
     </>
-  )
+  );
 }

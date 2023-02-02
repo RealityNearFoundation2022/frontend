@@ -1,21 +1,21 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import Slider from 'react-slick'
-import { getData } from '../../../api/methods'
-import CardNotices from '../CardNotices'
-import '../../../assets/css/components/events.css'
-import LoadingModal from '../../../components/LoadingModal'
-require('dotenv').config()
-const api = process.env.REACT_APP_API
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Slider from "react-slick";
+import { getData } from "../../../api/methods";
+import CardNotices from "../CardNotices";
+import "../../../assets/css/components/events.css";
+import LoadingModal from "../../../components/LoadingModal";
+require("dotenv").config();
+const api = process.env.REACT_APP_API;
 
 export default function CarouselEvents() {
-  const [carousel, setCarousel] = useState([])
-  const navigate = useNavigate()
-  const [isLoading, setIsLoading] = useState(false)
+  const [carousel, setCarousel] = useState([]);
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const settings2 = {
-    className: 'slider variable-width',
+    className: "slider variable-width",
     dots: true,
     infinite: false,
     speed: 500,
@@ -48,27 +48,27 @@ export default function CarouselEvents() {
         },
       },
     ],
-  }
+  };
 
   function handleClose() {
-    setIsLoading(false)
+    setIsLoading(false);
   }
 
   const apiGet = async () => {
     try {
-      setIsLoading(true)
-      const data = await getData('events')
-      setCarousel(data)
+      setIsLoading(true);
+      const data = await getData("events");
+      setCarousel(data);
     } catch (error) {
-      navigate('/server-error')
+      navigate("/server-error");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    apiGet()
-  }, [])
+    apiGet();
+  }, []);
   return (
     <Slider {...settings2}>
       <LoadingModal open={isLoading} handleClose={handleClose} />
@@ -83,5 +83,5 @@ export default function CarouselEvents() {
         </Link>
       ))}
     </Slider>
-  )
+  );
 }

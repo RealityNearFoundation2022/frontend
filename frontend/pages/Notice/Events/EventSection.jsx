@@ -1,38 +1,38 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Fade } from 'react-slideshow-image'
-import ThemeContext from '../../../utils/useContextTheme'
-import HeaderSections from '../../HeaderSections'
-import imgFake from '../../../assets/img/random/cabin.png'
-import CarouselEvents from './CarouselEvents'
-import 'react-slideshow-image/dist/styles.css'
-import { getData } from '../../../api/methods'
-import LoadingModal from '../../../components/LoadingModal'
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Fade } from "react-slideshow-image";
+import ThemeContext from "../../../utils/useContextTheme";
+import HeaderSections from "../../HeaderSections";
+import imgFake from "../../../assets/img/random/cabin.png";
+import CarouselEvents from "./CarouselEvents";
+import "react-slideshow-image/dist/styles.css";
+import { getData } from "../../../api/methods";
+import LoadingModal from "../../../components/LoadingModal";
 
 export default function EventSection() {
-  const { idEvents } = useParams()
-  const [dataItem, setDataItem] = useState({})
+  const { idEvents } = useParams();
+  const [dataItem, setDataItem] = useState({});
   // const [imgsData, setImages] = useState([])
-  const { theme } = useContext(ThemeContext)
-  const [isLoading, setIsLoading] = useState(false)
+  const { theme } = useContext(ThemeContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   const apiGet = async () => {
     try {
-      setIsLoading(true)
-      const data = await getData(`events/${idEvents}`)
-      setDataItem({ ...data })
+      setIsLoading(true);
+      const data = await getData(`events/${idEvents}`);
+      setDataItem({ ...data });
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   function handleClose() {
-    setIsLoading(false)
+    setIsLoading(false);
   }
 
   useEffect(() => {
-    apiGet()
-  }, [])
+    apiGet();
+  }, []);
 
   return (
     <div className={`${theme.bg}`}>
@@ -65,7 +65,7 @@ export default function EventSection() {
                     src={imgFake}
                     /* src={api+eachImg.path} */
                     className="bg-img-size-cover w-100 rounded"
-                    style={{ height: '100%' }}
+                    style={{ height: "100%" }}
                     alt=""
                   />
                 </div>
@@ -81,5 +81,5 @@ export default function EventSection() {
         <CarouselEvents />
       </div>
     </div>
-  )
+  );
 }

@@ -52,7 +52,7 @@ export default function ModalCardBuyRealand({ elementCard, textButton }) {
   };
 
   const OfferPrice = async (token_id) => {
-    console.log(token_id)
+    console.log(token_id);
     await offer(
       `${token_id}.${nearConfig.contractFactoryNFT}`,
       token_id,
@@ -100,9 +100,7 @@ export default function ModalCardBuyRealand({ elementCard, textButton }) {
                   </div>
                 </div>
                 <div className="form-btn _btn-wrapper">
-                  <button className="form-btn _btn">
-                    Enter Bid
-                  </button>
+                  <button className="form-btn _btn">Enter Bid</button>
                 </div>
               </div>
             </form>

@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function ResetPasswordCompleted() {
   return (
@@ -21,5 +21,5 @@ export default function ResetPasswordCompleted() {
         </Link>
       </div>
     </div>
-  )
+  );
 }

@@ -1,6 +1,6 @@
-import React from 'react'
-import noData from '../../assets/img/error-page/no-data.png'
-import folder from '../../assets/img/error-page/folder.svg'
+import React from "react";
+import noData from "../../assets/img/error-page/no-data.png";
+import folder from "../../assets/img/error-page/folder.svg";
 
 export default function NoData() {
   return (
@@ -21,5 +21,5 @@ export default function NoData() {
         </div>
       </div>
     </div>
-  )
+  );
 }

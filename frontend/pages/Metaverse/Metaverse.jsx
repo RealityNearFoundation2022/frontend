@@ -1,35 +1,35 @@
-import React, { useContext } from 'react'
-import { useTranslation } from 'react-i18next'
+import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
 // import { desktop, mobile, tablet } from '../../assets/img/background/index'
-import Slider from 'react-slick'
-import metaverseNuruk from '../../assets/img/metaverse/metaverse.png'
-import ThemeContext from '../../utils/useContextTheme'
+import Slider from "react-slick";
+import metaverseNuruk from "../../assets/img/metaverse/metaverse.png";
+import ThemeContext from "../../utils/useContextTheme";
 // import itemSlide from '../../assets/img/random/cabin.png'
-import imgMobile from '../../assets/img/metaverse/phone.png'
-import appleStore from '../../assets/img/metaverse/apple-store.png'
-import googlePlay from '../../assets/img/metaverse/google-play.png'
-import HeaderSections from '../HeaderSections'
-import { momentsCarousel } from '../Landing/momentsCarousel'
+import imgMobile from "../../assets/img/metaverse/phone.png";
+import appleStore from "../../assets/img/metaverse/apple-store.png";
+import googlePlay from "../../assets/img/metaverse/google-play.png";
+import HeaderSections from "../HeaderSections";
+import { momentsCarousel } from "../Landing/momentsCarousel";
 
 function Metaverso() {
-  const { theme } = useContext(ThemeContext)
-  const { t } = useTranslation()
-  const itemsCard = [...momentsCarousel]
+  const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
+  const itemsCard = [...momentsCarousel];
   const links = [
     {
-      link: 'https://play.google.com/store/apps/details?id=org.realitynear.reality_near&hl=es',
+      link: "https://play.google.com/store/apps/details?id=org.realitynear.reality_near&hl=es",
       img: googlePlay,
     },
     {
-      link: 'https://apps.apple.com/pe/app/reality-near/id1645021476?l=en',
+      link: "https://apps.apple.com/pe/app/reality-near/id1645021476?l=en",
       img: appleStore,
     },
-  ]
+  ];
 
   const settings = {
-    className: 'center',
+    className: "center",
     infinite: true,
-    centerPadding: '60px',
+    centerPadding: "60px",
     slidesToShow: 2,
     swipeToSlide: true,
     responsive: [
@@ -42,10 +42,10 @@ function Metaverso() {
     ],
     afterChange(index) {
       console.log(
-        `Slider Changed to: ${index + 1}, background: #222; color: #bada55`,
-      )
+        `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
+      );
     },
-  }
+  };
 
   return (
     <div className="w-100">
@@ -68,16 +68,16 @@ function Metaverso() {
           >
             <div className="w-50" id="metaverseResponsiveTxt">
               <h2 className="text-primary mb-4">
-                {t('NURUK: CIUDAD DE REALIDADES')}
+                {t("NURUK: CIUDAD DE REALIDADES")}
               </h2>
               <p className={`${theme.txt}`}>
                 {t(
-                  'Nuruk es la principal y primera ciudad del multimetaverso 3D en Reality Near. El nombre se basa en la unión de dos palabras: new (nuevo en inglés) y uruk (la primera ciudad sobre la faz de la Tierra).',
+                  "Nuruk es la principal y primera ciudad del multimetaverso 3D en Reality Near. El nombre se basa en la unión de dos palabras: new (nuevo en inglés) y uruk (la primera ciudad sobre la faz de la Tierra)."
                 )}
               </p>
               <p className={`${theme.txt}`}>
                 {t(
-                  'Podrás encontrar infinidad de actividades en nuestro multimetaverso. Por ejemplo, podrás asistir al partido de tu equipo favorito, contratar nuevos empleados para tu empresa o incluso enseñar a hablar francés. Todo depende de tu creatividad y de cómo aprovechas los beneficios que Reality Near provee.',
+                  "Podrás encontrar infinidad de actividades en nuestro multimetaverso. Por ejemplo, podrás asistir al partido de tu equipo favorito, contratar nuevos empleados para tu empresa o incluso enseñar a hablar francés. Todo depende de tu creatividad y de cómo aprovechas los beneficios que Reality Near provee."
                 )}
               </p>
               <center className="pt-5">
@@ -90,7 +90,7 @@ function Metaverso() {
                     type="button"
                     className="_btn btn btn-primary btn-xl w-75"
                   >
-                    {t('Dar un vistazo')}
+                    {t("Dar un vistazo")}
                   </button>
                 </a>
               </center>
@@ -149,17 +149,17 @@ function Metaverso() {
               <h2 className="text-primary">REALITY APP</h2>
               <p className={`${theme.txt}`}>
                 {t(
-                  'Reality Near App ofrece una nueva experiencia fusionando tecnología y realidad. Esta te permitirá ser parte de eventos, ver publicidad, completar misiones, ver avatares y muchas cosas más en la vida real usando sólo la cámara de tu teléfono. Dicho contenido te permitirá interactuar con la vida real a través de tu dispositivo móvil, generando una experiencia totalmente inmersiva y valiosa.',
+                  "Reality Near App ofrece una nueva experiencia fusionando tecnología y realidad. Esta te permitirá ser parte de eventos, ver publicidad, completar misiones, ver avatares y muchas cosas más en la vida real usando sólo la cámara de tu teléfono. Dicho contenido te permitirá interactuar con la vida real a través de tu dispositivo móvil, generando una experiencia totalmente inmersiva y valiosa."
                 )}
                 <br />
                 <br />
                 {t(
-                  'Todo contenido creado podrás visualizarlo en las tierras de los demás usuarios y, si posees una, podrás crear y compartir tu creación con la comunidad Reality Near.',
+                  "Todo contenido creado podrás visualizarlo en las tierras de los demás usuarios y, si posees una, podrás crear y compartir tu creación con la comunidad Reality Near."
                 )}
                 <br />
                 <br />
                 {t(
-                  'En la misma aplicación contarás con una wallet, donde administrarás tus Realities y NFTs, así como tus transacciones pasadas. También podrás añadir amigos fácilmente; enviarles y recibir mensajes; y, además, ver si están conectados o cerca tuyo.',
+                  "En la misma aplicación contarás con una wallet, donde administrarás tus Realities y NFTs, así como tus transacciones pasadas. También podrás añadir amigos fácilmente; enviarles y recibir mensajes; y, además, ver si están conectados o cerca tuyo."
                 )}
               </p>
               <div className="d-flex justify-content-around w-100 pt-3">
@@ -180,7 +180,7 @@ function Metaverso() {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
-export default Metaverso
+export default Metaverso;

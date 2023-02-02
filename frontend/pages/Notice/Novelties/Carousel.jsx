@@ -1,20 +1,20 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import Slider from 'react-slick'
-import { getData } from '../../../api/methods'
-import LoadingModal from '../../../components/LoadingModal'
-import CardNotices from '../CardNotices'
-require('dotenv').config()
-const api = process.env.REACT_APP_API
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Slider from "react-slick";
+import { getData } from "../../../api/methods";
+import LoadingModal from "../../../components/LoadingModal";
+import CardNotices from "../CardNotices";
+require("dotenv").config();
+const api = process.env.REACT_APP_API;
 
 export default function CarouselNovelty() {
-  const [isLoading, setIsLoading] = useState(false)
-  const navigate = useNavigate()
-  const [carousel, setCarousel] = useState([])
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const [carousel, setCarousel] = useState([]);
 
   const settings2 = {
-    className: 'slider variable-width',
+    className: "slider variable-width",
     dots: true,
     infinite: false,
     speed: 500,
@@ -47,23 +47,23 @@ export default function CarouselNovelty() {
         },
       },
     ],
-  }
+  };
 
   const apiGet = async () => {
     try {
-      setIsLoading(true)
-      const data = await getData('news')
-      setCarousel([...data])
+      setIsLoading(true);
+      const data = await getData("news");
+      setCarousel([...data]);
     } catch (error) {
-      navigate('/server-error')
+      navigate("/server-error");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    apiGet()
-  }, [])
+    apiGet();
+  }, []);
   return (
     <Slider {...settings2}>
       <LoadingModal open={isLoading} handleClose={() => setIsLoading(false)} />
@@ -73,5 +73,5 @@ export default function CarouselNovelty() {
         </Link>
       ))}
     </Slider>
-  )
+  );
 }
