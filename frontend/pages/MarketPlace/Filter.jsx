@@ -1,17 +1,18 @@
 /* eslint-disable react/prop-types */
 // import { CaretDown } from 'phosphor-react'
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import ThemeContext from "../../utils/useContextTheme";
-import { useTranslation } from "react-i18next";
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import ThemeContext from '../../utils/useContextTheme'
+import { useTranslation } from 'react-i18next'
 
-export default function Filter({ data }) {
-  const { theme } = useContext(ThemeContext);
-  const { t } = useTranslation();
+export default function Filter({ data, title }) {
+  const { theme } = useContext(ThemeContext)
+  const { t } = useTranslation()
 
   return (
     <div className="w-100 mt-5">
       <ul className="d-flex flex-column gap-2 align-item-start">
+        <h4 className={`fw-normal ${theme.txt}`}> {title}</h4>
         {data.map((d) => (
           <>
             <li>
@@ -82,5 +83,5 @@ export default function Filter({ data }) {
         </li>*/}
       </ul>
     </div>
-  );
+  )
 }

@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid'
 // import { element } from "prop-types";
-import React, { useContext, useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useContext, useEffect, useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import {
   // nft_tokens,
   get_tokens,
@@ -10,48 +10,56 @@ import {
   nearConfig,
   get_sales_by_nft_contract_id,
   get_number_of_tokens,
-} from "../assets/js/near/utils";
+} from '../assets/js/near/utils'
 // import { CardSection } from '../pages/MarketPlace/CardSection'
-import { Category } from "../pages/MarketPlace/Category";
+import { Category } from '../pages/MarketPlace/Category'
 // import { filtersMarketplace } from '../pages/MarketPlace/Data_Categories/Categories'
-import Filter from "../pages/MarketPlace/Filter";
-import Header from "../pages/MarketPlace/Header";
+import Filter from '../pages/MarketPlace/Filter'
+import Header from '../pages/MarketPlace/Header'
 // import Marketplace from "../pages/MarketPlace/IndexMarketplace";
-import ThemeContext from "../utils/useContextTheme";
+import ThemeContext from '../utils/useContextTheme'
 // import PruebaCategory from '../pages/MarketPlace/PruebaCategory'
 
 export function DashboardMarketPlace() {
   // const dataCategories = [...filtersMarketplace]
-  const [dataCategories, setCategories] = useState([]);
+  const [dataCategories, setCategories] = useState([])
+  const [profileCategories, setProfileCategories] = useState([])
 
-  const currentUser = window.accountId || "";
-
+  const currentUser = window.accountId || ''
+  const myProfileCategories = [
+    {
+      name: 'Mis NFTs',
+      url: '/marketplace/my-nft',
+      path: 'my-nft',
+      itemCards: [],
+    },
+    {
+      name: 'Mis tierras',
+      url: '/marketplace/my-lands',
+      path: '/my-lands',
+      itemCards: [],
+    },
+  ]
   const categories = [
     {
-      name: "Marketplace",
-      url: "/marketplace",
-      path: "/",
+      name: 'Marketplace',
+      url: '/marketplace',
+      path: '/',
       itemCards: [],
     },
     {
-      name: "Realands",
-      url: "/nuruk",
-      path: "realands",
+      name: 'Realands',
+      url: '/nuruk',
+      path: 'realands',
       itemCards: [],
     },
     {
-      name: "Patchas",
-      url: "/patchas",
-      path: "patchas",
+      name: 'Patchas',
+      url: '/patchas',
+      path: 'patchas',
       itemCards: [],
     },
-    {
-      name: "MisRealands",
-      url: "/marketplace/misrealands",
-      path: "misrealands",
-      itemCards: [],
-    },
-  ];
+  ]
 
   /**
    * Sets the `itemCards` property of a category to the given data.
@@ -64,11 +72,19 @@ export function DashboardMarketPlace() {
    * setCategory('Marketplace', data);
    */
   function setCategory(category, data) {
-    categories.forEach((cat) => {
-      if (cat.name === category) {
-        cat.itemCards = data;
-      }
-    });
+    if (category === myProfileCategories[0].name) {
+      myProfileCategories.forEach((cat) => {
+        if (cat.name === category) {
+          cat.itemCards = data
+        }
+      })
+    } else if (category === categories[0].name) {
+      categories.forEach((cat) => {
+        if (cat.name === category) {
+          cat.itemCards = data
+        }
+      })
+    }
   }
 
   /**
@@ -76,13 +92,13 @@ export function DashboardMarketPlace() {
    * @return {Promise<Array>} An array of tokens.
    */
   async function getAllTokens() {
-    const number = await get_number_of_tokens();
-    let factTokens = [];
+    const number = await get_number_of_tokens()
+    let factTokens = []
     for (let i = 0; i < number; i += 100) {
-      const tokens = await get_tokens(i, 100);
-      factTokens = [...factTokens, ...tokens];
+      const tokens = await get_tokens(i, 100)
+      factTokens = [...factTokens, ...tokens]
     }
-    return factTokens;
+    return factTokens
   }
 
   /**
@@ -91,25 +107,25 @@ export function DashboardMarketPlace() {
    * @return {Promise<Array>} An array of NFT tokens.
    */
   async function getNFTTokens(symbols) {
-    const arrayNFT = [];
+    const arrayNFT = []
 
     const promises = symbols.map(async (e, i) => {
       let contractId = `${e.symbol.toLowerCase()}.${
         nearConfig.contractFactoryNFT
-      }`;
-      let args = { from_index: "0", limit: 10 };
+      }`
+      let args = { from_index: '0', limit: 10 }
 
       try {
-        let d = await viewMethod({ contractId, method: "nft_tokens", args });
-        arrayNFT.push(d[0]);
+        let d = await viewMethod({ contractId, method: 'nft_tokens', args })
+        arrayNFT.push(d[0])
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
-    });
+    })
 
-    await Promise.all(promises);
+    await Promise.all(promises)
 
-    return arrayNFT;
+    return arrayNFT
   }
 
   /**
@@ -126,22 +142,22 @@ export function DashboardMarketPlace() {
    * await getSaleTokensAll([{ symbol: 'ABC' }, { symbol: 'DEF' }])
    */
   async function getSaleTokensAll(symbols) {
-    const salesMKP = [];
+    const salesMKP = []
 
     const promises = symbols.map(async (e, i) => {
       let contractId = `${e.symbol.toLowerCase()}.${
         nearConfig.contractFactoryNFT
-      }`;
+      }`
 
-      let d = await get_sales_by_nft_contract_id(contractId);
-      console.log(d);
+      let d = await get_sales_by_nft_contract_id(contractId)
+      console.log(d)
       if (d !== [null]) {
-        salesMKP.push(d[0]);
+        salesMKP.push(d[0])
       }
-    });
+    })
 
-    await Promise.all(promises);
-    return salesMKP.filter((e) => e !== undefined);
+    await Promise.all(promises)
+    return salesMKP.filter((e) => e !== undefined)
   }
 
   /**
@@ -185,12 +201,12 @@ export function DashboardMarketPlace() {
       img: e.metadata.media,
       author: e.owner_id,
       id: e.token_id,
-    }));
+    }))
   }
 
   useEffect(() => {
     async function fetchData() {
-      const factTokens = await getAllTokens(); // await get_tokens(0, 100)
+      const factTokens = await getAllTokens() // await get_tokens(0, 100)
 
       /**
        * recorre cada token y de la metadata extrae el symbol y crea un llamado a nft_tokens de ese contrato junto con el nftcontract
@@ -199,7 +215,7 @@ export function DashboardMarketPlace() {
 
       const symbols = factTokens.map((e) => ({
         symbol: e.metadata.symbol,
-      }));
+      }))
 
       // console.log("aquiiiii");
 
@@ -209,51 +225,45 @@ export function DashboardMarketPlace() {
 
       // setSymbols(symbols);
 
-      const sales = await getSaleTokensAll(symbols);
-      console.log("sales");
-      console.log(sales);
+      const sales = await getSaleTokensAll(symbols)
+      console.log('sales')
+      console.log(sales)
 
-      const symbolsSale = sales.map((e) => e.token_id);
+      const symbolsSale = sales.map((e) => e.token_id)
 
-      console.log("symbols sale");
-      console.log(symbolsSale);
+      console.log('symbols sale')
+      console.log(symbolsSale)
 
-      const arrayNFT = await getNFTTokens(symbols);
-      console.log("arraynft");
-      console.log(arrayNFT);
+      const arrayNFT = await getNFTTokens(symbols)
+      console.log('arraynft', arrayNFT)
 
-      const nfts = mapNFTs(arrayNFT.filter((e) => e !== undefined));
-      console.log("nft");
-      console.log(nfts);
+      const nfts = mapNFTs(arrayNFT.filter((e) => e))
 
-      const nftsFilter = nfts.filter((item) => item.author == currentUser);
-      console.log("nft filter");
-      console.log(nftsFilter);
+      const nftsFilter = nfts.filter((item) => item.author === currentUser)
+      console.log('nft filter', nftsFilter)
 
-      const marketplace = nfts.filter((e) => symbolsSale.includes(e.id));
-      console.log("marketplace");
+      const marketplace = nfts.filter((e) => symbolsSale.includes(e.id))
+      console.log('marketplace', marketplace)
 
       const marketplacer = marketplace.map((j) => {
-        console.log(j);
-        let sale = sales.find((e) => e.token_id === j.id);
-        console.log(sale);
-        j.price = sale.sale_conditions;
-        return j;
-      });
+        console.log(j)
+        let sale = sales.find((e) => e.token_id === j.id)
+        console.log(sale)
+        j.price = sale.sale_conditions
+        return j
+      })
+      // todo
+      setCategory('Mis NFTs', nftsFilter)
+      setCategory('Marketplace', marketplacer)
+      setCategories(categories)
+      setProfileCategories(myProfileCategories)
 
-      console.log(marketplace);
-      console.log(marketplacer);
-
-      setCategory("MisRealands", nftsFilter);
-
-      setCategory("Marketplace", marketplacer);
-
-      setCategories(categories);
+      // setCategory('Marketplace', marketplacer)
     }
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext)
 
   /**
    * Searches for a category in the `dataCategories` array whose title matches the
@@ -277,15 +287,16 @@ export function DashboardMarketPlace() {
           <Header></Header>
         </Grid>
         <Grid item xs={2} className="ps-7-5porcent">
-          <Filter data={dataCategories} />
+          <Filter data={dataCategories} title="Menu" />
+          <Filter data={profileCategories} title="Mi Perfil" />
         </Grid>
         <Grid item xs={10} className="pe-7-5porcent">
           <Routes>
-            {dataCategories.map((category) => (
+            {[...dataCategories, ...profileCategories].map((cat) => (
               <>
                 <Route
-                  path={`${category.path.toLowerCase()}`}
-                  element={<Category dataCategory={category} />}
+                  path={`${cat.path.toLowerCase()}`}
+                  element={<Category dataCategory={cat} />}
                 />
                 **
               </>
@@ -295,5 +306,5 @@ export function DashboardMarketPlace() {
         </Grid>
       </Grid>
     </div>
-  );
+  )
 }
