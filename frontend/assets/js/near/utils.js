@@ -389,7 +389,7 @@ export async function callMethod({
 
   const account = await near.account(window.walletConnection.account())
 
-  const outcome = await account.signAndSendTransaction({
+  await account.signAndSendTransaction({
     signerId: window.walletConnection.account(),
     receiverId: contractId,
     actions: [
@@ -404,7 +404,6 @@ export async function callMethod({
       },
     ],
   })
-  console.log(outcome)
 }
 
 export async function nft_approve_all({
