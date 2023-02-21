@@ -1,99 +1,99 @@
-import React from "react";
+import React from 'react'
 
 // import Marketplace from './pages/MarketPlace/IndexMarketplace'
-import Home from "../pages/Landing/IndexLanding";
+import Home from '../pages/Landing/IndexLanding'
 // import NoPage from './pages/NoPage'
-import NftMe from "../components/nft/Me";
-import NftSell from "../components/nft/Sell";
-import About from "../pages/About/IndexAbout";
-import Contact from "../pages/Contact/Contact";
-import Metaverso from "../pages/Metaverse/Metaverse";
-import { DashboardMarketPlace } from "./DashboardMarketPlace";
-import { CardSection } from "../pages/MarketPlace/CardSection";
-import DashboardNotice from "./DashboardNotice";
-import Nuruk from "../pages/Nuruk/IndexNuruk";
-import Conditions from "../pages/Conditions";
-import Realities from "../pages/Realities/IndexRealities";
-import Maps from "../pages/Maps/IndexMaps";
-import ResetPassword from "../pages/ResetPassword/ResetPasswordIndex";
-import ResetPasswordCompleted from "../pages/ResetPassword/ResetPasswordCompleted";
-import Error500 from "../pages/ErrorPage/Error500";
-import PlotNuruk from "../pages/Nuruk/PlotNuruk";
-import { ErrorPagesRoutes } from "./ErrorPages";
-import CallbackNuruk from "../pages/Nuruk/CallbackNuruk";
+import NftMe from '../components/nft/Me'
+import NftSell from '../components/nft/Sell'
+import About from '../pages/About/IndexAbout'
+import Contact from '../pages/Contact/Contact'
+import Metaverso from '../pages/Metaverse/Metaverse'
+import { DashboardMarketPlace } from './DashboardMarketPlace'
+import { CardSection } from '../pages/MarketPlace/CardSection'
+import DashboardNotice from './DashboardNotice'
+import Nuruk from '../pages/Nuruk/IndexNuruk'
+import Conditions from '../pages/Conditions'
+import Realities from '../pages/Realities/IndexRealities'
+import Maps from '../pages/Maps/IndexMaps'
+import ResetPassword from '../pages/ResetPassword/ResetPasswordIndex'
+import ResetPasswordCompleted from '../pages/ResetPassword/ResetPasswordCompleted'
+import Error500 from '../pages/ErrorPage/Error500'
+import PlotNuruk from '../pages/Nuruk/PlotNuruk'
+import { ErrorPagesRoutes } from './ErrorPages'
+import CallbackNuruk from '../pages/Nuruk/CallbackNuruk'
 
 export const routes = [
   {
-    path: "/",
+    path: '/',
     element: <Home />,
   },
   {
-    path: "/patchas",
+    path: '/patchas',
     element: <Maps />,
   },
   {
-    path: "/marketplace/*",
+    path: '/marketplace/*',
     element: <DashboardMarketPlace />,
   },
   {
-    path: "/marketplace/me",
+    path: '/marketplace/me',
     element: <NftMe />,
   },
   {
-    path: "/marketplace/sell",
+    path: '/marketplace/sell',
     element: <NftSell />,
   },
   {
-    path: "/about",
+    path: '/about',
     element: <About />,
   },
   {
-    path: "/contact",
+    path: '/contact',
     element: <Contact />,
   },
   {
-    path: "/nuruk",
+    path: '/nuruk',
     element: <Nuruk />,
   },
   {
-    path: "/nuruk/:posX/:posY",
+    path: '/nuruk/:posX/:posY',
     element: <PlotNuruk />,
   },
   {
-    path: "/callback",
+    path: '/callback',
     element: <CallbackNuruk />,
   },
   {
-    path: "/metaverso",
+    path: '/metaverso',
     element: <Metaverso />,
   },
   {
-    path: "/marketplace/detail/:category/:idCard",
+    path: '/marketplace/detail/:category/:idCard',
     element: <CardSection />,
   },
   {
-    path: "/notices/*",
+    path: '/notices/*',
     element: <DashboardNotice />,
   },
   {
-    path: "/realities",
+    path: '/realities',
     element: <Realities />,
   },
   {
-    path: "/terminos-condiciones",
+    path: '/terminos-condiciones',
     element: <Conditions />,
   },
   {
-    path: "/reset-password",
+    path: '/reset-password',
     element: <ResetPassword />,
   },
   {
-    path: "/reset-password/completed",
+    path: '/reset-password/completed',
     element: <ResetPasswordCompleted />,
   },
   {
-    path: "/server-error",
+    path: '/server-error',
     element: <Error500 />,
   },
   ...ErrorPagesRoutes,
-];
+]

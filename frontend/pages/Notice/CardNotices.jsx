@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { Fade } from "react-slideshow-image";
-import ThemeContext from "../../utils/useContextTheme";
-import "react-slideshow-image/dist/styles.css";
-import PropTypes from "prop-types";
+import React, { useContext } from 'react'
+import { Fade } from 'react-slideshow-image'
+import ThemeContext from '../../utils/useContextTheme'
+import 'react-slideshow-image/dist/styles.css'
+import PropTypes from 'prop-types'
 
 export default function CardNotices({ element, medias }) {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext)
   return (
     <div
       key={`novelties${element._id}`}
@@ -18,7 +18,7 @@ export default function CardNotices({ element, medias }) {
               <img
                 src={eachImg}
                 className="bg-img-size-cover w-100 rounded"
-                style={{ height: "250px" }}
+                style={{ height: '250px' }}
               />
             </div>
           ))}
@@ -26,7 +26,7 @@ export default function CardNotices({ element, medias }) {
       </div>
       <div
         className={`${theme.bg} position-absolute bottom-0 w-100 p-3`}
-        style={{ zIndex: "5000", height: "50%" }}
+        style={{ zIndex: '5000', height: '50%' }}
       >
         <h4 className={`${theme.txt} my-0 py-0`}>{element.title}</h4>
         <p className={`${theme.txt} my-0 py-0 fw-bolder`}>
@@ -35,10 +35,10 @@ export default function CardNotices({ element, medias }) {
         <p className={`${theme.txt} my-0 py-0 fw-bolder`}>{element.date}</p>
       </div>
     </div>
-  );
+  )
 }
 
 CardNotices.propTypes = {
   element: PropTypes.object.isRequired,
   medias: PropTypes.array.isRequired,
-};
+}

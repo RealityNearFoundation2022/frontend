@@ -19,8 +19,6 @@ export function Category({ dataCategory }) {
   } // falta averiguar el search, el value se queda del final o....useEffect?
 
   useEffect(() => {
-    //console.log('datacategory')
-    console.log(':V', dataCategory)
     setCurrentData(dataCategory)
   })
 

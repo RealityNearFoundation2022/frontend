@@ -6,14 +6,14 @@ import ThemeContext from '../../utils/useContextTheme'
 import { getData } from '../../api/methods'
 import '../../assets/css/components/events.css'
 import LoadingModal from '../../components/LoadingModal'
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from 'react-router-dom'
 
 export default function Moments() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(false)
   const api = process.env.REACT_APP_API
-  const navigate = useNavigate();
+  // const navigate = useNavigate()
 
   const [events, setEvents] = useState([])
   const settings = {
@@ -50,10 +50,9 @@ export default function Moments() {
       setIsLoading(true)
       const eventsData = await getData('events')
       setEvents(eventsData)
-    } 
-    catch {
+    } catch {
       // navigate("/server-error");
-    }finally {
+    } finally {
       setIsLoading(false)
     }
   }

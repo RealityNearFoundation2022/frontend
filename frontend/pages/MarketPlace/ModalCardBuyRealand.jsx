@@ -1,17 +1,12 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
 
-import { useTranslation } from 'react-i18next'
 import Box from '@mui/material/Box'
 import Modal from '../../components/Modal'
 
 import * as nearAPI from 'near-api-js'
 
-import {
-  callMethod,
-  nearConfig,
-  nft_approve_all,
-  offer,
-} from '../../assets/js/near/utils'
+import { nearConfig, offer } from '../../assets/js/near/utils'
 
 const initialValues = {
   assetTitle: '',
@@ -21,6 +16,7 @@ const initialValues = {
   assetBid: '',
 }
 
+// eslint-disable-next-line react/prop-types
 export default function ModalCardBuyRealand({ elementCard, textButton }) {
   const {
     utils: {
@@ -32,7 +28,7 @@ export default function ModalCardBuyRealand({ elementCard, textButton }) {
   const [open, setOpen] = React.useState(false)
   const [values, setValues] = useState(initialValues)
 
-  const { t } = useTranslation()
+  // const { t } = useTranslation()
 
   /**
    * Updates the state of a form field in response to a change in the input value.

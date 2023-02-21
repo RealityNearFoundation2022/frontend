@@ -1,36 +1,36 @@
 /* eslint-disable react/prop-types */
-import React, { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Slider from "react-slick";
-import Card from "./Card";
-import ThemeContext from "../../utils/useContextTheme";
-import { filtersMarketplace } from "./Data_Categories/Categories";
-import logo from "../../assets/img/random/logo1.png";
-import { useTranslation } from "react-i18next";
+import React, { useContext, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import Slider from 'react-slick'
+import Card from './Card'
+import ThemeContext from '../../utils/useContextTheme'
+import { filtersMarketplace } from './Data_Categories/Categories'
+import logo from '../../assets/img/random/logo1.png'
+import { useTranslation } from 'react-i18next'
 
 export function CardSection() {
-  const { category } = useParams();
-  const { theme } = useContext(ThemeContext);
-  const { t } = useTranslation();
+  const { category } = useParams()
+  const { theme } = useContext(ThemeContext)
+  const { t } = useTranslation()
 
   const dataCategory = filtersMarketplace?.find(
-    (item) => item.title.toLowerCase() === "novedades"
-  );
+    (item) => item.title.toLowerCase() === 'novedades',
+  )
   const dataCard = dataCategory?.itemCards?.find(
-    ({ id }) => id === Number("11")
-  );
+    ({ id }) => id === Number('11'),
+  )
   const settings = {
-    className: "center",
+    className: 'center',
     infinite: true,
-    centerPadding: "60px",
+    centerPadding: '60px',
     slidesToShow: 4,
     swipeToSlide: true,
     afterChange(index) {
       console.log(
-        `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
-      );
+        `Slider Changed to: ${index + 1}, background: #222; color: #bada55`,
+      )
     },
-  };
+  }
 
   return (
     <section className={`${theme.bg} p-5 m-5`}>
@@ -54,7 +54,7 @@ export function CardSection() {
               type="button"
               className="_btn btn btn-primary disabled w-40"
             >
-              {t("Adquirir")}
+              {t('Adquirir')}
             </button>
           </center>
         </div>
@@ -73,5 +73,5 @@ export function CardSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }

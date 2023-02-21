@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useContext } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react'
 import ThemeContext from '../../utils/useContextTheme'
 import logo from '../../assets/img/random/logo1.png'
 import ModalCardSellRealand from './ModalCardSellRealand'

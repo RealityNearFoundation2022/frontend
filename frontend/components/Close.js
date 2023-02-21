@@ -1,5 +1,3 @@
-import React from "react";
-
 export function CloseIcon() {
   return (
     <svg
@@ -16,5 +14,5 @@ export function CloseIcon() {
       <path d="M18 6L6 18" />
       <path d="M6 6l12 12" />
     </svg>
-  );
+  )
 }

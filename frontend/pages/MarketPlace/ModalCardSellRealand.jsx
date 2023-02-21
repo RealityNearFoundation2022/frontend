@@ -1,16 +1,12 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
 
 import { useTranslation } from 'react-i18next'
-import Box from '@mui/material/Box'
 import Modal from '../../components/Modal'
 
 import * as nearAPI from 'near-api-js'
 
-import {
-  callMethod,
-  nearConfig,
-  nft_approve_all,
-} from '../../assets/js/near/utils'
+import { nearConfig, nft_approve_all } from '../../assets/js/near/utils'
 
 const initialValues = {
   assetTitle: '',
@@ -63,7 +59,6 @@ export default function ModalCardSellRealand({ elementCard, textButton }) {
     let sale_conditions = {
       sale_conditions: values.assetPrice,
     }
-    console.log(token_id)
     await nft_approve_all({
       contractId: `${token_id.toLowerCase()}.${nearConfig.contractFactoryNFT}`,
       args: {
@@ -122,7 +117,9 @@ export default function ModalCardSellRealand({ elementCard, textButton }) {
             </div>
           </div>
 
-          <button className=" rounded _btn-xl btn btn-primary">Vender</button>
+          <button className=" rounded _btn-xl btn btn-primary">
+            {t('Vender')}
+          </button>
         </div>
       </form>
     </Modal>

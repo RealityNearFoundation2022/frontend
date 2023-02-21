@@ -1,7 +1,7 @@
-import React from "react";
-import * as R from "ramda";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import React from 'react'
+import * as R from 'ramda'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 function HexButton({
   className,
@@ -21,7 +21,7 @@ function HexButton({
         {children}
         {text}
       </a>
-    );
+    )
   }
 
   if (target) {
@@ -36,7 +36,7 @@ function HexButton({
       >
         {text}
       </a>
-    );
+    )
   }
   return (
     <Link
@@ -53,7 +53,7 @@ function HexButton({
       {children}
       {text}
     </Link>
-  );
+  )
 }
 HexButton.propTypes = {
   hexRef: PropTypes.object,
@@ -65,5 +65,5 @@ HexButton.propTypes = {
   url: PropTypes.string,
   text: PropTypes.string,
   children: PropTypes.element,
-};
-export default HexButton;
+}
+export default HexButton

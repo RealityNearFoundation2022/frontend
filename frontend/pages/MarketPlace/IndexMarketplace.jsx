@@ -13,6 +13,10 @@ import {
   nft_approve,
   nft_mint,
   offer,
+  get_tokens,
+  viewMethod,
+  nearConfig,
+  get_number_of_tokens,
 } from '../../assets/js/near/utils'
 import { styled } from '@mui/material/styles'
 
@@ -34,8 +38,6 @@ import Filter from './Filter'
 import Section from './Section'
 import ThemeContext from '../../utils/useContextTheme'
 
-import { nft_tokens, get_tokens, viewMethod, nearConfig, get_sales_by_nft_contract_id, get_number_of_tokens } from '../../assets/js/near/utils'
-
 // const Item = styled(Paper)(({ theme }) => ({
 //   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
 //   ...theme.typography.body2,
@@ -56,7 +58,7 @@ import { nft_tokens, get_tokens, viewMethod, nearConfig, get_sales_by_nft_contra
 
 // const walletConnection = window.walletConnection
 
-function Marketplace({symbols}) {
+function Marketplace({ symbols }) {
   const {
     utils: {
       format: { parseNearAmount },
@@ -78,28 +80,27 @@ function Marketplace({symbols}) {
   // const { theme } = useContext(ThemeContext)
 
   async function getSaleTokensAll(symbols) {
-    const salesMKP = [];
-  
-    const promises = symbols.map(async (e, i) => {
-      let contractId = `${e.symbol.toLowerCase()}.${nearConfig.contractFactoryNFT}`;
-  
+    const salesMKP = []
+
+    const promises = symbols.map(async (e) => {
+      let contractId = `${e.symbol.toLowerCase()}.${
+        nearConfig.contractFactoryNFT
+      }`
+
       try {
-        let d = await get_sales_by_nft_contract_id(contractId);
-        salesMKP.push(d[0]);
+        let d = await get_sales_by_nft_contract_id(contractId)
+        salesMKP.push(d[0])
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
-    });
-  
-    await Promise.all(promises);
-    return salesMKP;
+    })
+
+    await Promise.all(promises)
+    return salesMKP
   }
 
   useEffect(() => {
-    console.log('symbols')
-    console.log(symbols)
-    if (symbols != null){
-      // loadSaleItems()
+    if (symbols) {
       getSaleTokensAll(symbols)
     }
   }, [])
@@ -114,13 +115,13 @@ function Marketplace({symbols}) {
 
   // const loadSaleItems = async () => {
   //   const nftTokens = await nft_tokens('0', 64)
-  //   
+  //
   //   console.log(nftTokens)
-// 
+  //
   //   const saleTokens = await get_sales_by_nft_contract_id(config.contractName)
-// 
+  //
   //   const sales = []
-// 
+  //
   //   nftTokens.forEach((nftToken, i) => {
   //     const { token_id } = nftToken
   //     const saleToken = saleTokens.find(({ token_id: t }) => t === token_id)
@@ -128,7 +129,7 @@ function Marketplace({symbols}) {
   //       sales[i] = Object.assign(nftToken, saleToken)
   //     }
   //   })
-// 
+  //
   //   setNftMarketResults(sales)
   //   setShowLoader(true)
   // }

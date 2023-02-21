@@ -109,7 +109,7 @@ export function DashboardMarketPlace() {
   async function getNFTTokens(symbols) {
     const arrayNFT = []
 
-    const promises = symbols.map(async (e, i) => {
+    const promises = symbols.map(async (e) => {
       let contractId = `${e.symbol.toLowerCase()}.${
         nearConfig.contractFactoryNFT
       }`
