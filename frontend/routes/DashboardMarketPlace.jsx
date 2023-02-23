@@ -11,7 +11,7 @@ import {
   get_sales_by_nft_contract_id,
   get_number_of_tokens,
 } from '../assets/js/near/utils'
-// import { CardSection } from '../pages/MarketPlace/CardSection'
+import LoadingModal from '../components/LoadingModal'
 import { Category } from '../pages/MarketPlace/Category'
 // import { filtersMarketplace } from '../pages/MarketPlace/Data_Categories/Categories'
 import Filter from '../pages/MarketPlace/Filter'
@@ -24,13 +24,13 @@ export function DashboardMarketPlace() {
   // const dataCategories = [...filtersMarketplace]
   const [dataCategories, setCategories] = useState([])
   const [profileCategories, setProfileCategories] = useState([])
-
+  const [openSpinner, setOpenSpinner] = useState(false)
   const currentUser = window.accountId || ''
   const myProfileCategories = [
     {
       name: 'Mis NFTs',
-      url: '/marketplace/my-nft',
-      path: 'my-nft',
+      url: '/marketplace/my-nfts',
+      path: 'my-nfts',
       itemCards: [],
     },
     {
@@ -150,7 +150,6 @@ export function DashboardMarketPlace() {
       }`
 
       let d = await get_sales_by_nft_contract_id(contractId)
-      console.log(d)
       if (d !== [null]) {
         salesMKP.push(d[0])
       }
@@ -206,6 +205,7 @@ export function DashboardMarketPlace() {
 
   useEffect(() => {
     async function fetchData() {
+      setOpenSpinner(true)
       const factTokens = await getAllTokens() // await get_tokens(0, 100)
 
       /**
@@ -217,47 +217,28 @@ export function DashboardMarketPlace() {
         symbol: e.metadata.symbol,
       }))
 
-      // console.log("aquiiiii");
-
-      // console.log(factTokens);
-
-      // console.log(symbols);
-
-      // setSymbols(symbols);
-
       const sales = await getSaleTokensAll(symbols)
-      console.log('sales')
-      console.log(sales)
 
       const symbolsSale = sales.map((e) => e.token_id)
-
-      console.log('symbols sale')
-      console.log(symbolsSale)
-
       const arrayNFT = await getNFTTokens(symbols)
-      console.log('arraynft', arrayNFT)
-
       const nfts = mapNFTs(arrayNFT.filter((e) => e))
 
       const nftsFilter = nfts.filter((item) => item.author === currentUser)
-      console.log('nft filter', nftsFilter)
 
       const marketplace = nfts.filter((e) => symbolsSale.includes(e.id))
-      console.log('marketplace', marketplace)
 
       const marketplacer = marketplace.map((j) => {
-        console.log(j)
         let sale = sales.find((e) => e.token_id === j.id)
-        console.log(sale)
         j.price = sale.sale_conditions
         return j
       })
       // todo
+
       setCategory('Mis NFTs', nftsFilter)
       setCategory('Marketplace', marketplacer)
       setCategories(categories)
       setProfileCategories(myProfileCategories)
-
+      setOpenSpinner(false)
       // setCategory('Marketplace', marketplacer)
     }
     fetchData()
@@ -282,14 +263,20 @@ export function DashboardMarketPlace() {
 
   return (
     <div className={`${theme.bg} w-100`}>
+      <LoadingModal
+        handleClose={() => setOpenSpinner(false)}
+        open={openSpinner}
+      />
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Header></Header>
         </Grid>
-        <Grid item xs={2} className="ps-7-5porcent">
-          <Filter data={dataCategories} title="Menu" />
-          <Filter data={profileCategories} title="Mi Perfil" />
-        </Grid>
+        {openSpinner || (
+          <Grid item xs={2} className="ps-7-5porcent">
+            <Filter data={dataCategories} title="MENU" />
+            <Filter data={profileCategories} title="MI PERFIL" />
+          </Grid>
+        )}
         <Grid item xs={10} className="pe-7-5porcent">
           <Routes>
             {[...dataCategories, ...profileCategories].map((cat) => (

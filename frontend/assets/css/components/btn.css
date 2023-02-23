@@ -3,7 +3,7 @@
   background-color: #33cc99;
   border-radius: 30px;
   color: #ffff;
-  height: 50px;
+  height: 45px;
   font-weight: 500;
   min-width: 100px;
   border: 2px solid transparent;
@@ -11,7 +11,9 @@
   font-size: 18px;
   cursor: pointer;
 }
-
+.btn_min-width {
+  min-width: 180px;
+}
 .btn:hover {
   color: #fff;
   border-color: #656566;

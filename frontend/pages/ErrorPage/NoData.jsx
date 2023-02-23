@@ -15,7 +15,6 @@ export default function NoData() {
             <h1 className="h3 mt-3">¡Lo sentimos! No encontramos datos</h1>
             <div className="mt-3">
               <p>Es probable que no contemos con los datos que buscas.</p>
-              <p>¡Intenta ajustar los filtros y buscar otra vez!.</p>
             </div>
           </div>
         </div>

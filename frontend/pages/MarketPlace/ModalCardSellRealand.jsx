@@ -83,7 +83,7 @@ export default function ModalCardSellRealand({ elementCard, textButton }) {
           className="rounded _btn-xl btn btn-primary"
           style={{ shadow: 'none', border: 'none' }}
         >
-          {textButton}
+          {t(textButton)}
         </button>
       }
     >

@@ -12,7 +12,7 @@ export default function Filter({ data, title }) {
   return (
     <div className="w-100 mt-5">
       <ul className="d-flex flex-column gap-2 align-item-start">
-        <h4 className={`fw-normal ${theme.txt}`}> {title}</h4>
+        <h4 className={`fw-normal ${theme.txt}`}> {t(title)}</h4>
         {data.map((d) => (
           <>
             <li>

@@ -56,7 +56,7 @@ export default function Moments() {
       setIsLoading(false)
     }
   }
-  return (
+  return events.length ? (
     <section
       className={`${theme.bg} ${
         window.innerHeight / window.innerWidth < 0.8 && 'h-100vh'
@@ -90,5 +90,7 @@ export default function Moments() {
         </div>
       </div>
     </section>
+  ) : (
+    <></>
   )
 }

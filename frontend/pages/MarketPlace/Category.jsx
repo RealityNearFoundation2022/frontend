@@ -10,9 +10,9 @@ export function Category({ dataCategory }) {
   const { t } = useTranslation()
 
   const searchData = (condition, value) =>
-    currentData.filter((item) =>
-      item[condition].toLowerCase().includes(value.toLowerCase()),
-    )
+    currentData?.itemCards?.filter((item) => {
+      return item[condition].toLowerCase().includes(value.toLowerCase())
+    })
   // Buscador de  cards
   const searchCard = (e) => {
     setCurrentData(searchData('titleItem', e.target.value))
@@ -33,10 +33,10 @@ export function Category({ dataCategory }) {
       />
 
       <h1 className="mt-3 text-primary"> {t(currentData?.name)}</h1>
-      {currentData && currentData.itemCards.length ? (
+      {currentData?.itemCards?.length ? (
         <div className="d-flex flex-sm-wrap gap-3">
           {currentData.itemCards.map((item) => (
-            <div className="w-30" key={item}>
+            <div className="w-25" key={item}>
               <Card elementsCard={item} category={currentData?.name} />
             </div>
           ))}

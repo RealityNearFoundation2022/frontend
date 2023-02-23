@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 
 import Box from '@mui/material/Box'
 import Modal from '../../components/Modal'
+import { useTranslation } from 'react-i18next'
 
 import * as nearAPI from 'near-api-js'
 
@@ -28,7 +29,7 @@ export default function ModalCardBuyRealand({ elementCard, textButton }) {
   const [open, setOpen] = React.useState(false)
   const [values, setValues] = useState(initialValues)
 
-  // const { t } = useTranslation()
+  const { t } = useTranslation()
 
   /**
    * Updates the state of a form field in response to a change in the input value.
@@ -48,7 +49,6 @@ export default function ModalCardBuyRealand({ elementCard, textButton }) {
   }
 
   const OfferPrice = async (token_id) => {
-    console.log(token_id)
     await offer(
       `${token_id}.${nearConfig.contractFactoryNFT}`,
       token_id,
@@ -56,8 +56,6 @@ export default function ModalCardBuyRealand({ elementCard, textButton }) {
       nearConfig.GAS,
     )
   }
-
-  useEffect(() => {}, [])
 
   return (
     <Modal
@@ -67,10 +65,10 @@ export default function ModalCardBuyRealand({ elementCard, textButton }) {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="rounded _btn-xl btn btn-primary"
+          className="rounded _btn-xl btn btn-primary btn_min-width "
           style={{ shadow: 'none', border: 'none' }}
         >
-          {textButton}
+          {t(textButton)}
         </button>
       }
     >
@@ -105,7 +103,7 @@ export default function ModalCardBuyRealand({ elementCard, textButton }) {
               </div>
             </div>
             <button className=" rounded _btn-xl btn btn-primary">
-              Adquirir
+              {t('Adquirir')}
             </button>
           </div>
         </form>
