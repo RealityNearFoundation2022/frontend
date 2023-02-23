@@ -20,7 +20,7 @@ function Footer() {
       title: 'Nosotros',
     },
     {
-      to: '/metaverse',
+      to: '/metaverso',
       title: 'Metaverso',
     },
     {
