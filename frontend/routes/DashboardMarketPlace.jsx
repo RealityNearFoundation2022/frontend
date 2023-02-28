@@ -11,6 +11,7 @@ import {
   get_sales_by_nft_contract_id,
   get_number_of_tokens,
 } from '../assets/js/near/utils'
+import { useNavigate } from 'react-router-dom'
 import LoadingModal from '../components/LoadingModal'
 import { Category } from '../pages/MarketPlace/Category'
 // import { filtersMarketplace } from '../pages/MarketPlace/Data_Categories/Categories'
@@ -26,6 +27,8 @@ export function DashboardMarketPlace() {
   const [profileCategories, setProfileCategories] = useState([])
   const [openSpinner, setOpenSpinner] = useState(false)
   const currentUser = window.accountId || ''
+  const navigate = useNavigate()
+
   const myProfileCategories = [
     {
       name: 'Mis NFTs',
@@ -206,8 +209,9 @@ export function DashboardMarketPlace() {
   useEffect(() => {
     async function fetchData() {
       setOpenSpinner(true)
-      const factTokens = await getAllTokens() // await get_tokens(0, 100)
 
+      const factTokens = await getAllTokens() // await get_tokens(0, 100)
+      console.log('factTokens', factTokens)
       /**
        * recorre cada token y de la metadata extrae el symbol y crea un llamado a nft_tokens de ese contrato junto con el nftcontract
        * y extrae el owner_id
@@ -238,10 +242,16 @@ export function DashboardMarketPlace() {
       setCategory('Marketplace', marketplacer)
       setCategories(categories)
       setProfileCategories(myProfileCategories)
-      setOpenSpinner(false)
       // setCategory('Marketplace', marketplacer)
     }
-    fetchData()
+
+    try {
+      fetchData()
+    } catch (error) {
+      navigate('/server-error')
+    } finally {
+      setOpenSpinner(false)
+    }
   }, [])
 
   const { theme } = useContext(ThemeContext)
