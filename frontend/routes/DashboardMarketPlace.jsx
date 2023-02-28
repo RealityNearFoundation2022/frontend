@@ -209,7 +209,7 @@ export function DashboardMarketPlace() {
   useEffect(() => {
     async function fetchData() {
       setOpenSpinner(true)
-
+      console.log('factTokens holi')
       const factTokens = await getAllTokens() // await get_tokens(0, 100)
       console.log('factTokens', factTokens)
       /**
