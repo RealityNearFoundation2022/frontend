@@ -19,7 +19,7 @@
 @import url('components/list.css');
 @import url('components/form-control.css');
 @import url('components/centreland.css');
-
+@import url('components/footer.css');
 @font-face {
   font-family: 'Inter';
   src: url('./fonts/static/Inter-Regular.ttf') format('ttf'),
