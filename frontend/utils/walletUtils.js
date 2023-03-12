@@ -1,5 +1,9 @@
 import * as nearAPI from "near-api-js";
-import { get_required_deposit, buy, callMethodBatch } from "../assets/js/near/utils";
+import {
+  get_required_deposit,
+  buy,
+  callMethodBatch,
+} from "../assets/js/near/utils";
 
 const {
   utils: {

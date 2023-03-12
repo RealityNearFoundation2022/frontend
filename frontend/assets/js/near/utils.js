@@ -3,10 +3,10 @@ import {
   connect,
   Contract,
   keyStores,
-  KeyPair,
+  // KeyPair,
   WalletConnection,
   providers,
-  utils,
+  // utils,
 } from "near-api-js";
 import getConfig from "./config";
 
@@ -504,14 +504,10 @@ export async function nft_approve_all({
   args = {},
   amount = NO_DEPOSIT,
 }) {
-  const contract = await new Contract(
-    window.account,
-    contractId,
-    {
-      // Change methods can modify the state. But you don't receive the returned value when called.
-      changeMethods: ["nft_approve"],
-    }
-  );
+  const contract = await new Contract(window.account, contractId, {
+    // Change methods can modify the state. But you don't receive the returned value when called.
+    changeMethods: ["nft_approve"],
+  });
 
   contract.nft_approve({
     args: args,
