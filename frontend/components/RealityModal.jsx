@@ -4,8 +4,20 @@ import { useTranslation } from "react-i18next";
 import Modal from "./Modal";
 import nearImport from "../assets/img/random/nearImport.png";
 import realitiesLogo from "../assets/img/random/logo1.png";
+import { buy_ft, buy_ft_2 } from "../utils/walletUtils";
+
+import { get_price_token, login } from "../assets/js/near/utils";
+
+import * as nearAPI from "near-api-js";
+
+const {
+  utils: {
+    format: { formatNearAmount },
+  },
+} = nearAPI;
 
 export default function RealityModal() {
+  const [price, setPrice] = useState(false);
   const [walletValue, setValueWallet] = useState("");
   const [realities, setRealities] = useState("");
   const [closeModal, setClose] = useState(false);
@@ -15,7 +27,15 @@ export default function RealityModal() {
   const [currentBox, setBox] = useState(currentUser ? 3 : -1);
 
   useEffect(() => {
-    console.log(walletValue.length);
+    if (currentUser) {
+      get_price();
+    }
+
+    async function get_price() {
+      let price = await get_price_token();
+      price = (price * 10 ** 10).toLocaleString().replace(/,/g, "");
+      setPrice(formatNearAmount(price));
+    }
   }, [walletValue]);
 
   return (
@@ -43,105 +63,16 @@ export default function RealityModal() {
             alignItems: "center",
           }}
         >
-          <div>Inicia sesón para continuar con la transacción</div>
+          <div>Inicia sesión para continuar con la transacción</div>
           <button
             className="_btn btn btn-primary btn-xl w-75"
             id="submitButton2"
             type="button"
             onClick={() => {
-              setClose(true);
+              login();
             }}
           >
-            OK
-          </button>
-        </Box>
-      )}
-      {currentBox === 0 && (
-        <Box
-          className="rounded"
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <div>Ingresa tu near Wallet</div>
-          <input
-            type="text"
-            placeholder="Ingresa tu Near Walet"
-            value={walletValue}
-            onChange={(e) => setValueWallet(e.target.value)}
-          />
-          <p>{walletValue}</p>
-          <button
-            className="_btn btn btn-primary btn-xl w-75"
-            id="submitButton2"
-            type="button"
-            onClick={() => {
-              console.log(walletValue);
-              setBox(1);
-            }}
-          >
-            ACEPTAR
-          </button>
-        </Box>
-      )}
-      {currentBox === 1 && (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <div>¿Desea enviar los realities a una diferente Near Wallet?</div>
-          <div className="d-flex w-60">
-            <button
-              className="_btn btn btn-primary btn-xl w-40 mx-3"
-              id="submitButtonYes2"
-              type="button"
-              onClick={() => {
-                setBox(2);
-              }}
-            >
-              SI
-            </button>
-            <button
-              className="_btn btn btn-primary btn-xl w-40 mx-3"
-              id="submitButtonNo2"
-              type="button"
-              onClick={() => {
-                setBox(3);
-              }}
-            >
-              NO
-            </button>
-          </div>
-        </Box>
-      )}
-      {currentBox === 2 && (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <div>A ver ahora no correcto</div>
-          <input
-            type="text"
-            placeholder="Ingresa tu Near Walet"
-            onChange={(e) => setValueWallet(e.target.value)}
-          />
-          <button
-            className="_btn btn btn-primary btn-xl w-75"
-            id="submitButton2"
-            type="button"
-            onClick={() => {
-              setBox(3);
-            }}
-          >
-            ACEPTAR
+            Login
           </button>
         </Box>
       )}
@@ -164,18 +95,14 @@ export default function RealityModal() {
             <span>
               <img src={nearImport} alt="" />
             </span>
-            {realities !== "" ? realities : 0}.00
+            {realities !== "" ? realities / price : 0}.00
           </p>
           <button
             className="_btn btn btn-primary btn-xl w-75"
             id="submitButton3"
             type="button"
             onClick={() => {
-              if (realities !== "") {
-                setBox(4);
-              } else {
-                setBox(3);
-              }
+              buy_ft_2((realities / price).toString());
             }}
           >
             ACEPTAR
