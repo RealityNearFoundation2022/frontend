@@ -1,31 +1,36 @@
 /* eslint-disable camelcase */
-import React, { useContext, useState } from 'react'
-import { Outlet, Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
-import MenuIcon from '@mui/icons-material/Menu'
-import Typography from '@mui/material/Typography'
+import React, { useContext, useState, useEffect } from "react";
+import { Outlet, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import MenuIcon from "@mui/icons-material/Menu";
+import Typography from "@mui/material/Typography";
 
-import {
-  login,
-  logout,
-  // nft_tokens_for_owner,
-} from '../assets/js/near/utils'
-import logo from '../assets/img/logo.png'
-import buttonTheme from '../assets/img/random/botonTema.png'
-import ThemeContext from '../utils/useContextTheme'
-import TranslationModal from '../components/TranslationModal'
+import { ft_balance_of } from "../assets/js/near/utils";
+
+import logo from "../assets/img/logo.png";
+import buttonTheme from "../assets/img/random/botonTema.png";
+import ThemeContext from "../utils/useContextTheme";
+import TranslationModal from "../components/TranslationModal";
+import * as nearAPI from "near-api-js";
+
+const {
+  utils: {
+    format: { formatNearAmount },
+  },
+} = nearAPI;
 
 function Layout() {
-  const { t } = useTranslation()
-  const [navHidden, setNavHidden] = useState(false)
-  const { theme, handleChangeTheme } = useContext(ThemeContext)
+  const { t } = useTranslation();
+  const [navHidden, setNavHidden] = useState(false);
+  const { theme, handleChangeTheme } = useContext(ThemeContext);
+  const [balance, setBalance] = useState(false);
 
   const currentUser = window.accountId || ''
   const links = [
-    {
-      label: 'Marketplace',
-      link: '/marketplace',
-    },
+    // {
+    //   label: "Marketplace",
+    //   link: "/marketplace",
+    // },
     {
       label: 'Nosotros',
       link: '/about',
@@ -53,7 +58,29 @@ function Layout() {
     setNavHidden(isNavHidden)
   }
 
-  window.addEventListener('scroll', changeVisibilityNav)
+  function login() {
+    window.wallet.signIn();
+  }
+
+  function logout() {
+    window.wallet.signOut();
+  }
+
+  window.addEventListener("scroll", changeVisibilityNav);
+
+  useEffect(() => {
+    if (currentUser != "") {
+      get_balance();
+    }
+
+    async function get_balance() {
+      console.log(currentUser);
+      let balance = await ft_balance_of(currentUser);
+      balance = (balance * 10 ** 16).toLocaleString().replace(/,/g, "");
+      console.log(balance);
+      setBalance(formatNearAmount(balance));
+    }
+  }, []);
 
   return (
     <nav
@@ -82,6 +109,11 @@ function Layout() {
           ))}
         </ul>
       </div>
+      <label className="text-white">
+        {currentUser ? "Balance" : ""}
+        <br />
+        {currentUser ? balance : ""}
+      </label>
       <button
         type="button"
         className="btn-primary rounded p-2 w-10 mr-2"
