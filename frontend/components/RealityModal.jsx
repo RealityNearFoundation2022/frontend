@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from "react";
-import Box from "@mui/material/Box";
-import { useTranslation } from "react-i18next";
-import Modal from "./Modal";
-import nearImport from "../assets/img/random/nearImport.png";
-import realitiesLogo from "../assets/img/random/logo1.png";
-import { buy_ft_2 } from "../utils/walletUtils";
+import React, { useState, useEffect } from 'react'
+import Box from '@mui/material/Box'
+import { useTranslation } from 'react-i18next'
+import Modal from './Modal'
+import nearImport from '../assets/img/random/nearImport.png'
+import realitiesLogo from '../assets/img/random/logo1.png'
+import { buy_ft_2 } from '../utils/walletUtils'
 
-import { get_price_token, login } from "../assets/js/near/utils";
+import { login } from '../assets/js/near/utils'
 
-import * as nearAPI from "near-api-js";
+// import * as nearAPI from 'near-api-js'
 
-const {
-  utils: {
-    format: { formatNearAmount },
-  },
-} = nearAPI;
+// const {
+//   utils: {
+//     format: { formatNearAmount },
+//   },
+// } = nearAPI
 
 export default function RealityModal() {
-  const [price, setPrice] = useState(false);
-  const [walletValue, setValueWallet] = useState("");
-  const [realities, setRealities] = useState("");
-  const [closeModal, setClose] = useState(false);
+  const [price, setPrice] = useState(false)
+  const [walletValue, setValueWallet] = useState('')
+  const [realities, setRealities] = useState('')
+  const [closeModal, setClose] = useState(false)
   // const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
   const currentUser = window.accountId || ''
@@ -28,15 +28,25 @@ export default function RealityModal() {
 
   useEffect(() => {
     if (currentUser) {
-      get_price();
+      getPriceToken()
     }
 
-    async function get_price() {
-      let price = await get_price_token();
-      price = (price * 10 ** 10).toLocaleString().replace(/,/g, "");
-      setPrice(formatNearAmount(price));
+    // async function get_price() {
+    //   let price = await get_price_token()
+    //   price = (price * 10 ** 10).toLocaleString().replace(/,/g, '')
+    //   setPrice(formatNearAmount(price))
+    // }
+
+    async function getPriceToken() {
+      let price = await window.wallet.viewMethod({
+        contractId: 'dev-1675634479426-76608507847363',
+        method: 'token_price',
+        args: {},
+      })
+      console.log(price)
+      setPrice(window.wallet.parseAmount(price, 10, 10))
     }
-  }, [walletValue]);
+  }, [walletValue])
 
   return (
     <Modal
@@ -69,7 +79,7 @@ export default function RealityModal() {
             id="submitButton2"
             type="button"
             onClick={() => {
-              login();
+              login()
             }}
           >
             Login
@@ -95,14 +105,14 @@ export default function RealityModal() {
             <span>
               <img src={nearImport} alt="" />
             </span>
-            {realities !== "" ? realities / price : 0}.00
+            {realities !== '' ? realities / price : 0}.00
           </p>
           <button
             className="_btn btn btn-primary btn-xl w-75"
             id="submitButton3"
             type="button"
             onClick={() => {
-              buy_ft_2((realities / price).toString());
+              buy_ft_2((realities / price).toString())
             }}
           >
             ACEPTAR

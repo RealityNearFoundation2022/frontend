@@ -1,29 +1,20 @@
 /* eslint-disable camelcase */
-import React, { useContext, useState, useEffect } from "react";
-import { Outlet, Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import MenuIcon from "@mui/icons-material/Menu";
-import Typography from "@mui/material/Typography";
+import React, { useContext, useState, useEffect } from 'react'
+import { Outlet, Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import MenuIcon from '@mui/icons-material/Menu'
+import Typography from '@mui/material/Typography'
 
-import { ft_balance_of } from "../assets/js/near/utils";
-
-import logo from "../assets/img/logo.png";
-import buttonTheme from "../assets/img/random/botonTema.png";
-import ThemeContext from "../utils/useContextTheme";
-import TranslationModal from "../components/TranslationModal";
-import * as nearAPI from "near-api-js";
-
-const {
-  utils: {
-    format: { formatNearAmount },
-  },
-} = nearAPI;
+import logo from '../assets/img/logo.png'
+import buttonTheme from '../assets/img/random/botonTema.png'
+import ThemeContext from '../utils/useContextTheme'
+import TranslationModal from '../components/TranslationModal'
 
 function Layout() {
-  const { t } = useTranslation();
-  const [navHidden, setNavHidden] = useState(false);
-  const { theme, handleChangeTheme } = useContext(ThemeContext);
-  const [balance, setBalance] = useState(false);
+  const { t } = useTranslation()
+  const [navHidden, setNavHidden] = useState(false)
+  const { theme, handleChangeTheme } = useContext(ThemeContext)
+  const [balance, setBalance] = useState(false)
 
   const currentUser = window.accountId || ''
   const links = [
@@ -59,28 +50,38 @@ function Layout() {
   }
 
   function login() {
-    window.wallet.signIn();
+    window.wallet.signIn()
   }
 
   function logout() {
-    window.wallet.signOut();
+    window.wallet.signOut()
   }
 
-  window.addEventListener("scroll", changeVisibilityNav);
+  window.addEventListener('scroll', changeVisibilityNav)
 
   useEffect(() => {
-    if (currentUser != "") {
-      get_balance();
+    if (currentUser != '') {
+      getTokenBalance()
     }
 
-    async function get_balance() {
-      console.log(currentUser);
-      let balance = await ft_balance_of(currentUser);
-      balance = (balance * 10 ** 16).toLocaleString().replace(/,/g, "");
-      console.log(balance);
-      setBalance(formatNearAmount(balance));
+    // async function get_balance() {
+    //   console.log(currentUser)
+    //   let balance = await ft_balance_of(currentUser)
+    //   balance = (balance * 10 ** 16).toLocaleString().replace(/,/g, '')
+    //   console.log(balance)
+    //   setBalance(formatNearAmount(balance))
+    // }
+
+    async function getTokenBalance() {
+      let balance = await window.wallet.viewMethod({
+        contractId: 'token.guxal.testnet',
+        method: 'ft_balance_of',
+        args: { account_id: window.accountId },
+      })
+      let amount = window.wallet.parseAmount(balance)
+      setBalance(amount)
     }
-  }, []);
+  }, [])
 
   return (
     <nav
@@ -110,9 +111,9 @@ function Layout() {
         </ul>
       </div>
       <label className="text-white">
-        {currentUser ? "Balance" : ""}
+        {currentUser ? 'Balance' : ''}
         <br />
-        {currentUser ? balance : ""}
+        {currentUser ? balance : ''}
       </label>
       <button
         type="button"
