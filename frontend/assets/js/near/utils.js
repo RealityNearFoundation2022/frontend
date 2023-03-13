@@ -4,6 +4,7 @@ import {
   Contract,
   keyStores,
   // KeyPair,
+  // KeyPair,
   WalletConnection,
   providers,
   // utils,
@@ -29,8 +30,16 @@ export async function initContract(accountId) {
   //
   //await keyStore.setKey("testnet", "temporal.testnet", keyPair);
 
+  //const keyStore = new keyStores.InMemoryKeyStore();
+  //const keyPair = KeyPair.fromString(
+  //  "ed25519:fZJL3T95h9JFgMBdHrwFtga7AQ9nV1xTuatkzKa4qsaQdBr7SR5mJxvwVzW1jqTLvaWqAvBK2YHrji4YBMe3JEY"
+  //);
+  //
+  //await keyStore.setKey("testnet", "temporal.testnet", keyPair);
+
   const near = await connect({
     deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() },
+    // deps: { keyStore: keyStore },
     // deps: { keyStore: keyStore },
     ...nearConfig,
   })
@@ -47,6 +56,7 @@ export async function initContract(accountId) {
   // window.utils = utils;
 
   // Getting the Account ID. If still unauthorized, it's just empty string
+  //window.accountId = window.walletConnection.getAccountId();
   //window.accountId = window.walletConnection.getAccountId();
 
   // Initializing our contract APIs by contract name and configuration
@@ -343,8 +353,10 @@ export async function create_token(args, token_metadata, gas, deposit) {
   //   args: {
   //     args:args,
   //     token_metadata: token_metadata,
+  //     token_metadata: token_metadata,
   //   },
   //   gas,
+  //   deposit,
   //   deposit,
   // })
   await window.factorynft.create_token({
@@ -423,6 +435,7 @@ export async function viewMethod({ contractId, method, args = {} }) {
 }
 
 // no funciona no matching key pair found in InMemorySigner
+// no funciona no matching key pair found in InMemorySigner
 // Call a method that changes the contract's state
 export async function callMethod({
   contractId,
@@ -439,7 +452,7 @@ export async function callMethod({
 
   const account = await near.account(window.account)
 
-  const outcome = await account.signAndSendTransaction({
+  await account.signAndSendTransaction({
     signerId: window.account,
     receiverId: contractId,
     actions: [
@@ -503,10 +516,14 @@ export async function nft_approve_all({
   args = {},
   amount = NO_DEPOSIT,
 }) {
-  const contract = await new Contract(window.account, contractId, {
-    // Change methods can modify the state. But you don't receive the returned value when called.
-    changeMethods: ['nft_approve'],
-  })
+  const contract = await new Contract(
+    window.walletConnection.account(),
+    contractId,
+    {
+      // Change methods can modify the state. But you don't receive the returned value when called.
+      changeMethods: ['nft_approve'],
+    },
+  )
 
   contract.nft_approve({
     args: args,

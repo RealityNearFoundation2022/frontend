@@ -5,19 +5,10 @@ import { useTranslation } from 'react-i18next'
 import MenuIcon from '@mui/icons-material/Menu'
 import Typography from '@mui/material/Typography'
 
-import { ft_balance_of } from '../assets/js/near/utils'
-
 import logo from '../assets/img/logo.png'
 import buttonTheme from '../assets/img/random/botonTema.png'
 import ThemeContext from '../utils/useContextTheme'
 import TranslationModal from '../components/TranslationModal'
-import * as nearAPI from 'near-api-js'
-
-const {
-  utils: {
-    format: { formatNearAmount },
-  },
-} = nearAPI
 
 function Layout() {
   const { t } = useTranslation()
