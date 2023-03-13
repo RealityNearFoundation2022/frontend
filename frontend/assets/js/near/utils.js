@@ -7,8 +7,8 @@ import {
   WalletConnection,
   providers,
   // utils,
-} from "near-api-js";
-import getConfig from "./config";
+} from 'near-api-js'
+import getConfig from './config'
 
 export const nearConfig = getConfig(process.env.NODE_ENV || 'development')
 
@@ -39,11 +39,11 @@ export async function initContract(accountId) {
   // is hosted at https://wallet.testnet.near.org
   window.walletConnection = new WalletConnection(near)
 
-  let account = await near.account(accountId);
+  let account = await near.account(accountId)
 
-  console.log(account);
+  console.log(account)
 
-  console.log(window.walletConnection.account());
+  console.log(window.walletConnection.account())
   // window.utils = utils;
 
   // Getting the Account ID. If still unauthorized, it's just empty string
@@ -97,18 +97,18 @@ export async function initContract(accountId) {
         'get_number_of_tokens',
         'get_required_deposit',
       ],
-      changeMethods: ["create_token", "storage_deposit"],
-    }
-  );
+      changeMethods: ['create_token', 'storage_deposit'],
+    },
+  )
 
   window.ftpresale = await new Contract(
     window.walletConnection.account(),
     nearConfig.contractPresaleFT,
     {
-      viewMethods: ["token_price"],
-      changeMethods: ["buy", "storage_deposit"],
-    }
-  );
+      viewMethods: ['token_price'],
+      changeMethods: ['buy', 'storage_deposit'],
+    },
+  )
 }
 
 export function logout() {
@@ -122,7 +122,7 @@ export function login() {
   // user's behalf.
   // This works by creating a new access key for the user's account and storing
   // the private key in localStorage.
-  window.walletConnection.requestSignIn(nearConfig.contractName); // nft3.guxal.testnet
+  window.walletConnection.requestSignIn(nearConfig.contractName) // nft3.guxal.testnet
 }
 
 export async function set_greeting(message) {
@@ -354,7 +354,7 @@ export async function create_token(args, token_metadata, gas, deposit) {
     },
     gas,
     amount: deposit,
-  });
+  })
   // await window.wallet.callMethod({
   //   contractId: nearConfig.contractFactoryNFT,
   //   method: "create_token",
@@ -382,14 +382,14 @@ export async function get_by_position(position) {
 // PRESALE
 
 export async function get_price_token() {
-  return await window.ftpresale.token_price();
+  return await window.ftpresale.token_price()
 }
 
 export async function buy(amount) {
   await window.ftpresale.buy({
     args: {},
     amount: amount,
-  });
+  })
 }
 
 //
@@ -437,7 +437,7 @@ export async function callMethod({
     ...nearConfig,
   })
 
-  const account = await near.account(window.account);
+  const account = await near.account(window.account)
 
   const outcome = await account.signAndSendTransaction({
     signerId: window.account,
@@ -461,7 +461,7 @@ export async function callMethodBatch(
   contractId,
   args = {},
   gas = THIRTY_TGAS,
-  deposit = NO_DEPOSIT
+  deposit = NO_DEPOSIT,
 ) {
   // Sign a transaction with the "FunctionCall" action
   // const near = await connect({
@@ -469,33 +469,33 @@ export async function callMethodBatch(
   //   ...nearConfig,
   // });
 
-  const account = window.account; // await near.account(window.account);
+  const account = window.account // await near.account(window.account);
 
   const outcome = await account.signAndSendTransaction({
     signerId: window.account,
     receiverId: contractId,
     actions: [
       {
-        type: "FunctionCall",
+        type: 'FunctionCall',
         params: {
-          methodName: "storage_deposit",
+          methodName: 'storage_deposit',
           args: Buffer.from(JSON.stringify(args)),
           gas: gas,
           deposit: 1,
         },
       },
       {
-        type: "FunctionCall",
+        type: 'FunctionCall',
         params: {
-          methodName: "buy",
+          methodName: 'buy',
           args: Buffer.from(JSON.stringify(args)),
           gas,
           deposit,
         },
       },
     ],
-  });
-  console.log(outcome);
+  })
+  console.log(outcome)
 }
 
 export async function nft_approve_all({
@@ -505,8 +505,8 @@ export async function nft_approve_all({
 }) {
   const contract = await new Contract(window.account, contractId, {
     // Change methods can modify the state. But you don't receive the returned value when called.
-    changeMethods: ["nft_approve"],
-  });
+    changeMethods: ['nft_approve'],
+  })
 
   contract.nft_approve({
     args: args,
