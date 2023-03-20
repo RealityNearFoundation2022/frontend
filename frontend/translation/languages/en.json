@@ -11,13 +11,16 @@
     "Inicio": "Home",
     "Todos": "All",
     "TEMA": "THEME",
+    "Iniciar sesión": "Log In",
+    "Inicia sesión para continuar con la transacción": "Log in to continue the transaction",
     "Ver más": "See more",
     "Eventos": "Events",
+    "Resumen de la transacción": "Transaction summary",
     "Bienvenido a": "Welcome to",
     "Bienvenido a Reality Near": "Welcome to Reality Near",
     "Novedades relacionadas": "Related News",
     "MI PERFIL": "MY PROFILE",
-    "Mis NFTs": "My NFTs",
+    "My NFTs": "My NFTs",
     "Mis tierras": "My Lands",
     "Vender": "Sell",
     "Comprar": "Buy",
@@ -79,6 +82,9 @@
     "Políticas de Cookies": "Cookie Policies",
     "Términos y Condiciones": "Terms and Conditions",
     "Ofertas": "Offers",
-    "Otros": "Others"
+    "Otros": "Others",
+    "¿Cuántos Realities desea?": "How many realities do you want?",
+    "Ingresa tu near Wallet": "Enter your near Wallet",
+    "ACEPTAR": "OK"
   }
 }

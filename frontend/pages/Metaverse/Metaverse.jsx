@@ -67,9 +67,9 @@ function Metaverso() {
             id="metaverseResponsive"
           >
             <div className="w-50" id="metaverseResponsiveTxt">
-              <h2 className="text-primary mb-4">
+              <h1 className="text-primary mb-4">
                 {t('NURUK: CIUDAD DE REALIDADES')}
-              </h2>
+              </h1>
               <p className={`${theme.txt}`}>
                 {t(
                   'Nuruk es la principal y primera ciudad del multimetaverso 3D en Reality Near. El nombre se basa en la unión de dos palabras: new (nuevo en inglés) y uruk (la primera ciudad sobre la faz de la Tierra).',
@@ -146,7 +146,7 @@ function Metaverso() {
               />
             </div>
             <div className="w-50 px-2" id="metaverseResponsiveTxt">
-              <h2 className="text-primary">REALITY APP</h2>
+              <h1 className="text-primary">REALITY APP</h1>
               <p className={`${theme.txt}`}>
                 {t(
                   'Reality Near App ofrece una nueva experiencia fusionando tecnología y realidad. Esta te permitirá ser parte de eventos, ver publicidad, completar misiones, ver avatares y muchas cosas más en la vida real usando sólo la cámara de tu teléfono. Dicho contenido te permitirá interactuar con la vida real a través de tu dispositivo móvil, generando una experiencia totalmente inmersiva y valiosa.',

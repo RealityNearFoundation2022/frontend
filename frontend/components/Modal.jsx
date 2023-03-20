@@ -22,11 +22,12 @@ export default function BasicModal({
   setBox,
   setValueWallet,
   setRealities,
+  currentBox
 }) {
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => {
-    if (setBox && setValueWallet && setRealities) {
+    if (setBox && setValueWallet && setRealities && currentBox !== -1) {
       setBox(0)
       setValueWallet('')
       setRealities('')

@@ -25,7 +25,7 @@ export function DashboardMarketPlace() {
   // const dataCategories = [...filtersMarketplace]
   const [dataCategories, setCategories] = useState([])
   const [profileCategories, setProfileCategories] = useState([])
-  const [openSpinner, setOpenSpinner] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const currentUser = window.accountId || ''
   const navigate = useNavigate()
 
@@ -208,8 +208,10 @@ export function DashboardMarketPlace() {
 
   useEffect(() => {
     async function fetchData() {
-      setOpenSpinner(true)
+      setIsLoading(true)
       console.log('factTokens holi')
+      setCategories(categories)
+      setProfileCategories(myProfileCategories)
       const factTokens = await getAllTokens() // await get_tokens(0, 100)
       console.log('factTokens', factTokens)
       /**
@@ -240,17 +242,13 @@ export function DashboardMarketPlace() {
 
       setCategory('Mis NFTs', nftsFilter)
       setCategory('Marketplace', marketplacer)
-      setCategories(categories)
-      setProfileCategories(myProfileCategories)
-      // setCategory('Marketplace', marketplacer)
+      setIsLoading(false)
     }
 
     try {
       fetchData()
     } catch (error) {
       navigate('/server-error')
-    } finally {
-      setOpenSpinner(false)
     }
   }, [])
 
@@ -273,33 +271,41 @@ export function DashboardMarketPlace() {
 
   return (
     <div className={`${theme.bg} w-100`}>
-      <LoadingModal
-        handleClose={() => setOpenSpinner(false)}
-        open={openSpinner}
-      />
+      <LoadingModal handleClose={() => setIsLoading(false)} open={isLoading} />
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Header></Header>
         </Grid>
-        {openSpinner || (
-          <Grid item xs={2} className="ps-7-5porcent">
-            <Filter data={dataCategories} title="MENU" />
-            <Filter data={profileCategories} title="MI PERFIL" />
-          </Grid>
-        )}
+
+        <Grid item xs={2} className="ps-7-5porcent">
+          <Filter
+            data={dataCategories}
+            title={`${dataCategories.length ? 'MENU' : ''}`}
+          />
+
+          {myProfileCategories.length > 0 ? (
+            <Filter
+              data={profileCategories}
+              title={`${profileCategories.length ? 'MI PERFIL' : ''}`}
+            />
+          ) : (
+            <div></div>
+          )}
+        </Grid>
         <Grid item xs={10} className="pe-7-5porcent">
-          <Routes>
-            {[...dataCategories, ...profileCategories].map((cat) => (
-              <>
-                <Route
-                  path={`${cat.path.toLowerCase()}`}
-                  element={<Category dataCategory={cat} />}
-                />
-                **
-              </>
-            ))}
-            {/* <Route path="/" element={<Marketplace symbols={dataSymbols}/>} /> */}
-          </Routes>
+          {isLoading || (
+            <Routes>
+              {[...dataCategories, ...profileCategories].map((cat) => (
+                <>
+                  <Route
+                    path={`${cat.path.toLowerCase()}`}
+                    element={<Category dataCategory={cat} />}
+                  />
+                </>
+              ))}
+              {/* <Route path="/" element={<Marketplace symbols={dataSymbols}/>} /> */}
+            </Routes>
+          )}
         </Grid>
       </Grid>
     </div>

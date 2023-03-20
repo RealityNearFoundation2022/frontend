@@ -114,11 +114,11 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
             )}
           </div>
           <div className="col col-md-5 p-2">
-            <h2 className="h4" id="child-modal-title">
+            <h1 className="h4" id="child-modal-title">
               Realand
               {idX}
               {idY}
-            </h2>
+            </h1>
 
             {price != 0 && (
               <p id="child-modal-description" className="h5 text-grey">
