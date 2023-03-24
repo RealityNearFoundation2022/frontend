@@ -56,6 +56,8 @@ export default function Moments() {
       setIsLoading(false)
     }
   }
+  const imgBack =
+    'https://media.istockphoto.com/id/1154735310/es/foto/fondo-de-hormig%C3%B3n-gris-piedra-con-textura-pulida.jpg?s=1024x1024&w=is&k=20&c=02tASVwHDSWmtUchrcCO7Mk5jGiyuaMuejMU0Wls89s='
   return events.length ? (
     <section
       className={`${theme.bg} ${
@@ -74,13 +76,12 @@ export default function Moments() {
           <Slider {...settings} className="w-90 ps-5porcent">
             {events.map(({ title, media }) => (
               <div className="events-img" key={title}>
-                {media && (
-                  <img
-                    src={`${api}${media[0]?.path}`}
-                    alt=""
-                    className="events-img mx-2 w-95 events-img"
-                  />
-                )}
+                <img
+                  src={media?.length ? `${api}${media[0]?.path}` : imgBack}
+                  alt=""
+                  className="events-img mx-2 w-95 events-img"
+                />
+
                 <center>
                   <p className="fw-bold fs-5 mt-2 text-white">{title}</p>
                 </center>

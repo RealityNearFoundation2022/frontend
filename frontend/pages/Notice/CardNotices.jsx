@@ -6,29 +6,25 @@ import PropTypes from 'prop-types'
 
 export default function CardNotices({ element, medias }) {
   const { theme } = useContext(ThemeContext)
+  const imgBack =
+    'https://media.istockphoto.com/id/1154735310/es/foto/fondo-de-hormig%C3%B3n-gris-piedra-con-textura-pulida.jpg?s=1024x1024&w=is&k=20&c=02tASVwHDSWmtUchrcCO7Mk5jGiyuaMuejMU0Wls89s='
   return (
     <div
       key={`novelties${element._id}`}
       className="slide-container position-relative rounded"
     >
       <div className="rounded">
-        <Fade>
-          {medias.map((eachImg) => (
-            <div className="each-fade h-100 w-100" key={eachImg}>
-              <img
-                src={eachImg}
-                className="bg-img-size-cover w-100 rounded"
-                style={{ height: '250px' }}
-              />
-            </div>
-          ))}
-        </Fade>
+        <img
+          src={medias?.length ? medias[0] : imgBack}
+          className="bg-img-size-cover w-100 rounded"
+          style={{ height: '250px' }}
+        />
       </div>
       <div
-        className={`${theme.bg} position-absolute bottom-0 w-100 p-3`}
-        style={{ zIndex: '5000', height: '50%' }}
+        className={`${theme.bg} position-absolute bottom-0 w-100 p-3 opacity-9`}
+        style={{ zIndex: '5000', height: '40%' }}
       >
-        <h4 className={`${theme.txt} my-0 py-0`}>{element.title}</h4>
+        <h6 className={`${theme.txt} my-0 py-0 fw-bolder`}>{element.title}</h6>
         <p className={`${theme.txt} my-0 py-0 fw-bolder`}>
           {element.description}
         </p>

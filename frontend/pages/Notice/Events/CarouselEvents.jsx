@@ -19,8 +19,8 @@ export default function CarouselEvents() {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: 3,
+    slidesToScroll: 3,
     initialSlide: 0,
     responsive: [
       {
@@ -33,7 +33,7 @@ export default function CarouselEvents() {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 800,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -59,6 +59,7 @@ export default function CarouselEvents() {
       setIsLoading(true)
       const data = await getData('events')
       setCarousel(data)
+      console.log('data', data)
     } catch (error) {
       navigate('/server-error')
     } finally {

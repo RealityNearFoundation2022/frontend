@@ -4,30 +4,45 @@ import { useTranslation } from 'react-i18next'
 import Modal from './Modal'
 import nearImport from '../assets/img/random/nearImport.png'
 import realitiesLogo from '../assets/img/random/logo1.png'
-import {
-  login,
-  // nft_tokens_for_owner,
-} from '../assets/js/near/utils'
+import { buy_ft_2 } from '../utils/walletUtils'
 
 export default function RealityModal() {
+  const [price, setPrice] = useState(false)
   const [walletValue, setValueWallet] = useState('')
   const [realities, setRealities] = useState('')
   const [closeModal, setClose] = useState(false)
-  // const { theme } = useContext(ThemeContext)
+  const [errorLabel, setErrorLabel] = useState(true)
   const { t } = useTranslation()
   const currentUser = window.accountId || ''
-  const [currentBox, setBox] = useState(currentUser ? 1 : -1)
+  const [currentBox, setBox] = useState(currentUser ? 0 : -1)
 
   useEffect(() => {
-    console.log(walletValue.length)
-  }, [walletValue])
+    if (currentUser) {
+      getPriceToken()
+    }
 
+    async function getPriceToken() {
+      let price = await window.wallet.viewMethod({
+        contractId: 'dev-1675634479426-76608507847363',
+        method: 'token_price',
+        args: {},
+      })
+      setPrice(window.wallet.parseAmount(price, 10, 10))
+    }
+  }, [walletValue])
+  function login() {
+    window.wallet.signIn()
+  }
+  function validate(z) {
+    setErrorLabel(/\D/.test(z) || !z)
+    return /\D/.test(z) || !z
+  }
   return (
     <Modal
       close={closeModal}
       button={
         <button
-          className="_btn btn btn-primary btn-xl w-75 text-uppercase"
+          className="_btn btn btn-primary btn-xl w-50 text-uppercase"
           id="submitButton"
           type="button"
         >
@@ -91,8 +106,8 @@ export default function RealityModal() {
             {t('ACEPTAR')}
           </button>
         </Box>
-      )} */}
-      {(currentBox === 1 || currentBox === 0) && (
+          )} */}
+      {/* {false && (
         <Box
           sx={{
             display: 'flex',
@@ -125,7 +140,7 @@ export default function RealityModal() {
           </div>
         </Box>
       )}
-      {currentBox === 2 && (
+      {currentBox ===  && (
         <Box
           sx={{
             display: 'flex',
@@ -151,8 +166,8 @@ export default function RealityModal() {
             ACEPTAR
           </button>
         </Box>
-      )}
-      {currentBox === 3 && (
+      )} */}
+      {currentBox === 0 && (
         <Box
           sx={{
             display: 'flex',
@@ -165,9 +180,16 @@ export default function RealityModal() {
             type="text"
             className="form-control"
             placeholder="Realities"
-            value={realities}
-            onChange={(e) => setRealities(e.target.value)}
+            onChange={(e) => {
+              const isValidate = !validate(e.target.value)
+              if (isValidate) setRealities(e.target.value)
+            }}
           />
+          {errorLabel ? (
+            <p className="error-label"> Solo se permite números</p>
+          ) : (
+            <></>
+          )}
           <div className="d-flex">
             <span>
               <img src={nearImport} alt="" />
@@ -178,19 +200,16 @@ export default function RealityModal() {
             className="_btn btn btn-primary btn-xl w-75"
             id="submitButton3"
             type="button"
+            disabled={errorLabel}
             onClick={() => {
-              if (realities) {
-                setBox(4)
-              } else {
-                setBox(3)
-              }
+              setBox(1)
             }}
           >
             ACEPTAR
           </button>
         </Box>
       )}
-      {currentBox === 4 && (
+      {currentBox === 1 && (
         <Box
           sx={{
             display: 'flex',
@@ -213,6 +232,7 @@ export default function RealityModal() {
               id="submitButton3"
               type="button"
               onClick={() => {
+                buy_ft_2((realities / price).toString())
                 setClose(true)
                 setRealities(0)
               }}
@@ -225,7 +245,7 @@ export default function RealityModal() {
               type="button"
               onClick={() => {
                 setRealities(0)
-                setBox(3)
+                setBox(0)
               }}
             >
               VOLVER

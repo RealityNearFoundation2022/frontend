@@ -28,10 +28,10 @@ export default function TranslationModal() {
     <Modal
       close={closeModal}
       button={
-        <IconButton className="d-flex flex-column w-100">
-          <LanguageIcon style={{ color: '#33cc99', fontSize: '30px' }} />
+        <IconButton className="d-flex flex-column w-100  m-2">
+          <LanguageIcon style={{ color: '#33cc99', fontSize: '22.5px' }} />
 
-          <Typography style={{ color: '#33cc99', fontSize: '15px' }}>
+          <Typography style={{ color: '#33cc99', fontSize: '12px' }}>
             {language.name}
           </Typography>
         </IconButton>

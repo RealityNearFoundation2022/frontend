@@ -1,7 +1,8 @@
 const CONTRACT_NAME = process.env.CONTRACT_NAME || 'nft3.guxal.testnet'
 const MARKET_CONTRACT = process.env.MARKET_CONTRACT || 'mkp.guxal.testnet'
 const TOKEN_CONTRACT = process.env.TOKEN_CONTRACT || 'token.guxal.testnet'
-
+const PRESALE_CONTRACT =
+  process.env.PRESALE_CONTRACT || 'dev-1675634479426-76608507847363' //"presale.guxal.testnet";
 const FACTORY_CONTRACT =
   process.env.FACTORY_CONTRACT || 'factory-reelands2.guxal.testnet'
 
@@ -26,8 +27,10 @@ function getConfig(env) {
         contractMarketplace: MARKET_CONTRACT,
         contractToken: TOKEN_CONTRACT,
         contractFactoryNFT: FACTORY_CONTRACT,
+        contractPresaleFT: PRESALE_CONTRACT,
         GAS: '200000000000000',
-        walletUrl: 'https://wallet.testnet.near.org',
+        walletUrl: 'https://testnet.mynearwallet.com',
+        indexerUrl: 'https://testnet-api.kitwallet.app',
         helperUrl: 'https://helper.testnet.near.org',
         explorerUrl: 'https://explorer.testnet.near.org',
       }

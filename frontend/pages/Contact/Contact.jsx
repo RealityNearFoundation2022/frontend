@@ -53,6 +53,9 @@ function Contact() {
     setOpenSpinner(true)
     setTimeout(() => {
       handleClose()
+      setValueName('')
+      setValueEmail('')
+      setValueMensaje('')
       setOpenCompleted(true)
     }, 3000)
     // event.preventDefault()

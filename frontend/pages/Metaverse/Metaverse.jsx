@@ -179,6 +179,46 @@ function Metaverso() {
           </div>
         </div>
       </section>
+      <section
+        className={`${theme.bg}  text-white px-7-5porcent py-2`}
+        id="about"
+      >
+        <div className="w-100 pt-5">
+          {/* <!--  Section Content--> */}
+          <div
+            className="d-flex justify-content-between"
+            id="metaverseResponsive"
+          >
+            <div className="w-50" id="metaverseResponsiveTxt">
+              <h1 className="text-primary mb-4">
+                {t('CONOCE NUESTRAS TIERRAS VIRTUALES')}
+              </h1>
+              <h2 className="text-primary mb-4">{t('REALANDS')}</h2>
+              <p className={`${theme.txt}`}>
+                {t(
+                  'Estas son parcelas de 10x10mts cada una que se encuentran dentro de Reality Near, las cuales podrás comprar para construir tu negocio, poner publicidad, hacer eventos, lo que quieras. También podrás comprar Realands adyacentes y elegir si deseas combinarlos, formando un Realand más grande; por ejemplo, un 2x3 o un 5x5. El máximo de Realands que se pueden combinar son de 25 Realands en total. Una vez combinados, pueden mantenerse así y venderse como un todo, o dividirse para una venta por partes.',
+                )}
+              </p>
+              <h2 className="text-primary mb-4">{t('PATCHAS')}</h2>
+              <p className={`${theme.txt}`}>
+                {t(
+                  'Los Patchas son NFTs sujetos a una latitud y longitud específica del plano terrenal, o sea, cada parcela cuadricular representa un espacio real. En este espacio podrás organizar eventos para la comunidad, colocar tesoros, cumplir misiones, recibir recompensas, colocar publicidad, entre muchas cosas más. Si te encuentras físicamente en un punto real vinculado a un Patcha, a través la app de Reality Near en tu celular, podrás interactuar mediante realidad aumentada con lo que se haya colocado sobre dicho espacio.',
+                )}
+              </p>
+            </div>
+            <div
+              className="w-50 d-flex justify-content-end"
+              id="hiddenByResponsive"
+            >
+              <img
+                src={metaverseNuruk}
+                alt=""
+                className="h-80 rounded obj-fit-cover w-75"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

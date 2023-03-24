@@ -3,8 +3,11 @@ import {
   connect,
   Contract,
   keyStores,
+  // KeyPair,
+  // KeyPair,
   WalletConnection,
   providers,
+  // utils,
 } from 'near-api-js'
 import getConfig from './config'
 
@@ -17,10 +20,27 @@ const NO_DEPOSIT = '0'
 // ContractMarket -> Marketplace Contract
 
 // Initialize contract & set global variables
-export async function initContract() {
+export async function initContract(accountId) {
   // Initialize connection to the NEAR testnet
+
+  //const keyStore = new keyStores.InMemoryKeyStore();
+  //const keyPair = KeyPair.fromString(
+  //  "ed25519:fZJL3T95h9JFgMBdHrwFtga7AQ9nV1xTuatkzKa4qsaQdBr7SR5mJxvwVzW1jqTLvaWqAvBK2YHrji4YBMe3JEY"
+  //);
+  //
+  //await keyStore.setKey("testnet", "temporal.testnet", keyPair);
+
+  //const keyStore = new keyStores.InMemoryKeyStore();
+  //const keyPair = KeyPair.fromString(
+  //  "ed25519:fZJL3T95h9JFgMBdHrwFtga7AQ9nV1xTuatkzKa4qsaQdBr7SR5mJxvwVzW1jqTLvaWqAvBK2YHrji4YBMe3JEY"
+  //);
+  //
+  //await keyStore.setKey("testnet", "temporal.testnet", keyPair);
+
   const near = await connect({
     deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() },
+    // deps: { keyStore: keyStore },
+    // deps: { keyStore: keyStore },
     ...nearConfig,
   })
 
@@ -28,8 +48,16 @@ export async function initContract() {
   // is hosted at https://wallet.testnet.near.org
   window.walletConnection = new WalletConnection(near)
 
+  let account = await near.account(accountId)
+
+  console.log(account)
+
+  console.log(window.walletConnection.account())
+  // window.utils = utils;
+
   // Getting the Account ID. If still unauthorized, it's just empty string
-  window.accountId = window.walletConnection.getAccountId()
+  //window.accountId = window.walletConnection.getAccountId();
+  //window.accountId = window.walletConnection.getAccountId();
 
   // Initializing our contract APIs by contract name and configuration
   window.contract = await new Contract(
@@ -82,6 +110,15 @@ export async function initContract() {
       changeMethods: ['create_token', 'storage_deposit'],
     },
   )
+
+  window.ftpresale = await new Contract(
+    window.walletConnection.account(),
+    nearConfig.contractPresaleFT,
+    {
+      viewMethods: ['token_price'],
+      changeMethods: ['buy', 'storage_deposit'],
+    },
+  )
 }
 
 export function logout() {
@@ -95,7 +132,7 @@ export function login() {
   // user's behalf.
   // This works by creating a new access key for the user's account and storing
   // the private key in localStorage.
-  window.walletConnection.requestSignIn(nearConfig.contractName)
+  window.walletConnection.requestSignIn(nearConfig.contractName) // nft3.guxal.testnet
 }
 
 export async function set_greeting(message) {
@@ -311,24 +348,35 @@ export function get_required_deposit(args, account_id) {
  */
 
 // amount
-export function create_token(args, token_metadata, gas, amount) {
+export async function create_token(args, token_metadata, gas, deposit) {
   // console.log({
   //   args: {
   //     args:args,
-  //     token_metadata: args.token_metadata,
+  //     token_metadata: token_metadata,
+  //     token_metadata: token_metadata,
   //   },
   //   gas,
-  //   amount,
+  //   deposit,
+  //   deposit,
   // })
-  return window.factorynft.create_token({
-    callbackUrl: 'http://localhost:1235/callback',
+  await window.factorynft.create_token({
     args: {
       args,
       token_metadata,
     },
     gas,
-    amount,
+    amount: deposit,
   })
+  // await window.wallet.callMethod({
+  //   contractId: nearConfig.contractFactoryNFT,
+  //   method: "create_token",
+  //   args: {
+  //     args,
+  //     token_metadata,
+  //   },
+  //   gas,
+  //   deposit,
+  // });
 }
 
 export async function ft_storage_deposit(gas, minimum) {
@@ -341,6 +389,19 @@ export async function ft_storage_deposit(gas, minimum) {
 
 export async function get_by_position(position) {
   return await window.factorynft.get_by_position({ position })
+}
+
+// PRESALE
+
+export async function get_price_token() {
+  return await window.ftpresale.token_price()
+}
+
+export async function buy(amount) {
+  await window.ftpresale.buy({
+    args: {},
+    amount: amount,
+  })
 }
 
 //
@@ -373,6 +434,8 @@ export async function viewMethod({ contractId, method, args = {} }) {
   return JSON.parse(Buffer.from(res.result).toString())
 }
 
+// no funciona no matching key pair found in InMemorySigner
+// no funciona no matching key pair found in InMemorySigner
 // Call a method that changes the contract's state
 export async function callMethod({
   contractId,
@@ -387,10 +450,10 @@ export async function callMethod({
     ...nearConfig,
   })
 
-  const account = await near.account(window.walletConnection.account())
+  const account = await near.account(window.account)
 
   await account.signAndSendTransaction({
-    signerId: window.walletConnection.account(),
+    signerId: window.account,
     receiverId: contractId,
     actions: [
       {
@@ -404,6 +467,48 @@ export async function callMethod({
       },
     ],
   })
+}
+
+// Call a method that changes the contract's state
+export async function callMethodBatch(
+  contractId,
+  args = {},
+  gas = THIRTY_TGAS,
+  deposit = NO_DEPOSIT,
+) {
+  // Sign a transaction with the "FunctionCall" action
+  // const near = await connect({
+  //   deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() },
+  //   ...nearConfig,
+  // });
+
+  const account = window.account // await near.account(window.account);
+
+  const outcome = await account.signAndSendTransaction({
+    signerId: window.account,
+    receiverId: contractId,
+    actions: [
+      {
+        type: 'FunctionCall',
+        params: {
+          methodName: 'storage_deposit',
+          args: Buffer.from(JSON.stringify(args)),
+          gas: gas,
+          deposit: 1,
+        },
+      },
+      {
+        type: 'FunctionCall',
+        params: {
+          methodName: 'buy',
+          args: Buffer.from(JSON.stringify(args)),
+          gas,
+          deposit,
+        },
+      },
+    ],
+  })
+  console.log(outcome)
 }
 
 export async function nft_approve_all({

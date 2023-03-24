@@ -47,7 +47,7 @@ export default function RealityToken() {
           <center className="w-100 mt-4">
             <Link to="/realities">
               <button
-                className="_btn btn btn-primary btn-xl w-75"
+                className="_btn btn btn-primary btn-xl w-50"
                 id="submitButton"
                 type="submit"
               >
