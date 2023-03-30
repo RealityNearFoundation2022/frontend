@@ -6,7 +6,7 @@ import ThemeContext from '../../utils/useContextTheme'
 import { getData } from '../../api/methods'
 import '../../assets/css/components/events.css'
 import LoadingModal from '../../components/LoadingModal'
-// import { useNavigate } from 'react-router-dom'
+import imgBack from '../../assets/img/random/No_Photo_Available.png'
 
 export default function Moments() {
   const { theme } = useContext(ThemeContext)
@@ -56,8 +56,6 @@ export default function Moments() {
       setIsLoading(false)
     }
   }
-  const imgBack =
-    'https://media.istockphoto.com/id/1154735310/es/foto/fondo-de-hormig%C3%B3n-gris-piedra-con-textura-pulida.jpg?s=1024x1024&w=is&k=20&c=02tASVwHDSWmtUchrcCO7Mk5jGiyuaMuejMU0Wls89s='
   return events.length ? (
     <section
       className={`${theme.bg} ${

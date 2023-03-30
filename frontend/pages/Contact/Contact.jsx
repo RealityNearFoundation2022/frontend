@@ -13,7 +13,7 @@ function Contact() {
   const [valueName, setValueName] = useState('')
   const [valueEmail, setValueEmail] = useState('')
   const [valueMensaje, setValueMensaje] = useState('')
-
+  const [errorField, setErrorField] = useState(null)
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
   const optionsCategory = [
@@ -38,7 +38,14 @@ function Contact() {
     setValueName(target.value)
   }
   const handleChangeEmail = ({ target }) => {
-    setValueEmail(target.value)
+    const emailRegex =
+      /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
+    if (emailRegex.test(target.value)) {
+      setValueEmail(target.value)
+      setErrorField(null)
+    } else {
+      setErrorField('Debe ser un email válido')
+    }
   }
   const handleChangeMensaje = ({ target }) => {
     setValueMensaje(target.value)
@@ -109,7 +116,6 @@ function Contact() {
                 type="email"
                 className="form-control"
                 placeholder={t('Correo')}
-                value={valueEmail}
                 onChange={handleChangeEmail}
               />
             </label>
@@ -122,10 +128,12 @@ function Contact() {
                 onChange={handleChangeMensaje}
               />
             </label>
+            {errorField ? <p className="error-label"> {errorField}</p> : <></>}
             <button
               type="submit"
               className="_btn btn btn-primary w-25"
               onClick={handleSubmit}
+              disabled={errorField}
             >
               {t('Enviar')}
             </button>
