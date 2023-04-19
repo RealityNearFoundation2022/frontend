@@ -103,7 +103,7 @@ export default function RealityModal() {
               setBox(1)
             }}
           >
-            {t('ACEPTAR')}
+            {t('')}
           </button>
         </Box>
           )} */}
@@ -205,7 +205,7 @@ export default function RealityModal() {
               setBox(1)
             }}
           >
-            ACEPTAR
+            {t('ACEPTAR')}
           </button>
         </Box>
       )}
@@ -237,7 +237,7 @@ export default function RealityModal() {
                 setRealities(0)
               }}
             >
-              ACEPTAR
+              {t('ACEPTAR')}
             </button>
             <button
               className="_btn btn btn-primary btn-xl w-75"

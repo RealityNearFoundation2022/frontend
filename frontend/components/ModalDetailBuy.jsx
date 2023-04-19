@@ -48,26 +48,26 @@ export default function ModalDetailBuy({
 
   const buyNuruk = async () => {
     setOpenSpinner(true)
-    const currentUser = window.accountId || ''
+    // const currentUser = window.accountId || ''
 
-    const args = buildRealandMetadata(currentUser, posX, posY)
-    const gas = 300000000000000
+    // const args = buildRealandMetadata(currentUser, posX, posY)
+    // const gas = 300000000000000
 
-    const amount = await get_required_deposit(args, currentUser)
-    args.metadata.reference = null
-    args.metadata.reference_hash = null
+    // const amount = await get_required_deposit(args, currentUser)
+    // args.metadata.reference = null
+    // args.metadata.reference_hash = null
 
-    const token_metadata = buildRealandTokenMetadata(0)
+    // const token_metadata = buildRealandTokenMetadata(0)
 
-    console.log(args)
+    // console.log(args)
 
-    setTimeout(async () => {
-      const data = await create_token(args, token_metadata, gas, amount)
-      console.log('data', data)
-    }, 3000)
+    // setTimeout(async () => {
+    //   const data = await create_token(args, token_metadata, gas, amount)
+    //   console.log('data', data)
+    // }, 3000)
 
-    //handleClose()
-    //setOpenCompleted(true)
+    handleClose()
+    setOpenCompleted(true)
   }
 
   const style = {
@@ -148,10 +148,14 @@ export default function ModalDetailBuy({
           }}
         >
           <div>
-            <div className="text-center">
+            {/* <div className="text-center">
               <img src={checkCircle} alt="" />
+            </div> */}
+            <div className="h3 text-center my-4">
+              {t(
+                'Por el momento el servicio de venta de parcelas no está disponible. Se liberará pronto',
+              )}
             </div>
-            <div className="h3 text-center my-4">¡TRANSACCIÓN EXISTOSA!</div>
             <div className="col-12 text-center">
               <button
                 type="button"

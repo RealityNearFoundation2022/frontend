@@ -117,7 +117,7 @@ function About() {
                     rel="noreferrer"
                     className="fw-bolder text-center h4"
                   >
-                    Javier Bambaren
+                    Javier Bambaren D.
                   </a>
                 </div>
                 <div className="text-primary fw-bolder text-center h4">CEO</div>
@@ -132,7 +132,7 @@ function About() {
                     <span className="pr-2">•</span> Blockchain certified by MIT
                   </li>
                   <li className="mb-2">
-                    <span className="pr-2">•</span> Full stack developer
+                    <span className="pr-2">•</span> Full Stack developer by MIT
                   </li>
                 </ul>
               </div>
@@ -165,7 +165,7 @@ function About() {
                     rel="noreferrer"
                     className="fw-bolder text-center h4"
                   >
-                    Damián Gamarra
+                    Damián Gamarra B.
                   </a>
                 </div>
                 <div className="text-primary fw-bolder text-center h4">CCO</div>
