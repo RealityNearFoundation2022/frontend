@@ -19,7 +19,7 @@ export default function CardNotices({ element, medias }) {
         />
       </div>
       <div
-        className={`${theme.bg} position-absolute bottom-0 w-100 p-3 opacity-9`}
+        className={`${theme.bg} position-absolute bottom-0 w-100 p-3 opacity-9 text-overflow`}
         style={{ zIndex: '5000', height: '40%' }}
       >
         <h6 className={`${theme.txt} my-0 py-0 fw-bolder`}>{element.title}</h6>

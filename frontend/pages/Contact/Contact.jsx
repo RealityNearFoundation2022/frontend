@@ -140,7 +140,7 @@ function Contact() {
           </div>
         </div>
       </div>
-      <FollowInfo isBackground />
+      <FollowInfo isBackground={true} />
       <LoadingModal handleClose={handleClose} open={openSpinner} />
       <Modal
         open={openCompleted}
