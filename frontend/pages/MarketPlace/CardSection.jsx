@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from 'react'
 import { useParams } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Slider from 'react-slick'
 import Card from './Card'
 import ThemeContext from '../../utils/useContextTheme'
@@ -13,9 +14,11 @@ export function CardSection() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
 
+  console.log(filtersMarketplace)
   const dataCategory = filtersMarketplace?.find(
     (item) => item.title.toLowerCase() === 'novedades',
   )
+  console.log(dataCategory)
   const dataCard = dataCategory?.itemCards?.find(
     ({ id }) => id === Number('11'),
   )
@@ -67,7 +70,9 @@ export function CardSection() {
           <h1 className="text-primary">{t('Artículos Similares')}</h1>
           <Slider {...settings}>
             {dataCategory.itemCards.map((element, index) => (
-              <Card key={index} elementsCard={element} category={category} />
+              <Link to={`/notices/novelties/${element._id}`} key={element._id}>
+                <Card key={index} elementsCard={element} category={category} />
+              </Link>
             ))}
           </Slider>
         </div>

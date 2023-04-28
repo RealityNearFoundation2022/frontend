@@ -8,6 +8,11 @@
   z-index: 2;
 }
 
+.text-overflow-ellipsis{
+  text-overflow: ellipsis;
+  overflow: auto;
+  white-space: nowrap;
+}
 .opacity-5{
   opacity: 0.5;
 }

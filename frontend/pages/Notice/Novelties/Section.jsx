@@ -35,7 +35,7 @@ export default function NoveltySection() {
 
   useEffect(() => {
     apiGet()
-  }, [])
+  }, [idNovelties])
 
   return (
     <div className={`${theme.bg} ${theme.txt}`}>

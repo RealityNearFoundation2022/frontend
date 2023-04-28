@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { Fade } from 'react-slideshow-image'
 import ThemeContext from '../../utils/useContextTheme'
 import 'react-slideshow-image/dist/styles.css'
 import PropTypes from 'prop-types'
@@ -20,13 +19,24 @@ export default function CardNotices({ element, medias }) {
       </div>
       <div
         className={`${theme.bg} position-absolute bottom-0 w-100 p-3 opacity-9 text-overflow`}
-        style={{ zIndex: '5000', height: '40%' }}
+        style={{
+          zIndex: '5000',
+          height: '90px',
+        }}
       >
-        <h6 className={`${theme.txt} my-0 py-0 fw-bolder`}>{element.title}</h6>
-        <p className={`${theme.txt} my-0 py-0 fw-bolder`}>
+        <h6
+          className={`${theme.txt} my-0 py-0 fw-bolder text-overflow-ellipsis`}
+        >
+          {element.title}
+        </h6>
+        <p className={`${theme.txt} my-0 py-0 text-overflow-ellipsis`}>
           {element.description}
         </p>
-        <p className={`${theme.txt} my-0 py-0 fw-bolder`}>{element.date}</p>
+        <p
+          className={`${theme.txt} my-0 py-0 fw-bolder text-overflow-ellipsis`}
+        >
+          {element.date}
+        </p>
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
  {
     "terms-conditions": {
         "title": "Términos y condiciones",
-        "body": "nwjekjeklwj;jqwfnj jkejkrjekljeljle",
+        "body": "",
         "path": "terms-conditions"
     },
     "code-ethics": {
@@ -10,12 +10,12 @@
         "path": "code-ethics"
     },
     "privacy-policies": {
-        "title": "Política de privacidad",
+        "title": "Políticas de privacidad",
         "body": "",
         "path": "privacy-policies"
     },
     "cookie-policies": {
-        "title": "Política de cookies",
+        "title": "Políticas de cookies",
         "body": "",
         "path": "cookie-policies"
     }
