@@ -22,7 +22,7 @@ export default function NoveltySection() {
     try {
       setIsLoading(true)
       const obj = await getData(`news/${idNovelties}`)
-      setArticles([...obj.articles])
+      if (obj.articles) setArticles([...obj.articles])
       setDataItem({ ...obj })
     } finally {
       setIsLoading(false)
@@ -35,18 +35,18 @@ export default function NoveltySection() {
 
   useEffect(() => {
     apiGet()
-  }, [])
+  }, [idNovelties])
 
   return (
-    <div className={`${theme.bg}`}>
+    <div className={`${theme.bg} ${theme.txt}`}>
       <LoadingModal open={isLoading} handleClose={handleClose} />
       <HeaderSections
         titleSection={dataItem.title}
         descriptionSection={dataItem.description}
         bgHeader="bg-header-novelty"
       />
-      <div className={`m-5 p-5 w-90 d-flex flex-wrap ${theme.txt}`}>
-        <h2 className="w-100 text-center">{t(dataItem.title)}</h2>
+      <div className={`p-5 m-5 d-flex flex-wrap`}>
+        <h1 className="w-100 text-center">{t(dataItem.title)}</h1>
         {articles.map(({ data, image }, index) => (
           <div
             className={`w-100 d-flex ${
@@ -67,7 +67,7 @@ export default function NoveltySection() {
           </div>
         ))}
       </div>
-      <div className={`${theme.bg} px-5 py-3`}>
+      <div className="mx-2 px-5">
         <div className="d-flex align-items-center mt-5 mb-4">
           <h1 className="m-1 text-primary pr-2">{t('Artículos Similares')}</h1>
         </div>

@@ -6,11 +6,14 @@ import ThemeContext from '../../utils/useContextTheme'
 import { getData } from '../../api/methods'
 import '../../assets/css/components/events.css'
 import LoadingModal from '../../components/LoadingModal'
+import imgBack from '../../assets/img/random/No_Photo_Available.png'
+
 export default function Moments() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(false)
   const api = process.env.REACT_APP_API
+  // const navigate = useNavigate()
 
   const [events, setEvents] = useState([])
   const settings = {
@@ -47,11 +50,13 @@ export default function Moments() {
       setIsLoading(true)
       const eventsData = await getData('events')
       setEvents(eventsData)
+    } catch {
+      // navigate("/server-error");
     } finally {
       setIsLoading(false)
     }
   }
-  return (
+  return events.length ? (
     <section
       className={`${theme.bg} ${
         window.innerHeight / window.innerWidth < 0.8 && 'h-100vh'
@@ -69,13 +74,12 @@ export default function Moments() {
           <Slider {...settings} className="w-90 ps-5porcent">
             {events.map(({ title, media }) => (
               <div className="events-img" key={title}>
-                {media && (
-                  <img
-                    src={`${api}${media[0]?.path}`}
-                    alt=""
-                    className="events-img mx-2 w-95 events-img"
-                  />
-                )}
+                <img
+                  src={media?.length ? `${api}${media[0]?.path}` : imgBack}
+                  alt=""
+                  className="events-img mx-2 w-95 events-img"
+                />
+
                 <center>
                   <p className="fw-bold fs-5 mt-2 text-white">{title}</p>
                 </center>
@@ -85,5 +89,7 @@ export default function Moments() {
         </div>
       </div>
     </section>
+  ) : (
+    <></>
   )
 }

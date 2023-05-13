@@ -6,23 +6,28 @@ import metaverseNuruk from '../../assets/img/metaverse/metaverse.png'
 import ThemeContext from '../../utils/useContextTheme'
 // import itemSlide from '../../assets/img/random/cabin.png'
 import imgMobile from '../../assets/img/metaverse/phone.png'
-import appleStore from '../../assets/img/metaverse/apple-store.png'
+import appleStore from '../../assets/img/metaverse/app-store.png'
+import appleStoreEn from '../../assets/img/metaverse/app-store-en.png'
+import googlePlayEn from '../../assets/img/metaverse/google-play-en.png'
+
 import googlePlay from '../../assets/img/metaverse/google-play.png'
 import HeaderSections from '../HeaderSections'
 import { momentsCarousel } from '../Landing/momentsCarousel'
+import Moments from '../Landing/Moments'
 
 function Metaverso() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
+  const lang = localStorage.getItem('lang')
   const itemsCard = [...momentsCarousel]
   const links = [
     {
       link: 'https://play.google.com/store/apps/details?id=org.realitynear.reality_near&hl=es',
-      img: googlePlay,
+      img: lang === 'es' ? googlePlay : googlePlayEn,
     },
     {
       link: 'https://apps.apple.com/pe/app/reality-near/id1645021476?l=en',
-      img: appleStore,
+      img: lang === 'es' ? appleStore : appleStoreEn,
     },
   ]
 
@@ -67,9 +72,9 @@ function Metaverso() {
             id="metaverseResponsive"
           >
             <div className="w-50" id="metaverseResponsiveTxt">
-              <h2 className="text-primary mb-4">
+              <h1 className="text-primary mb-4">
                 {t('NURUK: CIUDAD DE REALIDADES')}
-              </h2>
+              </h1>
               <p className={`${theme.txt}`}>
                 {t(
                   'Nuruk es la principal y primera ciudad del multimetaverso 3D en Reality Near. El nombre se basa en la unión de dos palabras: new (nuevo en inglés) y uruk (la primera ciudad sobre la faz de la Tierra).',
@@ -127,6 +132,9 @@ function Metaverso() {
           </Slider>
         </div>
       </section>
+      <section>
+        <Moments />
+      </section>
       {/* <!--  Section--> */}
       <section
         className={`${theme.bg} px-7-5porcent w-100 text-white mb-0`}
@@ -146,7 +154,7 @@ function Metaverso() {
               />
             </div>
             <div className="w-50 px-2" id="metaverseResponsiveTxt">
-              <h2 className="text-primary">REALITY APP</h2>
+              <h1 className="text-primary">REALITY APP</h1>
               <p className={`${theme.txt}`}>
                 {t(
                   'Reality Near App ofrece una nueva experiencia fusionando tecnología y realidad. Esta te permitirá ser parte de eventos, ver publicidad, completar misiones, ver avatares y muchas cosas más en la vida real usando sólo la cámara de tu teléfono. Dicho contenido te permitirá interactuar con la vida real a través de tu dispositivo móvil, generando una experiencia totalmente inmersiva y valiosa.',
@@ -175,6 +183,46 @@ function Metaverso() {
                   </a>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        className={`${theme.bg}  text-white px-7-5porcent py-2`}
+        id="about"
+      >
+        <div className="w-100 pt-5">
+          {/* <!--  Section Content--> */}
+          <div
+            className="d-flex justify-content-between"
+            id="metaverseResponsive"
+          >
+            <div className="w-50" id="metaverseResponsiveTxt">
+              <h1 className="text-primary mb-4">
+                {t('CONOCE NUESTRAS TIERRAS VIRTUALES')}
+              </h1>
+              <h2 className="text-primary mb-4">{t('REALANDS')}</h2>
+              <p className={`${theme.txt}`}>
+                {t(
+                  'Estas son parcelas de 10x10mts cada una que se encuentran dentro de Reality Near, las cuales podrás comprar para construir tu negocio, poner publicidad, hacer eventos, lo que quieras. También podrás comprar Realands adyacentes y elegir si deseas combinarlos, formando un Realand más grande; por ejemplo, un 2x3 o un 5x5. El máximo de Realands que se pueden combinar son de 25 Realands en total. Una vez combinados, pueden mantenerse así y venderse como un todo, o dividirse para una venta por partes.',
+                )}
+              </p>
+              <h2 className="text-primary mb-4">{t('PATCHAS')}</h2>
+              <p className={`${theme.txt}`}>
+                {t(
+                  'Los Patchas son NFTs sujetos a una latitud y longitud específica del plano terrenal, o sea, cada parcela cuadricular representa un espacio real. En este espacio podrás organizar eventos para la comunidad, colocar tesoros, cumplir misiones, recibir recompensas, colocar publicidad, entre muchas cosas más. Si te encuentras físicamente en un punto real vinculado a un Patcha, a través la app de Reality Near en tu celular, podrás interactuar mediante realidad aumentada con lo que se haya colocado sobre dicho espacio.',
+                )}
+              </p>
+            </div>
+            <div
+              className="w-50 d-flex justify-content-end"
+              id="hiddenByResponsive"
+            >
+              <img
+                src={metaverseNuruk}
+                alt=""
+                className="h-80 rounded obj-fit-cover w-75"
+              />
             </div>
           </div>
         </div>

@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom'
 import Card from './Card'
 import ThemeContext from '../../utils/useContextTheme'
 // import { filtersMarketplace } from './Data_Categories/Categories'
-import { nft_tokens } from '../../assets/js/near/utils'
 import { useTranslation } from 'react-i18next'
 import ComingSoon from '../ErrorPage/ComingSoon'
 // import { Category } from './Category'
@@ -19,76 +18,79 @@ export default function Section() {
   const [categories, setCategories] = useState([])
   const [error, setError] = useState(false)
   const { t } = useTranslation()
-  async function fetchList() {
-    console.log('1')
-    const listMenu = await nft_tokens('0', 20)
-    console.log('2')
-    const data = listMenu.map((e) => ({
-      ...e.metadata,
-      author: e.owner_id,
-      id: e.token_id,
-    }))
-    const resultNovelties = []
-    const resultOferts = []
-    const resultNfts = []
-    const resultOthers = []
-    data.forEach((element, index) => {
-      if (index <= 2) {
-        resultNovelties.push({
-          id: element.id,
-          author: element.author,
-          img: element.media,
-          titleItem: element.title,
-          description: element.description,
-          price: 143000,
-        })
-      } else if (index <= 6) {
-        resultOferts.push({
-          id: element.id,
-          author: element.author,
-          img: element.media,
-          titleItem: element.title,
-          description: element.description,
-          price: 143000,
-        })
-      } else if (index <= 10) {
-        resultNfts.push({
-          id: element.id,
-          author: element.author,
-          img: element.media,
-          titleItem: element.title,
-          description: element.description,
-          price: 143000,
-        })
-      } else {
-        resultOthers.push({
-          id: element.id,
-          author: element.author,
-          img: element.media,
-          titleItem: element.title,
-          description: element.description,
-          price: 143000,
-        })
-      }
-    })
-    const result = [
-      { id: 1, title: 'Novedades', itemCards: resultNovelties },
-      { id: 2, title: 'Ofertas', itemCards: resultOferts },
-      { id: 3, title: 'Realands', itemCards: [] },
-      { id: 4, title: 'Patchas', itemCards: [] },
-      { id: 5, title: 'NFTs', itemCards: resultNfts },
-      { id: 6, title: 'Otros', itemCards: resultOthers },
-    ]
-    setCategories(result)
-  }
+
+  // async function fetchList() {
+  //   /* Trae la data de Firebase en un array de objetos */
+  //   const listMenu = await nft_tokens('0', 20)
+  //
+  //   const data = listMenu.map((e) => ({
+  //     ...e.metadata,
+  //     author: e.owner_id,
+  //     id: e.token_id,
+  //   }))
+  //
+  //   const resultNovelties = []
+  //   const resultOferts = []
+  //   const resultNfts = []
+  //   const resultOthers = []
+  //
+  //   data.forEach((element, index) => {
+  //     if (index <= 2) {
+  //       resultNovelties.push({
+  //         id: element.id,
+  //         author: element.author,
+  //         img: element.media,
+  //         titleItem: element.title,
+  //         description: element.description,
+  //         price: 143000,
+  //       })
+  //     } else if (index <= 6) {
+  //       resultOferts.push({
+  //         id: element.id,
+  //         author: element.author,
+  //         img: element.media,
+  //         titleItem: element.title,
+  //         description: element.description,
+  //         price: 143000,
+  //       })
+  //     } else if (index <= 10) {
+  //       resultNfts.push({
+  //         id: element.id,
+  //         author: element.author,
+  //         img: element.media,
+  //         titleItem: element.title,
+  //         description: element.description,
+  //         price: 143000,
+  //       })
+  //     } else {
+  //       resultOthers.push({
+  //         id: element.id,
+  //         author: element.author,
+  //         img: element.media,
+  //         titleItem: element.title,
+  //         description: element.description,
+  //         price: 143000,
+  //       })
+  //     }
+  //   })
+  //
+  //   const result = [
+  //     { id: 1, title: 'Novedades', itemCards: resultNovelties },
+  //     { id: 2, title: 'Ofertas', itemCards: resultOferts },
+  //     { id: 3, title: 'Realands', itemCards: [] },
+  //     { id: 4, title: 'Patchas', itemCards: [] },
+  //     { id: 5, title: 'NFTs', itemCards: resultNfts },
+  //     { id: 6, title: 'Otros', itemCards: resultOthers },
+  //   ]
+  //   setCategories(result)
+  // }
 
   useEffect(() => {
-    try {
-      fetchList()
-    } catch {
-      console.log('error')
-      setError(true)
-    }
+    //try {
+    // fetchList()
+    //} catch {
+    setError(false)
+    //}
   }, [])
 
   const settings = {
@@ -119,6 +121,7 @@ export default function Section() {
       )
     },
   }
+
   return (
     <>
       {!error ? (

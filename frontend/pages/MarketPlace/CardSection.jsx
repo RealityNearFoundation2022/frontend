@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from 'react'
 import { useParams } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Slider from 'react-slick'
 import Card from './Card'
 import ThemeContext from '../../utils/useContextTheme'
@@ -13,9 +14,11 @@ export function CardSection() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
 
+  console.log(filtersMarketplace)
   const dataCategory = filtersMarketplace?.find(
     (item) => item.title.toLowerCase() === 'novedades',
   )
+  console.log(dataCategory)
   const dataCard = dataCategory?.itemCards?.find(
     ({ id }) => id === Number('11'),
   )
@@ -42,7 +45,7 @@ export function CardSection() {
           <hr />
           <div className="d-flex align-items-center m-0">
             <img src={logo} alt="" width="50" height="50" />
-            <h2 className={`${theme.txt} text-grey`}>{dataCard.price}</h2>
+            <h1 className={`${theme.txt} text-grey`}>{dataCard.price}</h1>
           </div>
           <hr />
           <h4 className={theme.txt}>Descripción</h4>
@@ -64,10 +67,12 @@ export function CardSection() {
       </div>
       <div className="mt-5 mx-5">
         <div className="w-100">
-          <h1 className="text-primary">Artículos Similares</h1>
+          <h1 className="text-primary">{t('Artículos Similares')}</h1>
           <Slider {...settings}>
             {dataCategory.itemCards.map((element, index) => (
-              <Card key={index} elementsCard={element} category={category} />
+              <Link to={`/notices/novelties/${element._id}`} key={element._id}>
+                <Card key={index} elementsCard={element} category={category} />
+              </Link>
             ))}
           </Slider>
         </div>

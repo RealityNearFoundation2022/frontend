@@ -48,7 +48,6 @@ export default function IndexMaps() {
     if (map.current) {
       const zm = map.current.getZoom()
       setZoom(zm)
-      let newZoom = zm
       const isZoomInN = zm * 100 - zoom * 100
       if (isZoomInN !== 0) {
         setIsZoomIn(isZoomInN > 0)

@@ -12,7 +12,7 @@ import { DashboardMarketPlace } from './DashboardMarketPlace'
 import { CardSection } from '../pages/MarketPlace/CardSection'
 import DashboardNotice from './DashboardNotice'
 import Nuruk from '../pages/Nuruk/IndexNuruk'
-import Conditions from '../pages/Conditions'
+import Conditions from '../pages/FooterPages/Conditions'
 import Realities from '../pages/Realities/IndexRealities'
 import Maps from '../pages/Maps/IndexMaps'
 import ResetPassword from '../pages/ResetPassword/ResetPasswordIndex'
@@ -20,6 +20,7 @@ import ResetPasswordCompleted from '../pages/ResetPassword/ResetPasswordComplete
 import Error500 from '../pages/ErrorPage/Error500'
 import PlotNuruk from '../pages/Nuruk/PlotNuruk'
 import { ErrorPagesRoutes } from './ErrorPages'
+import CallbackNuruk from '../pages/Nuruk/CallbackNuruk'
 
 export const routes = [
   {
@@ -59,6 +60,10 @@ export const routes = [
     element: <PlotNuruk />,
   },
   {
+    path: '/callback',
+    element: <CallbackNuruk />,
+  },
+  {
     path: '/metaverso',
     element: <Metaverso />,
   },
@@ -67,15 +72,15 @@ export const routes = [
     element: <CardSection />,
   },
   {
-    path: '/notices/*',
-    element: <DashboardNotice />,
-  },
-  {
     path: '/realities',
     element: <Realities />,
   },
   {
-    path: '/terminos-condiciones',
+    path: '/notices/*',
+    element: <DashboardNotice />,
+  },
+  {
+    path: '/footer-pages/:path',
     element: <Conditions />,
   },
   {

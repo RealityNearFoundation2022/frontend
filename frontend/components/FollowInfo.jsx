@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import twitterIcon from '../assets/img/social-network/twitter.png'
-import githubIconWhite from '../assets/img/social-network/github-icon-white.png'
-import githubIcon from '../assets/img/social-network/githubIcon.png'
+import igIcon from '../assets/img/social-network/instagramIcon.png'
 import discordIcon from '../assets/img/social-network/discordIcon.png'
 import fbIcon from '../assets/img/social-network/facebook.png'
 import PropTypes from 'prop-types'
@@ -26,9 +25,8 @@ export default function FollowInfo({ isBackground }) {
     },
 
     {
-      icon: theme.bg === 'bg-light' ? githubIcon : githubIconWhite,
-      link: 'https://github.com/RealityNearFoundation2022/',
-      linkIconWhite: githubIconWhite,
+      icon: igIcon,
+      link: 'https://www.instagram.com/realitynear/',
     },
   ]
   return (

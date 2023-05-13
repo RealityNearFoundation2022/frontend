@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 import { getData } from '../../../api/methods'
 import LoadingModal from '../../../components/LoadingModal'
@@ -11,7 +11,6 @@ const api = process.env.REACT_APP_API
 
 export default function CarouselNovelty() {
   const [isLoading, setIsLoading] = useState(false)
-  const navigate = useNavigate()
   const [carousel, setCarousel] = useState([])
   const settings2 = {
     speed: 500,
@@ -46,7 +45,7 @@ export default function CarouselNovelty() {
       const data = await getData('news')
       setCarousel([...data, ...data])
     } catch (error) {
-      navigate('/server-error')
+      // navigate('/server-error')
     } finally {
       setIsLoading(false)
     }

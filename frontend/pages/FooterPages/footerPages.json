@@ -1,0 +1,22 @@
+ {
+    "terms-conditions": {
+        "title": "Términos y condiciones",
+        "body": "",
+        "path": "terms-conditions"
+    },
+    "code-ethics": {
+        "title": "Código de ética",
+        "body": "",
+        "path": "code-ethics"
+    },
+    "privacy-policies": {
+        "title": "Políticas de privacidad",
+        "body": "",
+        "path": "privacy-policies"
+    },
+    "cookie-policies": {
+        "title": "Políticas de cookies",
+        "body": "",
+        "path": "cookie-policies"
+    }
+}

@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import logoFooter from '../assets/img/random/logoFooter.png'
 import logoFooterWhite from '../assets/img/random/logoFooterWhite.png'
-
 import ThemeContext from '../utils/useContextTheme'
+import footerPages from './FooterPages/footerPages.json'
+
 function Footer() {
   const { t } = useTranslation()
   const { theme } = useContext(ThemeContext)
@@ -54,12 +55,12 @@ function Footer() {
       </div>
       <div className="">
         <ul>
-          <li className={theme.txt}>{t('Código de ética')}</li>
-          <li className={theme.txt}>{t('Políticas de Privacidad')}</li>
-          <li className={theme.txt}>{t('Políticas de Cookies')}</li>
-          <Link to="/terminos-condiciones">
-            <li className={theme.txt}>{t('Términos y Condiciones')}</li>
-          </Link>
+          {Object.values(footerPages).map(({ title, path }) => (
+            // eslint-disable-next-line react/jsx-key
+            <Link to={`footer-pages/${path}`}>
+              <li className={theme.txt}>{t(title)}</li>
+            </Link>
+          ))}
         </ul>
       </div>
     </footer>

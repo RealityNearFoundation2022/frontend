@@ -5,7 +5,6 @@ const useModal = () => {
   const [isVisibleSale, setIsVisibleSale] = useState(false)
   const [isVisibleBid, setIsVisibleBid] = useState(false)
   function toggleModal() {
-    alert('toggle')
     setIsVisible(!isVisible)
   }
   function toggleSaleModal() {

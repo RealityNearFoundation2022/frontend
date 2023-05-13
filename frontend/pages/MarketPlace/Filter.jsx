@@ -5,14 +5,25 @@ import { Link } from 'react-router-dom'
 import ThemeContext from '../../utils/useContextTheme'
 import { useTranslation } from 'react-i18next'
 
-export default function Filter() {
+export default function Filter({ data, title }) {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
 
   return (
     <div className="w-100 mt-5">
       <ul className="d-flex flex-column gap-2 align-item-start">
-        <li>
+        <h4 className={`fw-normal ${theme.txt}`}> {t(title)}</h4>
+        {data.map((d) => (
+          <>
+            <li>
+              <Link to={d.url} className={`fw-normal nav-link${theme.txt}`}>
+                {t(d.name)}
+              </Link>
+            </li>
+          </>
+        ))}
+
+        {/*<li>
           <Link to="/marketplace" className={`fw-normal nav-link${theme.txt}`}>
             {t('Todos')}
           </Link>
@@ -62,6 +73,14 @@ export default function Filter() {
             {t('Otros')}
           </Link>
         </li>
+        <li>
+          <Link
+            to="/marketplace/misreal${theme.txt}ands"
+            className={`fw-normal nav-link${theme.txt}`}
+          >
+            {t('MisRealands')}
+          </Link>
+        </li>*/}
       </ul>
     </div>
   )

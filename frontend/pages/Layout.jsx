@@ -1,15 +1,10 @@
 /* eslint-disable camelcase */
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Outlet, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import MenuIcon from '@mui/icons-material/Menu'
 import Typography from '@mui/material/Typography'
 
-import {
-  login,
-  logout,
-  // nft_tokens_for_owner,
-} from '../assets/js/near/utils'
 import logo from '../assets/img/logo.png'
 import buttonTheme from '../assets/img/random/botonTema.png'
 import ThemeContext from '../utils/useContextTheme'
@@ -19,13 +14,14 @@ function Layout() {
   const { t } = useTranslation()
   const [navHidden, setNavHidden] = useState(false)
   const { theme, handleChangeTheme } = useContext(ThemeContext)
+  const [balance, setBalance] = useState(false)
 
   const currentUser = window.accountId || ''
   const links = [
-    {
-      label: 'Marketplace',
-      link: '/marketplace',
-    },
+    // {
+    //   label: "Marketplace",
+    //   link: "/marketplace",
+    // },
     {
       label: 'Nosotros',
       link: '/about',
@@ -53,7 +49,31 @@ function Layout() {
     setNavHidden(isNavHidden)
   }
 
+  function login() {
+    window.wallet.signIn()
+  }
+
+  function logout() {
+    window.wallet.signOut()
+  }
+
   window.addEventListener('scroll', changeVisibilityNav)
+
+  useEffect(() => {
+    if (currentUser != '') {
+      getTokenBalance()
+    }
+
+    async function getTokenBalance() {
+      let balance = await window.wallet.viewMethod({
+        contractId: 'token.guxal.testnet',
+        method: 'ft_balance_of',
+        args: { account_id: window.accountId },
+      })
+      let amount = window.wallet.parseAmount(balance)
+      setBalance(amount)
+    }
+  }, [])
 
   return (
     <nav
@@ -68,12 +88,12 @@ function Layout() {
       >
         <img src={logo} alt="" className="m-0" width="45" />
       </Link>
-      <div className={`collapse navbar-collapse`} id="navbarResponsive">
-        <ul className="navbar-nav justify-content-between w-95">
+      <div className="collapse navbar-collapse" id="navbarResponsive">
+        <ul className="navbar-nav justify-content-end w-100">
           {links.map(({ label, link }) => (
             <li className="nav-item" key={link}>
               <Link
-                className={`fw-light rounded nav-link${theme.txt}`}
+                className={`fw-light rounded nav-link${theme.txt} mx-3`}
                 to={link}
               >
                 {t(label)}
@@ -114,29 +134,38 @@ function Layout() {
           </div>
         </ul>
       </div>
-      <div className="hidden-xs">
-        <TranslationModal />
-        <button
-          type="button"
-          onClick={handleChangeTheme}
-          alt=""
-          className="bg-transparent border-0 w-10"
-        >
-          <img src={buttonTheme} alt="" width="w-100" />
-          <Typography style={{ color: '#33cc99', fontSize: '13px' }}>
-            {t('TEMA')}
-          </Typography>
-        </button>
-        <button
-          type="button"
-          className="btn-primary btn mt-1 rounded p-1 w-10 mr-2"
-          onClick={currentUser ? logout : login}
-        >
-          {currentUser ? 'Log out' : 'Log In'}
-        </button>
-      </div>
+      {currentUser ? (
+        <p className="fw-bold m-3" style={{ color: '#33cc99' }}>
+          $RLTS: {balance}
+        </p>
+      ) : (
+        <></>
+      )}
       <button
-        className={`navbar-toggler text-center-toogle text-uppercase text-center font-weight-bold w-10 ${theme.txt}`}
+        type="button"
+        className="btn btn-xs rounded w-10 mr-2"
+        onClick={currentUser ? logout : login}
+      >
+        {currentUser ? 'Log out' : 'Log In'}
+      </button>
+      <TranslationModal />
+      <button
+        type="button"
+        onClick={handleChangeTheme}
+        alt=""
+        className="bg-transparent border-0 m-2"
+      >
+        <img
+          src={buttonTheme}
+          alt=""
+          style={{ color: '#33cc99', height: '22.5px' }}
+        />
+        <Typography style={{ color: '#33cc99', fontSize: '12px' }}>
+          {t('Tema')}
+        </Typography>
+      </button>
+      <button
+        className="navbar-toggler text-uppercase font-weight-bold btn text-white rounded w-10"
         type="button"
         aria-controls="navbarResponsive"
         aria-expanded="false"

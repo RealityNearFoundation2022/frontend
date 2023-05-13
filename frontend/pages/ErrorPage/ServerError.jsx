@@ -1,4 +1,3 @@
-import React from 'react'
 import serverError from '../../assets/img/error-page/server-error.png'
 import warningTriangle from '../../assets/img/error-page/warning-triangle.svg'
 import { Link } from 'react-router-dom'

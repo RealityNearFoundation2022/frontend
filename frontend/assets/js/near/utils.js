@@ -1,17 +1,46 @@
 /* eslint-disable camelcase */
-import { connect, Contract, keyStores, WalletConnection } from 'near-api-js'
+import {
+  connect,
+  Contract,
+  keyStores,
+  // KeyPair,
+  // KeyPair,
+  WalletConnection,
+  providers,
+  // utils,
+} from 'near-api-js'
 import getConfig from './config'
 
-const nearConfig = getConfig(process.env.NODE_ENV || 'development')
+export const nearConfig = getConfig(process.env.NODE_ENV || 'development')
+
+const THIRTY_TGAS = '30000000000000'
+const NO_DEPOSIT = '0'
 
 // ContractName -> NFT Contract
 // ContractMarket -> Marketplace Contract
 
 // Initialize contract & set global variables
-export async function initContract() {
+export async function initContract(accountId) {
   // Initialize connection to the NEAR testnet
+
+  //const keyStore = new keyStores.InMemoryKeyStore();
+  //const keyPair = KeyPair.fromString(
+  //  "ed25519:fZJL3T95h9JFgMBdHrwFtga7AQ9nV1xTuatkzKa4qsaQdBr7SR5mJxvwVzW1jqTLvaWqAvBK2YHrji4YBMe3JEY"
+  //);
+  //
+  //await keyStore.setKey("testnet", "temporal.testnet", keyPair);
+
+  //const keyStore = new keyStores.InMemoryKeyStore();
+  //const keyPair = KeyPair.fromString(
+  //  "ed25519:fZJL3T95h9JFgMBdHrwFtga7AQ9nV1xTuatkzKa4qsaQdBr7SR5mJxvwVzW1jqTLvaWqAvBK2YHrji4YBMe3JEY"
+  //);
+  //
+  //await keyStore.setKey("testnet", "temporal.testnet", keyPair);
+
   const near = await connect({
     deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() },
+    // deps: { keyStore: keyStore },
+    // deps: { keyStore: keyStore },
     ...nearConfig,
   })
 
@@ -19,8 +48,16 @@ export async function initContract() {
   // is hosted at https://wallet.testnet.near.org
   window.walletConnection = new WalletConnection(near)
 
+  let account = await near.account(accountId)
+
+  console.log(account)
+
+  console.log(window.walletConnection.account())
+  // window.utils = utils;
+
   // Getting the Account ID. If still unauthorized, it's just empty string
-  window.accountId = window.walletConnection.getAccountId()
+  //window.accountId = window.walletConnection.getAccountId();
+  //window.accountId = window.walletConnection.getAccountId();
 
   // Initializing our contract APIs by contract name and configuration
   window.contract = await new Contract(
@@ -64,12 +101,22 @@ export async function initContract() {
     nearConfig.contractFactoryNFT,
     {
       viewMethods: [
+        'get_by_position',
         'get_token',
         'get_tokens',
         'get_number_of_tokens',
         'get_required_deposit',
       ],
       changeMethods: ['create_token', 'storage_deposit'],
+    },
+  )
+
+  window.ftpresale = await new Contract(
+    window.walletConnection.account(),
+    nearConfig.contractPresaleFT,
+    {
+      viewMethods: ['token_price'],
+      changeMethods: ['buy', 'storage_deposit'],
     },
   )
 }
@@ -85,7 +132,7 @@ export function login() {
   // user's behalf.
   // This works by creating a new access key for the user's account and storing
   // the private key in localStorage.
-  window.walletConnection.requestSignIn(nearConfig.contractName)
+  window.walletConnection.requestSignIn(nearConfig.contractName) // nft3.guxal.testnet
 }
 
 export async function set_greeting(message) {
@@ -301,21 +348,35 @@ export function get_required_deposit(args, account_id) {
  */
 
 // amount
-export function create_token(args, gas, amount) {
-  console.log({
+export async function create_token(args, token_metadata, gas, deposit) {
+  // console.log({
+  //   args: {
+  //     args:args,
+  //     token_metadata: token_metadata,
+  //     token_metadata: token_metadata,
+  //   },
+  //   gas,
+  //   deposit,
+  //   deposit,
+  // })
+  await window.factorynft.create_token({
     args: {
       args,
+      token_metadata,
     },
     gas,
-    amount,
+    amount: deposit,
   })
-  return window.factorynft.create_token({
-    args: {
-      args,
-    },
-    gas,
-    amount,
-  })
+  // await window.wallet.callMethod({
+  //   contractId: nearConfig.contractFactoryNFT,
+  //   method: "create_token",
+  //   args: {
+  //     args,
+  //     token_metadata,
+  //   },
+  //   gas,
+  //   deposit,
+  // });
 }
 
 export async function ft_storage_deposit(gas, minimum) {
@@ -323,5 +384,149 @@ export async function ft_storage_deposit(gas, minimum) {
     args: {},
     gas,
     amount: minimum || '10000000000000000000000',
+  })
+}
+
+export async function get_by_position(position) {
+  return await window.factorynft.get_by_position({ position })
+}
+
+// PRESALE
+
+export async function get_price_token() {
+  return await window.ftpresale.token_price()
+}
+
+export async function buy(amount) {
+  await window.ftpresale.buy({
+    args: {},
+    amount: amount,
+  })
+}
+
+//
+
+export async function getTransactionResult(txhash) {
+  const network = window.walletConnection._near.config.nodeUrl
+
+  try {
+    const provider = new providers.JsonRpcProvider({ url: network })
+    // Retrieve transaction result from the network
+    const transaction = await provider.txStatus(txhash, 'unnused')
+    return providers.getTransactionLastResult(transaction)
+  } catch (exc) {
+    return exc
+  }
+}
+
+// Make a read-only call to retrieve information from the network
+export async function viewMethod({ contractId, method, args = {} }) {
+  const network = window.walletConnection._near.config.nodeUrl
+  const provider = new providers.JsonRpcProvider({ url: network })
+
+  let res = await provider.query({
+    request_type: 'call_function',
+    account_id: contractId,
+    method_name: method,
+    args_base64: Buffer.from(JSON.stringify(args)).toString('base64'),
+    finality: 'optimistic',
+  })
+  return JSON.parse(Buffer.from(res.result).toString())
+}
+
+// no funciona no matching key pair found in InMemorySigner
+// no funciona no matching key pair found in InMemorySigner
+// Call a method that changes the contract's state
+export async function callMethod({
+  contractId,
+  method,
+  args = {},
+  gas = THIRTY_TGAS,
+  deposit = NO_DEPOSIT,
+}) {
+  // Sign a transaction with the "FunctionCall" action
+  const near = await connect({
+    deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() },
+    ...nearConfig,
+  })
+
+  const account = await near.account(window.account)
+
+  await account.signAndSendTransaction({
+    signerId: window.account,
+    receiverId: contractId,
+    actions: [
+      {
+        type: 'FunctionCall',
+        params: {
+          methodName: method,
+          args: Buffer.from(JSON.stringify(args)),
+          gas,
+          deposit,
+        },
+      },
+    ],
+  })
+}
+
+// Call a method that changes the contract's state
+export async function callMethodBatch(
+  contractId,
+  args = {},
+  gas = THIRTY_TGAS,
+  deposit = NO_DEPOSIT,
+) {
+  // Sign a transaction with the "FunctionCall" action
+  // const near = await connect({
+  //   deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() },
+  //   ...nearConfig,
+  // });
+
+  const account = window.account // await near.account(window.account);
+
+  const outcome = await account.signAndSendTransaction({
+    signerId: window.account,
+    receiverId: contractId,
+    actions: [
+      {
+        type: 'FunctionCall',
+        params: {
+          methodName: 'storage_deposit',
+          args: Buffer.from(JSON.stringify(args)),
+          gas: gas,
+          deposit: 1,
+        },
+      },
+      {
+        type: 'FunctionCall',
+        params: {
+          methodName: 'buy',
+          args: Buffer.from(JSON.stringify(args)),
+          gas,
+          deposit,
+        },
+      },
+    ],
+  })
+  console.log(outcome)
+}
+
+export async function nft_approve_all({
+  contractId,
+  args = {},
+  amount = NO_DEPOSIT,
+}) {
+  const contract = await new Contract(
+    window.walletConnection.account(),
+    contractId,
+    {
+      // Change methods can modify the state. But you don't receive the returned value when called.
+      changeMethods: ['nft_approve'],
+    },
+  )
+
+  contract.nft_approve({
+    args: args,
+    amount,
   })
 }

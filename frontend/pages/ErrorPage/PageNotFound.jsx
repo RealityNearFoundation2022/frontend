@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import pageNotFound from '../../assets/img/error-page/page-not-found.png'
 import sadFace from '../../assets/img/error-page/sad-face.svg'

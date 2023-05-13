@@ -16,9 +16,9 @@ export default function RealityExperience() {
         >
           <div className="realExperience">
             <center>
-              <h2 className="text-white text-uppercase text-secondary title mb-0">
+              <h1 className="text-white text-uppercase text-secondary title mb-0">
                 {t('Vive la experiencia')}
-              </h2>
+              </h1>
             </center>
             <center>
               <img src={logoRealityNear} alt="" className="w-60" />
