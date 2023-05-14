@@ -13,11 +13,8 @@ function Contact() {
   const [valueName, setValueName] = useState('')
   const [valueEmail, setValueEmail] = useState('')
   const [valueMensaje, setValueMensaje] = useState('')
-<<<<<<< HEAD
   const [valueCategory, setValueCategory] = useState('')
-=======
   const [errorField, setErrorField] = useState(null)
->>>>>>> ed42ed6fa9dc046ff8aca3981ded46498fbe7b26
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
   const optionsCategory = [
