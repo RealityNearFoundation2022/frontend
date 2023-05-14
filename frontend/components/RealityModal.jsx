@@ -76,7 +76,7 @@ export default function RealityModal() {
           </button>
         </Box>
       )}
-      {cSntBox === 1 && (
+      {currentBox === 1 && (
         <Box
           sx={{
             display: 'flex',
@@ -109,7 +109,7 @@ export default function RealityModal() {
           </div>
         </Box>
       )}
-      {currentBox ===  && (
+      {currentBox === 2 && (
         <Box
           sx={{
             display: 'flex',
@@ -135,7 +135,7 @@ export default function RealityModal() {
             ACEPTAR
           </button>
         </Box>
-      )} */}
+      )}
       {currentBox === 0 && (
         <Box
           sx={{
