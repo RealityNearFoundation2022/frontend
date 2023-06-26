@@ -9,7 +9,7 @@ import CardNotices from '../CardNotices'
 require('dotenv').config()
 const api = process.env.REACT_APP_API
 
-export default function CarouselNovelty() {
+export default function CarouselNovelty({ setShow }) {
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
   const [carousel, setCarousel] = useState([])
@@ -53,7 +53,8 @@ export default function CarouselNovelty() {
     try {
       setIsLoading(true)
       const data = await getData('events')
-      setCarousel([...data, ...data])
+      setCarousel([...data])
+      setShow(!![...data].length)
     } catch (error) {
       navigate('/server-error')
     } finally {
@@ -67,6 +68,7 @@ export default function CarouselNovelty() {
   return (
     <>
       <LoadingModal open={isLoading} handleClose={() => setIsLoading(false)} />
+
       <div className="w-100 px-4">
         <Slider {...settings2}>
           {carousel.map((element) => (

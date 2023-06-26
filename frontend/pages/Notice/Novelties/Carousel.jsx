@@ -9,7 +9,7 @@ import CardNotices from '../CardNotices'
 require('dotenv').config()
 const api = process.env.REACT_APP_API
 
-export default function CarouselNovelty() {
+export default function CarouselNovelty({ setShow }) {
   const [isLoading, setIsLoading] = useState(false)
   const [carousel, setCarousel] = useState([])
   const settings2 = {
@@ -43,7 +43,8 @@ export default function CarouselNovelty() {
     try {
       setIsLoading(true)
       const data = await getData('news')
-      setCarousel([...data, ...data])
+      setCarousel([...data])
+      setShow(!![...data].length)
     } catch (error) {
       // navigate('/server-error')
     } finally {
