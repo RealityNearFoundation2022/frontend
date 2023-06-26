@@ -28,9 +28,6 @@
     "Comprar": "Buy",
     "Adquirir": "Buy",
     "Selecciona Categoria": "Select category",
-    "Consulta": "Consultation",
-    "Problemas con Nuruk": "Problems with Nuruk",
-    "Problemas con mi wallet": "Problems with my wallet",
     "Seguimos en construcción": "We are still under construction",
     "Eventos relacionados": "Related Events",
     "Selecciona categoria": "Select category",
@@ -94,6 +91,7 @@
     "ACEPTAR": "OK",
     "Artículos Similares": "Similar Items",
     "Política de privacidad": "Privacy policies",
-    "Política de cookies": "Privacy cookies"
+    "Política de cookies": "Privacy cookies",
+    "Políticas de privacidad en redes": "Social Network privacy policies"
   }
 }

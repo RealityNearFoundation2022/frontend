@@ -55,11 +55,12 @@ function Footer() {
       </div>
       <div className="">
         <ul>
-          {Object.values(footerPages).map(({ title, path }) => (
+          {Object.values(footerPages).map(({ title, path, link }) => (
             // eslint-disable-next-line react/jsx-key
-            <Link to={`footer-pages/${path}`}>
+            // <Link to={`footer-pages/${path}`}>
+            <a key={path} href={link} target="_blank" rel="noreferrer">
               <li className={theme.txt}>{t(title)}</li>
-            </Link>
+            </a>
           ))}
         </ul>
       </div>
