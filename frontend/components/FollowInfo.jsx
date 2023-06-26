@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import twitterIcon from '../assets/img/social-network/twitter.png'
 import igIcon from '../assets/img/social-network/instagramIcon.png'
-import discordIcon from '../assets/img/social-network/discordIcon.png'
+import TelegramIcon from '../assets/img/social-network/TelegramIcon.png'
 import fbIcon from '../assets/img/social-network/facebook.png'
 import PropTypes from 'prop-types'
 import ThemeContext from '../utils/useContextTheme'
@@ -12,8 +12,8 @@ export default function FollowInfo({ isBackground }) {
   const { t } = useTranslation()
   const socialNetworks = [
     {
-      icon: discordIcon,
-      link: 'https://discord.gg/jWBXDjU6',
+      icon: TelegramIcon,
+      link: 'https://t.me/realitynearXR',
     },
     {
       icon: twitterIcon,

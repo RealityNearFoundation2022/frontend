@@ -11848,6 +11848,7 @@ html {
 .masthead .masthead-heading {
   font-size: 2.75rem;
   line-height: 2.75rem;
+  text-shadow: black 0.1em 0.1em 0.2em;
 }
 .masthead .masthead-subheading {
   font-size: 1.25rem;
@@ -11864,6 +11865,7 @@ html {
   .masthead .masthead-heading {
     font-size: 4rem;
     line-height: 3.5rem;
+    text-shadow: black 0.1em 0.1em 0.2em;
   }
   .masthead .masthead-subheading {
     font-size: 1.5rem;

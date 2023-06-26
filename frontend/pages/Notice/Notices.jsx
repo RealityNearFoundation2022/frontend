@@ -21,7 +21,7 @@ export default function Notices() {
         <div>
           <div className="d-flex align-items-center mt-5 mb-4">
             <h1 className={`${theme.txt} m-1 text-primary pr-2`}>
-              {t('Novedades')}
+              {t('Noticias')}
             </h1>
             <Link to="/notices/novelties" className="mt-3">
               <span className="text-grey fw-bolder pt-4 show-more">

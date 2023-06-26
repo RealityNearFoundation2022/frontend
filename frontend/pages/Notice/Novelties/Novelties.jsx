@@ -53,7 +53,7 @@ export default function Novelties() {
     <div className="mt-5">
       <LoadingModal open={isLoading} handleClose={handleClose} />
       <HeaderSections
-        titleSection="Novedades"
+        titleSection="Noticias"
         descriptionSection="Conoce las nuevas actualizaciones en el mundo de Reality Near"
         bgHeader="bg-header-novelties"
       />
@@ -82,7 +82,7 @@ export default function Novelties() {
         <div>
           <div className="d-flex align-items-center mt-5 mb-4">
             <h1 className="m-1 text-primary pr-2">
-              {t('Novedades Relacionadas')}
+              {t('Noticias Relacionadas')}
             </h1>
           </div>
           <CarouselNovelty />

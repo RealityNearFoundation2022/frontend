@@ -6,7 +6,7 @@ import '../../assets/css/components/events.css'
 import Moments from './Moments'
 import RealityToken from './RealityToken'
 import RealityExperience from './RealityExperience'
-import realityNear from '../../assets/img/random/LOGO REALITY NEAR.png'
+import realityNear from '../../assets/img/random/REALITY WHITE.png'
 import { useTranslation } from 'react-i18next'
 
 function Home() {
