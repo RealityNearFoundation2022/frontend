@@ -2,21 +2,26 @@
     "terms-conditions": {
         "title": "Términos y condiciones",
         "body": "",
-        "path": "terms-conditions"
+        "path": "terms-conditions",
+        "link": "https://docs.google.com/document/d/1RO5zh9V5ouCLrEX-aYdGVY0VIdt9H4fTQ9U3TiiMBnA/edit?usp=sharing"
     },
     "code-ethics": {
-        "title": "Código de ética",
+        "title": "Políticas de privacidad en redes",
         "body": "",
-        "path": "code-ethics"
+        "path": "code-ethics",
+        "link": "https://docs.google.com/document/d/1ec0H68aVSkYxWraxE_XvvcLW6H6sJDCDiMlIRULlLjs/edit" 
     },
     "privacy-policies": {
         "title": "Políticas de privacidad",
         "body": "",
-        "path": "privacy-policies"
+        "path": "privacy-policies",
+        "link":"https://docs.google.com/document/d/1g5m2uphGMyFA-cZfBXf44nUaUAQIJtFgzxScxR7MAXU/edit"
+   
     },
     "cookie-policies": {
         "title": "Políticas de cookies",
         "body": "",
-        "path": "cookie-policies"
+        "path": "cookie-policies",
+        "link": "https://docs.google.com/document/d/112TeVQEFIu3rCDbAVo7oOvAc4_zuPIrcY-4Wt6D4qZQ/edit"
     }
 }

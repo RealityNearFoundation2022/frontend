@@ -6,11 +6,13 @@ export const themes = {
     bg: 'bg-light',
     txt: '-text-light',
     reality: realityLight,
+    bgCard: 'bs-card-light',
   },
   dark: {
     bg: 'bg-dark',
     txt: '-text-dark',
     reality: realityDark,
+    bgCard: 'bs-card-dark',
   },
 }
 

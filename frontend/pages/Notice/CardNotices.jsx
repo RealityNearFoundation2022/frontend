@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import imgBack from '../../assets/img/random/No_Photo_Available.png'
 export default function CardNotices({ element, medias }) {
   const { theme } = useContext(ThemeContext)
+  console.log(medias)
   return (
     <div
       key={`novelties${element._id}`}
@@ -41,7 +42,6 @@ export default function CardNotices({ element, medias }) {
     </div>
   )
 }
-
 CardNotices.propTypes = {
   element: PropTypes.object.isRequired,
   medias: PropTypes.array.isRequired,

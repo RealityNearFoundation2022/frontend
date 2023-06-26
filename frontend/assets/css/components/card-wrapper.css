@@ -1,3 +1,5 @@
+@import url('../global.css');
+
 .card-wrapper {
   display: flex;
   flex-direction: column;
@@ -8,6 +10,19 @@
   z-index: 2;
 }
 
+.bs-card-dark {
+  background-color: var(--bs-gray-800) !important;
+}
+
+.bs-card-light {
+  background-color: var(--bs-gray-200) !important;
+}
+
+.short-text {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
 .text-overflow-ellipsis{
   text-overflow: ellipsis;
   overflow: auto;

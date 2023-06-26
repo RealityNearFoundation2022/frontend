@@ -20,6 +20,9 @@ function Home() {
             {t('Bienvenido a')}
           </h1>
           <img src={realityNear} alt="realityNear" width="50%" />
+          <h3 className="pt-3">
+            &quot;{t('TRABAJANDO EN EL PROTOCOLO NEAR')}&quot;
+          </h3>
         </div>
       </header>
       <Moments />

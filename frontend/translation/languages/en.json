@@ -17,6 +17,8 @@
     "Eventos": "Events",
     "Resumen de la transacción": "Transaction summary",
     "Bienvenido a": "Welcome to",
+    "Problemas con Nuruk": "Problems with Nuruk",
+    "Problemas con mi wallet": "Problems with my wallet",
     "Bienvenido a Reality Near": "Welcome to Reality Near",
     "Novedades relacionadas": "Related News",
     "MI PERFIL": "MY PROFILE",
@@ -26,10 +28,11 @@
     "Comprar": "Buy",
     "Adquirir": "Buy",
     "Selecciona Categoria": "Select category",
-    "Consulta": "Consultation",
-    "Problemas con Nuruk": "Problems with Nuruk",
-    "Problemas con mi wallet": "Problems with my wallet",
     "Seguimos en construcción": "We are still under construction",
+    "Eventos relacionados": "Related Events",
+    "Selecciona categoria": "Select category",
+    "Consulta": "Consultation",
+    "TRABAJANDO EN EL PROTOCOLO NEAR": "WORKING ON PROTOCOL NEAR",
     "El contenido que buscas estará disponible próximamente. Estamos trabajando para darte la mejor experiencia.": "The content you are looking for will be available soon. We are working to give you the best experience.",
     "Para que las transacciones sean posibles, creamos tokens llamados 'Realities', los cuales se utilizan como moneda en nuestro metaverso. Con estos se realizan todas las transacciones financieras dentro de este multimetaverso. Podrás comprar parcelas( Realands y Patchas ), accesorios, ropa, servicios, y todo lo que se encuentre a la venta en Nuruk." :"To make transactions possible, we create tokens called 'Realities', which are used as currency in our metaverse. With these, all financial transactions are carried out within this multimetaverse. You will be able to buy plots (Realands and Patchas), accessories, clothes, services, and everything that is for sale in Nuruk.",
     "El reality token funciona dentro del ecosistema de Near. En este ecosistema es que se almacena el registro de transacciones en la blockchain. Tus realities se almacenan en tu Near Wallet, y se verán reflejados en tu perfil de Nuruk en la app de Reality Near. En nuestro metaverso puedes realizar infinidad de compras y ventas, adquirir tesoros o NFTs; y todo esto mediante transacciones de realities.": "The reality token works within the Near ecosystem. It is in this ecosystem that the transaction log is stored on the blockchain. Your reality shows are stored in your Near Wallet, and will be reflected in your Nuruk profile in the Reality Near app. In our metaverse you can make countless purchases and sales, acquire treasures or NFTs; and all this through reality transactions.",
@@ -88,6 +91,7 @@
     "ACEPTAR": "OK",
     "Artículos Similares": "Similar Items",
     "Política de privacidad": "Privacy policies",
-    "Política de cookies": "Privacy cookies"
+    "Política de cookies": "Privacy cookies",
+    "Políticas de privacidad en redes": "Social Network privacy policies"
   }
 }

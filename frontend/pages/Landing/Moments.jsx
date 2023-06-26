@@ -66,7 +66,7 @@ export default function Moments() {
       <LoadingModal open={isLoading} handleClose={handleClose} />
       <div className="w-100 h-100 mt-2">
         <p
-          className={`${theme.txt} text-uppercase fs-7 px-3porcent font-source-sans-3 fw-bold`}
+          className={`${theme.txt} text-uppercase fs-7 px-3porcent font-source-sans-3 fw-bold `}
         >
           {t('Conoce los eventos del momento')}
         </p>
