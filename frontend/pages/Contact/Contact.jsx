@@ -13,7 +13,8 @@ function Contact() {
   const [valueName, setValueName] = useState('')
   const [valueEmail, setValueEmail] = useState('')
   const [valueMensaje, setValueMensaje] = useState('')
-
+  const [valueCategory, setValueCategory] = useState('')
+  const [errorField, setErrorField] = useState(null)
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
   const optionsCategory = [
@@ -38,7 +39,14 @@ function Contact() {
     setValueName(target.value)
   }
   const handleChangeEmail = ({ target }) => {
-    setValueEmail(target.value)
+    const emailRegex =
+      /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
+    if (emailRegex.test(target.value)) {
+      setValueEmail(target.value)
+      setErrorField(null)
+    } else {
+      setErrorField('Debe ser un email válido')
+    }
   }
   const handleChangeMensaje = ({ target }) => {
     setValueMensaje(target.value)
@@ -48,8 +56,15 @@ function Contact() {
     setOpenCompleted(false)
     setOpenSpinner(false)
   }
+  const clearData = () => {
+    setValueCategory('')
+    setValueEmail('')
+    setValueMensaje('')
+    setValueName('')
+  }
 
   const handleSubmit = () => {
+    clearData()
     setOpenSpinner(true)
     setTimeout(() => {
       handleClose()
@@ -60,6 +75,10 @@ function Contact() {
     }, 3000)
     // event.preventDefault()
   }
+  const handleChange = (event) => {
+    setValueCategory(event.target.value)
+  }
+
   return (
     <section className={`${theme.bg} near w-100`} id="near">
       <div className="w-100">
@@ -84,9 +103,14 @@ function Contact() {
             id="contactResponsive"
           >
             <label className="w-60 me-15porcent">
-              <select name="category" id="category" className="form-control">
-                <option value="" selected disabled hidden>
-                  {t('Selecciona Categoria')}
+              <select
+                name="category"
+                id="category"
+                className="form-control"
+                onChange={handleChange}
+              >
+                <option value={valueCategory} selected disabled hidden>
+                  {t('Selecciona categoria')}
                 </option>
                 {optionsCategory.map((option) => (
                   <option value={option} key={option}>
@@ -109,7 +133,6 @@ function Contact() {
                 type="email"
                 className="form-control"
                 placeholder={t('Correo')}
-                value={valueEmail}
                 onChange={handleChangeEmail}
               />
             </label>
@@ -122,17 +145,19 @@ function Contact() {
                 onChange={handleChangeMensaje}
               />
             </label>
+            {errorField ? <p className="error-label"> {errorField}</p> : <></>}
             <button
               type="submit"
               className="_btn btn btn-primary w-25"
               onClick={handleSubmit}
+              disabled={errorField}
             >
               {t('Enviar')}
             </button>
           </div>
         </div>
       </div>
-      <FollowInfo isBackground />
+      <FollowInfo isBackground={true} />
       <LoadingModal handleClose={handleClose} open={openSpinner} />
       <Modal
         open={openCompleted}

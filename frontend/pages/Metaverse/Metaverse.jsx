@@ -6,23 +6,28 @@ import metaverseNuruk from '../../assets/img/metaverse/metaverse.png'
 import ThemeContext from '../../utils/useContextTheme'
 // import itemSlide from '../../assets/img/random/cabin.png'
 import imgMobile from '../../assets/img/metaverse/phone.png'
-import appleStore from '../../assets/img/metaverse/apple-store.png'
+import appleStore from '../../assets/img/metaverse/app-store.png'
+import appleStoreEn from '../../assets/img/metaverse/app-store-en.png'
+import googlePlayEn from '../../assets/img/metaverse/google-play-en.png'
+
 import googlePlay from '../../assets/img/metaverse/google-play.png'
 import HeaderSections from '../HeaderSections'
 import { momentsCarousel } from '../Landing/momentsCarousel'
+import Moments from '../Landing/Moments'
 
 function Metaverso() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
+  const lang = localStorage.getItem('lang')
   const itemsCard = [...momentsCarousel]
   const links = [
     {
       link: 'https://play.google.com/store/apps/details?id=org.realitynear.reality_near&hl=es',
-      img: googlePlay,
+      img: lang === 'es' ? googlePlay : googlePlayEn,
     },
     {
       link: 'https://apps.apple.com/pe/app/reality-near/id1645021476?l=en',
-      img: appleStore,
+      img: lang === 'es' ? appleStore : appleStoreEn,
     },
   ]
 
@@ -126,6 +131,9 @@ function Metaverso() {
             ))}
           </Slider>
         </div>
+      </section>
+      <section>
+        <Moments />
       </section>
       {/* <!--  Section--> */}
       <section

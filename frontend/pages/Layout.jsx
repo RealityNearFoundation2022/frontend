@@ -78,7 +78,7 @@ function Layout() {
 
   return (
     <nav
-      className={`justify-content-evenly navbar d-flex navbar-expand-lg align-items-center w-100 ${
+      className={`justify-content-between px-3 navbar d-flex navbar-expand-lg align-items-center w-100 ${
         theme.bg
       } ${navHidden && 'visual-hidden'} fixed-top`}
       id="mainNav"
@@ -101,6 +101,38 @@ function Layout() {
               </Link>
             </li>
           ))}
+
+          <div className="hiddenNormal">
+            <li
+              className={`nav-item nav-link ${theme.txt}`}
+              onClick={currentUser ? logout : login}
+            >
+              {currentUser ? 'Log out' : 'Log In'}
+            </li>
+            <div className="d-flex justify-content-start">
+              <TranslationModal />
+              <button
+                type="button"
+                onClick={handleChangeTheme}
+                alt=""
+                className="bg-transparent border-0 w-10"
+              >
+                <img
+                  src={buttonTheme}
+                  alt=""
+                  width="w-100"
+                  aria-controls="navbarResponsive"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarResponsive"
+                />
+                <Typography style={{ color: '#33cc99', fontSize: '11.5px' }}>
+                  {t('TEMA')}
+                </Typography>
+              </button>
+            </div>
+          </div>
         </ul>
       </div>
       {currentUser ? (

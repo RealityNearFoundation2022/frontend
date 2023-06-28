@@ -1,13 +1,10 @@
 import React, { useContext } from 'react'
-import { Fade } from 'react-slideshow-image'
 import ThemeContext from '../../utils/useContextTheme'
 import 'react-slideshow-image/dist/styles.css'
 import PropTypes from 'prop-types'
-
+import imgBack from '../../assets/img/random/No_Photo_Available.png'
 export default function CardNotices({ element, medias }) {
   const { theme } = useContext(ThemeContext)
-  const imgBack =
-    'https://media.istockphoto.com/id/1154735310/es/foto/fondo-de-hormig%C3%B3n-gris-piedra-con-textura-pulida.jpg?s=1024x1024&w=is&k=20&c=02tASVwHDSWmtUchrcCO7Mk5jGiyuaMuejMU0Wls89s='
   return (
     <div
       key={`novelties${element._id}`}
@@ -21,19 +18,29 @@ export default function CardNotices({ element, medias }) {
         />
       </div>
       <div
-        className={`${theme.bg} position-absolute bottom-0 w-100 p-3 opacity-9`}
-        style={{ zIndex: '5000', height: '40%' }}
+        className={`${theme.bg} position-absolute bottom-0 w-100 p-3 opacity-9 text-overflow`}
+        style={{
+          zIndex: '5000',
+          height: '90px',
+        }}
       >
-        <h6 className={`${theme.txt} my-0 py-0 fw-bolder`}>{element.title}</h6>
-        <p className={`${theme.txt} my-0 py-0 fw-bolder`}>
+        <h6
+          className={`${theme.txt} my-0 py-0 fw-bolder text-overflow-ellipsis`}
+        >
+          {element.title}
+        </h6>
+        <p className={`${theme.txt} my-0 py-0 text-overflow-ellipsis`}>
           {element.description}
         </p>
-        <p className={`${theme.txt} my-0 py-0 fw-bolder`}>{element.date}</p>
+        <p
+          className={`${theme.txt} my-0 py-0 fw-bolder text-overflow-ellipsis`}
+        >
+          {element.date}
+        </p>
       </div>
     </div>
   )
 }
-
 CardNotices.propTypes = {
   element: PropTypes.object.isRequired,
   medias: PropTypes.array.isRequired,

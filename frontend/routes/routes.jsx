@@ -12,7 +12,7 @@ import { DashboardMarketPlace } from './DashboardMarketPlace'
 import { CardSection } from '../pages/MarketPlace/CardSection'
 import DashboardNotice from './DashboardNotice'
 import Nuruk from '../pages/Nuruk/IndexNuruk'
-import Conditions from '../pages/Conditions'
+import Conditions from '../pages/FooterPages/Conditions'
 import Realities from '../pages/Realities/IndexRealities'
 import Maps from '../pages/Maps/IndexMaps'
 import ResetPassword from '../pages/ResetPassword/ResetPasswordIndex'
@@ -72,19 +72,15 @@ export const routes = [
     element: <CardSection />,
   },
   {
+    path: '/realities',
+    element: <Realities />,
+  },
+  {
     path: '/notices/*',
     element: <DashboardNotice />,
   },
   {
-    path: '/realities?',
-    element: <Realities />,
-  },
-  {
-    path: '/realities?transactionHashes=*',
-    element: <Realities />,
-  },
-  {
-    path: '/terminos-condiciones',
+    path: '/footer-pages/:path',
     element: <Conditions />,
   },
   {

@@ -3,7 +3,7 @@ import itemFake from '../../../assets/img/random/modelMarketplace.png'
 export const filtersMarketplace = [
   {
     id: 1,
-    title: 'Novedades',
+    title: 'Noticias',
     itemCards: [
       {
         id: 11,

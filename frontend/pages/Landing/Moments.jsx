@@ -6,7 +6,7 @@ import ThemeContext from '../../utils/useContextTheme'
 import { getData } from '../../api/methods'
 import '../../assets/css/components/events.css'
 import LoadingModal from '../../components/LoadingModal'
-// import { useNavigate } from 'react-router-dom'
+import imgBack from '../../assets/img/random/No_Photo_Available.png'
 
 export default function Moments() {
   const { theme } = useContext(ThemeContext)
@@ -56,8 +56,6 @@ export default function Moments() {
       setIsLoading(false)
     }
   }
-  const imgBack =
-    'https://media.istockphoto.com/id/1154735310/es/foto/fondo-de-hormig%C3%B3n-gris-piedra-con-textura-pulida.jpg?s=1024x1024&w=is&k=20&c=02tASVwHDSWmtUchrcCO7Mk5jGiyuaMuejMU0Wls89s='
   return events.length ? (
     <section
       className={`${theme.bg} ${
@@ -68,7 +66,7 @@ export default function Moments() {
       <LoadingModal open={isLoading} handleClose={handleClose} />
       <div className="w-100 h-100 mt-2">
         <p
-          className={`${theme.txt} text-uppercase fs-7 px-3porcent font-source-sans-3 fw-bold`}
+          className={`${theme.txt} text-uppercase fs-7 px-3porcent font-source-sans-3 fw-bold `}
         >
           {t('Conoce los eventos del momento')}
         </p>

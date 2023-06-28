@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import logoRealityNear from '../../assets/img/random/LOGO REALITY NEAR.png'
+import logoRealityNear from '../../assets/img/landingPage/RNBannerWeb.png'
 import ThemeContext from '../../utils/useContextTheme'
 import FollowInfo from '../../components/FollowInfo'
 import { useTranslation } from 'react-i18next'
@@ -16,12 +16,12 @@ export default function RealityExperience() {
         >
           <div className="realExperience">
             <center>
-              <h1 className="text-white text-uppercase text-secondary title mb-0">
+              <h1 className="text-white text-uppercase text-secondary title mb-0 mt-3 masthead-heading mb-0">
                 {t('Vive la experiencia')}
               </h1>
             </center>
             <center>
-              <img src={logoRealityNear} alt="" className="w-60" />
+              <img src={logoRealityNear} alt="" className="w-40" />
             </center>
           </div>
           <button
