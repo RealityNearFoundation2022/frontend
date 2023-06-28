@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import logoFooter from '../assets/img/random/logoFooter.png'
 import logoFooterWhite from '../assets/img/random/logoFooterWhite.png'
 import ThemeContext from '../utils/useContextTheme'
+
 function Footer() {
   const { t } = useTranslation()
   const { theme } = useContext(ThemeContext)

@@ -64,6 +64,7 @@ function Layout() {
       getTokenBalance()
     }
 
+    // sacar a una funcion export
     async function getTokenBalance() {
       let balance = await window.wallet.viewMethod({
         contractId: 'token.guxal.testnet',

@@ -1,12 +1,70 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import ThemeContext from '../../utils/useContextTheme'
 import logos from '../../assets/img/reality/Token Reality 1.png'
 import RealityModal from '../../components/RealityModal'
 
+import { getTransactionResult } from '../../assets/js/near/utils'
+
+import { useLocation, useSearchParams } from 'react-router-dom'
+
 export default function Realities() {
   const { theme } = useContext(ThemeContext)
   const { t } = useTranslation()
+
+  const location = useLocation()
+
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  // const getHash = () => {
+  //   // const canvas = document.getElementById('modal-buy')
+  //   // const ctx = canvas.getContext('2d')
+  //   // const { imgMap } = state
+  //   // setImgMap(imgMap)
+  //   // const tileMap = new TileMap(15, posX, posY, null, imgMap)
+  //   // tileMap.clearCanvas(canvas, ctx)
+  //   // tileMap.draw(canvas, ctx)
+  //
+  //   const txhash = searchParams.get('transactionHashes')
+  //
+  //   console.log(txhash)
+  //   // const urlParams = new URLSearchParams(window.location.search)
+  //   // const txhash = urlParams.get('transactionHashes')
+  //
+  //   getTransactionResult(txhash).then((result) => {
+  //     console.log('result')
+  //     console.log(result)
+  //     if (result && 'metadata' in result) {
+  //     //  setShowElement(true)
+  //     } else {
+  //     //  setShowElement(false)
+  //     }
+  //
+  //    // setResponse(result)
+  //
+  //     console.log(txhash)
+  //    // setIsLoading(false)
+  //   })
+  // }
+
+  // useEffect(() => {
+  //   const searchParams = new URLSearchParams(location.search)
+  //   const transactionHashes = searchParams.get('transactionHashes')
+  // 
+  //   // eslint-disable-next-line no-console
+  //   console.log(transactionHashes)
+  // 
+  //   // const history = useHistory()
+  // 
+  //   // Aquí puedes utilizar el valor de "transactionHashes" como lo necesites
+  // 
+  //   // Reemplazar la URL actual sin redireccionar
+  //   // history.replace(location.pathname)
+  //   getHash()
+  //   return () => {
+  //   }
+  // }, [])
+
   return (
     <section className={`${theme.bg} p-7-5vh text-white mb-0`} id="">
       <div

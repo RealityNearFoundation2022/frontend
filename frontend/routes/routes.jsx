@@ -76,7 +76,11 @@ export const routes = [
     element: <DashboardNotice />,
   },
   {
-    path: '/realities',
+    path: '/realities?',
+    element: <Realities />,
+  },
+  {
+    path: '/realities?transactionHashes=*',
     element: <Realities />,
   },
   {

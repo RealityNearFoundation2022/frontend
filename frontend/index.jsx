@@ -1,6 +1,6 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { initContract } from './assets/js/near/utils'
+// import { initContract } from './assets/js/near/utils'
 import { Wallet } from './assets/js/near/near-wallet'
 import './assets/css/global.css'
 import App from './App'
@@ -13,6 +13,7 @@ require('dotenv').config()
 const container = document.querySelector('#root')
 const root = createRoot(container) // createRoot(container!) if you use TypeScript
 
+/* agregar esto al enviroment */
 const wallet = new Wallet({
   createAccessKeyFor: 'dev-1675634479426-76608507847363',
 })
