@@ -24,13 +24,15 @@ export default function RealityExperience() {
               <img src={logoRealityNear} alt="" className="w-40" />
             </center>
           </div>
-          <button
-            className="rounded btn btn-xl _btn realExperience"
-            id="submitButton"
-            type="submit"
+          <a
+            href="https://nuruk.realitynear.org"
+            target="_blank"
+            rel="noreferrer"
           >
-            Ingresar
-          </button>
+            <button type="button" className="btn-secondary _btn btn-xl mx-5">
+              {t('Dar un vistazo')}
+            </button>
+          </a>
         </div>
       </div>
       <FollowInfo />

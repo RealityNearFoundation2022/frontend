@@ -3168,6 +3168,17 @@ textarea.form-control-lg {
   background-color: #16a085;
   border-color: #15967d;
 }
+
+.btn-secondary {
+  background-color: #fff !important;
+  color: black !important;
+  font-size: 14px !important
+}
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #16a085;
+  border-color: #15967d;
+}
 .btn-check:focus + .btn-primary, .btn-primary:focus {
   color: #fff;
   background-color: #16a085;
@@ -3751,6 +3762,13 @@ textarea.form-control-lg {
   background-repeat: no-repeat;
   background-position: center center;
   background-color: #33CC99;
+  background-size: 100% auto;
+  text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+.bg-header-about, .bg-header-metaverse, .bg-header-marketplace, .bg-header-contact, .bg-header-mpcategory, .bg-header-terminos, .bg-header-notices, .bg-header-novelties, .bg-header-events, .bg-header-event, .bg-header-novelty > h3{
+ font-size: 36px;
+ padding-top: 10px;
 }
 .bg-header-metaverse{
   background-image: url(/frontend/assets/img/headers/metaverse.png);

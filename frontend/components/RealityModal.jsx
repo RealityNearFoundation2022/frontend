@@ -40,7 +40,7 @@ export default function RealityModal() {
   return (
     <a href="http://token.realitynear.org/" target="_blank" rel="noreferrer">
       <button
-        className="_btn btn btn-primary btn-xl w-50 text-uppercase"
+        className="_btn btn btn-primary btn-xl w-50 text-uppercase mt-4"
         id="submitButton"
         type="button"
       >

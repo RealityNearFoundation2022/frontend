@@ -22,6 +22,9 @@
   background-color: #656566;
 }
 ._btn {
+  border-radius: 30px;
+  min-width: 180px;
+  max-height: 60px;
   box-shadow: none;
   border: none;
 }
