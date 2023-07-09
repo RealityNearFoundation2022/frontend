@@ -4,7 +4,7 @@
     border-radius: 30px;
 }
 .slide-container{
-    width: 325px;
-    height: 250px;
+    max-width: 325px;
+    max-height: 250px;
     margin: 15px;
 }

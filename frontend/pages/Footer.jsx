@@ -15,10 +15,6 @@ function Footer() {
       title: 'Inicio',
     },
     {
-      to: '/marketplace',
-      title: 'Marketplace',
-    },
-    {
       to: '/about',
       title: 'Nosotros',
     },
@@ -36,11 +32,11 @@ function Footer() {
       className={`${theme.bg} d-flex w-100 justify-content-between align-items-center h-40vh container-moments px-5porcent`}
     >
       <div className="d-flex algign-items-center justify-content-center">
-        <div className="px-5porcent">
+        <div className="px-5porcent hidden-mobile">
           <img
             src={theme.bg === 'bg-dark' ? logoFooterWhite : logoFooter}
             alt=""
-            className="footerHidden img-footer"
+            className="footerHidden img-footer hidden-mobile"
           />
         </div>
         <div className="">

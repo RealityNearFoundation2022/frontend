@@ -103,7 +103,7 @@ function Layout() {
 
           <div className="hiddenNormal">
             <li
-              className={`nav-item nav-link ${theme.txt}`}
+              className={`nav-item nav-link ${theme.txt} mx-3`}
               onClick={currentUser ? logout : login}
             >
               {currentUser ? 'Log out' : 'Log In'}
@@ -119,15 +119,15 @@ function Layout() {
                 <img
                   src={buttonTheme}
                   alt=""
-                  width="w-100"
+                  width="25"
                   aria-controls="navbarResponsive"
                   aria-expanded="false"
                   aria-label="Toggle navigation"
                   data-bs-toggle="collapse"
                   data-bs-target="#navbarResponsive"
                 />
-                <Typography style={{ color: '#33cc99', fontSize: '11.5px' }}>
-                  {t('TEMA')}
+                <Typography style={{ color: '#33cc99', fontSize: '12px' }}>
+                  {t('Tema')} :v
                 </Typography>
               </button>
             </div>
@@ -143,29 +143,33 @@ function Layout() {
       )}
       <button
         type="button"
-        className="btn btn-xs rounded w-10 mr-2"
+        className="btn btn-xs rounded w-10 mr-2 hidden-mobile"
         onClick={currentUser ? logout : login}
       >
         {currentUser ? 'Log out' : 'Log In'}
       </button>
-      <TranslationModal />
+      <div className="hidden-mobile">
+        <TranslationModal />
+      </div>
+
       <button
         type="button"
         onClick={handleChangeTheme}
         alt=""
-        className="bg-transparent border-0 m-2"
+        className="bg-transparent border-0 m-2 hidden-mobile"
       >
         <img
           src={buttonTheme}
           alt=""
           style={{ color: '#33cc99', height: '22.5px' }}
+          className="hidden-mobile"
         />
         <Typography style={{ color: '#33cc99', fontSize: '12px' }}>
           {t('Tema')}
         </Typography>
       </button>
-      <button
-        className="navbar-toggler text-uppercase font-weight-bold btn text-white rounded w-10"
+      <div
+        className="navbar-toggler text-uppercase font-weight-bold text-white w-10"
         type="button"
         aria-controls="navbarResponsive"
         aria-expanded="false"
@@ -174,7 +178,7 @@ function Layout() {
         data-bs-target="#navbarResponsive"
       >
         <MenuIcon />
-      </button>
+      </div>
       <Outlet />
     </nav>
   )
