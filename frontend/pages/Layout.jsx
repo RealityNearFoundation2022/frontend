@@ -127,7 +127,7 @@ function Layout() {
                   data-bs-target="#navbarResponsive"
                 />
                 <Typography style={{ color: '#33cc99', fontSize: '12px' }}>
-                  {t('Tema')} :v
+                  {t('Tema')}
                 </Typography>
               </button>
             </div>
