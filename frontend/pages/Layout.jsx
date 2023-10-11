@@ -18,10 +18,10 @@ function Layout() {
 
   const currentUser = window.accountId || ''
   const links = [
-    // {
-    //   label: "Marketplace",
-    //   link: "/marketplace",
-    // },
+    {
+      label: 'Marketplace',
+      link: '/marketplace',
+    },
     {
       label: 'Nosotros',
       link: '/about',

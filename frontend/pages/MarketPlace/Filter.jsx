@@ -23,6 +23,16 @@ export default function Filter({ data, title }) {
           </>
         ))}
 
+        <li>
+          <li>
+            <Link
+              to="/nuruk"
+              className={`fw-normal d-flex nav-link${theme.txt}`}
+            >
+              Realands
+            </Link>
+          </li>
+        </li>
         {/*<li>
           <Link to="/marketplace" className={`fw-normal nav-link${theme.txt}`}>
             {t('Todos')}
@@ -44,12 +54,7 @@ export default function Filter({ data, title }) {
             {t('Novedades')}
           </Link>
         </li>
-        <li>
-          <Link to="/nuruk" className={`fw-normal d-flex nav-link${theme.txt}`}>
-            Realands
-          </Link>
-        </li>
-        <li>
+       
           <Link
             to="/patchas"
             className={`fw-normal d-flex nav-link${theme.txt}`}

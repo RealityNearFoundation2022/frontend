@@ -136,6 +136,47 @@ export class Wallet {
     })
   }
 
+  async transferFT(
+    receiverId,
+    amount,
+    owner_id,
+    metadata,
+    token_metadata,
+    x,
+    y,
+  ) {
+    const contractId = process.env.FT_CONTRACT_ID // Asegúrate de tener este valor configurado en tu entorno
+    const method = 'ft_transfer_call'
+    const deposit = '1' // Asegúrate de establecer esto al valor correcto
+    const gas = '300000000000000' // Asegúrate de establecer esto al valor correcto
+
+    // Estructura del mensaje interno
+    const internalMessage = {
+      args: {
+        owner_id: owner_id,
+        token_metadata: token_metadata,
+        x: x,
+        y: y,
+      },
+    }
+
+    // Parámetros para la llamada de transferencia
+    const transferCallParams = {
+      receiver_id: receiverId,
+      amount: amount.toString(),
+      msg: JSON.stringify(internalMessage),
+    }
+
+    // Realizar la llamada de transferencia
+    return await this.callMethod({
+      contractId: contractId,
+      method: method,
+      args: transferCallParams,
+      gas: gas,
+      deposit: deposit,
+    })
+  }
+
   // Get transaction result from the network
   async getTransactionResult(txhash) {
     const { network } = this.walletSelector.options

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Modal, Box } from '@mui/material'
-import checkCircle from '../assets/img/icons/check_circle.png'
+// import checkCircle from '../assets/img/icons/check_circle.png'
 import near from '../assets/img/icons/near.svg'
 import TileMap from '../utils/tilemap'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
-import { get_required_deposit, create_token } from '../assets/js/near/utils'
+import {
+  // get_required_deposit, create_token,
+  transferFT,
+} from '../assets/js/near/utils'
 import LoadingModal from '../components/LoadingModal'
 import {
   buildRealandMetadata,
@@ -46,28 +49,61 @@ export default function ModalDetailBuy({
     setOpenCompleted(false)
   }
 
+  //const buyNuruk = async () => {
+  //  setOpenSpinner(true)
+  // const currentUser = window.accountId || ''
+
+  // const args = buildRealandMetadata(currentUser, posX, posY)
+  // const gas = 300000000000000
+
+  // const amount = await get_required_deposit(args, currentUser)
+  // args.metadata.reference = null
+  // args.metadata.reference_hash = null
+
+  // const token_metadata = buildRealandTokenMetadata(0)
+
+  // console.log(args)
+
+  // setTimeout(async () => {
+  //   const data = await create_token(args, token_metadata, gas, amount)
+  //   console.log('data', data)
+  // }, 3000)
+
+  //  handleClose()
+  //  setOpenCompleted(true)
+  //}
+
   const buyNuruk = async () => {
     setOpenSpinner(true)
-    // const currentUser = window.accountId || ''
+    const currentUser = window.accountId || ''
+    try {
+      // Reemplaza estos valores con los reales
+      const receiverId = 'nft-factory.test2221.testnet' // Reemplazar con el ID de cuenta de destino real
+      const amount = 100
+      const owner_id = currentUser // Reemplazar con el owner_id real
+      const metadata = buildRealandMetadata(currentUser, posX, posY)
+      const token_metadata = buildRealandTokenMetadata(0)
+      const x = posX
+      const y = posY
 
-    // const args = buildRealandMetadata(currentUser, posX, posY)
-    // const gas = 300000000000000
-
-    // const amount = await get_required_deposit(args, currentUser)
-    // args.metadata.reference = null
-    // args.metadata.reference_hash = null
-
-    // const token_metadata = buildRealandTokenMetadata(0)
-
-    // console.log(args)
-
-    // setTimeout(async () => {
-    //   const data = await create_token(args, token_metadata, gas, amount)
-    //   console.log('data', data)
-    // }, 3000)
-
-    handleClose()
-    setOpenCompleted(true)
+      // Llama a la función transferFT de tu instancia de Wallet
+      await transferFT(
+        receiverId,
+        amount,
+        owner_id,
+        metadata,
+        token_metadata,
+        x,
+        y,
+      )
+      // ... manejar el éxito (ej. cerrar el modal y mostrar una notificación de éxito)
+      setOpenCompleted(true)
+    } catch (error) {
+      // ... manejar el error (ej. mostrar una notificación de error)
+      console.error(error)
+    } finally {
+      setOpenSpinner(false)
+    }
   }
 
   const style = {
