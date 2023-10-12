@@ -279,6 +279,41 @@ export async function ft_transfer(receiver_id, amount) {
   })
 }
 
+export async function transferFT(
+  receiverId,
+  amount,
+  owner_id,
+  token_metadata,
+  x,
+  y,
+) {
+  // const contractId = process.env.FT_CONTRACT_ID;
+  const method = 'ft_transfer_call'
+  const deposit = '0'
+  const gas = '300000000000000'
+
+  const internalMessage = {
+    args: {
+      owner_id,
+      token_metadata,
+      x,
+      y,
+    },
+  }
+
+  const transferCallParams = {
+    receiver_id: receiverId,
+    amount: amount.toString(),
+    msg: JSON.stringify(internalMessage),
+  }
+
+  await window.ftcontract[method]({
+    args: transferCallParams,
+    gas,
+    deposit,
+  })
+}
+
 // FACTORY
 
 export async function get_tokens(from_index = '0', limit = 64) {
