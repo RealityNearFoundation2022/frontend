@@ -71,7 +71,7 @@ export class Wallet {
 
       //
       await initContract(
-        this.walletSelector.store.getState().accounts[0].accountId,
+        this.walletSelector.store.getState().accounts[0].accountId
       )
     }
 

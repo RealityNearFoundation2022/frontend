@@ -7,13 +7,14 @@ import LoadingModal from '../../components/LoadingModal'
 import {
   buildRealandMetadata,
   buildRealandTokenMetadata,
-  getPriceRealand,
+  // getPriceRealand,
 } from '../../utils/walletUtils'
+import { transferFT } from '../../assets/js/near/utils'
 
 export default function PlotNuruk() {
   const { posX, posY } = useParams()
   const { state } = useLocation()
-  const [price, setPrice] = useState(0)
+  const [price] = useState(0)
   const [description, setDescription] = useState(null)
   const [openNearWallet, setOpenNearWallet] = useState(false)
   const [img, setImgMap] = useState([0])
@@ -37,6 +38,42 @@ export default function PlotNuruk() {
     tileMap.draw(canvas, ctx)
     setIsLoading(false)
   }
+
+  const buyNuruk = async (posX, posY) => {
+    console.log(posX)
+    console.log(posY)
+    // setOpenSpinner(true)
+    const currentUser = window.accountId || ''
+    try {
+      // Reemplaza estos valores con los reales
+      const receiverId = 'nft-factory.test2221.testnet' // Reemplazar con el ID de cuenta de destino real
+      const amount = 100
+      const owner_id = currentUser // Reemplazar con el owner_id real
+      //const metadata = buildRealandMetadata(currentUser, posX, posY)
+      const token_metadata = buildRealandTokenMetadata(0)
+      const x = posX
+      const y = posY
+
+      // Llama a la función transferFT de tu instancia de Wallet
+      await transferFT(
+        receiverId,
+        amount,
+        owner_id,
+        //metadata,
+        token_metadata,
+        x,
+        y,
+      )
+      // ... manejar el éxito (ej. cerrar el modal y mostrar una notificación de éxito)
+      //setOpenCompleted(true)
+    } catch (error) {
+      // ... manejar el error (ej. mostrar una notificación de error)
+      console.error(error)
+    } finally {
+      // setOpenSpinner(false)
+    }
+  }
+
   useEffect(() => {
     setIsLoading(true)
     getImg()
@@ -46,9 +83,13 @@ export default function PlotNuruk() {
 
     setDescription(token_metadata.description)
     console.log(args)
-    getPriceRealand(args, currentUser).then((result) => {
-      setPrice(result)
-    })
+
+    // buyNuruk(posX, posY).then((result) => {
+    //   console.log(result)
+    // })
+    // getPriceRealand(args, currentUser).then((result) => {
+    //   setPrice(result)
+    // })
   }, [posX, posY])
 
   return (

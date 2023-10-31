@@ -3,13 +3,15 @@ import {
   connect,
   Contract,
   keyStores,
+  Account,
   // KeyPair,
   // KeyPair,
   WalletConnection,
   providers,
-  // utils,
+  utils,
 } from 'near-api-js'
 import getConfig from './config'
+import { call } from 'ramda'
 
 export const nearConfig = getConfig(process.env.NODE_ENV || 'development')
 
@@ -37,40 +39,53 @@ export async function initContract(accountId) {
   //
   //await keyStore.setKey("testnet", "temporal.testnet", keyPair);
 
-  const near = await connect({
-    deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() },
-    // deps: { keyStore: keyStore },
-    // deps: { keyStore: keyStore },
-    ...nearConfig,
-  })
+  // const near = await connect({
+  //   deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() },
+  //   // deps: { keyStore: keyStore },
+  //   // deps: { keyStore: keyStore },
+  //   ...nearConfig,
+  // })
+
+  // call new Account
+ 
+  // window.wallet = wallet.wallet;
+
+  //window.walletConnect = 
+  const near = await connect(Object.assign({deps: {keyStore: new keyStores.BrowserLocalStorageKeyStore()}}, nearConfig))
 
   // Initializing Wallet based Account. It can work with NEAR testnet wallet that
   // is hosted at https://wallet.testnet.near.org
   window.walletConnection = new WalletConnection(near)
 
-  let account = await near.account(accountId)
+  console.log(window)
+
+  const account = await new Account(window.walletConnection.account().connection, accountId)
+  // window.accountId = window.walletConnection.getAccountId()
 
   console.log(account)
+  // let account = await near.account(accountId)
+  window.walletConnection = new WalletConnection(near)
+  // console.log(account)
 
   console.log(window.walletConnection.account())
   // window.utils = utils;
 
+  console.log(window.accountId)
   // Getting the Account ID. If still unauthorized, it's just empty string
   //window.accountId = window.walletConnection.getAccountId();
   //window.accountId = window.walletConnection.getAccountId();
 
   // Initializing our contract APIs by contract name and configuration
   window.contract = await new Contract(
-    window.walletConnection.account(),
+    account,
     nearConfig.contractName,
     {
       // View methods are read only. They don't modify the state, but usually return some value.
       // viewMethods: ['get_greeting'],
-      viewMethods: ['get_greeting', 'nft_tokens', 'nft_tokens_for_owner'],
+      viewMethods: ['nft_tokens', 'nft_tokens_for_owner'],
       // Change methods can modify the state. But you don't receive the returned value when called.
       // changeMethods: ['set_greeting'],
       changeMethods: [
-        'set_greeting',
         'new_default_meta',
         'nft_mint',
         'nft_approve',
@@ -79,7 +94,7 @@ export async function initContract(accountId) {
   )
 
   window.mkpcontract = await new Contract(
-    window.walletConnection.account(),
+    account,
     nearConfig.contractMarketplace,
     {
       viewMethods: ['get_sales_by_nft_contract_id', 'storage_minimum_balance'],
@@ -88,7 +103,7 @@ export async function initContract(accountId) {
   )
 
   window.ftcontract = await new Contract(
-    window.walletConnection.account(),
+    account,
     nearConfig.contractToken,
     {
       viewMethods: ['ft_balance_of', 'ft_total_supply'],
@@ -97,7 +112,7 @@ export async function initContract(accountId) {
   )
 
   window.factorynft = await new Contract(
-    window.walletConnection.account(),
+    account,
     nearConfig.contractFactoryNFT,
     {
       viewMethods: [
@@ -112,7 +127,7 @@ export async function initContract(accountId) {
   )
 
   window.ftpresale = await new Contract(
-    window.walletConnection.account(),
+    account,
     nearConfig.contractPresaleFT,
     {
       viewMethods: ['token_price'],
@@ -288,30 +303,77 @@ export async function transferFT(
   y,
 ) {
   // const contractId = process.env.FT_CONTRACT_ID;
-  const method = 'ft_transfer_call'
-  const deposit = '0'
+  const method = 'ft_transfer'
+  const deposit = '1'
   const gas = '300000000000000'
 
   const internalMessage = {
-    args: {
-      owner_id,
-      token_metadata,
-      x,
-      y,
-    },
+    owner_id,
+    token_metadata,
+    x,
+    y,
   }
 
   const transferCallParams = {
     receiver_id: receiverId,
-    amount: amount.toString(),
+    amount: "100",
     msg: JSON.stringify(internalMessage),
   }
 
-  await window.ftcontract[method]({
-    args: transferCallParams,
-    gas,
-    deposit,
-  })
+  // console.log(transferCallParams)
+
+  await ft_transfer_call(owner_id, receiverId, transferCallParams.amount, transferCallParams.msg, gas, deposit)
+}
+
+export async function ft_transfer_call(
+  account_id,
+  receiver_id,
+  amount,
+  msg,
+  gas,
+  deposit,
+) {
+  console.log('Inicio ft_transfer_call'); // log para indicar el inicio de la función
+  console.log('account_id:', account_id); // log para verificar el valor de account_id
+
+  // console.log(utils.format.formatNearAmount(deposit))
+  try {
+
+
+    await callMethod({
+      contractId: nearConfig.contractToken,
+      method: 'ft_transfer_call',
+      args: {
+        receiver_id,
+        amount,
+        msg,
+      },
+      gas,
+      deposit,
+    })
+
+
+    // const result = await window.ftcontract.ft_transfer_call({
+    //   args: {
+    //     receiver_id,
+    //     amount,
+    //     msg: "{}",
+    //   },
+    //   deposit,
+    //   // receiver_id,
+    //   // amount,
+    //   // msg: '{}',
+    //   // msg,
+    //   //gas,
+    //   // amount: 1,
+    //   //amount: deposit,
+    // });
+    // console.log('Resultado:', result); // log para ver el resultado de la llamada al contrato inteligente
+    // return result;
+  } catch (error) {
+    console.error('Error en ft_transfer_call:', error); // log detallado del error
+    throw error; // re-lanzar el error después de loggearlo
+  }
 }
 
 // FACTORY
@@ -480,14 +542,15 @@ export async function callMethod({
   deposit = NO_DEPOSIT,
 }) {
   // Sign a transaction with the "FunctionCall" action
-  const near = await connect({
-    deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() },
-    ...nearConfig,
-  })
+  // const near = await connect({
+  //   deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() },
+  //   ...nearConfig,
+  // })
 
-  const account = await near.account(window.account)
+  // const account = await near.account(window.account)
+  // const account = window.account 
 
-  await account.signAndSendTransaction({
+  await window.wallet.wallet.signAndSendTransaction({
     signerId: window.account,
     receiverId: contractId,
     actions: [

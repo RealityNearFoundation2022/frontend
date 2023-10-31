@@ -31,7 +31,7 @@ export default function Card({ elementsCard, category }) {
           </div>
         )}
         <div className="d-flex justify-content-center">
-          {category == 'Mis NFTs' && elementsCard.price == null && (
+          {category == 'Mis NFTs' || category == 'Mis tierras' && elementsCard.price == null && (
             <ModalCardSellRealand
               elementCard={elementsCard}
               textButton="Vender"

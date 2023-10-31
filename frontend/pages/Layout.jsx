@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next'
 import MenuIcon from '@mui/icons-material/Menu'
 import Typography from '@mui/material/Typography'
 
+import { ft_balance_of } from '../assets/js/near/utils'
+
 import logo from '../assets/img/logo.png'
 import buttonTheme from '../assets/img/random/botonTema.png'
 import ThemeContext from '../utils/useContextTheme'
@@ -61,18 +63,12 @@ function Layout() {
 
   useEffect(() => {
     if (currentUser != '') {
-      getTokenBalance()
+
+      ft_balance_of(currentUser).then((balance) => {
+        setBalance(window.wallet.parseAmount(balance))
+      })
     }
 
-    async function getTokenBalance() {
-      let balance = await window.wallet.viewMethod({
-        contractId: 'token.guxal.testnet',
-        method: 'ft_balance_of',
-        args: { account_id: window.accountId },
-      })
-      let amount = window.wallet.parseAmount(balance)
-      setBalance(amount)
-    }
   }, [])
 
   return (

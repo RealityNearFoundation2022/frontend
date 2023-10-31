@@ -1,42 +1,42 @@
-import React, { useState, useEffect } from 'react'
-import Box from '@mui/material/Box'
+import React from 'react'
+// import Box from '@mui/material/Box'
 import { useTranslation } from 'react-i18next'
-import Modal from './Modal'
-import nearImport from '../assets/img/random/nearImport.png'
-import realitiesLogo from '../assets/img/random/logo1.png'
-import { buy_ft_2 } from '../utils/walletUtils'
+// import Modal from './Modal'
+// import nearImport from '../assets/img/random/nearImport.png'
+// import realitiesLogo from '../assets/img/random/logo1.png'
+// import { buy_ft_2 } from '../utils/walletUtils'
 
 export default function RealityModal() {
-  const [price, setPrice] = useState(false)
-  const [walletValue, setValueWallet] = useState('')
-  const [realities, setRealities] = useState('')
-  const [closeModal, setClose] = useState(false)
-  const [errorLabel, setErrorLabel] = useState(true)
+  // const [price, setPrice] = useState(false)
+  // const [walletValue, setValueWallet] = useState('')
+  // const [realities, setRealities] = useState('')
+  // const [closeModal, setClose] = useState(false)
+  // const [errorLabel, setErrorLabel] = useState(true)
   const { t } = useTranslation()
-  const currentUser = window.accountId || ''
-  const [currentBox, setBox] = useState(currentUser ? 0 : -1)
+  // const currentUser = window.accountId || ''
+  // const [currentBox, setBox] = useState(currentUser ? 0 : -1)
 
-  useEffect(() => {
-    if (currentUser) {
-      getPriceToken()
-    }
+  // useEffect(() => {
+  // if (currentUser) {
+  // getPriceToken()
+  // }
 
-    async function getPriceToken() {
-      let price = await window.wallet.viewMethod({
-        contractId: 'dev-1675634479426-76608507847363',
-        method: 'token_price',
-        args: {},
-      })
-      setPrice(window.wallet.parseAmount(price, 10, 10))
-    }
-  }, [walletValue])
-  function login() {
-    window.wallet.signIn()
-  }
-  function validate(z) {
-    setErrorLabel(/\D/.test(z) || !z)
-    return /\D/.test(z) || !z
-  }
+  // async function getPriceToken() {
+  //   let price = await window.wallet.viewMethod({
+  //     contractId: 'dev-1675634479426-76608507847363',
+  //     method: 'token_price',
+  //     args: {},
+  //   })
+  //   setPrice(window.wallet.parseAmount(price, 10, 10))
+  // }
+  // }, [walletValue])
+  // function login() {
+  //   window.wallet.signIn()
+  // }
+  // function validate(z) {
+  //   setErrorLabel(/\D/.test(z) || !z)
+  //   return /\D/.test(z) || !z
+  // }
   return (
     <a href="http://token.realitynear.org/" target="_blank" rel="noreferrer">
       <button

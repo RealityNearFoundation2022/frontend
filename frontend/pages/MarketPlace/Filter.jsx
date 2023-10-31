@@ -23,7 +23,7 @@ export default function Filter({ data, title }) {
           </>
         ))}
 
-        <li>
+        {/*<li>
           <li>
             <Link
               to="/nuruk"
@@ -33,7 +33,7 @@ export default function Filter({ data, title }) {
             </Link>
           </li>
         </li>
-        {/*<li>
+        <li>
           <Link to="/marketplace" className={`fw-normal nav-link${theme.txt}`}>
             {t('Todos')}
           </Link>

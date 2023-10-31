@@ -7,8 +7,8 @@ import TileMap from '../utils/tilemap'
 import '../assets/css/components/nuruk.css'
 import mapboxgl from 'mapbox-gl'
 import { tokenMapBox } from '../utils/mapboxUtils'
-import { buildRealandMetadata, getPriceRealand } from '../utils/walletUtils'
-import { get_by_position } from '../assets/js/near/utils'
+import { buildRealandMetadata, buildRealandTokenMetadata, getPriceRealand } from '../utils/walletUtils'
+import { get_by_position, transferFT } from '../assets/js/near/utils'
 
 export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
   // const [ coordX, setCoordX] = useState(idX)
@@ -59,6 +59,39 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
     })
   }
 
+  const buyNuruk = async (posX, posY) => {
+    // setOpenSpinner(true)
+    const currentUser = window.accountId || ''
+    try {
+      // Reemplaza estos valores con los reales
+      const receiverId = 'nft-factory.test2221.testnet' // Reemplazar con el ID de cuenta de destino real
+      const amount = 100
+      const owner_id = currentUser // Reemplazar con el owner_id real
+      //const metadata = buildRealandMetadata(currentUser, posX, posY)
+      const token_metadata = buildRealandTokenMetadata(0)
+      const x = posX
+      const y = posY
+
+      // Llama a la función transferFT de tu instancia de Wallet
+      await transferFT(
+        receiverId,
+        amount,
+        owner_id,
+        //metadata,
+        token_metadata,
+        x,
+        y,
+      )
+      // ... manejar el éxito (ej. cerrar el modal y mostrar una notificación de éxito)
+      //setOpenCompleted(true)
+    } catch (error) {
+      // ... manejar el error (ej. mostrar una notificación de error)
+      console.error(error)
+    } finally {
+      // setOpenSpinner(false)
+    }
+  }
+
   useEffect(() => {
     if (img === 'map' && open) {
       getMap()
@@ -74,12 +107,15 @@ export default function ModalBuy({ open, handleClose, go, idX, idY, img }) {
           setPrice(0)
         } else {
           setSale(false)
-          const args = buildRealandMetadata(currentUser, idX, idY)
-          console.log(args)
-          getPriceRealand(args, currentUser).then((result) => {
-            console.log(result)
-            setPrice(result)
-          })
+          // const args = buildRealandMetadata(currentUser, idX, idY)
+          // console.log(args)
+          // buyNuruk(idX, idY).then((result) => {
+          //   console.log(result)
+          // })
+          // getPriceRealand(args, currentUser).then((result) => {
+          //   console.log(result)
+          //   setPrice(result)
+          // })
         }
       })
     }

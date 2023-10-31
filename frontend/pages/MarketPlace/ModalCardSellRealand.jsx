@@ -17,6 +17,7 @@ const initialValues = {
 }
 
 export default function ModalCardSellRealand({ elementCard, textButton }) {
+  console.log(elementCard)
   const {
     utils: {
       format: { parseNearAmount },

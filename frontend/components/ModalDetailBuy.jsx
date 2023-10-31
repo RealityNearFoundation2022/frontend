@@ -11,7 +11,7 @@ import {
 } from '../assets/js/near/utils'
 import LoadingModal from '../components/LoadingModal'
 import {
-  buildRealandMetadata,
+  // 2buildRealandMetadata,
   buildRealandTokenMetadata,
 } from '../utils/walletUtils'
 
@@ -81,7 +81,7 @@ export default function ModalDetailBuy({
       const receiverId = 'nft-factory.test2221.testnet' // Reemplazar con el ID de cuenta de destino real
       const amount = 100
       const owner_id = currentUser // Reemplazar con el owner_id real
-      const metadata = buildRealandMetadata(currentUser, posX, posY)
+      //const metadata = buildRealandMetadata(currentUser, posX, posY)
       const token_metadata = buildRealandTokenMetadata(0)
       const x = posX
       const y = posY
@@ -91,7 +91,7 @@ export default function ModalDetailBuy({
         receiverId,
         amount,
         owner_id,
-        metadata,
+        //metadata,
         token_metadata,
         x,
         y,
