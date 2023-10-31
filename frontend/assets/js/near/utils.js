@@ -8,10 +8,8 @@ import {
   // KeyPair,
   WalletConnection,
   providers,
-  utils,
 } from 'near-api-js'
 import getConfig from './config'
-import { call } from 'ramda'
 
 export const nearConfig = getConfig(process.env.NODE_ENV || 'development')
 
@@ -295,7 +293,7 @@ export async function transferFT(
   y,
 ) {
   // const contractId = process.env.FT_CONTRACT_ID;
-  const method = 'ft_transfer'
+  // const method = 'ft_transfer'
   const deposit = '1'
   const gas = '300000000000000'
 
