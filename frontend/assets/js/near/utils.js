@@ -47,11 +47,16 @@ export async function initContract(accountId) {
   // })
 
   // call new Account
- 
+
   // window.wallet = wallet.wallet;
 
-  //window.walletConnect = 
-  const near = await connect(Object.assign({deps: {keyStore: new keyStores.BrowserLocalStorageKeyStore()}}, nearConfig))
+  //window.walletConnect =
+  const near = await connect(
+    Object.assign(
+      { deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } },
+      nearConfig,
+    ),
+  )
 
   // Initializing Wallet based Account. It can work with NEAR testnet wallet that
   // is hosted at https://wallet.testnet.near.org
@@ -59,7 +64,10 @@ export async function initContract(accountId) {
 
   console.log(window)
 
-  const account = await new Account(window.walletConnection.account().connection, accountId)
+  const account = await new Account(
+    window.walletConnection.account().connection,
+    accountId,
+  )
   // window.accountId = window.walletConnection.getAccountId()
 
   console.log(account)
@@ -76,22 +84,14 @@ export async function initContract(accountId) {
   //window.accountId = window.walletConnection.getAccountId();
 
   // Initializing our contract APIs by contract name and configuration
-  window.contract = await new Contract(
-    account,
-    nearConfig.contractName,
-    {
-      // View methods are read only. They don't modify the state, but usually return some value.
-      // viewMethods: ['get_greeting'],
-      viewMethods: ['nft_tokens', 'nft_tokens_for_owner'],
-      // Change methods can modify the state. But you don't receive the returned value when called.
-      // changeMethods: ['set_greeting'],
-      changeMethods: [
-        'new_default_meta',
-        'nft_mint',
-        'nft_approve',
-      ],
-    },
-  )
+  window.contract = await new Contract(account, nearConfig.contractName, {
+    // View methods are read only. They don't modify the state, but usually return some value.
+    // viewMethods: ['get_greeting'],
+    viewMethods: ['nft_tokens', 'nft_tokens_for_owner'],
+    // Change methods can modify the state. But you don't receive the returned value when called.
+    // changeMethods: ['set_greeting'],
+    changeMethods: ['new_default_meta', 'nft_mint', 'nft_approve'],
+  })
 
   window.mkpcontract = await new Contract(
     account,
@@ -102,14 +102,10 @@ export async function initContract(accountId) {
     },
   )
 
-  window.ftcontract = await new Contract(
-    account,
-    nearConfig.contractToken,
-    {
-      viewMethods: ['ft_balance_of', 'ft_total_supply'],
-      changeMethods: ['storage_deposit', 'ft_transfer', 'ft_transfer_call'],
-    },
-  )
+  window.ftcontract = await new Contract(account, nearConfig.contractToken, {
+    viewMethods: ['ft_balance_of', 'ft_total_supply'],
+    changeMethods: ['storage_deposit', 'ft_transfer', 'ft_transfer_call'],
+  })
 
   window.factorynft = await new Contract(
     account,
@@ -126,14 +122,10 @@ export async function initContract(accountId) {
     },
   )
 
-  window.ftpresale = await new Contract(
-    account,
-    nearConfig.contractPresaleFT,
-    {
-      viewMethods: ['token_price'],
-      changeMethods: ['buy', 'storage_deposit'],
-    },
-  )
+  window.ftpresale = await new Contract(account, nearConfig.contractPresaleFT, {
+    viewMethods: ['token_price'],
+    changeMethods: ['buy', 'storage_deposit'],
+  })
 }
 
 export function logout() {
@@ -316,13 +308,20 @@ export async function transferFT(
 
   const transferCallParams = {
     receiver_id: receiverId,
-    amount: "100",
+    amount: '100',
     msg: JSON.stringify(internalMessage),
   }
 
   // console.log(transferCallParams)
 
-  await ft_transfer_call(owner_id, receiverId, transferCallParams.amount, transferCallParams.msg, gas, deposit)
+  await ft_transfer_call(
+    owner_id,
+    receiverId,
+    transferCallParams.amount,
+    transferCallParams.msg,
+    gas,
+    deposit,
+  )
 }
 
 export async function ft_transfer_call(
@@ -333,13 +332,11 @@ export async function ft_transfer_call(
   gas,
   deposit,
 ) {
-  console.log('Inicio ft_transfer_call'); // log para indicar el inicio de la función
-  console.log('account_id:', account_id); // log para verificar el valor de account_id
+  console.log('Inicio ft_transfer_call') // log para indicar el inicio de la función
+  console.log('account_id:', account_id) // log para verificar el valor de account_id
 
   // console.log(utils.format.formatNearAmount(deposit))
   try {
-
-
     await callMethod({
       contractId: nearConfig.contractToken,
       method: 'ft_transfer_call',
@@ -351,7 +348,6 @@ export async function ft_transfer_call(
       gas,
       deposit,
     })
-
 
     // const result = await window.ftcontract.ft_transfer_call({
     //   args: {
@@ -371,8 +367,8 @@ export async function ft_transfer_call(
     // console.log('Resultado:', result); // log para ver el resultado de la llamada al contrato inteligente
     // return result;
   } catch (error) {
-    console.error('Error en ft_transfer_call:', error); // log detallado del error
-    throw error; // re-lanzar el error después de loggearlo
+    console.error('Error en ft_transfer_call:', error) // log detallado del error
+    throw error // re-lanzar el error después de loggearlo
   }
 }
 
@@ -548,7 +544,7 @@ export async function callMethod({
   // })
 
   // const account = await near.account(window.account)
-  // const account = window.account 
+  // const account = window.account
 
   await window.wallet.wallet.signAndSendTransaction({
     signerId: window.account,
