@@ -17,7 +17,7 @@ const container = document.querySelector('#root')
 const root = createRoot(container) // createRoot(container!) if you use TypeScript
 
 const wallet = new Wallet({
-  createAccessKeyFor: nearConfig.contractToken,
+  createAccessKeyFor: 'ft.test2221.testnet',
 })
 
 window.wallet = wallet

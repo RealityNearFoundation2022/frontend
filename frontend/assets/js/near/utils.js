@@ -37,24 +37,24 @@ export async function initContract(accountId) {
   //
   //await keyStore.setKey("testnet", "temporal.testnet", keyPair);
 
-  // const near = await connect({
-  //   deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() },
-  //   // deps: { keyStore: keyStore },
-  //   // deps: { keyStore: keyStore },
-  //   ...nearConfig,
-  // })
+  const near = await connect({
+    deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() },
+    // deps: { keyStore: keyStore },
+    // deps: { keyStore: keyStore },
+    ...nearConfig,
+  })
 
   // call new Account
 
   // window.wallet = wallet.wallet;
 
   //window.walletConnect =
-  const near = await connect(
-    Object.assign(
-      { deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } },
-      nearConfig,
-    ),
-  )
+  // const near = await connect(
+  //   Object.assign(
+  //     { deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } },
+  //     nearConfig,
+  //   ),
+  // )
 
   // Initializing Wallet based Account. It can work with NEAR testnet wallet that
   // is hosted at https://wallet.testnet.near.org
@@ -70,7 +70,7 @@ export async function initContract(accountId) {
 
   console.log(account)
   // let account = await near.account(accountId)
-  window.walletConnection = new WalletConnection(near)
+  // window.walletConnection = new WalletConnection(near)
   // console.log(account)
 
   console.log(window.walletConnection.account())
