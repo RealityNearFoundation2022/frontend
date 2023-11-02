@@ -54,6 +54,7 @@ jobs:
           password: ${{ secrets.QA_HOST_FE_PASSWORD }}
           envs: GITHUB_SHA
           script: |
+            export NODE_ENV=development
             mkdir -p "releases/${GITHUB_SHA}"
             tar xzf artifacts/${GITHUB_SHA}.tar.gz -C "releases/${GITHUB_SHA}"
             rm -r /var/www/html/* 2> /dev/null
