@@ -545,6 +545,7 @@ export async function callMethod({
   // const account = window.account
 
   await window.wallet.wallet.signAndSendTransaction({
+    // callbackUrl: 'http://localhost:1234/callback', // callbackUrl after the transaction approved (optional)
     signerId: window.account,
     receiverId: contractId,
     actions: [

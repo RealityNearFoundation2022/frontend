@@ -9,6 +9,7 @@ import TileMap from '../../utils/tilemap'
 import MockUp from '../../assets/img/MapaMockUp.jpg'
 
 export default function IndexCentreland() {
+  console.log('aqui')
   const tileSize = 15
   /*
     Desc: Size of global.css --sizeMockup
@@ -104,6 +105,8 @@ export default function IndexCentreland() {
       setLeft(scrollLeft === 0 && row > 0)
       setRigth(scrollWidth - scrollLeft === clientWidth && row < maxColumnsRows)
     })
+
+    console.log('scroll')
   })
 
   function goToPlotNurk(x, y) {
