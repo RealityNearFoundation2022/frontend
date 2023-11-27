@@ -546,6 +546,7 @@ export async function callMethod({
 
   await window.wallet.wallet.signAndSendTransaction({
     callbackUrl: 'http://qa.realitynear.org/callback', // callbackUrl after the transaction approved (optional)
+    //callbackUrl: 'http://localhost:1234/callback', // callbackUrl after the transaction approved (optional)
     signerId: window.account,
     receiverId: contractId,
     actions: [
