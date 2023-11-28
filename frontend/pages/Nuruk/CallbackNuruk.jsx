@@ -1,8 +1,14 @@
 import React, { useEffect } from 'react'
 import checkCircle from '../../assets/img/icons/check_circle.png'
+import { useNavigate } from 'react-router-dom'
 
 export default function CallbackNuruk() {
   // const { posX, posY } = useParams()
+  const navigate = useNavigate()
+
+  const goToLands = () => {
+    navigate('/marketplace/my-lands')
+  }
 
   useEffect(() => {
     console.log('useEffect Callback')
@@ -26,6 +32,7 @@ export default function CallbackNuruk() {
               <button
                 type="button"
                 className="rounded btn btn-lg px-5 btn-primary _btn"
+                onClick={goToLands}
               >
                 Ok
               </button>
