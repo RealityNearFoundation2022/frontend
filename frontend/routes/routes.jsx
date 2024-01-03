@@ -64,6 +64,10 @@ export const routes = [
     element: <CallbackNuruk />,
   },
   {
+    path: '/response',
+    element: <CallbackNuruk />,
+  },
+  {
     path: '/metaverso',
     element: <Metaverso />,
   },

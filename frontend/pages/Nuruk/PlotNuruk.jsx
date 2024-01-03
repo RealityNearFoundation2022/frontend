@@ -23,6 +23,7 @@ export default function PlotNuruk() {
   const currentUser = window.accountId || ''
 
   const getImg = () => {
+    console.log(state)
     if (!state) {
       navigate(`/nuruk`)
       setIsLoading(false)
